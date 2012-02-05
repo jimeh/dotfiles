@@ -4,3 +4,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = https://github.com/jimeh/.emacs.d
+[submodule "private"]
+	path = private
+	url = git@bitbucket.org:jimeh/dotfiles-private.git
