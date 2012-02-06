@@ -18,7 +18,7 @@
 #   /usr/local/bin
 #
 path_list () {
-    echo ${PATH//:/\\n}
+    echo -e ${PATH//:/\\n}
 }
 
 # Append specified path to the end of PATH.
