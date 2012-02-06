@@ -32,7 +32,6 @@ source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
 
 # Services
-source "$DOTSHELL/aws.sh"
 source "$DOTSHELL/services.sh"
 
 
