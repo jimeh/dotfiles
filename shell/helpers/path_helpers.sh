@@ -80,7 +80,9 @@ path_prepend () {
 path_remove () {
     if [ ! -n "$1" ]; then return 2; fi
     if [[ ":$PATH:" == *":$1:"* ]]; then
-        export PATH=$(__path_clean `echo -n ":$PATH:" | sed "s;:$1;;"`)
+        local dirs=":$PATH:"
+        dirs=${dirs/:$1:/:}
+        export PATH=$(__path_clean $dirs)
         return 0
     fi
     return 1
@@ -106,7 +108,9 @@ path_add_before () {
     if [ ! -n "$1" ] || [ ! -n "$2" ]; then return 2; fi
     if [[ ":$PATH:" == *":$2:"* ]]; then
         path_remove "$1"
-        export PATH=$(__path_clean `echo -n ":$PATH:" | sed "s;:$2;:$1:$2;"`)
+        local dirs=":$PATH:"
+        dirs=${dirs/:$2:/:$1:$2:}
+        export PATH=$(__path_clean $dirs)
         return 0
     fi
     return 1
@@ -132,7 +136,9 @@ path_add_after () {
     if [ ! -n "$1" ] || [ ! -n "$2" ]; then return 2; fi
     if [[ ":$PATH:" == *":$2:"* ]]; then
         path_remove "$1"
-        export PATH=$(__path_clean `echo -n ":$PATH:" | sed "s;:$2;:$2:$1;"`)
+        local dirs=":$PATH:"
+        dirs=${dirs/:$2:/:$2:$1:}
+        export PATH=$(__path_clean $dirs)
         return 0
     fi
     return 1
@@ -144,5 +150,6 @@ path_add_after () {
 #   __path_clean ":/bin:/usr/bin:" #=> /bin:/usr/bin
 #
 __path_clean () {
-    echo -n "$1" | sed "s/.\(.*\)./\1/"
+    local dirs=${1%?}
+    echo ${dirs#?}
 }
