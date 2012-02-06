@@ -3,10 +3,12 @@
 #
 
 # Set path to root of dotfiles
-if [ -n "${BASH_SOURCE[0]}" ]; then
+if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ] ; then
     DOTFILES="`dirname \"${BASH_SOURCE[0]}\"`"
-elif [ -n "$0" ]; then
+elif [ -n "$0" ] && [ -f "$0" ]; then
     DOTFILES="`dirname \"$0\"`"
+elif [ -d "$HOME/.dotfiles" ]; then
+    DOTFILES="$HOME/.dotfiles"
 fi
 
 # Load main dotfiles
