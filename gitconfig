@@ -1,0 +1,31 @@
+[user]
+  name = Jim Myhrberg
+  email = contact@jimeh.me
+[core]
+  excludesfile = ~/.gitignore
+[color]
+  status = auto
+  branch = auto
+  diff = auto
+[apply]
+  whitespace = nowarn
+[push]
+  default = upstream
+[alias]
+  a = add
+  ai = add -i
+  p = pull --rebase
+  pu = push
+  co = checkout
+  cl = clone
+  br = branch
+  ci = commit
+  st = status
+  me = merge
+  di = diff
+  re = remote
+  reb = rebase
+  res = reset
+  sub = submodule
+  unstage = reset HEAD --
+  last = log -1 HEAD
