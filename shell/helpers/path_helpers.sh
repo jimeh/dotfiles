@@ -82,7 +82,7 @@ path_remove () {
     if [[ ":$PATH:" == *":$1:"* ]]; then
         local dirs=":$PATH:"
         dirs=${dirs/:$1:/:}
-        export PATH=$(__path_clean $dirs)
+        export PATH="$(__path_clean $dirs)"
         return 0
     fi
     return 1
@@ -110,7 +110,7 @@ path_add_before () {
         path_remove $1
         local dirs=":$PATH:"
         dirs=${dirs/:$2:/:$1:$2:}
-        export PATH=$(__path_clean $dirs)
+        export PATH="$(__path_clean $dirs)"
         return 0
     fi
     return 1
@@ -138,7 +138,7 @@ path_add_after () {
         path_remove $1
         local dirs=":$PATH:"
         dirs=${dirs/:$2:/:$2:$1:}
-        export PATH=$(__path_clean $dirs)
+        export PATH="$(__path_clean $dirs)"
         return 0
     fi
     return 1
