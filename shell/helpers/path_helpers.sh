@@ -38,8 +38,8 @@ path_list () {
 #
 path_append () {
     if [ ! -n "$1" ]; then return 2; fi
-    path_remove "$1";
-    export PATH="$PATH:$1";
+    path_remove "$1"
+    export PATH="$PATH:$1"
 }
 
 # Prepend specified path to the begnning of PATH.
@@ -60,8 +60,8 @@ path_append () {
 #
 path_prepend () {
     if [ ! -n "$1" ]; then return 2; fi
-    path_remove "$1";
-    export PATH="$1:$PATH";
+    path_remove "$1"
+    export PATH="$1:$PATH"
 }
 
 # Remove specified path from PATH.
