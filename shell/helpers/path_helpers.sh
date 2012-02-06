@@ -38,7 +38,7 @@ path_list () {
 #
 path_append () {
     if [ ! -n "$1" ]; then return 2; fi
-    path_remove "$1"
+    path_remove $1
     export PATH="$PATH:$1"
 }
 
@@ -60,7 +60,7 @@ path_append () {
 #
 path_prepend () {
     if [ ! -n "$1" ]; then return 2; fi
-    path_remove "$1"
+    path_remove $1
     export PATH="$1:$PATH"
 }
 
@@ -107,7 +107,7 @@ path_remove () {
 path_add_before () {
     if [ ! -n "$1" ] || [ ! -n "$2" ]; then return 2; fi
     if [[ ":$PATH:" == *":$2:"* ]]; then
-        path_remove "$1"
+        path_remove $1
         local dirs=":$PATH:"
         dirs=${dirs/:$2:/:$1:$2:}
         export PATH=$(__path_clean $dirs)
@@ -135,7 +135,7 @@ path_add_before () {
 path_add_after () {
     if [ ! -n "$1" ] || [ ! -n "$2" ]; then return 2; fi
     if [[ ":$PATH:" == *":$2:"* ]]; then
-        path_remove "$1"
+        path_remove $1
         local dirs=":$PATH:"
         dirs=${dirs/:$2:/:$2:$1:}
         export PATH=$(__path_clean $dirs)
