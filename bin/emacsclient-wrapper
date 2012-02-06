@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Defaults
+EMACSCLIENT="emacsclient"
+ALTERNATE_EDITOR="nano"
+
+# Set to binary bundled in Emacs.app if it exists
+if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+  EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+fi
+
+# Execute emacsclient
+exec $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"
