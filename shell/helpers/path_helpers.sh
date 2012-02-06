@@ -128,7 +128,7 @@ path_add_before () {
 #
 #   $ echo $PATH
 #   /usr/bin:/usr/local/bin
-#   $ path_add_before "/usr/local/sbin" "/usr/local/bin"
+#   $ path_add_after "/usr/local/sbin" "/usr/local/bin"
 #   $ echo $PATH
 #   /usr/bin:/usr/local/bin:/usr/local/sbin
 #
