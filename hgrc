@@ -1,0 +1,4 @@
+# This is a Mercurial configuration file.
+[ui]
+username = Jim Myhrberg <contact@jimeh.me>
+
