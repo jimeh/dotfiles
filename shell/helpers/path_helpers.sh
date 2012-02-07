@@ -147,7 +147,8 @@ path_add_after () {
 # Strips first and last character from intput string.
 #
 # Example:
-#   __path_clean ":/bin:/usr/bin:" #=> /bin:/usr/bin
+#   $ __path_clean ":/bin:/usr/bin:"
+#   /bin:/usr/bin
 #
 __path_clean () {
     local dirs=${1%?}
