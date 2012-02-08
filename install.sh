@@ -44,7 +44,7 @@ install_rbenv () {
     git_clone 'git://github.com/sstephenson/rbenv.git' "$TARGET/.rbenv"
 }
 
-isntall_nvm () {
+install_nvm () {
     git_clone 'https://github.com/creationix/nvm.git' "$TARGET/.nvm"
 }
 
