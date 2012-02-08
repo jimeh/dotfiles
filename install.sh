@@ -4,11 +4,13 @@
 # Configuration
 #
 
-TARGET=$HOME
-DOTFILES_LINK='.dotfiles'
-PRIVATE_PATH='private'
-SYMLINK=(bundle emacs.d erlang gemrc gitconfig gitignore hgrc irbrc \
+TARGET="$HOME"
+DOTFILES_LINK=".dotfiles"
+SYMLINK_PATH="$DOTFILES_LINK"
+PRIVATE_PATH="private"
+SYMLINKS=(bundle emacs.d erlang gemrc gitconfig gitignore hgrc irbrc \
     powconfig rspec tmux.conf)
+LOAD_FILES=(profile zprofile)
 
 #
 # Main Functions
@@ -25,12 +27,12 @@ install_symlinks () {
     fi
 
     # Symlink each path
-    for i in ${SYMLINK[@]}; do
-        symlink "$DOTFILES_LINK/$i" "$TARGET/.$i"
+    for i in ${SYMLINKS[@]}; do
+        symlink "$SYMLINK_PATH/$i" "$TARGET/.$i"
     done
 
     # Symlink shell init file for bash and zsh
-    for i in profile zprofile; do
+    for i in ${LOAD_FILES[@]}; do
         symlink "$DOTFILES_LINK/load_shellrc.sh" "$TARGET/.$i"
     done
 }
@@ -93,34 +95,30 @@ git_clone () {
 #
 
 case "$1" in
-    target)
-        echo "Target directory is: $TARGET"
-        ;;
     symlinks|links)
-        echo 'Installing: symlinks...'
         install_symlinks
         ;;
     homebrew|brew)
-        echo 'Installing: Homebrew...'
         install_homebrew
         ;;
     rbenv)
-        echo 'Installing: rbenv...'
         install_rbenv
         ;;
     nvm)
-        echo 'Installing: nvm...'
         install_nvm
         ;;
     virtualenv|venv)
-        echo 'Installing: virtualenv-burrito...'
         install_virtualenv
+        ;;
+    info)
+        echo "Target directory: $TARGET"
+        echo "Detected dotfiles root: $ROOT_PATH"
         ;;
     *)
         echo 'usage: ./install.sh [command]'
         echo ''
         echo 'Available commands:'
-        echo '     target: Print target directory used by other commands.'
+        echo '       info: Target and source directory info.'
         echo '   symlinks: Install symlinks for various dotfiles into' \
              'target directory.'
         echo '   homebrew: Install Homebrew (Mac OS X only).'
