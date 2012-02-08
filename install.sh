@@ -21,9 +21,8 @@ install_symlinks () {
     symlink "$ROOT_PATH" "$TARGET/$DOTFILES_LINK"
 
     # Setup private dotfiles
-    local private_rakefile="$ROOT_PATH/$PRIVATE_PATH/Rakefile"
-    if [ -f "$private_rakefile" ]; then
-        rake --rakefile="$private_rakefile" symlink
+    if [ -f "$ROOT_PATH/$PRIVATE_PATH/install.sh" ]; then
+        "$ROOT_PATH/$PRIVATE_PATH/install.sh" links
     fi
 
     # Symlink each path
