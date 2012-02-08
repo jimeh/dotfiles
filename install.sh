@@ -59,9 +59,9 @@ install_virtualenv () {
 #
 
 if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ] ; then
-    ROOT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    ROOT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 elif [ -n "$0" ] && [ -f "$0" ]; then
-    ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
+    ROOT_PATH=$(cd "$(dirname "$0")" && pwd)
 else
     echo "[ERROR] Can't determine dotfiles' root path."
     exit 1
