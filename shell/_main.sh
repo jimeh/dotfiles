@@ -58,7 +58,7 @@ path_prepend "$DOTBIN"
 
 # Relative Paths - must be first in PATH
 path_prepend "./node_modules/.bin" # Node.js
-path_prepend "./.bin"              # Ruby Bundler
+path_prepend "./vendor/bundle/bin" # Ruby Bundler
 
 # Ensure TMPDIR is the same for local and remote ssh logins
 if [[ $TMPDIR == "/var/folders/"* ]] || [[ $TMPDIR == "" ]]; then

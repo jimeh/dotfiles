@@ -3,7 +3,7 @@ alias po="powify"
 alias lu="lunchy"
 
 # Bundler aliases
-alias bi="bundle install --path vendor/bundle --binstubs=.bin"
+alias bi="bundle install --path vendor/bundle --binstubs=vendor/bundle/bin"
 alias bc="bundle check"
 alias bl="bundle list"
 alias be="bundle exec"
