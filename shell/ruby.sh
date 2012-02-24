@@ -1,6 +1,7 @@
 # Aliases
 alias po="powify"
 alias lu="lunchy"
+alias he="heroku"
 
 # Bundler aliases
 alias bi="bundle install --path vendor/bundle --binstubs=vendor/bundle/bin"
