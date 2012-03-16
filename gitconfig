@@ -29,3 +29,5 @@
   sub = submodule
   unstage = reset HEAD --
   last = log -1 HEAD
+[branch]
+  autosetuprebase = always
