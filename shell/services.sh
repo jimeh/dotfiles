@@ -11,7 +11,6 @@ NAMED_LAUNCHD_CONFIG="/System/Library/LaunchDaemons/org.isc.named.plist"
 alias start_named="sudo launchctl load $NAMED_LAUNCHD_CONFIG"
 alias stop_named="sudo launchctl unload $NAMED_LAUNCHD_CONFIG"
 alias restart_named="stop_named; start_named"
-alias reload_dns="restart_named" # legacy
 
 # Memcache related
 MEMCACHED_LAUNCHD_CONFIG="~/Library/LaunchAgents/com.danga.memcached.plist"
