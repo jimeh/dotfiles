@@ -9,6 +9,9 @@ alias ls="ls -BG"
 alias ll="ls -lah"
 alias duh="du -h"
 
+# Helpers
+alias reload="source ~/.profile"
+
 # Editors
 alias n="nano"
 alias t="mate"
