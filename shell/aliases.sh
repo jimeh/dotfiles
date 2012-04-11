@@ -19,6 +19,6 @@ alias br="brew"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 
 # Misc.
-alias weechat="TERM=screen-256colors weechat-curses"
+alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
