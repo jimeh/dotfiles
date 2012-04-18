@@ -40,5 +40,8 @@ source "$ZSH/oh-my-zsh.sh"
 # Disable shared history
 unsetopt share_history
 
+# Disable bundled heroku binary, I install the gem globally
+unalias heroku
+
 # Cause I hit emacs shorts too much
 bindkey -s "\C-x\C-f" "cd "
