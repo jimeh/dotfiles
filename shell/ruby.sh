@@ -22,8 +22,8 @@ alias va="bundle exec vagrant"
 
 # Load rbenv or RVM depending on which is available
 if [ -d "$HOME/.rbenv/bin" ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
-    source "$HOME/.rvm/scripts/rvm"
+  source "$HOME/.rvm/scripts/rvm"
 fi

@@ -6,5 +6,5 @@ alias tml="tm ls"
 
 # Tmux Completion
 if [ -f "/usr/local/etc/bash_completion.d/tmux" ]; then
-    source "/usr/local/etc/bash_completion.d/tmux"
+  source "/usr/local/etc/bash_completion.d/tmux"
 fi

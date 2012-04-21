@@ -13,9 +13,9 @@ path_prepend "/usr/local/bin"
 
 # Load bash or zsh specific init files
 if [ -n "$BASH_VERSION" ]; then
-    source "$DOTSHELL/bashrc.sh"
+  source "$DOTSHELL/bashrc.sh"
 elif [ -n "$ZSH_VERSION" ]; then
-    source "$DOTSHELL/zshrc.sh"
+  source "$DOTSHELL/zshrc.sh"
 fi
 
 # Aliases
@@ -62,6 +62,6 @@ path_prepend "./vendor/bundle/bin" # Ruby Bundler
 
 # Ensure TMPDIR is the same for local and remote ssh logins
 if [[ $TMPDIR == "/var/folders/"* ]] || [[ $TMPDIR == "" ]]; then
-    export TMPDIR="/tmp/user-$USER"
-    mkdir -p "$TMPDIR"
+  export TMPDIR="/tmp/user-$USER"
+  mkdir -p "$TMPDIR"
 fi
