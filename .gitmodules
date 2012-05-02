@@ -7,3 +7,6 @@
 [submodule "private"]
   path = private
   url = git@bitbucket.org:jimeh/dotfiles-private.git
+[submodule "shell/tmux/tmuxifier"]
+  path = shell/tmux/tmuxifier
+  url = git@github.com:jimeh/tmuxifier.git
