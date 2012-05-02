@@ -22,8 +22,8 @@ set -g window-status-format "  #I:#W#F  "
 set -g window-status-current-format "#[fg=colour233,bg=black]⮀#[fg=colour33,nobold] #I:#W#F #[fg=colour233,bg=black,nobold]⮂"
 
 # Current window status
-set -g window-status-current-bg colour100
-set -g window-status-current-fg colour235
+set -g window-status-current-bg colour24
+set -g window-status-current-fg colour233
 
 # Window with activity status
 set -g window-status-activity-bg colour31  # fg and bg are flipped here due to

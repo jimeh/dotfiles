@@ -19,7 +19,6 @@ set -g status-right "#[fg=colour235,bg=colour233]⮂#[fg=colour240,bg=colour235]
 
 # Window status
 set -g window-status-format "  #I:#W#F  "
-# set -g window-status-current-format " #I:#W#F "
 set -g window-status-current-format "#[fg=colour233,bg=black]⮀#[fg=colour190,nobold] #I:#W#F #[fg=colour233,bg=black,nobold]⮂"
 
 # Current window status
