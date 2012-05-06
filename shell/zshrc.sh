@@ -8,6 +8,9 @@ DOTZSH="$DOTSHELL/zsh"
 # Path to your oh-my-zsh configuration.
 ZSH="$DOTZSH/oh-my-zsh"
 
+# Customize oh-my-zsh's custom path.
+ZSH_CUSTOM="$DOTZSH/custom"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -31,7 +34,8 @@ DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cap brew bundler gem heroku osx thor vagrant ruby rails3 powder python cake node)
+plugins=(brew bundler cake cap gem heroku node nyan osx powder python rails3 \
+  rbenv ruby thor vagrant)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -40,8 +44,10 @@ source "$ZSH/oh-my-zsh.sh"
 # Disable shared history
 unsetopt share_history
 
-# Disable bundled heroku binary, I install the gem globally
+# Disable certain bundled ruby binaries, I install the gems globally.
+unalias foreman
 unalias heroku
+unalias shotgun
 
 # Cause I hit emacs shorts too much
 bindkey -s "\C-x\C-f" "cd "
