@@ -10,7 +10,7 @@ SYMLINK_PATH="$DOTFILES_LINK"
 PRIVATE_PATH="private"
 SYMLINKS=(bundle emacs.d erlang gemrc gitconfig gitignore hgrc irbrc \
     powconfig rspec tmux tmux.conf)
-LOAD_FILES=(profile zprofile)
+LOAD_FILES=(profile zshrc)
 
 #
 # Main Functions
