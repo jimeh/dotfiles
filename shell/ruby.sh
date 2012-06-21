@@ -12,13 +12,25 @@ alias bu="bundle update"
 alias bco="bundle console"
 
 # Bundler aliases for specific ruby commands
-alias ru="bundle exec ruby"
-alias ra="bundle exec rake"
-alias rai="bundle exec rails"
-alias rs="bundle exec rspec"
-alias ca="bundle exec cap"
-alias cu="bundle exec cucumber"
-alias va="bundle exec vagrant"
+if [ -n "$BASH_VERSION" ]; then
+  alias ru="bundle exec ruby"
+  alias ra="bundle exec rake"
+  alias rai="bundle exec rails"
+  alias rs="bundle exec rspec"
+  alias ca="bundle exec cap"
+  alias cu="bundle exec cucumber"
+  alias va="bundle exec vagrant"
+elif [ -n "$ZSH_VERSION" ]; then
+  # With Z-Shell I use oh-my-zsh and it's bundler plugin negating the need to
+  # manually prefix command with 'bundle exec'.
+  alias ru="ruby"
+  alias ra="rake"
+  alias rai="rails"
+  alias rs="rspec"
+  alias ca="cap"
+  alias cu="cucumber"
+  alias va="vagrant"
+fi
 
 # Load rbenv or RVM depending on which is available
 if [ -d "$HOME/.rbenv/bin" ]; then
