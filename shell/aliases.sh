@@ -25,3 +25,8 @@ alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
+
+# appends your key to a server's authorized keys file
+function authme {
+  ssh "$1" 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
+}
