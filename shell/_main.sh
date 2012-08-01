@@ -48,6 +48,9 @@ export GEM_EDITOR="mate"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
+# GCC 4.2 via Homebrew
+export CC=/usr/local/bin/gcc-4.2
+
 # ensure bin and sbin paths from /usr/local are in PATH
 path_add_after "/usr/local/sbin" "/usr/local/bin"
 
