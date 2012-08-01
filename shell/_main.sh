@@ -51,6 +51,9 @@ export LANG="en_US.UTF-8"
 # GCC 4.2 via Homebrew
 export CC=/usr/local/bin/gcc-4.2
 
+# Android SDK
+export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.1"
+
 # ensure bin and sbin paths from /usr/local are in PATH
 path_add_after "/usr/local/sbin" "/usr/local/bin"
 
