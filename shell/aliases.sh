@@ -25,6 +25,7 @@ alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
+alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
 # appends your key to a server's authorized keys file
 function authme {
