@@ -5,7 +5,9 @@
 # System
 alias o="open"
 alias s="ssh"
+alias ec="echo"
 alias ls="ls -BG"
+alias l="ls -lah"
 alias ll="ls -lah"
 alias duh="du -h"
 
@@ -18,6 +20,7 @@ alias t="mate"
 alias e="$DOTBIN/emacsclient-wrapper"
 
 # Utils
+alias ma="make"
 alias br="brew"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 
@@ -29,5 +32,6 @@ alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
 # appends your key to a server's authorized keys file
 function authme {
-  ssh "$1" 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
+  ssh "$1" 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
+    < ~/.ssh/id_dsa.pub
 }
