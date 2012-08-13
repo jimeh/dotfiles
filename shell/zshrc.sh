@@ -51,3 +51,13 @@ unalias shotgun
 
 # Cause I hit emacs shorts too much
 bindkey -s "\C-x\C-f" "cd "
+
+
+#
+# Z-Shell Command Highlighting
+#
+
+# Highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+source "$DOTZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

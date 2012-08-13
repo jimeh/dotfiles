@@ -10,3 +10,6 @@
 [submodule "shell/tmux/tmuxifier"]
   path = shell/tmux/tmuxifier
   url = git@github.com:jimeh/tmuxifier.git
+[submodule "shell/zsh/zsh-syntax-highlighting"]
+	path = shell/zsh/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
