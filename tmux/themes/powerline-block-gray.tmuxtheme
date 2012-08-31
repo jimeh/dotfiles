@@ -49,14 +49,15 @@ set -g display-panes-active-colour colour245
 
 # Clock mode
 set -g clock-mode-colour colour240
+set -g clock-mode-style 24
 
 # Message
-set -g message-fg colour232
 set -g message-bg colour245
+set -g message-fg colour232
 
 # Command message
-set -g message-command-fg colour250
 set -g message-command-bg colour233
+set -g message-command-fg colour250
 
 # Mode
 set -g mode-bg colour243
