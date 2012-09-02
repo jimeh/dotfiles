@@ -35,5 +35,8 @@ source "$DOTSHELL/sbcl.sh"
 # Services
 source "$DOTSHELL/services.sh"
 
+# Shell related
+source "$DOTSHELL/z.sh"
+
 # Environment Setup
 source "$DOTSHELL/env.sh"
