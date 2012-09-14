@@ -11,7 +11,7 @@ if [ -f "/usr/local/etc/bash_completion.d/tmux" ]; then
 fi
 
 # Tmuxifier
-if [ -f "$DOTSHELL/tmux/tmuxifier" ]; then
+if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
   export TMUXIFIER="$DOTSHELL/tmux/tmuxifier"
   export TMUXIFIER_LAYOUT_PATH="$DOTFILES/private/tmux-layouts"
   [[ -s "$TMUXIFIER/init.sh" ]] && source "$TMUXIFIER/init.sh"
