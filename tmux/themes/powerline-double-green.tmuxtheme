@@ -37,7 +37,7 @@ set -g status-justify centre
 
 # Pane border
 set -g pane-border-bg default
-set -g pane-border-fg colour234
+set -g pane-border-fg colour238
 
 # Active pane border
 set -g pane-active-border-bg default

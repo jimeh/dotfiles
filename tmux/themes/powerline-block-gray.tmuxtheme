@@ -37,11 +37,11 @@ set -g status-justify centre
 
 # Pane border
 set -g pane-border-bg default
-set -g pane-border-fg colour233
+set -g pane-border-fg colour235
 
 # Active pane border
 set -g pane-active-border-bg default
-set -g pane-active-border-fg colour238
+set -g pane-active-border-fg colour240
 
 # Pane number indicator
 set -g display-panes-colour colour233
