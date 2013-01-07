@@ -35,5 +35,13 @@ elif [ -n "$ZSH_VERSION" ]; then
   alias va="vagrant"
 fi
 
-# Load rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Load rbenv or RVM depending on which is available
+if [ -d "$HOME/.rbenv/bin" ]; then
+  # Don't load rbenv again if oh-my-zsh's rbenv plugin already has
+  if [[ ":$PATH:" != *":$HOME/.rbenv/bin:"* ]]; then
+    path_prepend "$HOME/.rbenv/bin"
+    eval "$(rbenv init -)"
+  fi
+elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
+  source "$HOME/.rvm/scripts/rvm"
+fi
