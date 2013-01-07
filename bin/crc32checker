@@ -1,0 +1,17 @@
+#! /usr/bin/env ruby
+
+ARGV.each do |path|
+  print "Checking \"#{path}\"... "
+
+  if !File.exists?(path)
+    puts "FILE NOT FOUND"
+    next
+  end
+
+  checksum = `crc32 "#{path}"`.strip.upcase
+  if File.basename(path).upcase.include?(checksum)
+    puts "MATCH (#{checksum})"
+  else
+    puts "FAIL (#{checksum})"
+  end
+end
