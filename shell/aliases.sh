@@ -29,6 +29,10 @@ alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias netlisteners='lsof -i -P | grep LISTEN'
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
+alias myip='curl ifconfig.me'
 
 # appends your key to a server's authorized keys file
 function authme {
@@ -54,6 +58,7 @@ function extract () {
         *.gz)        gunzip $1      ;;
         *.tar)       tar xf $1      ;;
         *.tbz2)      tar xjf $1     ;;
+        *.tbz)       tar xjf $1     ;;
         *.tgz)       tar xzf $1     ;;
         *.zip)       unzip $1       ;;
         *.Z)         uncompress $1  ;;
