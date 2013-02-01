@@ -41,6 +41,10 @@ source "$ZSH/oh-my-zsh.sh"
 
 # Customize to your needs...
 
+# Enable bash-style completion
+autoload -U bashcompinit
+bashcompinit
+
 # Disable shared history
 unsetopt share_history
 
