@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# Defaults
+SOCKET_DIR="$TMPDIR/emacs-gui-server$(id -u)"
+SOCKET_FILE="$SOCKET_DIR/server"
+EMACSCLIENT="emacsclient"
+ALTERNATE_EDITOR="nano"
+
+# Set to binary bundled in Emacs.app if it exists
+if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+  EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+fi
+
+# Execute emacsclient
+exec $EMACSCLIENT -s "$SOCKET_FILE" --alternate-editor=$ALTERNATE_EDITOR "$@"

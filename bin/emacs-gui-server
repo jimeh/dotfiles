@@ -1,0 +1,58 @@
+#! /bin/bash
+
+# Config
+SOCKET_DIR="$TMPDIR/emacs-gui-server$(id -u)"
+SOCKET_FILE="$SOCKET_DIR/server"
+
+EMACS="emacs -nw"
+EMACSCLIENT="emacsclient"
+
+# Set to binaries bundled in Emacs.app if they exists
+if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
+  EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+fi
+if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+  EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+fi
+
+
+# Functions
+start ()  {
+  EMACS_GUI_SERVER=1 env $EMACS \
+    --eval "(setq server-socket-dir \"$SOCKET_DIR\")" --daemon
+}
+
+stop ()   {
+  env $EMACSCLIENT -s "$SOCKET_FILE" --eval "(kill-emacs)"
+}
+
+status () {
+  echo -n 'Emacs GUI Server... '
+  ! result=`eval $EMACSCLIENT -s "$SOCKET_FILE" --eval \"\(print \'OK\)\" 2>/dev/null`
+  if [[ $result == "OK" ]]; then
+    echo 'RUNNING'
+  else
+    echo 'STOPPED'
+  fi
+}
+
+# Command Parsing
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo 'usage: emacs-gui-server [command]'
+    echo ''
+    echo 'Available commands:'
+    echo '    start: Start Emacs GUI Server.'
+    echo '     stop: Stop Emacs GUI Server.'
+    echo '   status: Show status of Emacs GUI Server.'
+    ;;
+esac
