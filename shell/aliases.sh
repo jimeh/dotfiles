@@ -18,6 +18,8 @@ alias reload="source ~/.profile"
 alias n="nano"
 alias t="mate"
 alias e="$DOTBIN/emacsclient-wrapper"
+alias eg="$DOTBIN/emacs-gui-client"
+alias egs="$DOTBIN/emacs-gui-server"
 
 # Utils
 alias ma="make"
