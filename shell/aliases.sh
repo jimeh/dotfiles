@@ -6,7 +6,7 @@
 alias o="open"
 alias s="ssh"
 alias ec="echo"
-alias ls="ls -BG"
+alias ls="ls -B"
 alias l="ls -lah"
 alias ll="ls -lah"
 alias duh="du -h"
