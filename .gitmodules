@@ -16,3 +16,6 @@
 [submodule "shell/z"]
   path = shell/z
   url = git@github.com:jimeh/z.git
+[submodule "shell/bash/git-aware-prompt"]
+	path = shell/bash/git-aware-prompt
+	url = git@github.com:jimeh/git-aware-prompt.git
