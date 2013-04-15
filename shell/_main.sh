@@ -32,6 +32,9 @@ source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
 source "$DOTSHELL/sbcl.sh"
 
+# Applications
+source "$DOTSHELL/rtorrent.sh"
+
 # Services
 source "$DOTSHELL/services.sh"
 
