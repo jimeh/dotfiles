@@ -34,7 +34,11 @@ alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
-alias myip='curl ifconfig.me'
+
+# Improved myip alias. Echoed to avoid strange character at end in ZSH.
+function myip {
+  echo `curl -s whatismyip.akamai.com`
+}
 
 # appends your key to a server's authorized keys file
 function authme {
@@ -53,15 +57,15 @@ function mcd() {
 function extract () {
     if [ -f $1 ] ; then
       case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.gz)    tar xzf $1     ;;
+        *.tar.bz2)   tar xvjf $1    ;;
+        *.tar.gz)    tar xvzf $1    ;;
         *.bz2)       bunzip2 $1     ;;
         *.rar)       unrar e $1     ;;
         *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tbz)       tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
+        *.tar)       tar xvf $1     ;;
+        *.tbz2)      tar xvjf $1    ;;
+        *.tbz)       tar xvjf $1    ;;
+        *.tgz)       tar xvzf $1    ;;
         *.zip)       unzip $1       ;;
         *.Z)         uncompress $1  ;;
         *.7z)        7z x $1        ;;
@@ -71,3 +75,4 @@ function extract () {
          echo "'$1' is not a valid file"
      fi
 }
+alias ext=extract
