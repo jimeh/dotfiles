@@ -53,6 +53,12 @@ install_virtualenv () {
   curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
 }
 
+install_launch_agents () {
+  for file in $ROOT_PATH/launch_agents/*.plist; do
+    symlink "$file" "$HOME/Library/LaunchAgents/$(basename "$file")"
+  done
+}
+
 
 #
 # Initial Setup
@@ -110,6 +116,9 @@ case "$1" in
   virtualenv|venv)
     install_virtualenv
     ;;
+  launch_agents|agents)
+    install_launch_agents
+    ;;
   info)
     echo "Target directory: $TARGET"
     echo "Detected dotfiles root: $ROOT_PATH"
@@ -118,13 +127,14 @@ case "$1" in
     echo 'usage: ./install.sh [command]'
     echo ''
     echo 'Available commands:'
-    echo '       info: Target and source directory info.'
-    echo '   symlinks: Install symlinks for various dotfiles into' \
+    echo '          info: Target and source directory info.'
+    echo '      symlinks: Install symlinks for various dotfiles into' \
       'target directory.'
-    echo '   homebrew: Install Homebrew (Mac OS X only).'
-    echo '      rbenv: Install rbenv, a Ruby version manager.'
-    echo '        nvm: Install nvm, a Node.js version manager.'
-    echo ' virtualenv: Install virtualenv-burrito, a Python version and' \
+    echo '      homebrew: Install Homebrew (Mac OS X only).'
+    echo '         rbenv: Install rbenv, a Ruby version manager.'
+    echo '           nvm: Install nvm, a Node.js version manager.'
+    echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
       'environment manager.'
+    echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
     ;;
 esac
