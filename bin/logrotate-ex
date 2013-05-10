@@ -1,0 +1,12 @@
+#! /bin/bash
+
+echo "$PATH"
+
+# Parse confx files and generate the conf files.
+for file in $HOME/.logrotate.d/*.confx; do
+  content="$(eval "echo \"$(cat "$file")\"")"
+  echo "$content" > ${file/%.confx/.conf}
+done
+
+# Run logrorate like normal against conf files.
+logrotate ~/.logrotate.d/*.conf
