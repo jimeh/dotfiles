@@ -1,4 +1,6 @@
 .DS_Store
 .bin
 .bundle
+log/*.gz
+log/*.bz2
 vendor/bundle
