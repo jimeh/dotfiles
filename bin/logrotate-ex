@@ -1,7 +1,5 @@
 #! /bin/bash
 
-echo "$PATH"
-
 # Parse confx files and generate the conf files.
 for file in $HOME/.logrotate.d/*.confx; do
   content="$(eval "echo \"$(cat "$file")\"")"
