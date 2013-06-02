@@ -25,7 +25,7 @@ if [ -n "$BASH_VERSION" ]; then
   alias va="bundle exec vagrant"
 elif [ -n "$ZSH_VERSION" ]; then
   # With Z-Shell I use oh-my-zsh and it's bundler plugin negating the need to
-  # manually prefix command with 'bundle exec'.
+  # manually prefix ruby-based commands with 'bundle exec'.
   alias ru="ruby"
   alias ra="rake"
   alias rai="rails"
