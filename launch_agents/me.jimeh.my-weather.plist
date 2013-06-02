@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Disabled</key>
+    <true/>
+    <key>Label</key>
+    <string>me.jimeh.my-weather</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>-c</string>
+      <string>curl -s "http://api.wunderground.com/weatherstation/WXCurrentObXML.asp?ID=ISURREYS7" | grep temp_c | sed -e 's/^.*&lt;temp_c&gt;//g' -e 's/&lt;\/temp_c&gt;.*$//g' &gt; /tmp/me.jimeh.my-weather</string>
+    </array>
+    <key>EnableGlobbing</key>
+    <true/>
+    <!-- -->
+    <key>StandardOutPath</key>
+    <string>~/Library/Logs/me.jimeh.my-weather.log</string>
+    <key>StandardErrorPath</key>
+    <string>~/Library/Logs/me.jimeh.me-weather.error.log</string>
+    <!-- -->
+    <key>RunAtLoad</key>
+    <false/>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin</string>
+    </dict>
+    <key>StartInterval</key>
+    <integer>300</integer>
+  </dict>
+</plist>
