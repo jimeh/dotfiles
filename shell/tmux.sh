@@ -17,7 +17,9 @@ fi
 
 # Tmuxifier
 if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
-  export TMUXIFIER="$DOTSHELL/tmux/tmuxifier"
+  if [ -z $TMUXIFIER ]; then
+    export TMUXIFIER="$DOTSHELL/tmux/tmuxifier"
+  fi
   export TMUXIFIER_LAYOUT_PATH="$DOTFILES/private/tmux-layouts"
   [[ -s "$TMUXIFIER/init.sh" ]] && source "$TMUXIFIER/init.sh"
 
