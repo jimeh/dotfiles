@@ -17,11 +17,8 @@ fi
 
 # Tmuxifier
 if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
-  if [ -z $TMUXIFIER ]; then
-    export TMUXIFIER="$DOTSHELL/tmux/tmuxifier"
-  fi
-  export TMUXIFIER_LAYOUT_PATH="$DOTFILES/private/tmux-layouts"
-  [[ -s "$TMUXIFIER/init.sh" ]] && source "$TMUXIFIER/init.sh"
+  path_prepend "$DOTSHELL/tmux/tmuxifier/bin"
+  eval "$(tmuxifier init -)"
 
   alias m="tmuxifier"
   alias ms="tmuxifier load-session"
