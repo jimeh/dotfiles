@@ -23,4 +23,5 @@ if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
   alias m="tmuxifier"
   alias ms="tmuxifier load-session"
   alias mw="tmuxifier load-window"
+  alias mm="tmuxifier load-session main"
 fi
