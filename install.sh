@@ -36,6 +36,18 @@ install_symlinks () {
   done
 }
 
+install_launch_agents () {
+  mkdir -p "$HOME/Library/LaunchAgents"
+  for file in $ROOT_PATH/launch_agents/*.plist; do
+    symlink "$file" "$HOME/Library/LaunchAgents/$(basename "$file")"
+  done
+
+  # Setup private launch_agents
+  if [ -f "$ROOT_PATH/$PRIVATE_PATH/install.sh" ]; then
+    "$ROOT_PATH/$PRIVATE_PATH/install.sh" agents
+  fi
+}
+
 install_homebrew () {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 }
@@ -51,12 +63,6 @@ install_nvm () {
 
 install_virtualenv () {
   curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
-}
-
-install_launch_agents () {
-  for file in $ROOT_PATH/launch_agents/*.plist; do
-    symlink "$file" "$HOME/Library/LaunchAgents/$(basename "$file")"
-  done
 }
 
 
@@ -129,12 +135,12 @@ case "$1" in
     echo 'Available commands:'
     echo '          info: Target and source directory info.'
     echo '      symlinks: Install symlinks for various dotfiles into' \
-      'target directory.'
+         'target directory.'
     echo '      homebrew: Install Homebrew (Mac OS X only).'
     echo '         rbenv: Install rbenv, a Ruby version manager.'
     echo '           nvm: Install nvm, a Node.js version manager.'
     echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
-      'environment manager.'
+         'environment manager.'
     echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
     ;;
 esac
