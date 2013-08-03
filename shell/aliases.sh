@@ -43,7 +43,7 @@ function myip {
 # appends your key to a server's authorized keys file
 function authme {
   ssh "$1" 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
-    < ~/.ssh/id_dsa.pub
+    < ~/.ssh/id_rsa.pub
 }
 
 # Make and cd into directory
