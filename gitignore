@@ -3,4 +3,6 @@
 .bundle
 log/*.gz
 log/*.bz2
+test/dummy/log/*.gz
+test/dummy/log/*.bz2
 vendor/bundle
