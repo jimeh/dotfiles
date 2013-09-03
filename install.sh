@@ -8,8 +8,21 @@ TARGET="$HOME"
 DOTFILES_LINK=".dotfiles"
 SYMLINK_PATH="$DOTFILES_LINK"
 PRIVATE_PATH="private"
-SYMLINKS=(ackrc bundle emacs.d erlang gemrc gitconfig gitignore hgrc irbrc \
-    powconfig rspec tmux tmux.conf)
+SYMLINKS=( \
+  ackrc \
+  bundle \
+  emacs.d \
+  erlang \
+  gemrc \
+  gitconfig \
+  gitignore \
+  hgrc \
+  irbrc \
+  powconfig \
+  rspec \
+  tmux \
+  tmux.conf \
+)
 LOAD_FILES=(profile zshrc)
 
 #
