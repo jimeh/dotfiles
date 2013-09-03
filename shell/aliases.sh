@@ -59,6 +59,7 @@ function extract () {
       case $1 in
         *.tar.bz2)   tar xvjf $1    ;;
         *.tar.gz)    tar xvzf $1    ;;
+        *.tar.xz)    tar xvJf $1    ;;
         *.bz2)       bunzip2 $1     ;;
         *.rar)       unrar e $1     ;;
         *.gz)        gunzip $1      ;;
@@ -66,6 +67,7 @@ function extract () {
         *.tbz2)      tar xvjf $1    ;;
         *.tbz)       tar xvjf $1    ;;
         *.tgz)       tar xvzf $1    ;;
+        *.txz)       tar xvJf $1    ;;
         *.zip)       unzip $1       ;;
         *.Z)         uncompress $1  ;;
         *.7z)        7z x $1        ;;
