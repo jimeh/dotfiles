@@ -19,3 +19,6 @@
 [submodule "shell/bash/git-aware-prompt"]
 	path = shell/bash/git-aware-prompt
 	url = git@github.com:jimeh/git-aware-prompt.git
+[submodule "tmux/themes"]
+	path = tmux/themes
+	url = git@github.com:jimeh/tmux-themepack.git
