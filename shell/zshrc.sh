@@ -48,6 +48,9 @@ bashcompinit
 # Disable shared history
 unsetopt share_history
 
+# Disable attempted correction of commands (is wrong 98% of the time).
+unsetopt correctall
+
 # Disable certain bundled ruby binaries, I install the gems globally.
 unalias foreman
 unalias heroku
