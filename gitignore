@@ -1,6 +1,7 @@
 .DS_Store
 .bin
 .bundle
+.projectile
 log/*.gz
 log/*.bz2
 test/dummy/log/*.gz
