@@ -1,0 +1,74 @@
+#! /usr/bin/env bash
+
+# Create a Chrome-based Single Site Browser OSX App for a specific URL.
+#
+# Credit: Borrowed from somewhere and then fixed/improved by @jimeh.
+
+name="$1"
+url="$2"
+icon="$3"
+
+if [ -z "$name" ] || [ -z "$url" ]; then
+  echo 'usage: make-chrome-osx-app "Google Music"' \
+       '"https://play.google.com/music"'
+  exit 1
+fi
+
+chrome_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+if [ ! -f "$chrome_path" ]; then echo "ERROR: Chrome not found."; exit 1; fi
+
+app_path="/Applications/${name}.app"
+if [ -d "$app_path" ]; then echo "ERROR: \"${app_path}\" exits."; exit 1; fi
+
+
+# Various paths used when creating the app.
+resource_dir="${app_path}/Contents/Resources"
+exec_dir="${app_path}/Contents/MacOS"
+exec_file="${exec_dir}/${name//[[:space:]]}"
+plist_file="${app_path}/Contents/Info.plist"
+
+app_support="${HOME}/Library/Application Support"
+profile_dir="${app_support}/me.jimeh.chrome-ssb/Apps/${name}"
+bundle_identifier="me.jimeh.chrome-ssb.${name}"
+
+# Create the directories.
+mkdir -p "$resource_dir" "$exec_dir" "$profile_dir"
+
+# convert the icon and copy into Resources
+if [ -f "$icon" ] ; then
+  sips -s format tiff "$icon" \
+       --out "${resource_dir}/icon.tiff" \
+       --resampleWidth 128 >& /dev/null
+  tiff2icns -noLarge "${resource_dir}/icon.tiff" >& /dev/null
+
+  if [ -f "${resource_dir}/icon.tiff" ]; then
+    rm "${resource_dir}/icon.tiff"
+  fi
+fi
+
+# Create the executable.
+cat > "$exec_file" <<EOF
+#!/bin/sh
+exec "${chrome_path}" \\
+     --app="${url}" \\
+     --user-data-dir="${profile_dir}" \\
+     --cancel-first-run \\
+     "\$@"
+EOF
+chmod +x "$exec_file"
+
+# Create the Info.plist.
+cat > "$plist_file" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" “http://www.apple.com/DTDs/PropertyList-1.0.dtd”>
+<plist version=”1.0″>
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>$(basename "$exec_file")</string>
+    <key>CFBundleIdentifier</key>
+    <string>${bundle_identifier}</string>
+    <key>CFBundleIconFile</key>
+    <string>icon.icns</string>
+  </dict>
+</plist>
+EOF
