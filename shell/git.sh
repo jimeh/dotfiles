@@ -24,12 +24,12 @@ alias gix="gitx"
 alias gx="gitx"
 
 # Git Completion
-if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
-  source "/usr/local/etc/bash_completion.d/git-completion.bash"
-fi
-
-# Only needed for Bash. Zsh is much smarter with it's auto-completion ^_^
 if [ -n "$BASH_VERSION" ]; then
+  if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
+    source "/usr/local/etc/bash_completion.d/git-completion.bash"
+  fi
+
+  # Only needed for Bash. Zsh is much smarter with it's auto-completion ^_^
   complete -o default -o nospace -F _git g
   complete -o default -o nospace -F _git gi
 fi
