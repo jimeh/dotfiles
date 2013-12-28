@@ -9,7 +9,7 @@ url="$2"
 icon="$3"
 
 if [ -z "$name" ] || [ -z "$url" ]; then
-  echo 'usage: make-chrome-osx-app "Google Music"' \
+  echo 'usage: make-chrome-ssb-for-osx "Google Music"' \
        '"https://play.google.com/music"'
   exit 1
 fi
