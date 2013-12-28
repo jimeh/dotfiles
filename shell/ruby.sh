@@ -7,7 +7,7 @@ alias fs="foreman start"
 alias fr="foreman run"
 
 # Bundler aliases
-alias bi="bundle install --path vendor/bundle --binstubs=vendor/bundle/bin"
+alias bi="bundle install"
 alias bc="bundle check"
 alias bl="bundle list"
 alias be="bundle exec"
