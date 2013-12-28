@@ -31,9 +31,11 @@ source "$DOTSHELL/nodejs.sh"
 source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
 source "$DOTSHELL/sbcl.sh"
+source "$DOTSHELL/amdsdk.sh"
 
 # Applications
 source "$DOTSHELL/rtorrent.sh"
+source "$DOTSHELL/cgminer.sh"
 
 # Services
 source "$DOTSHELL/services.sh"
