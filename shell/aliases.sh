@@ -52,6 +52,11 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+# Open man page in Preview.
+pman () {
+  man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
 # Extract most common archives with single command.
 #  - from: http://alias.sh/extract-most-know-archives-one-command
 function extract () {
