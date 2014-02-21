@@ -34,6 +34,7 @@ alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
+alias fku="fuck you"
 
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
 function myip {
