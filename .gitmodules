@@ -22,3 +22,6 @@
 [submodule "tmux/themes"]
   path = tmux/themes
   url = git@github.com:jimeh/tmux-themepack.git
+[submodule "shell/zsh/zsh-autosuggestions"]
+	path = shell/zsh/zsh-autosuggestions
+	url = git@github.com:tarruda/zsh-autosuggestions.git
