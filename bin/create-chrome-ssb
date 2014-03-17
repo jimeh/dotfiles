@@ -4,21 +4,32 @@
 #
 # Credit: Borrowed from somewhere and then fixed/improved by @jimeh.
 
+if [ "$(uname)" != "Darwin" ]; then
+  echo "ERROR: create-chrome-ssb only works on Mac OS X." 1>&2
+  exit 1
+fi
+
 name="$1"
 url="$2"
 icon="$3"
 
 if [ -z "$name" ] || [ -z "$url" ]; then
-  echo 'usage: make-chrome-ssb-for-osx "Google Music"' \
+  echo 'usage: create-chrome-ssb "Google Music"' \
        '"https://play.google.com/music"'
   exit 1
 fi
 
 chrome_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-if [ ! -f "$chrome_path" ]; then echo "ERROR: Chrome not found."; exit 1; fi
+if [ ! -f "$chrome_path" ]; then
+  echo "ERROR: Chrome not found. Please install to: /Applications" 1>&2
+  exit 1
+fi
 
 app_path="/Applications/${name}.app"
-if [ -d "$app_path" ]; then echo "ERROR: \"${app_path}\" exits."; exit 1; fi
+if [ -d "$app_path" ]; then
+  echo "ERROR: \"${app_path}\" exits." 1>&2
+  exit 1
+fi
 
 
 # Various paths used when creating the app.
@@ -39,7 +50,7 @@ if [ -f "$icon" ] ; then
   sips -s format tiff "$icon" \
        --out "${resource_dir}/icon.tiff" \
        --resampleWidth 128 >& /dev/null
-  tiff2icns -noLarge "${resource_dir}/icon.tiff" >& /dev/null
+  tiff2icns -noLarge "${resource_dir}/icon.tiff" >&/dev/null
 
   if [ -f "${resource_dir}/icon.tiff" ]; then
     rm "${resource_dir}/icon.tiff"
