@@ -27,12 +27,12 @@ exec_dir="${app_path}/Contents/MacOS"
 exec_file="${exec_dir}/${name//[[:space:]]}"
 plist_file="${app_path}/Contents/Info.plist"
 
-app_support="${HOME}/Library/Application Support"
+app_support="\${HOME}/Library/Application Support"
 profile_dir="${app_support}/me.jimeh.chrome-ssb/Apps/${name}"
 bundle_identifier="me.jimeh.chrome-ssb.${name}"
 
 # Create the directories.
-mkdir -p "$resource_dir" "$exec_dir" "$profile_dir"
+mkdir -p "$resource_dir" "$exec_dir"
 
 # convert the icon and copy into Resources
 if [ -f "$icon" ] ; then
@@ -49,6 +49,7 @@ fi
 # Create the executable.
 cat > "$exec_file" <<EOF
 #!/bin/sh
+mkdir -p "${profile_dir}"
 exec "${chrome_path}" \\
      --app="${url}" \\
      --user-data-dir="${profile_dir}" \\
