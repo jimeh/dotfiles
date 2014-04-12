@@ -3,3 +3,4 @@
 .SyncIgnore
 .SyncArchive/*
 .dropbox
+bin/boot2docker.iso
