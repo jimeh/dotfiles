@@ -33,8 +33,15 @@
 [branch]
   autosetuprebase = always
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
-	prompt = false
+  prompt = false
 [diff]
-	tool = Kaleidoscope
+  tool = Kaleidoscope
+[credential]
+  helper = osxkeychain
+[include]
+  path = ~/.gitconfig_private
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
