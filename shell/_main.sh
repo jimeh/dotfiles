@@ -30,6 +30,7 @@ source "$DOTSHELL/tmux.sh"
 source "$DOTSHELL/nodejs.sh"
 source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
+source "$DOTSHELL/golang.sh"
 source "$DOTSHELL/sbcl.sh"
 source "$DOTSHELL/amdsdk.sh"
 
