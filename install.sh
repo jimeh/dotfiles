@@ -20,6 +20,7 @@ SYMLINKS=( \
   irbrc \
   powconfig \
   rspec \
+  rubocop.yml \
   tmux \
   tmux.conf \
 )
