@@ -4,6 +4,16 @@ AllCops:
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
+Style/ClassLength:
+  CountComments: false
+  Max: 200
+
+Style/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Style/Encoding:
+  EnforcedStyle: when_needed
+
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
 
@@ -13,3 +23,16 @@ Style/IndentHash:
 Style/LineLength:
   Max: 78
   AllowURI: true
+
+Style/IfUnlessModifier:
+  MaxLineLength: 78
+
+Style/MethodLength:
+  CountComments: false
+  Max: 20
+
+Style/SingleLineBlockParams:
+  Methods:
+
+Style/WhileUntilModifier:
+  MaxLineLength: 78
