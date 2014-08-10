@@ -8,6 +8,16 @@ Style/ClassLength:
   CountComments: false
   Max: 200
 
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    detect: 'find'
+    find_all: 'select'
+
+Style/EmptyLinesAroundBody:
+  Enabled: false
+
 Style/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: true
 
@@ -32,7 +42,10 @@ Style/MethodLength:
   Max: 20
 
 Style/SingleLineBlockParams:
-  Methods:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
 
 Style/WhileUntilModifier:
   MaxLineLength: 78
