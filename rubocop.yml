@@ -10,10 +10,10 @@ Style/ClassLength:
 
 Style/CollectionMethods:
   PreferredMethods:
-    collect: 'map'
-    collect!: 'map!'
-    detect: 'find'
-    find_all: 'select'
+    inject: 'inject' # disable "use reduce instead of inject" warning
+
+Style/EachWithObject:
+  Enabled: false
 
 Style/EmptyLinesAroundBody:
   Enabled: false
