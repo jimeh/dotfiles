@@ -1,6 +1,9 @@
 AllCops:
   RunRailsCops: true
 
+Documentation:
+  Enabled: false
+
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
