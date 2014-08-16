@@ -18,6 +18,7 @@ SYMLINKS=( \
   gitignore \
   hgrc \
   irbrc \
+  peco \
   powconfig \
   rspec \
   rubocop.yml \

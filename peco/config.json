@@ -1,0 +1,16 @@
+{
+  "Keymap": {
+    "C-v": "peco.SelectPreviousPage",
+    "M-v": "peco.SelectNextPage",
+    "C-g": "peco.Cancel",
+    "M-Space": "peco.ToggleRangeMode",
+    "M-c": "peco.CancelRangeMode"
+  },
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "Matched": ["cyan"],
+    "Query": ["default"],
+    "SavedSelection": ["on_blue", "white"],
+    "Selected": ["on_magenta", "default"]
+  }
+}
