@@ -11,6 +11,7 @@ PRIVATE_PATH="private"
 SYMLINKS=( \
   ackrc \
   bundle \
+  coffeelint.json \
   emacs.d \
   erlang \
   gemrc \
