@@ -6,6 +6,7 @@
 alias o="open"
 alias s="ssh"
 alias ec="echo"
+alias mk="make"
 alias ls="ls -B"
 alias l="ls -lah"
 alias ll="ls -lah"
