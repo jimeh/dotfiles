@@ -39,7 +39,7 @@ alias fku="fuck you"
 
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
 function myip {
-  echo `curl -s whatismyip.akamai.com`
+  echo "$(curl -s whatismyip.akamai.com)"
 }
 
 # appends your key to a server's authorized keys file
