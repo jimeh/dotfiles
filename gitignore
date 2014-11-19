@@ -2,6 +2,8 @@
 .bin
 .bundle
 .projectile
+.stignore
+.stfolder
 log/*.gz
 log/*.bz2
 test/dummy/log/*.gz
