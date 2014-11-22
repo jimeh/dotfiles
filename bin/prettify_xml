@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+require 'nokogiri'
+
+if ARGV.size < 1
+  STDERR.puts "No input argument given."
+  exit 1
+end
+
+if !File.readable?(ARGV[0])
+  STDERR.puts "\"#{ARGV[0]}\" is not readable."
+  exit 1
+end
+
+doc = Nokogiri.XML(File.open(ARGV[0])) do |config|
+  config.default_xml.noblanks
+end
+
+if ARGV[1].nil?
+  STDOUT.puts doc.to_xml(:indent => 2)
+elsif !File.exist?(ARGV[1])
+  File.open(ARGV[1], "w") { |f| f.write(doc.to_xml(:indent => 2)) }
+else
+  STDERR.puts "\"#{ARGV[1]}\" already exists."
+  exit 1
+end
