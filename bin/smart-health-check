@@ -31,7 +31,7 @@ check-attributes() {
   local raw_status="$(smartctl -A $1)"
   local report="$(echo "$raw_status" | grep "^ID# ")"
 
-  for id in 1 5 10 196 198; do
+  for id in 1 5 10 196 197 198; do
     attr="$(echo "$raw_status" | grep "^\s*${id}\s")"
     if [ -n "$(trim "$attr")" ] && [[ "$(trim "$attr")" != *" 0" ]]; then
       fail=1
