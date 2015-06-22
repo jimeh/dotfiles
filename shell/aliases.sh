@@ -86,3 +86,16 @@ function extract () {
      fi
 }
 alias ext=extract
+
+
+# Show hidden files in Finder.
+function show_files {
+  defaults write com.apple.finder AppleShowAllFiles YES
+  killall Finder "/System/Library/CoreServices/Finder.app"
+}
+
+# Don't show hidden files in Finder.
+function hide_files {
+  defaults write com.apple.finder AppleShowAllFiles NO
+  killall Finder "/System/Library/CoreServices/Finder.app"
+}
