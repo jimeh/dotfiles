@@ -67,8 +67,6 @@ unsetopt share_history
 unsetopt correctall
 
 # Disable certain bundled ruby binaries, I install the gems globally.
-unalias foreman
-unalias heroku
 unalias shotgun
 
 # Cause I hit emacs shorts too much
