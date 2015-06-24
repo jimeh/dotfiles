@@ -38,6 +38,11 @@ alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 alias fku="fuck you"
 
+# Fix wifi issues on OS X 10.10.x Yosemite.
+#  - from: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
+alias fix_wifi="sudo ifconfig awdl0 down"
+alias unfix_wifi="sudo ifconfig awdl0 up"
+
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
 function myip {
   echo "$(curl -s whatismyip.akamai.com)"
