@@ -6,33 +6,28 @@ alias f="foreman"
 alias fs="foreman start"
 alias fr="foreman run"
 
-# Bundler aliases
-alias bi="bundle install"
+# Aliases for specific ruby commands
+alias ru="bundle exec ruby"
+alias ra="bundle exec rake"
+alias rai="bundle exec rails"
+alias rs="bundle exec rspec"
+alias ca="bundle exec cap"
+alias cu="bundle exec cucumber"
+alias scu="RAILS_ENV=cucumber bundle exec spring cucumber"
+alias va="bundle exec vagrant"
+
 alias bc="bundle check"
-alias bl="bundle list"
-alias be="bundle exec"
-alias bu="bundle update"
 alias bco="bundle console"
 
-# Bundler aliases for specific ruby commands
 if [ -n "$BASH_VERSION" ]; then
-  alias ru="bundle exec ruby"
-  alias ra="bundle exec rake"
-  alias rai="bundle exec rails"
-  alias rs="bundle exec rspec"
-  alias ca="bundle exec cap"
-  alias cu="bundle exec cucumber"
-  alias va="bundle exec vagrant"
-elif [ -n "$ZSH_VERSION" ]; then
-  # With Z-Shell I use oh-my-zsh and it's bundler plugin negating the need to
-  # manually prefix ruby-based commands with 'bundle exec'.
-  alias ru="ruby"
-  alias ra="rake"
-  alias rai="rails"
-  alias rs="rspec"
-  alias ca="cap"
-  alias cu="cucumber"
-  alias va="vagrant"
+  # Bundler aliases
+  alias be="bundle exec"
+  alias bl="bundle list"
+  alias bp="bundle package"
+  alias bo="bundle open"
+  alias bu="bundle update"
+  alias bi="bundle_install"
+  alias bcn="bundle clean"
 fi
 
 # Load rbenv or RVM depending on which is available
