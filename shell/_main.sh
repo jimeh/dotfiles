@@ -18,6 +18,9 @@ elif [ -n "$ZSH_VERSION" ]; then
   source "$DOTSHELL/zshrc.sh"
 fi
 
+# Package management
+source "$DOTSHELL/nix.sh"
+
 # Aliases
 source "$DOTSHELL/aliases.sh"
 
