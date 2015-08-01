@@ -1,27 +1,24 @@
 [submodule "shell/zsh/oh-my-zsh"]
-  path = shell/zsh/oh-my-zsh
-  url = https://github.com/robbyrussell/oh-my-zsh.git
+	path = shell/zsh/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "emacs.d"]
-  path = emacs.d
-  url = git@github.com:jimeh/.emacs.d.git
+	path = emacs.d
+	url = git@github.com:jimeh/.emacs.d.git
 [submodule "private"]
-  path = private
-  url = git@bitbucket.org:jimeh/dotfiles-private.git
+	path = private
+	url = git@bitbucket.org:jimeh/dotfiles-private.git
 [submodule "shell/tmux/tmuxifier"]
-  path = shell/tmux/tmuxifier
-  url = git@github.com:jimeh/tmuxifier.git
+	path = shell/tmux/tmuxifier
+	url = git@github.com:jimeh/tmuxifier.git
 [submodule "shell/zsh/zsh-syntax-highlighting"]
-  path = shell/zsh/zsh-syntax-highlighting
-  url = git://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "shell/z"]
-  path = shell/z
-  url = git@github.com:jimeh/z.git
+	path = shell/zsh/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "shell/bash/git-aware-prompt"]
-  path = shell/bash/git-aware-prompt
-  url = git@github.com:jimeh/git-aware-prompt.git
+	path = shell/bash/git-aware-prompt
+	url = git@github.com:jimeh/git-aware-prompt.git
 [submodule "tmux/themes"]
-  path = tmux/themes
-  url = git@github.com:jimeh/tmux-themepack.git
+	path = tmux/themes
+	url = git@github.com:jimeh/tmux-themepack.git
 [submodule "shell/zsh/zsh-autosuggestions"]
 	path = shell/zsh/zsh-autosuggestions
 	url = git@github.com:tarruda/zsh-autosuggestions.git
