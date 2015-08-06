@@ -81,6 +81,10 @@ install_virtualenv () {
   curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
 }
 
+install_dokku() {
+  git_clone 'git@github.com:progrium/dokku.git' "$TARGET/.dokku"
+}
+
 
 #
 # Initial Setup
@@ -138,6 +142,9 @@ case "$1" in
   virtualenv|venv)
     install_virtualenv
     ;;
+  dokku)
+    install_dokku
+    ;;
   launch_agents|agents)
     install_launch_agents
     ;;
@@ -157,6 +164,8 @@ case "$1" in
     echo '           nvm: Install nvm, a Node.js version manager.'
     echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
          'environment manager.'
+    echo '         dokku: Clone dokku to ~/.dokku enabling use of' \
+         'dokku_client.sh.'
     echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
     ;;
 esac
