@@ -54,6 +54,14 @@ function authme {
     < ~/.ssh/id_rsa.pub
 }
 
+# ssh commands related to old SSH keys
+alias ssho="ssh -i ~/.ssh/old-id_rsa"
+function authmeo {
+  ssh -i ~/.ssh/old-id_rsa "$1" \
+    'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
+    < ~/.ssh/id_rsa.pub
+}
+
 # Make and cd into directory
 #  - from: http://alias.sh/make-and-cd-directory
 function mcd() {
