@@ -38,3 +38,8 @@ if [ -d "$HOME/.rbenv/bin" ]; then
 elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
   source "$HOME/.rvm/scripts/rvm"
 fi
+
+LUNCHY_DIR="$(dirname `gem which lunchy`)/../extras"
+if [ -f "$LUNCHY_DIR/lunchy-completion.bash" ]; then
+  source "$LUNCHY_DIR/lunchy-completion.bash"
+fi
