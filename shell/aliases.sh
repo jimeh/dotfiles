@@ -43,6 +43,15 @@ alias fku="fuck you"
 alias fix_wifi="sudo ifconfig awdl0 down"
 alias unfix_wifi="sudo ifconfig awdl0 up"
 
+# Disable the system built-in cmd+ctrl+d global hotkey to lookup word in
+# dictionary on OS X. Must reboot after running.
+#  - from: ://apple.stackexchange.com/a/114269
+osx-disable-lookup-word-hotkey() {
+  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 \
+           '<dict><key>enabled</key><false/></dict>'
+  echo "Command-Control-D hotkey disabled. Please reboot to take effect."
+}
+
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
 function myip {
   echo "$(curl -s whatismyip.akamai.com)"
