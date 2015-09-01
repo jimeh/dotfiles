@@ -1,6 +1,7 @@
 [user]
   name = Jim Myhrberg
   email = contact@jimeh.me
+  signingkey = 6BBB670E
 [core]
   excludesfile = ~/.gitignore
 [color]
