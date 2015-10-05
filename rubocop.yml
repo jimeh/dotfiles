@@ -34,11 +34,11 @@ Style/IndentHash:
   EnforcedStyle: consistent
 
 Style/LineLength:
-  Max: 78
+  Max: 80
   AllowURI: true
 
 Style/IfUnlessModifier:
-  MaxLineLength: 78
+  MaxLineLength: 80
 
 Style/MethodLength:
   CountComments: false
@@ -51,4 +51,4 @@ Style/StringLiterals:
   Enabled: false
 
 Style/WhileUntilModifier:
-  MaxLineLength: 78
+  MaxLineLength: 80
