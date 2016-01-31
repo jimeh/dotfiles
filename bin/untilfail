@@ -1,0 +1,10 @@
+#!/bin/bash
+count=1
+echo "====> Attempt $count"
+$@
+(( count++ ))
+while [ $? -eq 0 ]; do
+  echo "====> Attempt $count"
+  $@
+  (( count++ ))
+done
