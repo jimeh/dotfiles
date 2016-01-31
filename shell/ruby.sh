@@ -39,7 +39,10 @@ elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
   source "$HOME/.rvm/scripts/rvm"
 fi
 
+# lunchy auto-completion
 LUNCHY_DIR="$(dirname `gem which lunchy`)/../extras"
-if [ -f "$LUNCHY_DIR/lunchy-completion.bash" ]; then
+if [ -n "$BASH_VERSION" ] && [ -f "$LUNCHY_DIR/lunchy-completion.bash" ]; then
   source "$LUNCHY_DIR/lunchy-completion.bash"
+elif [ -n "$ZSH_VERSION" ] && [ -f "$LUNCHY_DIR/lunchy-completion.zsh" ]; then
+  source "$LUNCHY_DIR/lunchy-completion.zsh"
 fi

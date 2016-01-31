@@ -1,5 +1,5 @@
-AllCops:
-  RunRailsCops: true
+Rails:
+  Enabled: true
 
 Documentation:
   Enabled: false
@@ -7,7 +7,7 @@ Documentation:
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
-Style/ClassLength:
+Metrics/ClassLength:
   CountComments: false
   Max: 200
 
@@ -18,7 +18,10 @@ Style/CollectionMethods:
 Style/EachWithObject:
   Enabled: false
 
-Style/EmptyLinesAroundBody:
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
   Enabled: false
 
 Style/EmptyLineBetweenDefs:
@@ -33,14 +36,14 @@ Style/HashSyntax:
 Style/IndentHash:
   EnforcedStyle: consistent
 
-Style/LineLength:
+Metrics/LineLength:
   Max: 80
   AllowURI: true
 
 Style/IfUnlessModifier:
   MaxLineLength: 80
 
-Style/MethodLength:
+Metrics/MethodLength:
   CountComments: false
   Max: 20
 
@@ -52,3 +55,9 @@ Style/StringLiterals:
 
 Style/WhileUntilModifier:
   MaxLineLength: 80
+
+Style/LineEndConcatenation:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
