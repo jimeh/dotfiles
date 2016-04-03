@@ -26,3 +26,9 @@ if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
   alias mw="tmuxifier load-window"
   alias mm="tmuxifier load-session main"
 fi
+
+use-tmuxifier-dev() {
+  path_prepend "$HOME/Projects/tmuxifier/bin"
+  path_remove "$DOTSHELL/tmux/tmuxifier/bin"
+  export TMUXIFIER="$HOME/Projects/tmuxifier"
+}
