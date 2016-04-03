@@ -82,7 +82,7 @@ install_virtualenv () {
 }
 
 install_dokku() {
-  git_clone 'git@github.com:progrium/dokku.git' "$TARGET/.dokku"
+  git_clone 'https://github.com/progrium/dokku.git' "$TARGET/.dokku"
 }
 
 
