@@ -1,0 +1,23 @@
+#! /usr/bin/env ruby
+require 'json'
+
+if ARGV.size < 1
+  STDERR.puts "No input argument given."
+  exit 1
+end
+
+if !File.readable?(ARGV[0])
+  STDERR.puts "\"#{ARGV[0]}\" is not readable."
+  exit 1
+end
+
+hash = JSON.parse(File.read(ARGV[0]))
+
+if ARGV[1].nil?
+  STDOUT.puts JSON.pretty_generate(hash)
+elsif !File.exist?(ARGV[1])
+  File.open(ARGV[1], "w") { |f| f.write(JSON.pretty_generate(hash)) }
+else
+  STDERR.puts "\"#{ARGV[1]}\" already exists."
+  exit 1
+end
