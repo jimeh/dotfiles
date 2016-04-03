@@ -22,3 +22,6 @@
 [submodule "shell/zsh/zsh-autosuggestions"]
 	path = shell/zsh/custom/plugins/zsh-autosuggestions
 	url = git@github.com:tarruda/zsh-autosuggestions.git
+[submodule "shell/enhancd"]
+	path = shell/enhancd
+	url = https://github.com/b4b4r07/enhancd
