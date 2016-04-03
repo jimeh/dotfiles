@@ -25,10 +25,6 @@ unsetopt correctall
 # Cause I hit emacs shorts too much.
 bindkey -s "\C-x\C-f" "cd "
 
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive).
-bindkey '^T' autosuggest-toggle
-
 #
 # zplug
 #
@@ -43,7 +39,10 @@ zplug "plugins/powder", from:oh-my-zsh
 
 zplug "$DOTZSH/themes/plain", from:local
 
+# zplug "junegunn/fzf", of:"shell/*.zsh"
 zplug "jimeh/zsh-peco-history"
+
+zplug "b4b4r07/enhancd", of:"zsh/*.zsh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:19
@@ -57,9 +56,14 @@ if ! zplug check --verbose; then
   fi
 fi
 
-zplug load
+if zplug check "b4b4r07/enhancd"; then
+  export ENHANCD_COMMAND=c
+  export ENHANCD_FILTER="fzf:peco --layout=bottom-up"
+fi
 
 # Configure zsh-syntax-highlighting
 if zplug check zsh-users/zsh-syntax-highlighting; then
   export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 fi
+
+zplug load

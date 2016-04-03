@@ -13,9 +13,6 @@
 [submodule "tmux/themes"]
 	path = tmux/themes
 	url = git@github.com:jimeh/tmux-themepack.git
-[submodule "shell/enhancd"]
-	path = shell/enhancd
-	url = https://github.com/b4b4r07/enhancd
 [submodule "shell/zsh/zplug"]
 	path = shell/zsh/zplug
 	url = https://github.com/b4b4r07/zplug

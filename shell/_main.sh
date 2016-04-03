@@ -28,7 +28,6 @@ source "$DOTSHELL/aliases.sh"
 source "$DOTSHELL/emacs.sh"
 source "$DOTSHELL/git.sh"
 source "$DOTSHELL/tmux.sh"
-source "$DOTSHELL/enhancd.sh"
 
 # Development
 source "$DOTSHELL/nodejs.sh"
