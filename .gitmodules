@@ -25,3 +25,6 @@
 [submodule "shell/enhancd"]
 	path = shell/enhancd
 	url = https://github.com/b4b4r07/enhancd
+[submodule "shell/zsh/zplug"]
+	path = shell/zsh/zplug
+	url = https://github.com/b4b4r07/zplug

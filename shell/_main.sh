@@ -15,7 +15,7 @@ path_prepend "/usr/local/bin"
 if [ -n "$BASH_VERSION" ]; then
   source "$DOTSHELL/bashrc.sh"
 elif [ -n "$ZSH_VERSION" ]; then
-  source "$DOTSHELL/zshrc.sh"
+  source "$DOTSHELL/zshrc.zsh"
 fi
 
 # Package management
