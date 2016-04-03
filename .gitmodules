@@ -11,7 +11,7 @@
 	path = shell/tmux/tmuxifier
 	url = git@github.com:jimeh/tmuxifier.git
 [submodule "shell/zsh/zsh-syntax-highlighting"]
-	path = shell/zsh/zsh-syntax-highlighting
+	path = shell/zsh/custom/plugins/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "shell/bash/git-aware-prompt"]
 	path = shell/bash/git-aware-prompt
@@ -20,5 +20,5 @@
 	path = tmux/themes
 	url = git@github.com:jimeh/tmux-themepack.git
 [submodule "shell/zsh/zsh-autosuggestions"]
-	path = shell/zsh/zsh-autosuggestions
+	path = shell/zsh/custom/plugins/zsh-autosuggestions
 	url = git@github.com:tarruda/zsh-autosuggestions.git

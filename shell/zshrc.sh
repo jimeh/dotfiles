@@ -50,6 +50,8 @@ plugins=( \
   ruby \
   thor \
   vagrant \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting \
 )
 
 source "$ZSH/oh-my-zsh.sh"
@@ -72,28 +74,8 @@ unalias shotgun
 # Cause I hit emacs shorts too much
 bindkey -s "\C-x\C-f" "cd "
 
-
-#
-# Z-Shell Command Highlighting
-#
-
-# Highlighters
+# Configure zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
-source "$DOTZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-
-#
-# Z-Shell Autosuggestions
-#
-
-source "$DOTZSH/zsh-autosuggestions/autosuggestions.zsh"
-
-# Enable autosuggestions automatically
-zle-line-init() {
-  zle autosuggest-start
-}
-zle -N zle-line-init
 
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
