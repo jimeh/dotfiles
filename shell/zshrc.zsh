@@ -63,7 +63,7 @@ fi
 
 # Configure zsh-syntax-highlighting
 if zplug check zsh-users/zsh-syntax-highlighting; then
-  export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 fi
 
 zplug load
