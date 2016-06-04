@@ -12,19 +12,6 @@ ZPLUG_HOME="$DOTZSH/zplug-cache"
 # Don't wrap these commands in a Bundler wrapper.
 UNBUNDLED_COMMANDS=(shotgun)
 
-# Enable bash-style completion.
-autoload -U bashcompinit
-bashcompinit
-
-# Disable shared history.
-unsetopt share_history
-
-# Disable attempted correction of commands (is wrong 98% of the time).
-unsetopt correctall
-
-# Cause I hit emacs shorts too much.
-bindkey -s "\C-x\C-f" "cd "
-
 #
 # zplug
 #
@@ -67,3 +54,20 @@ if zplug check zsh-users/zsh-syntax-highlighting; then
 fi
 
 zplug load
+
+#
+# Basic Z-Shell settings
+#
+
+# Enable bash-style completion.
+autoload -U bashcompinit
+bashcompinit
+
+# Disable shared history.
+unsetopt share_history
+
+# Disable attempted correction of commands (is wrong 98% of the time).
+unsetopt correctall
+
+# Cause I hit emacs shorts too much.
+bindkey -s "\C-x\C-f" "cd "
