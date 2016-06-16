@@ -14,6 +14,7 @@ SYMLINKS=( \
   coffeelint.json \
   emacs.d \
   erlang \
+  eslintrc.js \
   gemrc \
   gitconfig \
   gitignore \
