@@ -1,3 +1,7 @@
+#
+# Ruby environment setup.
+#
+
 # Aliases
 alias po="powify"
 alias lu="lunchy"
@@ -33,16 +37,19 @@ fi
 # Load rbenv or RVM depending on which is available
 if [ -d "$HOME/.rbenv/bin" ]; then
   path_prepend "$HOME/.rbenv/bin"
-  path_prepend "$HOME/.rbenv/shims"
+  # if [[ ":$PATH:" != *":$HOME/.rbenv/shims:"* ]]; then
   eval "$(rbenv init -)"
+  # fi
 elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
   source "$HOME/.rvm/scripts/rvm"
 fi
 
 # lunchy auto-completion
-LUNCHY_DIR="$(dirname `gem which lunchy`)/../extras"
-if [ -n "$BASH_VERSION" ] && [ -f "$LUNCHY_DIR/lunchy-completion.bash" ]; then
-  source "$LUNCHY_DIR/lunchy-completion.bash"
-elif [ -n "$ZSH_VERSION" ] && [ -f "$LUNCHY_DIR/lunchy-completion.zsh" ]; then
-  source "$LUNCHY_DIR/lunchy-completion.zsh"
+if [ -n "$BASH_VERSION" ]; then
+  if which gem &> /dev/null && gem which lunchy &> /dev/null; then
+    LUNCHY_DIR="$(dirname "$(gem which lunchy)")/../extras"
+    if [ -f "$LUNCHY_DIR/lunchy-completion.bash" ]; then
+      source "$LUNCHY_DIR/lunchy-completion.bash"
+    fi
+  fi
 fi
