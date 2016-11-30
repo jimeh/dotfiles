@@ -5,3 +5,4 @@ Icon*
 .SyncArchive/*
 .dropbox
 bin/boot2docker.iso
+bundle/cache/*
