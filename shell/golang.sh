@@ -2,8 +2,21 @@
 # Go (golang) environment setup.
 #
 
-export GOPATH="$HOME/.go:$HOME/Projects/Go"
-path_prepend "$HOME/Projects/Go/bin:$HOME/.go/bin"
+export MYGOPATH="$HOME/Projects/Go"
+
+# load gvm
+[[ -s "/Users/jimeh/.gvm/scripts/gvm" ]] && source "/Users/jimeh/.gvm/scripts/gvm"
+
+# setup GOPATH after loading gvm
+export GOPATH="$GOPATH:$MYGOPATH"
+path_prepend "$MYGOPATH/bin"
+
+# aliases
+alias gv="govendor"
+gvm-use() {
+  gvm use $@
+  export GOPATH="$GOPATH:$MYGOPATH"
+}
 
 install_go_global_packages () {
   local packages=( \
@@ -13,9 +26,12 @@ install_go_global_packages () {
     github.com/golang/lint/golint \
     github.com/kardianos/govendor \
     github.com/kisielk/errcheck \
+    github.com/kovetskiy/manul \
     github.com/kr/pretty \
     github.com/laher/goxc \
+    github.com/mailgun/godebug \
     github.com/mdempsky/unconvert \
+    github.com/mitchellh/gox \
     github.com/motemen/gore \
     github.com/nsf/gocode \
     github.com/pmezard/go-difflib/difflib \
@@ -24,6 +40,8 @@ install_go_global_packages () {
     github.com/tools/godep \
     github.com/vektra/mockery/.../ \
     golang.org/x/tools/cmd/goimports \
+    golang.org/x/tools/cmd/gorename \
+    golang.org/x/tools/cmd/guru \
     launchpad.net/gorun \
   )
 

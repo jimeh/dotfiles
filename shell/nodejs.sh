@@ -20,13 +20,16 @@ install_node_global_packages () {
       eslint-plugin-react \
       eslint-plugin-standard \
       eslint-plugin-standard \
+      htmllint-cli \
       jsfmt \
       jslinter \
       jsonlint \
+      localtunnel \
       semistandard \
       semistandard-format \
       standard \
       standard-format \
+      stylefmt \
       tslint \
       typescript \
       typescript-formatter

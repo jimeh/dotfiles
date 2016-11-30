@@ -40,8 +40,10 @@ source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
 source "$DOTSHELL/golang.sh"
 source "$DOTSHELL/docker.sh"
+source "$DOTSHELL/kubernetes.sh"
 source "$DOTSHELL/dokku.sh"
 source "$DOTSHELL/sbcl.sh"
+source "$DOTSHELL/travis-ci.sh"
 source "$DOTSHELL/amdsdk.sh"
 
 # Applications

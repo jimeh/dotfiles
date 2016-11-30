@@ -78,6 +78,10 @@ install_nvm () {
   git_clone 'https://github.com/creationix/nvm.git' "$TARGET/.nvm"
 }
 
+install_gvm () {
+  bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+}
+
 install_virtualenv () {
   curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
 }
@@ -140,6 +144,9 @@ case "$1" in
   nvm)
     install_nvm
     ;;
+  gvm)
+    install_gvm
+    ;;
   virtualenv|venv)
     install_virtualenv
     ;;
@@ -163,6 +170,7 @@ case "$1" in
     echo '      homebrew: Install Homebrew (Mac OS X only).'
     echo '         rbenv: Install rbenv, a Ruby version manager.'
     echo '           nvm: Install nvm, a Node.js version manager.'
+    echo '           gvm: Install gvm, a Go version manager.'
     echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
          'environment manager.'
     echo '         dokku: Clone dokku to ~/.dokku enabling use of' \

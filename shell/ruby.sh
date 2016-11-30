@@ -2,6 +2,16 @@
 # Ruby environment setup.
 #
 
+install_ruby_global_packages () {
+  gem install --no-rdoc --no-ri \
+      bundler \
+      foreman \
+      rubocop \
+      lunchy \
+      rbenv-rehash \
+      travis
+}
+
 # Aliases
 alias po="powify"
 alias lu="lunchy"
