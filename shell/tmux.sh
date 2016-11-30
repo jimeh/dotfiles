@@ -17,7 +17,11 @@ fi
 
 # Tmuxifier
 if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
-  export TMUXIFIER_LAYOUT_PATH="$HOME/.dotfiles/private/tmux-layouts"
+  if [ -d "$HOME/.dotfiles/private/tmux-layouts" ]; then
+    export TMUXIFIER_LAYOUT_PATH="$HOME/.dotfiles/private/tmux-layouts"
+  else
+    export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+  fi
   path_prepend "$DOTSHELL/tmux/tmuxifier/bin"
   eval "$(tmuxifier init -)"
 
