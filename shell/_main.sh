@@ -2,6 +2,11 @@
 # Main Shell Setup
 #
 
+# Ensure 256 color support in Linux
+if [[ "$(uname)" == "Linux" ]]; then
+  export TERM="xterm-256color"
+fi
+
 # Set required path variables
 DOTBIN="$DOTFILES/bin"
 
