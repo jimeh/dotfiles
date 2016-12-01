@@ -51,6 +51,7 @@ if [ -d "$HOME/.rbenv/bin" ]; then
   eval "$(rbenv init -)"
   # fi
 elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
+  path_append "$HOME/.rvm/bin"
   source "$HOME/.rvm/scripts/rvm"
 fi
 
