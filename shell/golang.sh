@@ -42,11 +42,12 @@ install_go_global_packages () {
     golang.org/x/tools/cmd/goimports \
     golang.org/x/tools/cmd/gorename \
     golang.org/x/tools/cmd/guru \
-    launchpad.net/gorun \
   )
 
   for package in "${packages[@]}"; do
     echo "installing/updating \"$package\""
     go get -u "$package"
   done
+
+  gometalinter --install
 }
