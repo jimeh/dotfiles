@@ -5,7 +5,7 @@
 export MYGOPATH="$HOME/Projects/Go"
 
 # load gvm
-[[ -s "/Users/jimeh/.gvm/scripts/gvm" ]] && source "/Users/jimeh/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # setup GOPATH after loading gvm
 export GOPATH="$GOPATH:$MYGOPATH"
