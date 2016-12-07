@@ -7,6 +7,7 @@
 .stfolder
 log/*.gz
 log/*.bz2
+routes.txt
 test/dummy/log/*.gz
 test/dummy/log/*.bz2
 vendor/bundle
