@@ -19,6 +19,7 @@ SYMLINKS=( \
   gitconfig \
   gitignore \
   hgrc \
+  hyper.js \
   irbrc \
   peco \
   powconfig \
