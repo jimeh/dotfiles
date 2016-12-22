@@ -7,9 +7,6 @@ Rails:
 Documentation:
   Enabled: false
 
-# Style/AlignParameters:
-#   EnforcedStyle: with_fixed_indentation
-
 Metrics/ClassLength:
   CountComments: false
   Max: 200
@@ -18,26 +15,8 @@ Style/CollectionMethods:
   PreferredMethods:
     inject: 'inject' # disable "use reduce instead of inject" warning
 
-# Style/EachWithObject:
-#   Enabled: false
-
-# Style/EmptyLinesAroundBlockBody:
-#   Enabled: false
-
-# Style/EmptyLinesAroundClassBody:
-#   Enabled: false
-
-# Style/EmptyLineBetweenDefs:
-#   AllowAdjacentOneLineDefs: true
-
-# Style/Encoding:
-#   EnforcedStyle: when_needed
-
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
-
-# Style/IndentHash:
-#   EnforcedStyle: consistent
 
 Metrics/LineLength:
   Max: 80
@@ -50,17 +29,8 @@ Metrics/MethodLength:
   CountComments: false
   Max: 20
 
-# Style/SingleLineBlockParams:
-#   Enabled: false
-
-# Style/StringLiterals:
-#   Enabled: false
-
 Style/WhileUntilModifier:
   MaxLineLength: 80
-
-# Style/LineEndConcatenation:
-#   Enabled: false
 
 Style/WordArray:
   Enabled: false
