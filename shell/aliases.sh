@@ -25,6 +25,8 @@ alias egs="$DOTBIN/emacs-gui-server"
 # Utils
 alias ma="make"
 alias br="brew"
+alias ca="brew cask"
+alias cask="brew cask"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 alias open_ports="sudo lsof -i -P | grep --color=never -i \"listen\""
 
