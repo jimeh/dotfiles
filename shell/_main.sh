@@ -25,6 +25,8 @@ fi
 
 # Package management
 source "$DOTSHELL/nix.sh"
+source "$DOTSHELL/homebrew.sh"
+source "$DOTSHELL/caskroom.sh"
 
 # Aliases
 source "$DOTSHELL/aliases.sh"
