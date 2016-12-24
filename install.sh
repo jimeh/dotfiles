@@ -71,7 +71,7 @@ install_homebrew () {
 }
 
 install_rbenv () {
-  git_clone 'https://github.com/rbenv/ruby-build.git' "$TARGET/.rbenv"
+  git_clone 'https://github.com/rbenv/rbenv.git' "$TARGET/.rbenv"
   git_clone 'https://github.com/rbenv/ruby-build.git' "$TARGET/.rbenv/plugins/ruby-build"
 }
 
