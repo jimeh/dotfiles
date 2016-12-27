@@ -31,6 +31,7 @@
   unstage = reset HEAD --
   last = log -1 HEAD
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %Cgreen%GS%Creset' --abbrev-commit --
+  pgp = config commit.gpgsign
   pgp-on = config commit.gpgsign true
   pgp-off = config commit.gpgsign false
 [branch]
