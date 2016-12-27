@@ -8,25 +8,25 @@ TARGET="$HOME"
 DOTFILES_LINK=".dotfiles"
 SYMLINK_PATH="$DOTFILES_LINK"
 PRIVATE_PATH="private"
-SYMLINKS=( \
-  ackrc \
-  bundle \
-  coffeelint.json \
-  emacs.d \
-  erlang \
-  eslintrc.js \
-  gemrc \
-  gitconfig \
-  gitignore \
-  hgrc \
-  hyper.js \
-  irbrc \
-  peco \
-  powconfig \
-  rspec \
-  rubocop.yml \
-  tmux \
-  tmux.conf \
+SYMLINKS=(
+  ackrc
+  bundle
+  coffeelint.json
+  emacs.d
+  erlang
+  eslintrc.js
+  gemrc
+  gitconfig
+  gitignore
+  hgrc
+  hyper.js
+  irbrc
+  peco
+  powconfig
+  rspec
+  rubocop.yml
+  tmux
+  tmux.conf
 )
 LOAD_FILES=(profile zshrc)
 
