@@ -54,6 +54,11 @@ install_symlinks () {
   done
 }
 
+install_private () {
+  git_clone "git@github.com:jimeh/dotfiles-private.git" \
+            "$ROOT_PATH/$PRIVATE_PATH"
+}
+
 install_launch_agents () {
   mkdir -p "$HOME/Library/LaunchAgents"
   for file in $ROOT_PATH/launch_agents/*.plist; do
@@ -136,6 +141,9 @@ case "$1" in
   symlinks|links)
     install_symlinks
     ;;
+  private)
+    install_private
+    ;;
   homebrew|brew)
     install_homebrew
     ;;
@@ -168,6 +176,7 @@ case "$1" in
     echo '          info: Target and source directory info.'
     echo '      symlinks: Install symlinks for various dotfiles into' \
          'target directory.'
+    echo '       private: Install private dotfiles.'
     echo '      homebrew: Install Homebrew (Mac OS X only).'
     echo '         rbenv: Install rbenv, a Ruby version manager.'
     echo '           nvm: Install nvm, a Node.js version manager.'

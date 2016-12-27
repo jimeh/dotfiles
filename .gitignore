@@ -6,3 +6,4 @@ Icon*
 .dropbox
 bin/boot2docker.iso
 bundle/cache/*
+private/*
