@@ -30,6 +30,21 @@ SYMLINKS=(
 )
 LOAD_FILES=(profile zshrc)
 
+
+#
+# Initial Setup
+#
+
+if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ] ; then
+  ROOT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+elif [ -n "$0" ] && [ -f "$0" ]; then
+  ROOT_PATH=$(cd "$(dirname "$0")" && pwd)
+else
+  echo "[ERROR] Can't determine dotfiles' root path."
+  exit 1
+fi
+
+
 #
 # Main Functions
 #
@@ -95,20 +110,6 @@ install_virtualenv () {
 install_dokku() {
   git_clone 'https://github.com/progrium/dokku.git' "$TARGET/.dokku"
 }
-
-
-#
-# Initial Setup
-#
-
-if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ] ; then
-  ROOT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-elif [ -n "$0" ] && [ -f "$0" ]; then
-  ROOT_PATH=$(cd "$(dirname "$0")" && pwd)
-else
-  echo "[ERROR] Can't determine dotfiles' root path."
-  exit 1
-fi
 
 
 #
