@@ -11,6 +11,7 @@ install_brew_global_packages () {
        bazaar \
        git \
        heroku \
+       htop \
        kubernetes-cli \
        peco \
        readline \
