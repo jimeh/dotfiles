@@ -1,6 +1,7 @@
 .DS_Store
 .AppleDouble
 .bin
+.byebug_history
 .bundle
 .projectile
 .stignore
