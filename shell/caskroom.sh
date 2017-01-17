@@ -31,6 +31,7 @@ install_cask_global_packages () {
        flux \
        github-desktop \
        gog-galaxy \
+       google-cloud-sdk \
        google-chrome \
        gpgtools \
        hackety-hack \
