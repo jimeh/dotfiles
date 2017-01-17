@@ -18,6 +18,7 @@ install_brew_global_packages () {
        reattach-to-user-namespace \
        the_silver_searcher \
        tmux \
+       wget \
        zsh
 
   brew install aspell --with-lang-en --with-lang-el --with-lang-sv
