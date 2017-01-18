@@ -41,30 +41,42 @@ if [ "$1" == "--install-deps" ]; then
   exit 0
 fi
 
-APPLICATION="$1"
+APP_NAME="$1"
+
+if [ -n "$2" ]; then
+  APP_BIN="$2"
+else
+  APP_BIN="$APP_NAME"
+fi
+
+if [ -n "$3" ]; then
+  WIN_NAME="$3"
+else
+  WIN_NAME="$APP_NAME"
+fi
 
 # Checking if the application name provided by the user exists
-if ! hash $APPLICATION 2>/dev/null; then
-  echo -e "$APPLICATION does not seem to be a valid executable\nTerminating"
+if ! command -v $APP_BIN 2>/dev/null; then
+  echo -e "$APP_BIN does not seem to be a valid executable\nTerminating"
   exit -2
 fi
 
 # Checking if the application is running. We are using pgrep as various
 # application are python scripts and we will not be able to find them using
 # pidof. pgrep will look through the currently running processes and list the
-# process IDs of all the processes that are called $APPLICATION.
-PID=$(pgrep $APPLICATION | head -n 1)
+# process IDs of all the processes that are called $APP_NAME.
+PID=$(pgrep $APP_NAME | head -n 1)
 
 # If the application is not running, we will try to launch it.
 if [ -z $PID ]; then
-  echo "$APPLICATION not running, launching it.."
-  $APPLICATION
+  echo "$APP_NAME not running, launching it.."
+  $APP_BIN
 else
   # Since the application has a live instance, we can proceed with the rest of
   # the code.  We will get the PID of the application that is currently focused,
   # if it is not the application we passed as parameter we will change the focus
   # to that. In the other case, we will minimize the application.
-  echo -n "$APPLICATION instance found - "
+  echo -n "$APP_NAME instance found - "
   FOCUSED=$(xdotool getactivewindow getwindowpid)
   if [[ $PID == $FOCUSED ]]; then
     echo "It was focused so we are minimizing it"
@@ -75,6 +87,6 @@ else
     echo "We are setting the focus on it"
     # We set the focus to the application we passed as parameter. If it is
     # minimized it will be raised as well.
-    wmctrl -x -R $APPLICATION
+    wmctrl -x -R $WIN_NAME
   fi
 fi
