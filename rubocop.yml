@@ -7,30 +7,30 @@ Rails:
 Documentation:
   Enabled: false
 
-Metrics/ClassLength:
-  CountComments: false
-  Max: 200
+# Metrics/ClassLength:
+#   CountComments: false
+#   Max: 200
 
-Style/CollectionMethods:
-  PreferredMethods:
-    inject: 'inject' # disable "use reduce instead of inject" warning
+# Style/CollectionMethods:
+#   PreferredMethods:
+#     inject: 'inject' # disable "use reduce instead of inject" warning
 
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
 
-Metrics/LineLength:
-  Max: 80
-  AllowURI: true
+# Metrics/LineLength:
+#   Max: 80
+#   AllowURI: true
 
-Style/IfUnlessModifier:
-  MaxLineLength: 80
+# Style/IfUnlessModifier:
+#   MaxLineLength: 80
 
-Metrics/MethodLength:
-  CountComments: false
-  Max: 20
+# Metrics/MethodLength:
+#   CountComments: false
+#   Max: 20
 
-Style/WhileUntilModifier:
-  MaxLineLength: 80
+# Style/WhileUntilModifier:
+#   MaxLineLength: 80
 
-Style/WordArray:
-  Enabled: false
+# Style/WordArray:
+#   Enabled: false
