@@ -41,6 +41,11 @@ if [ "$1" == "--install-deps" ]; then
   exit 0
 fi
 
+if [ "$1" == "-a" ]; then
+  MOVE_TO="yes"
+  shift 1
+fi
+
 APP_NAME="$1"
 
 if [ -n "$2" ]; then
@@ -87,6 +92,10 @@ else
     echo "We are setting the focus on it"
     # We set the focus to the application we passed as parameter. If it is
     # minimized it will be raised as well.
-    wmctrl -x -R $WIN_NAME
+    if [ "$MOVE_TO" == "yes" ]; then
+      wmctrl -x -a $WIN_NAME
+    else
+      wmctrl -x -R $WIN_NAME
+    fi
   fi
 fi
