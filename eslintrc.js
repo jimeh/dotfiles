@@ -1,5 +1,5 @@
 module.exports = {
-  'extends': 'standard',
+  'extends': 'semistandard',
   'installedESLint': true,
   'plugins': [
     'standard'
