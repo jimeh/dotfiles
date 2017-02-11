@@ -2,7 +2,7 @@
 # Python
 #
 
-# Load virtualenv-burrito if it's available
-if [ -f "$HOME/.venvburrito/startup.sh" ]; then
-  source "$HOME/.venvburrito/startup.sh"
+# Init pyenv
+if [ -n "$(command -v pyenv)" ]; then
+  eval "$(pyenv init -)"
 fi

@@ -52,6 +52,7 @@ install_cask_global_packages () {
        messenger \
        micro-snitch \
        mist \
+       moom \
        mplayerx \
        omnigraffle \
        openemu \
@@ -59,6 +60,7 @@ install_cask_global_packages () {
        paw \
        plex-media-player \
        postman \
+       resolutionator \
        ring \
        screenhero \
        sequel-pro \

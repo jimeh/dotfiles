@@ -14,11 +14,8 @@ install_node_global_packages () {
       eslint \
       eslint-config-semistandard \
       eslint-config-standard \
-      eslint-config-standard \
-      eslint-plugin-promise \
       eslint-plugin-promise \
       eslint-plugin-react \
-      eslint-plugin-standard \
       eslint-plugin-standard \
       htmllint-cli \
       jsfmt \
