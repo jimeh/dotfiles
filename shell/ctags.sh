@@ -4,9 +4,9 @@
 
 # *nix systems.
 if [ -d "/opt/universal-ctags/bin" ]; then
-  path_append "/opt/universal-ctags/bin"
+  path_prepend "/opt/universal-ctags/bin"
 fi
 
 if [ -d "/opt/global-ctags/bin" ]; then
-  path_append "/opt/global-ctags/bin"
+  path_prepend "/opt/global-ctags/bin"
 fi
