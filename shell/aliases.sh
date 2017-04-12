@@ -39,6 +39,7 @@ alias netlisteners='lsof -i -P | grep LISTEN'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 alias fku="fuck you"
+alias fucking="sudo"
 
 # Fix wifi issues on OS X 10.10.x Yosemite.
 #  - from: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
