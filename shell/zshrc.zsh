@@ -29,7 +29,7 @@ zplug "$DOTZSH/themes/plain", from:local
 # zplug "junegunn/fzf", of:"shell/*.zsh"
 zplug "jimeh/zsh-peco-history"
 
-zplug "b4b4r07/enhancd", of:"zsh/*.zsh"
+zplug "b4b4r07/enhancd", of:"init.sh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:19
@@ -60,8 +60,8 @@ zplug load
 #
 
 # Enable bash-style completion.
-autoload -U bashcompinit
-bashcompinit
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 # Disable shared history.
 unsetopt share_history
