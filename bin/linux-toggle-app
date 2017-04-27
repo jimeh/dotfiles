@@ -61,7 +61,7 @@ else
 fi
 
 # Checking if the application name provided by the user exists
-if ! command -v $APP_BIN 2>/dev/null; then
+if ! command -v "$APP_BIN" 2>/dev/null; then
   echo -e "$APP_BIN does not seem to be a valid executable\nTerminating"
   exit -2
 fi
@@ -70,12 +70,12 @@ fi
 # application are python scripts and we will not be able to find them using
 # pidof. pgrep will look through the currently running processes and list the
 # process IDs of all the processes that are called $APP_NAME.
-PID=$(pgrep $APP_NAME | head -n 1)
+PID=$(pgrep "$APP_NAME" | head -n 1)
 
 # If the application is not running, we will try to launch it.
 if [ -z $PID ]; then
   echo "$APP_NAME not running, launching it.."
-  $APP_BIN
+  "$APP_BIN"
 else
   # Since the application has a live instance, we can proceed with the rest of
   # the code.  We will get the PID of the application that is currently focused,
@@ -93,9 +93,13 @@ else
     # We set the focus to the application we passed as parameter. If it is
     # minimized it will be raised as well.
     if [ "$MOVE_TO" == "yes" ]; then
-      wmctrl -x -a $WIN_NAME
+      xdotool search --onlyvisible --name "$WIN_NAME" windowactivate
+      # wmctrl -x -a "$WIN_NAME"
     else
-      wmctrl -x -R $WIN_NAME
+      # WIN_ID=$(xdotool search --onlyvisible --name "$WIN_NAME")
+      # xdotool set_desktop "$WIN_ID" $(xdotool get_desktop)
+      # xdotool windowactivate "$WIN_ID"
+      wmctrl -x -R "$WIN_NAME"
     fi
   fi
 fi
