@@ -2,29 +2,41 @@
 # Homebrew related stuff.
 #
 
-install_brew_global_packages () {
-  # Basic packages.
-  brew install \
-       ack \
-       android-sdk \
-       bash \
-       bazaar \
-       git \
-       heroku \
-       htop \
-       kubernetes-cli \
-       peco \
-       readline \
-       reattach-to-user-namespace \
-       the_silver_searcher \
-       tmux \
-       wget \
-       zsh
+bootstrap_homebrew () {
+  local pkgs=(
+    ack
+    "aspell --with-lang-en --with-lang-el --with-lang-sv"
+    bash
+    bazaar
+    git
+    heroku
+    htop
+    kubernetes-cli
+    mysql
+    peco
+    readline
+    reattach-to-user-namespace
+    redis
+    the_silver_searcher
+    tmux
+    wget
+    zsh
+  )
 
-  brew install aspell --with-lang-en --with-lang-el --with-lang-sv
+  local installed=( $(brew list) )
 
-  # Services.
-  brew install \
-       mysql \
-       redis
+  for pkg in ${pkgs[@]}; do
+    local base=$(echo $pkg | awk '{print $1}')
+    local found=""
+
+    for i in ${installed[@]}; do
+      if [[ "$base" == "$i" ]]; then
+        found=1
+      fi
+    done
+
+    if [ -z "$found" ]; then
+      brew install "${pkg[@]}"
+    fi
+  done
 }
