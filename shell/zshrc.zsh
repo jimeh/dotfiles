@@ -19,10 +19,8 @@ UNBUNDLED_COMMANDS=(shotgun)
 source "$DOTZSH/zplug/zplug"
 alias zp="zplug"
 
-zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/powder", from:oh-my-zsh
 
 zplug "$DOTZSH/themes/plain", from:local
 
