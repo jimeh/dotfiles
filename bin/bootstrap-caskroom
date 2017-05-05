@@ -1,0 +1,116 @@
+#! /usr/bin/env bash
+set -e
+
+pkgs=()
+
+if [[ " $@ " == " home " ]]; then
+  pkgs+=(
+    adium-beta
+    android-file-transfer
+    audio-hijack
+    autodmg
+    bowtie
+    calibre
+    carbon-copy-cloner
+    cloudup
+    daisydisk
+    deluge
+    discord
+    dropbox
+    ethereum-wallet
+    filebot
+    gog-galaxy
+    gpgtools
+    hackety-hack
+    handbrake
+    irccloud
+    keybase
+    little-snitch
+    logitech-options
+    makemkv
+    messenger
+    micro-snitch
+    mist
+    omnigraffle
+    openemu
+    parallels-desktop
+    plex-media-player
+    ring
+    screenhero
+    sixtyforce
+    skype
+    spotify
+    synology-assistant
+    teamviewer
+    transmission
+    unetbootin
+    virtualbox
+    virtualc64
+    viscosity
+    vmware-fusion
+    witgui
+    xld
+    yakyak
+    ynab
+  )
+fi
+
+if [[ " $@ " == " work " ]]; then
+  pkgs+=(
+    aerial
+    alfred
+    appcleaner
+    atom
+    bartender
+    bbedit
+    betterzip
+    chicken
+    docker
+    firefox
+    fluid
+    flux
+    github-desktop
+    google-cloud-sdk
+    google-chrome
+    hipchat
+    insomnia
+    istat-menus
+    istumbler
+    iterm2
+    java
+    karabiner-elements
+    licecap
+    medis
+    moom
+    mplayerx
+    paw
+    postman
+    qlstephen
+    resolutionator
+    sequel-pro
+    stay
+    ubersicht
+    visual-studio-code
+    vlc
+  )
+fi
+
+installed=( $(brew cask list) )
+
+for pkg in "${pkgs[@]}"; do
+  base=$(echo $pkg | awk '{print $1}')
+  found=""
+
+  for i in ${installed[@]}; do
+    if [[ "$base" == "$i" ]]; then
+      found=1
+    fi
+  done
+
+  if [ -z "$found" ]; then
+    echo "--> Missing: ${base}"
+    brew cask install ${pkg[@]}
+  else
+    echo "--> Installed: ${base}"
+  fi
+done

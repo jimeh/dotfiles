@@ -1,0 +1,43 @@
+#! /usr/bin/env bash
+set -e
+
+pkgs=(
+  ack
+  "aspell --with-lang-en --with-lang-el --with-lang-sv"
+  bash
+  bazaar
+  git
+  heroku
+  htop
+  kubernetes-cli
+  mysql
+  peco
+  readline
+  reattach-to-user-namespace
+  redis
+  tccutil
+  the_silver_searcher
+  tmux
+  wget
+  zsh
+)
+
+installed=( $(brew list) )
+
+for pkg in "${pkgs[@]}"; do
+  base=$(echo $pkg | awk '{print $1}')
+  found=""
+
+  for i in ${installed[@]}; do
+    if [[ "$base" == "$i" ]]; then
+      found=1
+    fi
+  done
+
+  if [ -z "$found" ]; then
+    echo "--> Missing: ${base}"
+    brew install ${pkg[@]}
+  else
+    echo "--> Installed: ${base}"
+  fi
+done
