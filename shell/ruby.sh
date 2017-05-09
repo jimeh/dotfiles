@@ -46,10 +46,13 @@ fi
 # Load rbenv or RVM depending on which is available
 if [ -d "$HOME/.rbenv/bin" ]; then
   path_prepend "$HOME/.rbenv/bin"
-  # if [[ ":$PATH:" != *":$HOME/.rbenv/shims:"* ]]; then
+fi
+
+if [ -n "$(command -v rbenv)" ]; then
   eval "$(rbenv init -)"
-  # fi
-elif [ -s "$HOME/.rvm/scripts/rvm" ]; then
+fi
+
+if [ -s "$HOME/.rvm/scripts/rvm" ]; then
   path_append "$HOME/.rvm/bin"
   source "$HOME/.rvm/scripts/rvm"
 fi
