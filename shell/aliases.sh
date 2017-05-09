@@ -41,34 +41,20 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 alias fku="fuck you"
 alias fucking="sudo"
 
-# Fix wifi issues on OS X 10.10.x Yosemite.
-#  - from: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
-alias fix_wifi="sudo ifconfig awdl0 down"
-alias unfix_wifi="sudo ifconfig awdl0 up"
-
-# Disable the system built-in cmd+ctrl+d global hotkey to lookup word in
-# dictionary on OS X. Must reboot after running.
-#  - from: ://apple.stackexchange.com/a/114269
-osx-disable-lookup-word-hotkey() {
-  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 \
-           '<dict><key>enabled</key><false/></dict>'
-  echo "Command-Control-D hotkey disabled. Please reboot to take effect."
-}
-
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
-function myip {
+myip() {
   echo "$(curl -s whatismyip.akamai.com)"
 }
 
 # appends your key to a server's authorized keys file
-function authme {
+authme() {
   ssh "$1" 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
     < ~/.ssh/id_rsa.pub
 }
 
 # ssh commands related to old SSH keys
 alias ssho="ssh -i ~/.ssh/old-id_rsa"
-function authmeo {
+authmeo() {
   ssh -i ~/.ssh/old-id_rsa "$1" \
     'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
     < ~/.ssh/id_rsa.pub
@@ -76,7 +62,7 @@ function authmeo {
 
 # Make and cd into directory
 #  - from: http://alias.sh/make-and-cd-directory
-function mcd() {
+mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
@@ -87,7 +73,7 @@ pman () {
 
 # Extract most common archives with single command.
 #  - from: http://alias.sh/extract-most-know-archives-one-command
-function extract () {
+extract() {
     if [ -f $1 ] ; then
       case $1 in
         *.tar.bz2)   tar xvjf $1    ;;
@@ -111,16 +97,3 @@ function extract () {
      fi
 }
 alias ext=extract
-
-
-# Show hidden files in Finder.
-function show_files {
-  defaults write com.apple.finder AppleShowAllFiles YES
-  killall Finder "/System/Library/CoreServices/Finder.app"
-}
-
-# Don't show hidden files in Finder.
-function hide_files {
-  defaults write com.apple.finder AppleShowAllFiles NO
-  killall Finder "/System/Library/CoreServices/Finder.app"
-}

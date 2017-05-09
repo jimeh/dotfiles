@@ -29,6 +29,11 @@ source "$DOTSHELL/nix.sh"
 # Aliases
 source "$DOTSHELL/aliases.sh"
 
+# OSX specific
+if [[ "$(uname)" == "Darwin" ]]; then
+  source "$DOTSHELL/osx.sh"
+fi
+
 # Utils
 source "$DOTSHELL/emacs.sh"
 source "$DOTSHELL/git.sh"
