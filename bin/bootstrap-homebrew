@@ -6,15 +6,18 @@ pkgs=(
   "aspell --with-lang-en --with-lang-el --with-lang-sv"
   bash
   bazaar
+  ctop
   git
   heroku
   htop
   kubernetes-cli
   mysql
   peco
+  rbenv
   readline
   reattach-to-user-namespace
   redis
+  ruby-build
   tccutil
   the_silver_searcher
   tmux
