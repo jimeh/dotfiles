@@ -78,6 +78,7 @@ if [[ " $@ " == " work " ]]; then
     istumbler
     iterm2
     java
+    kaleidoscope
     karabiner-elements
     licecap
     medis
