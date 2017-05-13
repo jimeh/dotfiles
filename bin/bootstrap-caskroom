@@ -39,7 +39,7 @@ if [[ " $@ " == " home " ]]; then
     sixtyforce
     skype
     spotify
-    synology-assistant
+    # synology-assistant
     teamviewer
     transmission
     unetbootin
