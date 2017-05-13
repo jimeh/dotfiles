@@ -65,7 +65,7 @@ if [[ " $@ " == " work " ]]; then
     betterzip
     caskroom/drivers/logitech-options
     chicken
-    docker
+    docker-edge
     firefox
     fluid
     flux
