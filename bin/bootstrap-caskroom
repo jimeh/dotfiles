@@ -11,7 +11,6 @@ if [[ " $@ " == " home " ]]; then
     autodmg
     bowtie
     calibre
-    carbon-copy-cloner
     cloudup
     daisydisk
     deluge
