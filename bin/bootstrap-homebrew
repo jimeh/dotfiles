@@ -7,6 +7,7 @@ pkgs=(
   bash
   bazaar
   ctop
+  dpkg
   git
   heroku
   htop
