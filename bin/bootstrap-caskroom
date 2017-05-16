@@ -63,6 +63,7 @@ if [[ " $@ " == " work " ]]; then
     bartender
     bbedit
     betterzip
+    betterzipql
     caskroom/drivers/logitech-options
     chicken
     cyberduck
@@ -87,13 +88,23 @@ if [[ " $@ " == " work " ]]; then
     mplayerx
     paw
     postman
+    qlcolorcode
+    qlimagesize
+    qlmarkdown
+    qlprettypatch
     qlstephen
+    qlvideo
+    quicklook-csv
+    quicklook-json
+    quicklookapk
     resolutionator
     sequel-pro
     stay
+    suspicious-package
     ubersicht
     visual-studio-code
     vlc
+    webpquicklook
   )
 fi
 
