@@ -71,8 +71,8 @@ if [[ " $@ " == " work " ]]; then
     fluid
     flux
     github-desktop
-    google-cloud-sdk
     google-chrome
+    google-cloud-sdk
     hipchat
     insomnia
     istat-menus
