@@ -99,10 +99,12 @@ if [[ " $@ " == " work " ]]; then
     quicklook-json
     quicklookapk
     resolutionator
+    robomongo
     sequel-pro
     stay
     suspicious-package
     ubersicht
+    vagrant
     visual-studio-code
     vlc
     webpquicklook
