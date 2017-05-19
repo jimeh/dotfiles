@@ -67,6 +67,7 @@ if [[ " $@ " == " work " ]]; then
     caskroom/drivers/logitech-options
     chicken
     cyberduck
+    dash
     docker-edge
     firefox
     fluid
