@@ -1,17 +1,105 @@
 #! /usr/bin/env bash
 set -e
 
-pkgs=()
+install_packages() {
+  local group="$1"
+  shift 1
 
-if [[ " $@ " == " home " ]]; then
-  pkgs+=(
+  [ -z "$INSTALLED_PACKAGES" ] && INSTALLED_PACKAGES=( $(brew cask list) )
+
+  echo "==> ${group} packages"
+  for pkg in "$@"; do
+    local base=$(echo $pkg | awk '{print $1}')
+    [[ "$base" == *\/* ]] && base=$(basename "$base")
+
+    local found=""
+
+    for i in ${INSTALLED_PACKAGES[@]}; do
+      [[ "$base" == "$i" ]] && found=1
+    done
+
+    if [ -z "$found" ]; then
+      echo " -> Missing: ${base}"
+      brew cask install ${pkg[@]}
+    else
+      echo " -> Installed: ${base}"
+    fi
+  done
+}
+
+main() {
+
+  #
+  # Define packages
+  #
+
+  local core_pkgs=(
+    aerial
+    alfred
+    appcleaner
+    bartender
+    betterzip
+    betterzipql
+    caskroom/drivers/logitech-options
+    firefox
+    fluid
+    flux
+    google-chrome
+    istat-menus
+    istumbler
+    iterm2
+    karabiner-elements
+    moom
+    mplayerx
+    qlcolorcode
+    qlimagesize
+    qlmarkdown
+    qlprettypatch
+    qlstephen
+    qlvideo
+    quicklook-csv
+    quicklook-json
+    quicklookapk
+    resolutionator
+    stay
+    suspicious-package
+    ubersicht
+    vlc
+    wavebox
+    webpquicklook
+  )
+
+  local work_pkgs=(
+    atom
+    bbedit
+    chicken
+    cyberduck
+    dash
+    docker-edge
+    github-desktop
+    google-cloud-sdk
+    hipchat
+    insomnia
+    java
+    kaleidoscope
+    licecap
+    medis
+    paw
+    postman
+    robomongo
+    sequel-pro
+    vagrant
+    virtualbox
+    visual-studio-code
+  )
+
+  local personal_pkgs=(
     adium-beta
     android-file-transfer
     audio-hijack
     autodmg
     bowtie
     calibre
-    cloudup
     daisydisk
     deluge
     discord
@@ -25,7 +113,6 @@ if [[ " $@ " == " home " ]]; then
     irccloud
     keybase
     little-snitch
-    logitech-options
     makemkv
     messenger
     micro-snitch
@@ -39,98 +126,30 @@ if [[ " $@ " == " home " ]]; then
     sixtyforce
     skype
     spotify
-    # synology-assistant
     teamviewer
     transmission
     unetbootin
-    virtualbox
     virtualc64
     viscosity
     vmware-fusion
     witgui
     xld
     yakyak
-    ynab
   )
-fi
 
-if [[ " $@ " == " work " ]]; then
-  pkgs+=(
-    aerial
-    alfred
-    appcleaner
-    atom
-    bartender
-    bbedit
-    betterzip
-    betterzipql
-    caskroom/drivers/logitech-options
-    chicken
-    cyberduck
-    dash
-    docker-edge
-    firefox
-    fluid
-    flux
-    github-desktop
-    google-chrome
-    google-cloud-sdk
-    hipchat
-    insomnia
-    istat-menus
-    istumbler
-    iterm2
-    java
-    kaleidoscope
-    karabiner-elements
-    licecap
-    medis
-    moom
-    mplayerx
-    paw
-    postman
-    qlcolorcode
-    qlimagesize
-    qlmarkdown
-    qlprettypatch
-    qlstephen
-    qlvideo
-    quicklook-csv
-    quicklook-json
-    quicklookapk
-    resolutionator
-    robomongo
-    sequel-pro
-    stay
-    suspicious-package
-    ubersicht
-    vagrant
-    visual-studio-code
-    vlc
-    webpquicklook
-  )
-fi
+  #
+  # Install packages
+  #
 
-installed=( $(brew cask list) )
+  install_packages "core" "${core_pkgs[@]}"
 
-for pkg in "${pkgs[@]}"; do
-  base=$(echo $pkg | awk '{print $1}')
-  if [[ "$base" == *\/* ]]; then
-     base=$(basename "$base")
+  if [[ " $@ " == *" work "* ]]; then
+    install_packages "work" "${work_pkgs[@]}"
   fi
 
-  found=""
-
-  for i in ${installed[@]}; do
-    if [[ "$base" == "$i" ]]; then
-      found=1
-    fi
-  done
-
-  if [ -z "$found" ]; then
-    echo "--> Missing: ${base}"
-    brew cask install ${pkg[@]}
-  else
-    echo "--> Installed: ${base}"
+  if [[ " $@ " == *" personal "* ]]; then
+    install_packages "personal" "${personal_pkgs[@]}"
   fi
-done
+}
+
+main $@

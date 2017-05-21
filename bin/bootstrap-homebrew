@@ -1,47 +1,67 @@
 #! /usr/bin/env bash
 set -e
 
-pkgs=(
-  ack
-  "aspell --with-lang-en --with-lang-el --with-lang-sv"
-  bash
-  bazaar
-  ctop
-  dpkg
-  git
-  heroku
-  htop
-  kubernetes-cli
-  mysql
-  peco
-  rbenv
-  readline
-  reattach-to-user-namespace
-  redis
-  ruby-build
-  tccutil
-  the_silver_searcher
-  tmux
-  wget
-  zsh
-)
+install_packages() {
+  local group="$1"
+  shift 1
 
-installed=( $(brew list) )
+  [ -z "$INSTALLED_PACKAGES" ] && INSTALLED_PACKAGES=( $(brew list) )
 
-for pkg in "${pkgs[@]}"; do
-  base=$(echo $pkg | awk '{print $1}')
-  found=""
+  echo "==> ${group} packages"
+  for pkg in "$@"; do
+    local base=$(echo $pkg | awk '{print $1}')
+    local found=""
 
-  for i in ${installed[@]}; do
-    if [[ "$base" == "$i" ]]; then
-      found=1
+    for i in ${INSTALLED_PACKAGES[@]}; do
+      [[ "$base" == "$i" ]] && found=1
+    done
+
+    if [ -z "$found" ]; then
+      echo "--> Missing: ${base}"
+      brew install ${pkg[@]}
+    else
+      echo "--> Installed: ${base}"
     fi
   done
+}
 
-  if [ -z "$found" ]; then
-    echo "--> Missing: ${base}"
-    brew install ${pkg[@]}
-  else
-    echo "--> Installed: ${base}"
-  fi
-done
+main() {
+
+  #
+  # Define packages
+  #
+
+  local core_pkgs=(
+    ack
+    "aspell --with-lang-en --with-lang-el --with-lang-sv"
+    bash
+    bazaar
+    ctop
+    dpkg
+    git
+    heroku
+    htop
+    kubernetes-cli
+    mysql
+    peco
+    rbenv
+    readline
+    reattach-to-user-namespace
+    redis
+    ruby-build
+    shellcheck
+    tccutil
+    the_silver_searcher
+    tmux
+    wget
+    zsh
+  )
+
+  #
+  # Install packages
+  #
+
+  install_packages "core" "${core_pkgs[@]}"
+}
+
+main $@
