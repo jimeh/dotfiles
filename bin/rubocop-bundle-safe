@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+if bundle check &>/dev/null; then
+  exec bundle exec rubocop "$@"
+else
+  exec rubocop "$@"
+fi
