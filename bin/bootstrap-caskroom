@@ -122,6 +122,7 @@ main() {
     openemu
     parallels-desktop
     plex-media-player
+    rclone-browser
     ring
     screenhero
     sixtyforce
