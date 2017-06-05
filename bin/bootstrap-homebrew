@@ -50,6 +50,7 @@ main() {
     redis
     ruby-build
     shellcheck
+    sshfs
     tccutil
     the_silver_searcher
     tmux
