@@ -49,6 +49,7 @@ main() {
     istumbler
     iterm2
     karabiner-elements
+    keybase
     moom
     mplayerx
     osxfuse
@@ -112,7 +113,6 @@ main() {
     hackety-hack
     handbrake
     irccloud
-    keybase
     little-snitch
     makemkv
     messenger
