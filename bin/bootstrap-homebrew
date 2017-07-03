@@ -58,11 +58,19 @@ main() {
     zsh
   )
 
+  local personal_pkgs=(
+    "mkvtoolnix --with-qt"
+  )
+
   #
   # Install packages
   #
 
   install_packages "core" "${core_pkgs[@]}"
+
+  if [[ " $@ " == *" personal "* ]]; then
+    install_packages "personal" "${personal_pkgs[@]}"
+  fi
 }
 
 main $@
