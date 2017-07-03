@@ -34,8 +34,9 @@
   pgp = config commit.gpgsign
   pgp-on = config commit.gpgsign true
   pgp-off = config commit.gpgsign false
-[branch]
-  autosetuprebase = always
+  tree = log --all --graph --decorate --oneline --simplify-by-decoration
+[pull]
+  rebase = true
 [difftool "Kaleidoscope"]
   cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
