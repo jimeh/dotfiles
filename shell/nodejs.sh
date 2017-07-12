@@ -14,10 +14,14 @@ install_node_global_packages () {
       eslint \
       eslint-config-semistandard \
       eslint-config-standard \
+      eslint-plugin-import \
+      eslint-plugin-node \
       eslint-plugin-promise \
       eslint-plugin-react \
       eslint-plugin-standard \
+      eslint_d \
       htmllint-cli \
+      httpsnippet \
       jsfmt \
       jslinter \
       jsonlint \
@@ -29,7 +33,8 @@ install_node_global_packages () {
       stylefmt \
       tslint \
       typescript \
-      typescript-formatter
+      typescript-formatter \
+      uuid-cli
 }
 
 # Load nvm if it's available
