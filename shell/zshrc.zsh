@@ -7,7 +7,9 @@ DISABLE_AUTO_TITLE="true"
 
 # Export path variables.
 DOTZSH="$DOTSHELL/zsh"
-ZPLUG_HOME="$DOTZSH/zplug-cache"
+ZPLUG_HOME="$DOTZSH/zplug"
+ZPLUG_CACHE_DIR="$DOTZSH/zplug-cache/cache"
+ZPLUG_REPOS="$DOTZSH/zplug-cache/repos"
 
 # Don't wrap these commands in a Bundler wrapper.
 UNBUNDLED_COMMANDS=(shotgun)
@@ -16,21 +18,22 @@ UNBUNDLED_COMMANDS=(shotgun)
 # zplug
 #
 
-source "$DOTZSH/zplug/zplug"
+source "$DOTZSH/zplug/init.zsh"
 alias zp="zplug"
+
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
 
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 
-zplug "$DOTZSH/themes/plain", from:local
+zplug "aaronjamesyoung/aaron-zsh-theme", use:"aaron.zsh-theme", defer:3
+# zplug "$DOTZSH/themes/plain", from:local, use:"plain.zsh-theme", defer:3
 
-# zplug "junegunn/fzf", of:"shell/*.zsh"
 zplug "jimeh/zsh-peco-history"
-
-zplug "b4b4r07/enhancd", of:"init.sh"
+zplug "b4b4r07/enhancd", use:"init.sh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:19
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -53,6 +56,8 @@ fi
 
 zplug load
 
+# source "$DOTZSH/themes/plain/plain.zsh-theme"
+
 #
 # Basic Z-Shell settings
 #
@@ -68,4 +73,4 @@ unsetopt share_history
 unsetopt correctall
 
 # Cause I hit emacs shorts too much.
-bindkey -s "\C-x\C-f" "cd "
+# bindkey -s "\C-x\C-f" "cd "
