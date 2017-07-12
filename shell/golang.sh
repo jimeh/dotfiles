@@ -36,7 +36,7 @@ install_go_global_packages () {
     github.com/motemen/gore
     github.com/nsf/gocode
     github.com/pmezard/go-difflib/difflib
-    github.com/rakyll/boom
+    github.com/rakyll/hey
     github.com/rogpeppe/godef
     github.com/tools/godep
     github.com/vektra/mockery/.../
