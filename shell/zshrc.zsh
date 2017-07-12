@@ -26,8 +26,8 @@ zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 
-zplug "aaronjamesyoung/aaron-zsh-theme", use:"aaron.zsh-theme", defer:3
-# zplug "$DOTZSH/themes/plain", from:local, use:"plain.zsh-theme", defer:3
+# zplug "aaronjamesyoung/aaron-zsh-theme", use:"aaron.zsh-theme", defer:3
+zplug "$DOTZSH/themes/plain", from:local, use:"plain.zsh-theme", defer:3
 
 zplug "jimeh/zsh-peco-history"
 zplug "b4b4r07/enhancd", use:"init.sh"
