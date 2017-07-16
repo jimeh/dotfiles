@@ -97,6 +97,7 @@ main() {
   )
 
   local personal_pkgs=(
+    4k-video-downloader
     adium-beta
     android-file-transfer
     audio-hijack
