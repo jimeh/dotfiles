@@ -25,7 +25,7 @@ zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
 
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
-zplug "jimeh/zsh-peco-history"
+zplug "jimeh/zsh-peco-history", defer:2
 zplug "b4b4r07/enhancd", use:"init.sh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
