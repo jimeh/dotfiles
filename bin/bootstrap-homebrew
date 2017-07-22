@@ -39,6 +39,7 @@ main() {
     ctop
     dpkg
     git
+    "global --with-ctags --with-pygments"
     heroku
     htop
     kubernetes-cli
