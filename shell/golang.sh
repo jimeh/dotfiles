@@ -40,6 +40,7 @@ install_go_global_packages () {
     github.com/rogpeppe/godef
     github.com/tools/godep
     github.com/vektra/mockery/.../
+    golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/gorename
     golang.org/x/tools/cmd/guru

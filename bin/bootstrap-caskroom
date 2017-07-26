@@ -41,6 +41,7 @@ main() {
     betterzip
     betterzipql
     caskroom/drivers/logitech-options
+    emacs
     firefox
     fluid
     flux
