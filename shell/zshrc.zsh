@@ -32,7 +32,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
 # zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
-zplug "$DOTZSH/themes/plain", from:local, as:theme
+zplug "jimeh/plain.zsh-theme", as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
