@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  tasks:
+    - homebrew:
+        name: ["{{ item.name }}"]
+        state: present
+        install_options: "{{ item.install_options | default() }}"
+      with_items:
+        - name: ack
+        - name: bash
+        - name: bazaar
+        - name: ctop
+        - name: dpkg
+        - name: git
+        - name: heroku
+        - name: htop
+        - name: kubernetes-cli
+        - name: mysql
+        - name: peco
+        - name: rbenv
+        - name: readline
+        - name: reattach-to-user-namespace
+        - name: redis
+        - name: ruby-build
+        - name: shellcheck
+        - name: sshfs
+        - name: tccutil
+        - name: the_silver_searcher
+        - name: tmux
+        - name: wget
+        - name: zsh
+        - name: aspell
+          install_options: --with-lang-en --with-lang-el --with-lang-sv
+        - name: global
+          install_options: --with-ctags --with-pygments

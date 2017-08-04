@@ -1,0 +1,50 @@
+---
+- hosts: localhost
+  tasks:
+    - homebrew_cask:
+        name: ["{{ item.name }}"]
+        state: present
+        install_options: "{{ item.install_options | default() }}"
+      with_items:
+        - name: 4k-video-downloader
+        - name: adium-beta
+        - name: android-file-transfer
+        - name: audio-hijack
+        - name: autodmg
+        - name: bowtie
+        - name: calibre
+        - name: daisydisk
+        - name: deluge
+        - name: discord
+        - name: dropbox
+        - name: ethereum-wallet
+        - name: filebot
+        - name: gog-galaxy
+        - name: gpgtools
+        - name: hackety-hack
+        - name: handbrake
+        - name: irccloud
+        - name: little-snitch
+        - name: makemkv
+        - name: messenger
+        - name: micro-snitch
+        - name: mist
+        - name: omnigraffle
+        - name: openemu
+        - name: parallels-desktop
+        - name: plex-media-player
+        - name: rclone-browser
+        - name: ring
+        - name: screenhero
+        - name: sixtyforce
+        - name: skype
+        - name: spotify
+        - name: teamviewer
+        - name: transmission
+        - name: unetbootin
+        - name: virtualc64
+        - name: viscosity
+        - name: vmware-fusion
+        - name: witgui
+        - name: xld
+        - name: yakyak

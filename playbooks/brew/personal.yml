@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - homebrew:
+        name: ["{{ item.name }}"]
+        state: present
+        install_options: "{{ item.install_options | default() }}"
+      with_items:
+        - name: mkvtoolnix
+          install_options: --with-qt

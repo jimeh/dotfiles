@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  tasks:
+    - homebrew:
+        update_homebrew: yes
+- include: brew/core.yml
+- include: brew/personal.yml

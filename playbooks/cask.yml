@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+    - homebrew:
+        update_homebrew: yes
+- include: cask/core.yml
+- include: cask/work.yml
+- include: cask/personal.yml
