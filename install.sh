@@ -18,6 +18,7 @@ SYMLINKS=(
   gemrc
   gitconfig
   gitignore
+  hammerspoon
   hgrc
   hyper.js
   irbrc
