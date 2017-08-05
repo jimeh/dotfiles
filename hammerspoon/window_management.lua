@@ -94,6 +94,22 @@ function wm:init ()
 
 
   --
+  -- resize to specific sizes
+  --
+
+  bind({'cmd', 'ctrl', 'alt'}, 'F', self.resizeWindow(770, 634))
+
+  -- move window relative
+  bind({'ctrl', 'alt'}, 'J',
+    self.moveWindowOnGrid(-1, 0), nil, self.moveWindowOnGrid(-1, 0))
+  bind({'ctrl', 'alt'}, 'L',
+    self.moveWindowOnGrid(1, 0), nil, self.moveWindowOnGrid(1, 0))
+  bind({'ctrl', 'alt'}, 'I',
+    self.moveWindowOnGrid(0, -1), nil, self.moveWindowOnGrid(0, -1))
+  bind({'ctrl', 'alt'}, 'K',
+    self.moveWindowOnGrid(0, 1), nil, self.moveWindowOnGrid(0, 1))
+
+  --
   -- move between displays
   --
 
@@ -149,6 +165,57 @@ wm.adjustWindow = function (x, y, w, h)
         cell.h = h
       end
     )
+  end
+end
+
+wm.moveWindowOnGrid = function (x, y)
+  return function ()
+    wm.grid.adjustWindow(
+      function (cell)
+        local gridSize = wm.grid.getGrid()
+
+        if ((cell.x + x) + cell.w) <= gridSize.w then
+          cell.x = cell.x + x
+        end
+
+        if ((cell.y + y) + cell.h) <= gridSize.h then
+          cell.y = cell.y + y
+        end
+      end
+    )
+  end
+end
+
+wm.resizeWindow = function (w, h)
+  return function ()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+
+    f.w = w
+    f.h = h
+    win:setFrame(f)
+  end
+end
+
+wm.moveWindow = function(x, y)
+  return function ()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+
+    f.x = x
+    f.y = y
+    win:setFrame(f)
+  end
+end
+
+wm.moveWindowRelative = function (x, y)
+  return function ()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+
+    f.x = f.x + x
+    f.y = f.y + y
+    win:setFrame(f)
   end
 end
 
