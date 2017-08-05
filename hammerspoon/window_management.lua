@@ -13,6 +13,7 @@ local wm = {
 function wm:init ()
   -- setup
   local bind = require('hs.hotkey').bind
+  local bindAndRepeat = self.bindAndRepeat
 
   hs.window.animationDuration = self.animationDuration
   self.grid.setGrid(self.gridSizes.default)
@@ -20,7 +21,7 @@ function wm:init ()
   self.grid.ui.textSize = self.gridTextSize
 
   --
-  -- resize to grid
+  -- move and resize to preset grid locations
   --
 
   -- show interactive grid menu
@@ -36,13 +37,13 @@ function wm:init ()
   )
 
   -- left half
-  bind({'cmd', 'ctrl'}, 'J', self.adjustWindow(0, 0, 15, 20))
+  bind({'ctrl', 'alt'}, 'J', self.adjustWindow(0, 0, 15, 20))
   -- right half
-  bind({'cmd', 'ctrl'}, 'L', self.adjustWindow(15, 0, 15, 20))
+  bind({'ctrl', 'alt'}, 'L', self.adjustWindow(15, 0, 15, 20))
   -- top half
-  bind({'cmd', 'ctrl'}, 'I', self.adjustWindow(0, 0, 30, 10))
+  bind({'ctrl', 'alt'}, 'I', self.adjustWindow(0, 0, 30, 10))
   -- bottom half
-  bind({'cmd', 'ctrl'}, 'K', self.adjustWindow(0, 10, 30, 10))
+  bind({'ctrl', 'alt'}, 'K', self.adjustWindow(0, 10, 30, 10))
 
   -- left narrow
   bind({'ctrl', 'alt'}, 'U', self.adjustWindow(0, 0, 12, 20))
@@ -53,24 +54,6 @@ function wm:init ()
   bind({'cmd', 'ctrl'}, 'U', self.adjustWindow(0, 0, 18, 20))
   -- right wide
   bind({'cmd', 'ctrl'}, 'O', self.adjustWindow(12, 0, 18, 20))
-
-  -- left fat
-  bind({'cmd', 'ctrl', 'alt'}, 'J', self.adjustWindow(0, 0, 21, 20))
-  -- right wide
-  bind({'cmd', 'ctrl', 'alt'}, 'L', self.adjustWindow(9, 0, 21, 20))
-  -- top fat
-  bind({'cmd', 'ctrl', 'alt'}, 'I', self.adjustWindow(0, 0, 30, 14))
-  -- bottom wide
-  bind({'cmd', 'ctrl', 'alt'}, 'K', self.adjustWindow(0, 6, 30, 14))
-
-  -- top left quarter
-  bind({'cmd', 'ctrl', 'shift'}, 'J', self.adjustWindow(0, 0, 15, 10))
-  -- top right quarter
-  bind({'cmd', 'ctrl', 'shift'}, 'I', self.adjustWindow(15, 0, 15, 10))
-  -- bottom right quarter
-  bind({'cmd', 'ctrl', 'shift'}, 'L', self.adjustWindow(15, 10, 15, 10))
-  -- bottom left quarter
-  bind({'cmd', 'ctrl', 'shift'}, 'K', self.adjustWindow(0, 10, 15, 10))
 
   -- center super narrow
   bind({'cmd', 'ctrl', 'alt'}, '\\', self.adjustWindow(10, 0, 10, 20))
@@ -94,20 +77,30 @@ function wm:init ()
 
 
   --
-  -- resize to specific sizes
+  -- move and resize windows
   --
 
   bind({'cmd', 'ctrl', 'alt'}, 'F', self.resizeWindow(770, 634))
 
+  -- resize windows
+  bindAndRepeat({'cmd', 'ctrl'}, 'J', self.resizeWindowOnGrid(-1, 0))
+  bindAndRepeat({'cmd', 'ctrl'}, 'L', self.resizeWindowOnGrid(1, 0))
+  bindAndRepeat({'cmd', 'ctrl'}, 'I', self.resizeWindowOnGrid(0, -1))
+  bindAndRepeat({'cmd', 'ctrl'}, 'K', self.resizeWindowOnGrid(0, 1))
+
   -- move window relative
-  bind({'ctrl', 'alt'}, 'J',
-    self.moveWindowOnGrid(-1, 0), nil, self.moveWindowOnGrid(-1, 0))
-  bind({'ctrl', 'alt'}, 'L',
-    self.moveWindowOnGrid(1, 0), nil, self.moveWindowOnGrid(1, 0))
-  bind({'ctrl', 'alt'}, 'I',
-    self.moveWindowOnGrid(0, -1), nil, self.moveWindowOnGrid(0, -1))
-  bind({'ctrl', 'alt'}, 'K',
-    self.moveWindowOnGrid(0, 1), nil, self.moveWindowOnGrid(0, 1))
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'J', self.moveWindowOnGrid(-1, 0))
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'L', self.moveWindowOnGrid(1, 0))
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'I', self.moveWindowOnGrid(0, -1))
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'K', self.moveWindowOnGrid(0, 1))
+
+  -- enlarge horizontally
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, '\\',
+    self.resizeWindowOnGridSymmetrically(1, 0))
+  -- shrink horizontally
+  bindAndRepeat({'cmd', 'ctrl', 'shift'}, '\'',
+    self.resizeWindowOnGridSymmetrically(-1, 0))
+
 
   --
   -- move between displays
@@ -155,6 +148,10 @@ end
 -- private methods
 --
 
+wm.bindAndRepeat = function (mod, key, fn)
+  hs.hotkey.bind(mod, key, fn, nil, fn)
+end
+
 wm.adjustWindow = function (x, y, w, h)
   return function ()
     wm.grid.adjustWindow(
@@ -163,24 +160,6 @@ wm.adjustWindow = function (x, y, w, h)
         cell.y = y
         cell.w = w
         cell.h = h
-      end
-    )
-  end
-end
-
-wm.moveWindowOnGrid = function (x, y)
-  return function ()
-    wm.grid.adjustWindow(
-      function (cell)
-        local gridSize = wm.grid.getGrid()
-
-        if ((cell.x + x) + cell.w) <= gridSize.w then
-          cell.x = cell.x + x
-        end
-
-        if ((cell.y + y) + cell.h) <= gridSize.h then
-          cell.y = cell.y + y
-        end
       end
     )
   end
@@ -216,6 +195,88 @@ wm.moveWindowRelative = function (x, y)
     f.x = f.x + x
     f.y = f.y + y
     win:setFrame(f)
+  end
+end
+
+wm.moveWindowOnGrid = function (x, y)
+  return function ()
+    wm.grid.adjustWindow(
+      function (cell)
+        local gridSize = wm.grid.getGrid()
+
+        if ((cell.x + x) + cell.w) <= gridSize.w then
+          cell.x = cell.x + x
+        end
+
+        if ((cell.y + y) + cell.h) <= gridSize.h then
+          cell.y = cell.y + y
+        end
+      end
+    )
+  end
+end
+
+wm.resizeWindowOnGrid = function (w, h)
+  return function ()
+    wm.grid.adjustWindow(
+      function (cell)
+        local gridSize = wm.grid.getGrid()
+
+        if cell.x == 0 and cell.w == gridSize.w then
+          if w < 0 then
+            cell.w = cell.w + w
+          else
+            cell.w = cell.w - w
+            cell.x = cell.x + w
+          end
+        elseif (cell.x + cell.w) >= gridSize.w then
+          cell.w = cell.w - w
+          cell.x = cell.x + w
+        elseif cell.x == 0 then
+          cell.w = cell.w + w
+        else
+          cell.w = cell.w + (w * 2)
+          cell.x = cell.x - w
+        end
+
+        if cell.y == 0 and cell.h == gridSize.h then
+          if h < 0 then
+            cell.h = cell.h + h
+          else
+            cell.h = cell.h - h
+            cell.y = cell.y + h
+          end
+        elseif (cell.y + cell.h) >= gridSize.h then
+          cell.h = cell.h - h
+          cell.y = cell.y + h
+        elseif cell.y == 0 then
+          cell.h = cell.h + h
+        else
+          cell.h = cell.h - (h * 2)
+          cell.y = cell.y + h
+        end
+      end
+    )
+  end
+end
+
+wm.resizeWindowOnGridSymmetrically = function (w, h)
+  return function ()
+    wm.grid.adjustWindow(
+      function (cell)
+        local gridSize = wm.grid.getGrid()
+
+        if w ~= 0 and (cell.w + (w * 2)) <= gridSize.w then
+          cell.w = cell.w + (w * 2)
+          cell.x = cell.x - w
+        end
+
+        if h ~= 0 and (cell.h + (h * 2)) <= gridSize.h then
+          cell.h = cell.h + (h * 2)
+          cell.y = cell.y - h
+        end
+      end
+    )
   end
 end
 
