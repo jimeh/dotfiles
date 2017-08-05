@@ -12,19 +12,19 @@ local wm = {
 
 function wm:init ()
   -- setup
+  local bind = require('hs.hotkey').bind
+
   hs.window.animationDuration = self.animationDuration
   self.grid.setGrid(self.gridSizes.default)
   self.grid.setMargins(self.margins)
   self.grid.ui.textSize = self.gridTextSize
-
 
   --
   -- resize to grid
   --
 
   -- show interactive grid menu
-  hs.hotkey.bind(
-    {"cmd", "ctrl"}, "2",
+  bind({"cmd", "ctrl"}, "2",
     function()
       self.grid.setGrid(self.gridSizes.interactive)
       self.grid.show(
@@ -36,65 +36,61 @@ function wm:init ()
   )
 
   -- left half
-  hs.hotkey.bind({"cmd", "ctrl"}, "J", self.adjustWindow(0, 0, 15, 20))
+  bind({"cmd", "ctrl"}, "J", self.adjustWindow(0, 0, 15, 20))
   -- right half
-  hs.hotkey.bind({"cmd", "ctrl"}, "L", self.adjustWindow(15, 0, 15, 20))
+  bind({"cmd", "ctrl"}, "L", self.adjustWindow(15, 0, 15, 20))
   -- top half
-  hs.hotkey.bind({"cmd", "ctrl"}, "I", self.adjustWindow(0, 0, 30, 10))
+  bind({"cmd", "ctrl"}, "I", self.adjustWindow(0, 0, 30, 10))
   -- bottom half
-  hs.hotkey.bind({"cmd", "ctrl"}, "K", self.adjustWindow(0, 10, 30, 10))
+  bind({"cmd", "ctrl"}, "K", self.adjustWindow(0, 10, 30, 10))
 
   -- left narrow
-  hs.hotkey.bind({"ctrl", "alt"}, "U", self.adjustWindow(0, 0, 12, 20))
+  bind({"ctrl", "alt"}, "U", self.adjustWindow(0, 0, 12, 20))
   -- right narrow
-  hs.hotkey.bind({"ctrl", "alt"}, "O", self.adjustWindow(18, 0, 12, 20))
+  bind({"ctrl", "alt"}, "O", self.adjustWindow(18, 0, 12, 20))
 
   -- left wide
-  hs.hotkey.bind({"cmd", "ctrl"}, "U", self.adjustWindow(0, 0, 18, 20))
+  bind({"cmd", "ctrl"}, "U", self.adjustWindow(0, 0, 18, 20))
   -- right wide
-  hs.hotkey.bind({"cmd", "ctrl"}, "O", self.adjustWindow(12, 0, 18, 20))
+  bind({"cmd", "ctrl"}, "O", self.adjustWindow(12, 0, 18, 20))
 
   -- left fat
-  hs.hotkey.bind({"ctrl", "alt"}, "J", self.adjustWindow(0, 0, 21, 20))
+  bind({"ctrl", "alt"}, "J", self.adjustWindow(0, 0, 21, 20))
   -- right wide
-  hs.hotkey.bind({"ctrl", "alt"}, "L", self.adjustWindow(9, 0, 21, 20))
+  bind({"ctrl", "alt"}, "L", self.adjustWindow(9, 0, 21, 20))
   -- top fat
-  hs.hotkey.bind({"ctrl", "alt"}, "I", self.adjustWindow(0, 0, 30, 14))
+  bind({"ctrl", "alt"}, "I", self.adjustWindow(0, 0, 30, 14))
   -- bottom wide
-  hs.hotkey.bind({"ctrl", "alt"}, "K", self.adjustWindow(0, 6, 30, 14))
+  bind({"ctrl", "alt"}, "K", self.adjustWindow(0, 6, 30, 14))
 
   -- top left quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "J",
-    self.adjustWindow(0, 0, 15, 10))
+  bind({"cmd", "ctrl", "shift"}, "J", self.adjustWindow(0, 0, 15, 10))
   -- top right quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "I",
-    self.adjustWindow(15, 0, 15, 10))
+  bind({"cmd", "ctrl", "shift"}, "I", self.adjustWindow(15, 0, 15, 10))
   -- bottom right quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "L",
-    self.adjustWindow(15, 10, 15, 10))
+  bind({"cmd", "ctrl", "shift"}, "L", self.adjustWindow(15, 10, 15, 10))
   -- bottom left quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "K",
-    self.adjustWindow(0, 10, 15, 10))
+  bind({"cmd", "ctrl", "shift"}, "K", self.adjustWindow(0, 10, 15, 10))
 
   -- center super narrow
-  hs.hotkey.bind({"cmd", "ctrl", "alt"}, "\\", self.adjustWindow(10, 0, 10, 20))
+  bind({"cmd", "ctrl", "alt"}, "\\", self.adjustWindow(10, 0, 10, 20))
   -- center narrow small
-  hs.hotkey.bind({"ctrl", "alt"}, "\\", self.adjustWindow(9, 0, 12, 20))
+  bind({"ctrl", "alt"}, "\\", self.adjustWindow(9, 0, 12, 20))
   -- center narrow
-  hs.hotkey.bind({"cmd", "ctrl"}, "\\", self.adjustWindow(7, 0, 16, 20))
+  bind({"cmd", "ctrl"}, "\\", self.adjustWindow(7, 0, 16, 20))
 
   -- center medium small
-  hs.hotkey.bind({"ctrl", "alt"}, "'", self.adjustWindow(6, 0, 18, 20))
+  bind({"ctrl", "alt"}, "'", self.adjustWindow(6, 0, 18, 20))
   -- center medium
-  hs.hotkey.bind({"cmd", "ctrl"}, "'", self.adjustWindow(5, 0, 20, 20))
+  bind({"cmd", "ctrl"}, "'", self.adjustWindow(5, 0, 20, 20))
 
   -- center wide small
-  hs.hotkey.bind({"ctrl", "alt"}, ";", self.adjustWindow(4, 0, 22, 20))
+  bind({"ctrl", "alt"}, ";", self.adjustWindow(4, 0, 22, 20))
   -- center wide
-  hs.hotkey.bind({"cmd", "ctrl"}, ";", self.adjustWindow(3, 0, 24, 20))
+  bind({"cmd", "ctrl"}, ";", self.adjustWindow(3, 0, 24, 20))
 
   -- maximized
-  hs.hotkey.bind({"cmd", "ctrl"}, "H", self.grid.maximizeWindow)
+  bind({"cmd", "ctrl"}, "H", self.grid.maximizeWindow)
 
 
   --
@@ -102,8 +98,7 @@ function wm:init ()
   --
 
   -- move to screen to the left
-  hs.hotkey.bind(
-    {"cmd", "ctrl"}, ",",
+  bind({"cmd", "ctrl"}, ",",
     function()
       local win = hs.window.focusedWindow()
       win:moveOneScreenWest()
@@ -112,8 +107,7 @@ function wm:init ()
   )
 
   -- move to screen to the right
-  hs.hotkey.bind(
-    {"cmd", "ctrl"}, ".",
+  bind({"cmd", "ctrl"}, ".",
     function()
       local win = hs.window.focusedWindow()
       win:moveOneScreenEast()
@@ -122,8 +116,7 @@ function wm:init ()
   )
 
   -- move to screen above
-  hs.hotkey.bind(
-    {"cmd", "ctrl"}, "P",
+  bind({"cmd", "ctrl"}, "P",
     function()
       local win = hs.window.focusedWindow()
       win:moveOneScreenNorth()
@@ -132,8 +125,7 @@ function wm:init ()
   )
 
   -- move to screen bellow
-  hs.hotkey.bind(
-    {"cmd", "ctrl"}, "N",
+  bind({"cmd", "ctrl"}, "N",
     function()
       local win = hs.window.focusedWindow()
       win:moveOneScreenSouth()
