@@ -1,7 +1,7 @@
 -- luacheck: read_globals hs
 
 -- Reload config hotkey
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", hs.reload)
+hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'R', hs.reload)
 
 --------------------------------------------------------------------------------
 -- Set Hammerspoon options
@@ -35,4 +35,4 @@ spoon.HeadphoneAutoPause:start()
 
 
 -- the end
-hs.alert.show("Hammerspoon loaded")
+hs.alert.show('Hammerspoon loaded')
