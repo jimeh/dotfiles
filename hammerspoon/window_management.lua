@@ -64,14 +64,20 @@ function wm:init ()
   hs.hotkey.bind({"ctrl", "alt"}, "K", self.adjustWindow(0, 6, 30, 14))
 
   -- top left quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "J", self.adjustWindow(0, 0, 15, 10))
+  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "J",
+    self.adjustWindow(0, 0, 15, 10))
   -- top right quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "I", self.adjustWindow(15, 0, 15, 10))
+  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "I",
+    self.adjustWindow(15, 0, 15, 10))
   -- bottom right quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "L", self.adjustWindow(15, 10, 15, 10))
+  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "L",
+    self.adjustWindow(15, 10, 15, 10))
   -- bottom left quarter
-  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "K", self.adjustWindow(0, 10, 15, 10))
+  hs.hotkey.bind({"cmd", "ctrl", "shift"}, "K",
+    self.adjustWindow(0, 10, 15, 10))
 
+  -- center super narrow
+  hs.hotkey.bind({"cmd", "ctrl", "alt"}, "\\", self.adjustWindow(10, 0, 10, 20))
   -- center narrow small
   hs.hotkey.bind({"ctrl", "alt"}, "\\", self.adjustWindow(9, 0, 12, 20))
   -- center narrow
