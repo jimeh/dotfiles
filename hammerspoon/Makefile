@@ -40,12 +40,7 @@ ext/grid.lua:
 	echo "fetching $@..." && \
 		curl -s -L -o $@ \
 			https://raw.githubusercontent.com/Hammerspoon/hammerspoon/master/extensions/grid/init.lua && \
-		make patch_$@
-
-.PHONY: patch_ext/grid.lua
-patch_ext/grid.lua:
-	echo "patching ext/grid.lua..." && \
-		patch -p0 < ext/grid.lua.patch
+	( test -f "$@.patch" && patch -p0 < "$@.patch" ) || exit 0
 
 .PHONY: remove_ext/grid.lua
 remove_ext/grid.lua:
