@@ -37,13 +37,13 @@ function wm:init ()
   )
 
   -- left half
-  bind({'ctrl', 'alt'}, 'J', self.adjustWindow(0, 0, 15, 20))
+  bind({'cmd', 'ctrl'}, 'J', self.adjustWindow(0, 0, 15, 20))
   -- right half
-  bind({'ctrl', 'alt'}, 'L', self.adjustWindow(15, 0, 15, 20))
+  bind({'cmd', 'ctrl'}, 'L', self.adjustWindow(15, 0, 15, 20))
   -- top half
-  bind({'ctrl', 'alt'}, 'I', self.adjustWindow(0, 0, 30, 10))
+  bind({'cmd', 'ctrl'}, 'I', self.adjustWindow(0, 0, 30, 10))
   -- bottom half
-  bind({'ctrl', 'alt'}, 'K', self.adjustWindow(0, 10, 30, 10))
+  bind({'cmd', 'ctrl'}, 'K', self.adjustWindow(0, 10, 30, 10))
 
   -- left narrow
   bind({'ctrl', 'alt'}, 'U', self.adjustWindow(0, 0, 12, 20))
@@ -83,16 +83,16 @@ function wm:init ()
   bind({'cmd', 'ctrl', 'alt'}, 'F', self.resizeWindow(770, 634))
 
   -- resize windows
-  bindAndRepeat({'cmd', 'ctrl'}, 'J', self.resizeWindowOnGrid(-1, 0))
-  bindAndRepeat({'cmd', 'ctrl'}, 'L', self.resizeWindowOnGrid(1, 0))
-  bindAndRepeat({'cmd', 'ctrl'}, 'I', self.resizeWindowOnGrid(0, -1))
-  bindAndRepeat({'cmd', 'ctrl'}, 'K', self.resizeWindowOnGrid(0, 1))
+  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'J', self.resizeWindowOnGrid(-1, 0))
+  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'L', self.resizeWindowOnGrid(1, 0))
+  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'I', self.resizeWindowOnGrid(0, -1))
+  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'K', self.resizeWindowOnGrid(0, 1))
 
   -- move window relative
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'J', self.moveWindowOnGrid(-1, 0))
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'L', self.moveWindowOnGrid(1, 0))
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'I', self.moveWindowOnGrid(0, -1))
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, 'K', self.moveWindowOnGrid(0, 1))
+  bindAndRepeat({'ctrl', 'alt'}, 'J', self.moveWindowOnGrid(-1, 0))
+  bindAndRepeat({'ctrl', 'alt'}, 'L', self.moveWindowOnGrid(1, 0))
+  bindAndRepeat({'ctrl', 'alt'}, 'I', self.moveWindowOnGrid(0, -1))
+  bindAndRepeat({'ctrl', 'alt'}, 'K', self.moveWindowOnGrid(0, 1))
 
   -- enlarge horizontally
   bindAndRepeat({'cmd', 'ctrl', 'shift'}, '\\',
