@@ -1,25 +1,26 @@
 -- luacheck: read_globals hs
 
-local wm = {
-  grid = require('ext.grid'),
-  spaces = require("hs._asm.undocumented.spaces"),
+local mouse = require('hs.mouse')
+local grid = require('ext.grid')
 
-  -- configuration
+-- configuration
+local wm = {
   animationDuration = 0.0,
   gridSizes = { default = '30x20', interactive = '8x4' },
   gridTextSize = 50,
   margins = { w = 4, h = 4 }
 }
 
+-- initialize and register keybindings
 function wm:init ()
   -- setup
   local bind = require('hs.hotkey').bind
   local bindAndRepeat = self.bindAndRepeat
 
   hs.window.animationDuration = self.animationDuration
-  self.grid.setGrid(self.gridSizes.default)
-  self.grid.setMargins(self.margins)
-  self.grid.ui.textSize = self.gridTextSize
+  grid.setGrid(self.gridSizes.default)
+  grid.setMargins(self.margins)
+  grid.ui.textSize = self.gridTextSize
 
   --
   -- move and resize to preset grid locations
@@ -28,10 +29,10 @@ function wm:init ()
   -- show interactive grid menu
   bind({'cmd', 'ctrl'}, '2',
     function()
-      self.grid.setGrid(self.gridSizes.interactive)
-      self.grid.show(
+      grid.setGrid(self.gridSizes.interactive)
+      grid.show(
         function()
-          self.grid.setGrid(self.gridSizes.default)
+          grid.setGrid(self.gridSizes.default)
         end
       )
     end
@@ -74,7 +75,7 @@ function wm:init ()
   bind({'cmd', 'ctrl'}, ';', self.adjustWindow(3, 0, 24, 20))
 
   -- maximized
-  bind({'cmd', 'ctrl'}, 'H', self.grid.maximizeWindow)
+  bind({'cmd', 'ctrl'}, 'H', grid.maximizeWindow)
 
 
   --
@@ -104,7 +105,25 @@ function wm:init ()
 
 
   --
-  -- move between displays
+  -- move windows between spaces
+  --
+
+  bind({'ctrl', 'alt'}, 'left', self.moveWindowToSpace('left'))
+  bind({'ctrl', 'alt'}, 'right', self.moveWindowToSpace('right'))
+  bind({'ctrl', 'alt'}, '1', self.moveWindowToSpace('1'))
+  bind({'ctrl', 'alt'}, '2', self.moveWindowToSpace('2'))
+  bind({'ctrl', 'alt'}, '3', self.moveWindowToSpace('3'))
+  bind({'ctrl', 'alt'}, '4', self.moveWindowToSpace('4'))
+  bind({'ctrl', 'alt'}, '5', self.moveWindowToSpace('5'))
+  bind({'ctrl', 'alt'}, '6', self.moveWindowToSpace('6'))
+  bind({'ctrl', 'alt'}, '7', self.moveWindowToSpace('7'))
+  bind({'ctrl', 'alt'}, '8', self.moveWindowToSpace('8'))
+  bind({'ctrl', 'alt'}, '9', self.moveWindowToSpace('9'))
+  bind({'ctrl', 'alt'}, '0', self.moveWindowToSpace('0'))
+
+
+  --
+  -- move windows between displays
   --
 
   -- move to screen to the left
@@ -112,7 +131,7 @@ function wm:init ()
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenWest()
-      self.grid.snap(win)
+      grid.snap(win)
     end
   )
 
@@ -121,7 +140,7 @@ function wm:init ()
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenEast()
-      self.grid.snap(win)
+      grid.snap(win)
     end
   )
 
@@ -130,7 +149,7 @@ function wm:init ()
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenNorth()
-      self.grid.snap(win)
+      grid.snap(win)
     end
   )
 
@@ -139,25 +158,9 @@ function wm:init ()
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenSouth()
-      self.grid.snap(win)
+      grid.snap(win)
     end
   )
-
-  --
-  -- move between spaces
-  --
-
-  bind({'cmd', 'ctrl'}, 'up',
-    function ()
-      local inspect = require('inspect')
-
-      local win = hs.window.focusedWindow()
-
-      print(inspect(win:screen():id()))
-      print(inspect(self.spaces.layout()))
-    end
-  )
-
 end
 
 
@@ -219,13 +222,13 @@ wm.moveWindowOnGrid = function (x, y)
   return function ()
     wm.grid.adjustWindow(
       function (cell)
-        local gridSize = wm.grid.getGrid()
+        local max = wm.grid.getGrid()
 
-        if ((cell.x + x) + cell.w) <= gridSize.w then
+        if ((cell.x + x) + cell.w) <= max.w then
           cell.x = cell.x + x
         end
 
-        if ((cell.y + y) + cell.h) <= gridSize.h then
+        if ((cell.y + y) + cell.h) <= max.h then
           cell.y = cell.y + y
         end
       end
@@ -237,16 +240,16 @@ wm.resizeWindowOnGrid = function (w, h)
   return function ()
     wm.grid.adjustWindow(
       function (cell)
-        local gridSize = wm.grid.getGrid()
+        local max = wm.grid.getGrid()
 
-        if cell.x == 0 and cell.w == gridSize.w then
+        if cell.x == 0 and cell.w == max.w then
           if w < 0 then
             cell.w = cell.w + w
           else
             cell.w = cell.w - w
             cell.x = cell.x + w
           end
-        elseif (cell.x + cell.w) >= gridSize.w then
+        elseif (cell.x + cell.w) >= max.w then
           cell.w = cell.w - w
           cell.x = cell.x + w
         elseif cell.x == 0 then
@@ -256,14 +259,14 @@ wm.resizeWindowOnGrid = function (w, h)
           cell.x = cell.x - w
         end
 
-        if cell.y == 0 and cell.h == gridSize.h then
+        if cell.y == 0 and cell.h == max.h then
           if h < 0 then
             cell.h = cell.h + h
           else
             cell.h = cell.h - h
             cell.y = cell.y + h
           end
-        elseif (cell.y + cell.h) >= gridSize.h then
+        elseif (cell.y + cell.h) >= max.h then
           cell.h = cell.h - h
           cell.y = cell.y + h
         elseif cell.y == 0 then
@@ -281,19 +284,69 @@ wm.resizeWindowOnGridSymmetrically = function (w, h)
   return function ()
     wm.grid.adjustWindow(
       function (cell)
-        local gridSize = wm.grid.getGrid()
+        local max = wm.grid.getGrid()
 
-        if w ~= 0 and (cell.w + (w * 2)) <= gridSize.w then
-          cell.w = cell.w + (w * 2)
-          cell.x = cell.x - w
+        if w ~= 0 and cell.w + (w * 2) >= 2 then
+          if (cell.w + (w * 2)) <= max.w then
+            cell.w = cell.w + (w * 2)
+            cell.x = cell.x - w
+          elseif cell.w + w == max.w then
+            cell.w = max.w
+            cell.x = 0
+          end
         end
 
-        if h ~= 0 and (cell.h + (h * 2)) <= gridSize.h then
-          cell.h = cell.h + (h * 2)
-          cell.y = cell.y - h
+        if h ~= 0 and cell.h + (h * 2) >= 2 then
+          if (cell.h + (h * 2)) <= max.h then
+            cell.h = cell.h + (h * 2)
+            cell.y = cell.y - h
+          elseif cell.h + h == max.h then
+            cell.h = max.h
+            cell.y = 0
+          end
         end
       end
     )
+  end
+end
+
+-- moveWindowToSpace
+-- Requires ctrl+<left>/<right> and ctrl+<num> system keybindings, borrowed from
+-- https://github.com/Hammerspoon/hammerspoon/issues/235#issuecomment-101069303
+wm.moveWindowToSpace = function (direction)
+  return function()
+    local mouseOrigin = mouse.getAbsolutePosition()
+    local win = hs.window.focusedWindow()
+    local clickPoint = win:zoomButtonRect()
+
+    clickPoint.x = clickPoint.x + clickPoint.w + 5
+    clickPoint.y = clickPoint.y + (clickPoint.h / 2)
+
+    local mouseClickEvent = hs.eventtap.event.newMouseEvent(
+      hs.eventtap.event.types.leftmousedown, clickPoint
+    )
+    mouseClickEvent:post()
+    hs.timer.usleep(150000)
+
+    local nextSpaceDownEvent = hs.eventtap.event.newKeyEvent(
+      {"ctrl"}, direction, true
+    )
+    nextSpaceDownEvent:post()
+    hs.timer.usleep(150000)
+
+    local nextSpaceUpEvent = hs.eventtap.event.newKeyEvent(
+      {"ctrl"}, direction, false
+    )
+    nextSpaceUpEvent:post()
+    hs.timer.usleep(150000)
+
+    local mouseReleaseEvent = hs.eventtap.event.newMouseEvent(
+      hs.eventtap.event.types.leftmouseup, clickPoint
+    )
+    mouseReleaseEvent:post()
+    hs.timer.usleep(150000)
+
+    mouse.setAbsolutePosition(mouseOrigin)
   end
 end
 
