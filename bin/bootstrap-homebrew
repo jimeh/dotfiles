@@ -45,6 +45,7 @@ main() {
     kubernetes-cli
     mysql
     peco
+    pyenv
     rbenv
     readline
     reattach-to-user-namespace
