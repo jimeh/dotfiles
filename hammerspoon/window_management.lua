@@ -2,6 +2,7 @@
 
 local wm = {
   grid = require('ext.grid'),
+  spaces = require("hs._asm.undocumented.spaces"),
 
   -- configuration
   animationDuration = 0.0,
@@ -108,7 +109,7 @@ function wm:init ()
 
   -- move to screen to the left
   bind({'cmd', 'ctrl'}, ',',
-    function()
+    function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenWest()
       self.grid.snap(win)
@@ -117,7 +118,7 @@ function wm:init ()
 
   -- move to screen to the right
   bind({'cmd', 'ctrl'}, '.',
-    function()
+    function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenEast()
       self.grid.snap(win)
@@ -126,7 +127,7 @@ function wm:init ()
 
   -- move to screen above
   bind({'cmd', 'ctrl'}, 'P',
-    function()
+    function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenNorth()
       self.grid.snap(win)
@@ -135,12 +136,28 @@ function wm:init ()
 
   -- move to screen bellow
   bind({'cmd', 'ctrl'}, 'N',
-    function()
+    function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenSouth()
       self.grid.snap(win)
     end
   )
+
+  --
+  -- move between spaces
+  --
+
+  bind({'cmd', 'ctrl'}, 'up',
+    function ()
+      local inspect = require('inspect')
+
+      local win = hs.window.focusedWindow()
+
+      print(inspect(win:screen():id()))
+      print(inspect(self.spaces.layout()))
+    end
+  )
+
 end
 
 
