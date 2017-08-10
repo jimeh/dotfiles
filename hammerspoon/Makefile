@@ -1,16 +1,31 @@
 .SILENT:
 
-install: ext/grid.lua installSpoons
-update: update_ext/grid.lua updateSpoons
+install: \
+	ext/grid.lua \
+	inspect.lua \
+	installSpoons \
+	hs/_asm/undocumented/spaces
+update: \
+	update_ext/grid.lua \
+	update_inspect.lua \
+	updateSpoons \
+	update_hs/_asm/undocumented/spaces
+
+#
+# Config
+#
+
+SPOONS = RoundedCorners HeadphoneAutoPause
+INSPECT_VERSION = 3.1.0
+SPACES_VERSION = 0.5
+
+SPOONS_DIR = Spoons
+SPOON_PATHS = $(foreach s,$(SPOONS),$(shell echo $(SPOONS_DIR)/$(s).spoon))
+
 
 #
 # Spoons
 #
-
-SPOONS = RoundedCorners \
-	HeadphoneAutoPause
-SPOONS_DIR = Spoons
-SPOON_PATHS = $(foreach s,$(SPOONS),$(shell echo $(SPOONS_DIR)/$(s).spoon))
 
 .PHONY: installSpoons
 installSpoons: $(SPOON_PATHS)
@@ -18,7 +33,6 @@ installSpoons: $(SPOON_PATHS)
 .PHONY: removeSpoons
 removeSpoons:
 	$(foreach dir,$(SPOON_PATHS),(test -d "$(dir)" && echo "removing $(dir)" && rm -rf "$(dir)") || exit 0;)
-	# $(foreach dir,$(SPOON_PATHS),echo "removing $(dir)";)
 
 .PHONY: updateSpoons
 updateSpoons: removeSpoons installSpoons
@@ -51,3 +65,48 @@ remove_ext/grid.lua:
 
 .PHONY: update_ext/grid.lua
 update_ext/grid.lua: remove_ext/grid.lua ext/grid.lua
+
+
+#
+# Spaces module
+#
+
+hs/_asm/undocumented/spaces:
+	echo "fetching $@..." && \
+		curl -s -L -o "spaces-v$(SPACES_VERSION).zip" \
+			"https://github.com/asmagill/hs._asm.undocumented.spaces/releases/download/v0.5/spaces-v$(SPACES_VERSION).tar.gz" && \
+		tar -xvzf "spaces-v$(SPACES_VERSION).zip" && \
+		rm "spaces-v$(SPACES_VERSION).zip"
+
+.PHONY: remove_hs/_asm/undocumented/spaces
+remove_hs/_asm/undocumented/spaces:
+	( \
+		test -d "hs/_asm/undocumented/spaces" && \
+		rm -rf "hs/_asm/undocumented/spaces" && \
+		echo "removed hs/_asm/undocumented/spaces" \
+	) || exit 0
+
+.PHONY: update_hs/_asm/undocumented/spaces
+update_hs/_asm/undocumented/spaces: \
+	remove_hs/_asm/undocumented/spaces \
+	hs/_asm/undocumented/spaces
+
+
+#
+# inspect.lua - useful for debugging
+#
+
+inspect.lua:
+	echo "fetching $@..." && \
+	curl -s -L -o "$@" \
+		"https://raw.githubusercontent.com/kikito/inspect.lua/v$(INSPECT_VERSION)/inspect.lua"
+
+.PHONY: remove_inspect.lua
+remove_inspect.lua:
+	( \
+		test -f "inspect.lua" && rm "inspect.lua" && \
+		echo "removed inspect.lua" \
+	) || exit 0
+
+.PHONY: update_inspect.lua
+update_inspect.lua: remove_inspect.lua inspect.lua
