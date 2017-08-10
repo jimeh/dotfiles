@@ -1,0 +1,56 @@
+.SILENT:
+default: install
+
+# Config
+SPOONS_DIR = Spoons
+DEP_PATHS =
+
+define dep-file
+DEP_PATHS += $(1)
+$(1):
+	echo "fetching $(1)..." && \
+		curl -s -L -o $(1) "$(2)" && \
+		( test -f "$(1).patch" && patch -p0 < "$(1).patch" ) || exit 0
+
+.PHONY: remove_$(1)
+remove_$(1):
+	( test -f "$(1)" && rm "$(1)" && echo "removed $(1)" ) || exit 0
+
+.PHONY: update_$(1)
+update_$(1): remove_$(1) $(1)
+endef
+
+define dep-spoon
+DEP_PATHS += $(SPOONS_DIR)/$(1).spoon
+$(SPOONS_DIR)/$(1).spoon:
+	echo "fetching $(SPOONS_DIR)/$(1).spoon..." && \
+		curl -s -L -o "$(SPOONS_DIR)/$(1).spoon.zip" \
+			"https://github.com/Hammerspoon/Spoons/raw/master/$(SPOONS_DIR)/$(1).spoon.zip" && \
+		unzip -d $(SPOONS_DIR) "$(SPOONS_DIR)/$(1).spoon.zip" && \
+		rm "$(SPOONS_DIR)/$(1).spoon.zip" && \
+		( \
+			test -f "$(SPOONS_DIR)/$(1).spoon.patch" && \
+			patch -p0 < "$(SPOONS_DIR)/$(1).spoon.patch" \
+		) || exit 0
+
+.PHONY: remove_$(SPOONS_DIR)/$(1).spoon
+remove_$(SPOONS_DIR)/$(1).spoon:
+	( \
+		test -d "$(SPOONS_DIR)/$(1).spoon" && \
+		echo "removing $(SPOONS_DIR)/$(1).spoon" && \
+		rm -rf "$(SPOONS_DIR)/$(1).spoon" \
+	) || exit 0
+
+.PHONY: update_$(SPOONS_DIR)/$(1).spoon
+update_$(SPOONS_DIR)/$(1).spoon: \
+	remove_$(SPOONS_DIR)/$(1).spoon \
+	$(SPOONS_DIR)/$(1).spoon
+endef
+
+# Default tasks
+install:
+	make $(DEP_PATHS)
+update:
+	make $(foreach path,$(DEP_PATHS),$(shell echo "update_$(path)"))
+clean:
+	make $(foreach path,$(DEP_PATHS),$(shell echo "remove_$(path)"))
