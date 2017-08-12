@@ -174,7 +174,7 @@ end
 
 wm.adjustWindow = function (x, y, w, h)
   return function ()
-    wm.grid.adjustWindow(
+    grid.adjustWindow(
       function (cell)
         cell.x = x
         cell.y = y
@@ -220,9 +220,9 @@ end
 
 wm.moveWindowOnGrid = function (x, y)
   return function ()
-    wm.grid.adjustWindow(
+    grid.adjustWindow(
       function (cell)
-        local max = wm.grid.getGrid()
+        local max = grid.getGrid()
 
         if ((cell.x + x) + cell.w) <= max.w then
           cell.x = cell.x + x
@@ -238,9 +238,9 @@ end
 
 wm.resizeWindowOnGrid = function (w, h)
   return function ()
-    wm.grid.adjustWindow(
+    grid.adjustWindow(
       function (cell)
-        local max = wm.grid.getGrid()
+        local max = grid.getGrid()
 
         if cell.x == 0 and cell.w == max.w then
           if w < 0 then
@@ -282,9 +282,9 @@ end
 
 wm.resizeWindowOnGridSymmetrically = function (w, h)
   return function ()
-    wm.grid.adjustWindow(
+    grid.adjustWindow(
       function (cell)
-        local max = wm.grid.getGrid()
+        local max = grid.getGrid()
 
         if w ~= 0 and cell.w + (w * 2) >= 2 then
           if (cell.w + (w * 2)) <= max.w then
