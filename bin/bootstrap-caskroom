@@ -40,7 +40,6 @@ main() {
     bartender
     betterzip
     betterzipql
-    logitech-options
     emacs
     firefox
     fluid
@@ -52,6 +51,7 @@ main() {
     iterm2
     karabiner-elements
     keybase
+    logitech-options
     moom
     mplayerx
     osxfuse
