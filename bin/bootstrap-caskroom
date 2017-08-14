@@ -93,6 +93,7 @@ main() {
     postman
     robomongo
     sequel-pro
+    slack
     vagrant
     virtualbox
     visual-studio-code
