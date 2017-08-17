@@ -1,65 +1,61 @@
 [user]
-  name = Jim Myhrberg
-  email = contact@jimeh.me
-  signingkey = contact@jimeh.me
+	name = Jim Myhrberg
+	email = contact@jimeh.me
+	signingkey = contact@jimeh.me
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [color]
-  status = auto
-  branch = auto
-  diff = auto
+	status = auto
+	branch = auto
+	diff = auto
 [apply]
-  whitespace = nowarn
+	whitespace = nowarn
 [push]
-  default = upstream
+	default = upstream
 [alias]
-  a = add
-  ai = add -i
-  p = pull --rebase
-  pu = push
-  co = checkout
-  cl = clone
-  br = branch
-  ci = commit
-  st = status
-  me = merge
-  di = diff
-  re = remote
-  reb = rebase
-  res = reset
-  sub = submodule
-  unstage = reset HEAD --
-  last = log -1 HEAD
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %Cgreen%GS%Creset' --abbrev-commit --
-  pgp = config commit.gpgsign
-  pgp-on = config commit.gpgsign true
-  pgp-off = config commit.gpgsign false
-  tree = log --all --graph --decorate --oneline --simplify-by-decoration
+	a = add
+	ai = add -i
+	p = pull --rebase
+	pu = push
+	co = checkout
+	cl = clone
+	br = branch
+	ci = commit
+	st = status
+	me = merge
+	di = diff
+	re = remote
+	reb = rebase
+	res = reset
+	sub = submodule
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %Cgreen%GS%Creset' --abbrev-commit --
+	pgp = config commit.gpgsign
+	pgp-on = config commit.gpgsign true
+	pgp-off = config commit.gpgsign false
+	tree = log --all --graph --decorate --oneline --simplify-by-decoration
 [pull]
-  rebase = true
+	rebase = true
 [difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
-  prompt = false
+	prompt = false
 [diff]
-  tool = Kaleidoscope
+	tool = Kaleidoscope
 [credential]
-  helper = osxkeychain
-[include]
-  path = ~/.gitconfig_private
+	helper = osxkeychain
 [filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
-[github]
-  user = jimeh
-  password =
-  oauth-token =
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
 [filter "hawser"]
-  clean = git hawser clean %f
-  smudge = git hawser smudge %f
-  required = true
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[include]
+	path = ~/.gitconfig_private
