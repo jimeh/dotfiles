@@ -320,9 +320,7 @@ function grid.set(win, cell, scr)
     h = cell.h * cellh - (margins.h * 2),
   }
 
-  -- calculate proper margins - this fixes doubled margins betweeen windows
-  -- shamelessly borrowed from:
-  -- https://github.com/szymonkaliski/Dotfiles/blob/8f2bbf973fa31e001e183de03b65fae408877f00/Dotfiles/hammerspoon/overrides.lua#L79-L106
+  -- ensure windows are not spaced by a double margin
   if cell.h < screengrid.h and cell.h % 1 == 0 then
     if cell.y ~= 0 then
       newframe.h = newframe.h + margins.h / 2
