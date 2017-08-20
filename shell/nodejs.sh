@@ -19,6 +19,8 @@ install_node_global_packages () {
       eslint-plugin-promise \
       eslint-plugin-react \
       eslint-plugin-standard \
+      eslint-config-prettier \
+      eslint-plugin-prettier \
       eslint_d \
       htmllint-cli \
       httpsnippet \
@@ -31,6 +33,7 @@ install_node_global_packages () {
       standard \
       standard-format \
       stylefmt \
+      prettier \
       tslint \
       typescript \
       typescript-formatter \

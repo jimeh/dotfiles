@@ -1,3 +1,7 @@
 module.exports = {
-  'extends': 'semistandard'
+  extends: ["prettier"],
+  plugins: ["prettier"],
+  rules: {
+    "prettier/prettier": "error"
+  }
 };
