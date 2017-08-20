@@ -43,6 +43,7 @@ main() {
     heroku
     htop
     kubernetes-cli
+    kubernetes-helm
     mysql
     peco
     pyenv
