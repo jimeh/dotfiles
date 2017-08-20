@@ -311,16 +311,20 @@ wm.resizeWindowOnGridSymmetrically = function (w, h)
 end
 
 -- moveWindowToSpace
--- Requires ctrl+<left>/<right> and ctrl+<num> system keybindings, borrowed from
+---
+-- Requires ctrl+<left>/<right> and ctrl+<num> system keybindings, originally
+-- from:
 -- https://github.com/Hammerspoon/hammerspoon/issues/235#issuecomment-101069303
 wm.moveWindowToSpace = function (direction)
   return function()
     local mouseOrigin = mouse.getAbsolutePosition()
     local win = hs.window.focusedWindow()
+    local app = win:application()
     local clickPoint = win:zoomButtonRect()
 
+    -- click and hold next to the zoom button close to the top of the window
     clickPoint.x = clickPoint.x + clickPoint.w + 5
-    clickPoint.y = clickPoint.y + (clickPoint.h / 2)
+    clickPoint.y = win:frame().y + 7
 
     local mouseClickEvent = hs.eventtap.event.newMouseEvent(
       hs.eventtap.event.types.leftMouseDown, clickPoint
