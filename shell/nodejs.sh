@@ -12,27 +12,13 @@ alias cof="coffee"
 install_node_global_packages () {
   npm install -g \
       eslint \
-      eslint-config-semistandard \
-      eslint-config-standard \
-      eslint-plugin-import \
-      eslint-plugin-node \
-      eslint-plugin-promise \
-      eslint-plugin-react \
-      eslint-plugin-standard \
       eslint-config-prettier \
       eslint-plugin-prettier \
       eslint_d \
       htmllint-cli \
       httpsnippet \
-      jsfmt \
-      jslinter \
       jsonlint \
       localtunnel \
-      semistandard \
-      semistandard-format \
-      standard \
-      standard-format \
-      stylefmt \
       prettier \
       tslint \
       typescript \
