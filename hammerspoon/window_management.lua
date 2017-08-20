@@ -323,7 +323,7 @@ wm.moveWindowToSpace = function (direction)
     clickPoint.y = clickPoint.y + (clickPoint.h / 2)
 
     local mouseClickEvent = hs.eventtap.event.newMouseEvent(
-      hs.eventtap.event.types.leftmousedown, clickPoint
+      hs.eventtap.event.types.leftMouseDown, clickPoint
     )
     mouseClickEvent:post()
     hs.timer.usleep(150000)
@@ -341,7 +341,7 @@ wm.moveWindowToSpace = function (direction)
     hs.timer.usleep(150000)
 
     local mouseReleaseEvent = hs.eventtap.event.newMouseEvent(
-      hs.eventtap.event.types.leftmouseup, clickPoint
+      hs.eventtap.event.types.leftMouseUp, clickPoint
     )
     mouseReleaseEvent:post()
     hs.timer.usleep(150000)
