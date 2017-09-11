@@ -32,14 +32,14 @@ main() {
   #
 
   local core_pkgs=(
-    ack
     "aspell --with-lang-en --with-lang-el --with-lang-sv"
+    "global --with-ctags --with-pygments"
+    ack
     bash
     bazaar
     ctop
     dpkg
     git
-    "global --with-ctags --with-pygments"
     heroku
     htop
     kubernetes-cli
