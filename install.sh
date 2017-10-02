@@ -10,6 +10,7 @@ SYMLINK_PATH="$DOTFILES_LINK"
 PRIVATE_PATH="private"
 SYMLINKS=(
   ackrc
+  alacritty.yml
   bundle
   coffeelint.json
   emacs.d
