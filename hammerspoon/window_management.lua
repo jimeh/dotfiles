@@ -1,7 +1,7 @@
 -- luacheck: read_globals hs
 
 local mouse = require('hs.mouse')
-local grid = require('ext.grid')
+local grid = require('hs.grid')
 
 -- configuration
 local wm = {
