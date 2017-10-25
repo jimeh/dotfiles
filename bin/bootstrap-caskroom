@@ -45,6 +45,7 @@ main() {
     fluid
     flux
     google-chrome
+    gpgtools
     hammerspoon
     iina
     istat-menus
@@ -116,7 +117,6 @@ main() {
     ethereum-wallet
     filebot
     gog-galaxy
-    gpgtools
     hackety-hack
     handbrake
     irccloud
