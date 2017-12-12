@@ -4,6 +4,7 @@
 	signingkey = contact@jimeh.me
 [core]
 	excludesfile = ~/.gitignore
+	hooksPath = ~/.git-hooks
 [color]
 	status = auto
 	branch = auto
