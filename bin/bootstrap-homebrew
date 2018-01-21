@@ -72,9 +72,9 @@ main() {
 
   install_packages "core" "${core_pkgs[@]}"
 
-  if [[ " $@ " == *" personal "* ]]; then
+  if [[ " $* " == *" personal "* ]]; then
     install_packages "personal" "${personal_pkgs[@]}"
   fi
 }
 
-main $@
+main "$@"
