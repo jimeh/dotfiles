@@ -105,6 +105,10 @@ install_gvm () {
   git_clone 'https://github.com/moovweb/gvm.git' "$TARGET/.gvm"
 }
 
+install_rustup () {
+  curl https://sh.rustup.rs -sSf | sh
+}
+
 install_virtualenv () {
   curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
 }
@@ -159,6 +163,9 @@ case "$1" in
   gvm)
     install_gvm
     ;;
+  rustup)
+    install_rustup
+    ;;
   virtualenv|venv)
     install_virtualenv
     ;;
@@ -184,6 +191,7 @@ case "$1" in
     echo '         rbenv: Install rbenv, a Ruby version manager.'
     echo '           nvm: Install nvm, a Node.js version manager.'
     echo '           gvm: Install gvm, a Go version manager.'
+    echo '        rustup: Install rustup, a Rust version manager.'
     echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
          'environment manager.'
     echo '         dokku: Clone dokku to ~/.dokku enabling use of' \
