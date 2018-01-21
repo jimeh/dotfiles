@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-if bundle check &>/dev/null && (bundle list | grep rubocop) &>/dev/null; then
+if bundle check &>/dev/null && (bundle list | grep rubocop &>/dev/null); then
   exec bundle exec rubocop "$@"
 else
   exec rubocop "$@"
