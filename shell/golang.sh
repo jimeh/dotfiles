@@ -24,6 +24,7 @@ install_go_global_packages () {
     github.com/Masterminds/glide
     github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
+    github.com/golang/dep/cmd/dep
     github.com/golang/lint/golint
     github.com/kardianos/govendor
     github.com/kisielk/errcheck
