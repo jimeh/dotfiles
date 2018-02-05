@@ -34,6 +34,7 @@ main() {
   #
 
   local core_pkgs=(
+    1password
     aerial
     alfred
     appcleaner
@@ -55,10 +56,8 @@ main() {
     keybase
     logitech-gaming-software
     logitech-options
-    moom
     mplayerx
     osxfuse
-    peakhour
     qlcolorcode
     qlimagesize
     qlmarkdown
@@ -92,8 +91,11 @@ main() {
     kaleidoscope
     licecap
     medis
+    minikube
+    minishift
     paw
     postman
+    postico
     robomongo
     sequel-pro
     slack
@@ -128,6 +130,7 @@ main() {
     omnigraffle
     openemu
     parallels-desktop
+    peakhour
     plex-media-player
     rclone-browser
     ring

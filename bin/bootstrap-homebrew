@@ -37,28 +37,32 @@ main() {
     ack
     bash
     bazaar
+    chromedriver
     ctop
     dpkg
+    geckodriver
     git
     git-standup
     heroku
     htop
+    jq
     kubernetes-cli
     kubernetes-helm
     mysql
     peco
     pyenv
     rbenv
+    rclone
     readline
     reattach-to-user-namespace
     redis
     ruby-build
     shellcheck
     sshfs
-    tccutil
     the_silver_searcher
     thefuck
     tmux
+    tree
     wget
     zsh
   )
