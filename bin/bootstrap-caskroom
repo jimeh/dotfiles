@@ -96,9 +96,10 @@ main() {
     minikube
     minishift
     paw
-    postman
     postico
+    postman
     robomongo
+    rowanj-gitx
     sequel-pro
     slack
     vagrant
