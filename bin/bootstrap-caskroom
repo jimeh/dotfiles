@@ -46,7 +46,7 @@ main() {
     fluid
     flux
     google-chrome
-    gpgtools
+    gpg-suite
     hammerspoon
     iina
     istat-menus
@@ -68,10 +68,12 @@ main() {
     quicklook-json
     quicklookapk
     resolutionator
+    skyfonts
     stay
     suspicious-package
     ubersicht
     vlc
+    vnc-viewer
     wavebox
     webpquicklook
   )
