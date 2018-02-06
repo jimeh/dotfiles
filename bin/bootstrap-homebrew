@@ -49,6 +49,7 @@ main() {
     kubernetes-cli
     kubernetes-helm
     mysql
+    openshift-cli
     peco
     pyenv
     rbenv
