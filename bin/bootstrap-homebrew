@@ -48,6 +48,7 @@ main() {
     jq
     kubernetes-cli
     kubernetes-helm
+    less
     mysql
     openshift-cli
     peco
@@ -60,6 +61,7 @@ main() {
     ruby-build
     shellcheck
     sshfs
+    source-highlight
     the_silver_searcher
     thefuck
     tmux
