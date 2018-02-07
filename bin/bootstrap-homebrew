@@ -46,6 +46,7 @@ main() {
     git-standup
     heroku
     htop
+    httpie
     jq
     kubernetes-cli
     kubernetes-helm
@@ -61,13 +62,15 @@ main() {
     redis
     ruby-build
     shellcheck
-    sshfs
     source-highlight
+    sshfs
     the_silver_searcher
     thefuck
     tmux
     tree
+    watch
     wget
+    yank
     zsh
   )
 
