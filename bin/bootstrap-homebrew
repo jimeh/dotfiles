@@ -38,6 +38,7 @@ main() {
     bash
     bazaar
     chromedriver
+    colordiff
     ctop
     dpkg
     geckodriver
