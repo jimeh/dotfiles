@@ -8,6 +8,7 @@ alias np="npm"
 alias ni="npm install"
 alias ngi="npm install -g"
 alias cof="coffee"
+alias tl="tldr"
 
 install_node_global_packages () {
   npm install -g \
@@ -20,6 +21,7 @@ install_node_global_packages () {
       jsonlint \
       localtunnel \
       prettier \
+      tldr \
       tslint \
       typescript \
       typescript-formatter \
