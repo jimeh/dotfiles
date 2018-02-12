@@ -50,38 +50,24 @@ main() {
     hammerspoon
     iina
     istat-menus
-    istumbler
     iterm2
     karabiner-elements
-    keybase
     logitech-gaming-software
     logitech-options
     mplayerx
     osxfuse
     qlcolorcode
-    qlimagesize
     qlmarkdown
-    qlprettypatch
     qlstephen
-    qlvideo
-    quicklook-csv
-    quicklook-json
-    quicklookapk
     resolutionator
-    skyfonts
     stay
-    suspicious-package
     ubersicht
     vlc
-    vnc-viewer
-    wavebox
-    webpquicklook
   )
 
   local work_pkgs=(
     atom
     bbedit
-    chicken
     cyberduck
     dash
     docker-edge
@@ -115,6 +101,7 @@ main() {
     autodmg
     bowtie
     calibre
+    chicken
     daisydisk
     deluge
     discord
@@ -125,6 +112,8 @@ main() {
     hackety-hack
     handbrake
     irccloud
+    istumbler
+    keybase
     little-snitch
     makemkv
     messenger
@@ -135,18 +124,29 @@ main() {
     parallels-desktop
     peakhour
     plex-media-player
+    qlimagesize
+    qlprettypatch
+    qlvideo
+    quicklook-csv
+    quicklook-json
+    quicklookapk
     rclone-browser
     ring
     screenhero
     sixtyforce
+    skyfonts
     skype
     spotify
+    suspicious-package
     teamviewer
     transmission
     unetbootin
     virtualc64
     viscosity
     vmware-fusion
+    vnc-viewer
+    wavebox
+    webpquicklook
     witgui
     xld
     yakyak
