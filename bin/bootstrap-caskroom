@@ -73,7 +73,6 @@ main() {
     docker-edge
     github-desktop
     google-cloud-sdk
-    hipchat
     insomnia
     java
     kaleidoscope
@@ -88,6 +87,7 @@ main() {
     rowanj-gitx
     sequel-pro
     slack
+    stride
     vagrant
     virtualbox
     visual-studio-code
