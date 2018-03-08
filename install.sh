@@ -25,6 +25,7 @@ SYMLINKS=(
   irbrc
   peco
   powconfig
+  reek
   rspec
   rubocop.yml
   tmux

@@ -9,6 +9,7 @@ install_ruby_global_packages () {
       rubocop \
       lunchy \
       rbenv-rehash \
+      reek \
       travis
 }
 
