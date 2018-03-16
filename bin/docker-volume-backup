@@ -56,13 +56,14 @@ resolve_dest_dir () {
 }
 
 help () {
-  echo "usage: docker-volume-backup <vol-name> [<output-filename>]"
+  echo "usage: docker-volume-backup <volume> [<output-filename>]"
   echo ""
-  echo "Backs up contents of <vol-name> to a gzipped tar archive."
+  echo "Backs up contents of a Docker volume to a gzipped tar archive."
   echo ""
-  echo "If optional <output-filename> argument is given, it should"
-  echo "end with \".tar.gz\". If <output-filename> is not given,"
-  echo "resulting file with be named: <vol-name>_<datetime>.tar.gz"
+  echo "Arguments:"
+  echo "   <volume>           - Name of Docker volume to backup."
+  echo "   <output-filename>  - Optional argument to specify output filename."
+  echo "                        Defaults to: ./<volume>_<date>_<time>.tar.gz"
 }
 
 main () {

@@ -56,8 +56,14 @@ resolve_volname () {
 help () {
   echo "usage: docker-volume-restore <archive> [<volume-name>]"
   echo ""
-  echo "Input <archive> should be a *.tar.gz producded by the"
-  echo "docker-volume-backup command."
+  echo "Restores contents from a *.tar.gz archive to a Docker volume."
+  echo ""
+  echo "Arguments:"
+  echo "   <archive>      - Filename to restore data from. Must be a .tar.gz"
+  echo "                    archive with a single root directory."
+  echo "   <volume-name>  - Optional argument to specify the volume name to"
+  echo "                    restore to. If not specified, will use name of"
+  echo "                    top-level directory in the archive."
 }
 
 main () {
