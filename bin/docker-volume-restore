@@ -1,0 +1,106 @@
+#! /usr/bin/env bash
+set -e
+
+abs_dirname () {
+  local path="$1"
+  local cwd
+  cwd="$(pwd)"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}" 2>/dev/null
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+abs_path () {
+  local path="$1"
+  echo "$(cd "$(abs_dirname "$path")" && pwd)/$(basename "$path")"
+}
+
+resolve_link () {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+resolve_archive() {
+  local archive="$1"
+
+  archive="$(abs_path "$archive")"
+
+  if [ ! -f "$archive" ]; then
+    echo "ERROR: \"${archive}\" is not a file." 1>&2
+    exit 1
+  fi
+
+  echo "$archive"
+}
+
+resolve_volname () {
+  local archive="$1"
+  local file
+  local dir
+
+  file="$(basename "$archive")"
+  dir="$(dirname "$archive")"
+
+  docker run --rm \
+         --volume "${dir}:/source" \
+         alpine:latest \
+         sh -c "tar --exclude=\"*/*/*\" -tzf \"/source/${file}\" \
+                    | grep -v '^[^/]\+/[^/]\+$' | sed s'/.$//'" 2>/dev/null
+}
+
+help () {
+  echo "usage: docker-volume-restore <archive> [<volume-name>]"
+  echo ""
+  echo "Input <archive> should be a *.tar.gz producded by the"
+  echo "docker-volume-backup command."
+}
+
+main () {
+  local archive="$1"
+  local volname="$2"
+  local archive_volname
+  local archive_file
+  local archive_dir
+
+  if [ -z "$archive" ]; then
+    help 1>&2
+    exit 1
+  fi
+
+  archive="$(resolve_archive "$archive")"
+  archive_file="$(basename "$archive")"
+  archive_dir="$(dirname "$archive")"
+  archive_volname="$(resolve_volname "$archive")"
+
+  if [ "$(echo "$archive_volname" | wc -l)" -gt 1 ]; then
+    echo "ERROR: \"$archive_file\" has more than one root directory." 1>&2
+    exit 1
+  fi
+
+  if [ -z "$volname" ]; then
+    volname="$archive_volname"
+  fi
+
+  if docker volume inspect "$volname" &>/dev/null; then
+    echo "ERROR: Volume \"${volname}\" already exists." 1>&2
+    exit 1
+  fi
+
+  echo "Restoring volume ${volume} from: ${archive_file}"
+  docker volume create "$volname"
+  docker run --rm \
+         --volume "${volname}:/target" \
+         --volume "${archive_dir}:/source" \
+         alpine:latest \
+         sh -c "cd /target && tar --strip-components=1 \
+                                  -xvzf \"/source/${archive_file}\""
+
+  echo "Volume \"${volname}\" was restored from: ${archive_file}"
+}
+
+main "$@"

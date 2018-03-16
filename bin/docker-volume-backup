@@ -1,0 +1,97 @@
+#! /usr/bin/env bash
+set -e
+
+abs_dirname () {
+  local path="$1"
+  local cwd
+  cwd="$(pwd)"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}" 2>/dev/null
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+abs_path () {
+  local path="$1"
+  echo "$(cd "$(abs_dirname "$path")" && pwd)/$(basename "$path")"
+}
+
+resolve_link () {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+resolve_dest () {
+  local dest="$1"
+
+  if [ -z "$dest" ]; then
+    dest="$(pwd)/${volname}_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz"
+  fi
+
+  dest="$(abs_path "$dest")"
+
+  if [ -f "$dest" ]; then
+    echo "ERROR: \"${dest}\" already exists." 1>&2
+    exit 1
+  fi
+
+  echo "$dest"
+}
+
+resolve_dest_dir () {
+  local dest="$1"
+  local dir
+
+  dir="$(dirname "$dest")"
+
+  if [ ! -d "$dir" ]; then
+    echo "ERROR: \"$dir\" is not a directory."
+  fi
+
+  echo "$dest_dir"
+}
+
+help () {
+  echo "usage: docker-volume-backup <vol-name> [<output-filename>]"
+  echo ""
+  echo "Backs up contents of <vol-name> to a gzipped tar archive."
+  echo ""
+  echo "If optional <output-filename> argument is given, it should"
+  echo "end with \".tar.gz\". If <output-filename> is not given,"
+  echo "resulting file with be named: <vol-name>_<datetime>.tar.gz"
+}
+
+main () {
+  local volname="$1"
+  local dest="$2"
+  local dest_dir
+
+  if [ -z "$volname" ]; then
+    help 1>&2
+    exit 1
+  fi
+
+  if ! docker volume inspect "$volname" &>/dev/null; then
+    echo "ERROR: Volume \"${volname}\" does not exist." 1>&2
+    exit 1
+  fi
+
+  dest="$(resolve_dest "$dest")"
+  dest_dir="$(resolve_dest_dir "$dest")"
+  dest_file="$(basename "$dest")"
+
+  echo "Starting volume backup to: ${dest}"
+  docker run --rm \
+         --volume "${volname}:/source/${volname}" \
+         --volume "${dest_dir}:/target" \
+         alpine:latest \
+         sh -c "cd /source && tar -cvzf \"/target/${dest_file}\" \"${volname}\""
+
+  echo "Volume \"${volname}\" was backed up to: ${dest}"
+}
+
+main "$@"
