@@ -17,6 +17,8 @@ NilCheck:
   enabled: false
 TooManyStatements:
   enabled: false
+UncommunicativeModuleName:
+  enabled: false
 UncommunicativeVariableName:
   enabled: false
 UtilityFunction:
