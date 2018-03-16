@@ -52,7 +52,7 @@ resolve_dest_dir () {
     echo "ERROR: \"$dir\" is not a directory."
   fi
 
-  echo "$dest_dir"
+  echo "$dir"
 }
 
 help () {
