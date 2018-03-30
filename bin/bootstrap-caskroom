@@ -80,6 +80,7 @@ main() {
     medis
     minikube
     minishift
+    muzzle
     paw
     postico
     postman
