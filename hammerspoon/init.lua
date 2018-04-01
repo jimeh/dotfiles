@@ -1,4 +1,4 @@
--- luacheck: read_globals hs
+-- luacheck: read_globals hs spoon
 
 -- Reload config hotkey
 hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'R', hs.reload)
