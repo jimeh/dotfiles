@@ -16,12 +16,6 @@ hs.console.alpha(0.90)
 hs.console.behaviorAsLabels { 'moveToActiveSpace' }
 
 --------------------------------------------------------------------------------
--- Require modules
---------------------------------------------------------------------------------
-
-require('window_management'):init()
-
---------------------------------------------------------------------------------
 -- Load Spoons
 --------------------------------------------------------------------------------
 
@@ -34,6 +28,34 @@ hs.loadSpoon('HeadphoneAutoPause')
 spoon.HeadphoneAutoPause.autoResume = false
 spoon.HeadphoneAutoPause:start()
 
+--------------------------------------------------------------------------------
+-- Application toggles
+--------------------------------------------------------------------------------
 
--- the end
+local apptoggle = require('app_toggle')
+
+apptoggle:bind({'cmd', 'alt', 'ctrl'}, 'A', 'Activity Monitor')
+apptoggle:bind({'cmd', 'ctrl'}, '4', 'Skitch')
+apptoggle:bind({'cmd', 'ctrl'}, 'A', 'YakYak')
+apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Postico')
+apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Medis')
+apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Wavebox')
+apptoggle:bind({'cmd', 'ctrl'}, 'E', 'Emacs')
+apptoggle:bind({'cmd', 'ctrl'}, 'F', 'Messenger')
+apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Stride')
+apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype')
+apptoggle:bind({'cmd', 'ctrl'}, 'T', 'IRCCloud')
+apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
+apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Calendar')
+apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
+
+--------------------------------------------------------------------------------
+-- Window management
+--------------------------------------------------------------------------------
+
+require('window_management'):init()
+
+--------------------------------------------------------------------------------
+-- The End
+--------------------------------------------------------------------------------
 hs.alert.show('Hammerspoon loaded')
