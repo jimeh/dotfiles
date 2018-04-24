@@ -41,26 +41,38 @@ spoon.HeadphoneAutoPause:start()
 
 local apptoggle = require('app_toggle')
 
-apptoggle:bind({'cmd', 'alt', 'ctrl'}, 'A', 'Activity Monitor')
-apptoggle:bind({'cmd', 'ctrl'}, '4', 'Skitch')
-apptoggle:bind({'cmd', 'ctrl'}, 'A', 'YakYak')
-apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Sequel Pro')
-apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Medis')
-apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Wavebox')
 apptoggle:bind({'cmd', 'ctrl'}, 'E', 'Emacs', '/Applications/Emacs.app')
-apptoggle:bind({'cmd', 'ctrl'}, 'F', 'Messenger')
-apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Stride')
-apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype')
-apptoggle:bind({'cmd', 'ctrl'}, 'T', 'IRCCloud')
-apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
 apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Calendar')
-apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
+
+if env.hostname == "UAC00024" then
+  apptoggle:bind({'alt', 'ctrl'}, 'A', 'Activity Monitor')
+  apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Sequel Pro')
+  apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Paw')
+  apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Mail')
+  apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Slack')
+  apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype for Business')
+  apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Stride')
+else
+  apptoggle:bind({'cmd', 'alt', 'ctrl'}, 'A', 'Activity Monitor')
+  apptoggle:bind({'cmd', 'ctrl'}, '4', 'Skitch')
+  apptoggle:bind({'cmd', 'ctrl'}, 'A', 'YakYak')
+  apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Portico')
+  apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Medis')
+  apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Wavebox')
+  apptoggle:bind({'cmd', 'ctrl'}, 'F', 'Messenger')
+  apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Stride')
+  apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype')
+  apptoggle:bind({'cmd', 'ctrl'}, 'T', 'IRCCloud')
+  apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
+  apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
+end
 
 --------------------------------------------------------------------------------
 -- Window management
 --------------------------------------------------------------------------------
 
-require('window_management'):init()
+local wm = require('window_management')
+wm:init()
 
 --------------------------------------------------------------------------------
 -- The End
