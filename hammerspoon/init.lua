@@ -5,13 +5,6 @@ hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'R', hs.reload)
 hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'C', hs.toggleConsole)
 
 --------------------------------------------------------------------------------
--- Environment
---------------------------------------------------------------------------------
-
-local env = require('env')
-env:init()
-
---------------------------------------------------------------------------------
 -- Set Hammerspoon options
 --------------------------------------------------------------------------------
 
@@ -36,36 +29,11 @@ spoon.HeadphoneAutoPause.autoResume = false
 spoon.HeadphoneAutoPause:start()
 
 --------------------------------------------------------------------------------
--- Application toggles
+-- Host specific configuration
 --------------------------------------------------------------------------------
 
-local apptoggle = require('app_toggle')
-
-apptoggle:bind({'cmd', 'ctrl'}, 'E', 'Emacs', '/Applications/Emacs.app')
-apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Calendar')
-
-if env.hostname == "UAC00024" then
-  apptoggle:bind({'alt', 'ctrl'}, 'A', 'Activity Monitor')
-  apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Sequel Pro')
-  apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Paw')
-  apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Mail')
-  apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Slack')
-  apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype for Business')
-  apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Stride')
-else
-  apptoggle:bind({'cmd', 'alt', 'ctrl'}, 'A', 'Activity Monitor')
-  apptoggle:bind({'cmd', 'ctrl'}, '4', 'Skitch')
-  apptoggle:bind({'cmd', 'ctrl'}, 'A', 'YakYak')
-  apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Portico')
-  apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Medis')
-  apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Wavebox')
-  apptoggle:bind({'cmd', 'ctrl'}, 'F', 'Messenger')
-  apptoggle:bind({'cmd', 'ctrl'}, 'G', 'Stride')
-  apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Skype')
-  apptoggle:bind({'cmd', 'ctrl'}, 'T', 'IRCCloud')
-  apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
-  apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
-end
+local hostconfig = require('host_config')
+hostconfig:init()
 
 --------------------------------------------------------------------------------
 -- Window management
