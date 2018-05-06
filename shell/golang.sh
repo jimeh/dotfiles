@@ -11,22 +11,14 @@ alias gv="govendor"
 
 install_go_global_packages () {
   local packages=(
-    github.com/FiloSottile/gvt
-    github.com/Masterminds/glide
     github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
     github.com/golang/lint/golint
-    github.com/kardianos/govendor
     github.com/kisielk/errcheck
-    github.com/kovetskiy/manul
     github.com/kr/pretty
-    github.com/laher/goxc
-    github.com/mailgun/godebug
+    github.com/derekparker/delve/cmd/dlv
     github.com/mdempsky/unconvert
-    github.com/mitchellh/gox
-    github.com/motemen/gore
     github.com/nsf/gocode
-    github.com/pmezard/go-difflib/difflib
     github.com/rakyll/hey
     github.com/rogpeppe/godef
     github.com/vektra/mockery/.../
