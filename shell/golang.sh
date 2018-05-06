@@ -13,10 +13,11 @@ install_go_global_packages () {
   local packages=(
     github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
+    github.com/derekparker/delve/cmd/dlv
     github.com/golang/lint/golint
+    github.com/goreleaser/goreleaser
     github.com/kisielk/errcheck
     github.com/kr/pretty
-    github.com/derekparker/delve/cmd/dlv
     github.com/mdempsky/unconvert
     github.com/nsf/gocode
     github.com/rakyll/hey
