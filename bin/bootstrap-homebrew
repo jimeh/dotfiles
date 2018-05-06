@@ -46,6 +46,7 @@ main() {
     git
     git-crypt
     git-standup
+    go
     heroku
     htop
     httpie

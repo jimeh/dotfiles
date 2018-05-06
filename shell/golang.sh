@@ -2,21 +2,12 @@
 # Go (golang) environment setup.
 #
 
-export MYGOPATH="$HOME/Projects/Go"
-
-# load gvm
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-# setup GOPATH after loading gvm
-export GOPATH="$GOPATH:$MYGOPATH"
-path_prepend "$MYGOPATH/bin"
+export GOPATH="$HOME/.go:$HOME/Projects/Go"
+path_prepend "$HOME/.go/bin"
+path_prepend "$HOME/Projects/Go"
 
 # aliases
 alias gv="govendor"
-gvm-use() {
-  gvm use "$@"
-  export GOPATH="$GOPATH:$MYGOPATH"
-}
 
 install_go_global_packages () {
   local packages=(

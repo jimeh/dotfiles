@@ -102,10 +102,6 @@ install_nvm () {
   git_clone 'https://github.com/creationix/nvm.git' "$TARGET/.nvm"
 }
 
-install_gvm () {
-  git_clone 'https://github.com/moovweb/gvm.git' "$TARGET/.gvm"
-}
-
 install_rustup () {
   curl https://sh.rustup.rs -sSf | sh
 }
@@ -160,9 +156,6 @@ case "$1" in
     ;;
   nvm)
     install_nvm
-    ;;
-  gvm)
-    install_gvm
     ;;
   rustup)
     install_rustup
