@@ -14,7 +14,7 @@ path_prepend "$MYGOPATH/bin"
 # aliases
 alias gv="govendor"
 gvm-use() {
-  gvm use $@
+  gvm use "$@"
   export GOPATH="$GOPATH:$MYGOPATH"
 }
 
@@ -24,7 +24,6 @@ install_go_global_packages () {
     github.com/Masterminds/glide
     github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
-    github.com/golang/dep/cmd/dep
     github.com/golang/lint/golint
     github.com/kardianos/govendor
     github.com/kisielk/errcheck
@@ -39,7 +38,6 @@ install_go_global_packages () {
     github.com/pmezard/go-difflib/difflib
     github.com/rakyll/hey
     github.com/rogpeppe/godef
-    github.com/tools/godep
     github.com/vektra/mockery/.../
     golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
