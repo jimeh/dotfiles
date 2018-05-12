@@ -46,6 +46,7 @@ main() {
     git-crypt
     git-standup
     go
+    goreleaser/tap/goreleaser
     heroku
     htop
     httpie
