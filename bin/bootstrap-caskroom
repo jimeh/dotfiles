@@ -68,6 +68,7 @@ main() {
   local work_pkgs=(
     atom
     bbedit
+    chromedriver
     cyberduck
     dash
     docker-edge

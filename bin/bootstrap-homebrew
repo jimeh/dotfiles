@@ -37,7 +37,6 @@ main() {
     ack
     bash
     bazaar
-    chromedriver
     colordiff
     ctop
     dep
