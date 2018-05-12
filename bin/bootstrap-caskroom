@@ -1,174 +1,211 @@
 #! /usr/bin/env bash
 set -e
 
-install_packages() {
-  local group="$1"
-  shift 1
+# Settings
+PACKAGE_LIST_CMD="brew cask list"
+PACKAGE_INSTALL_CMD="brew cask install"
 
-  [ -z "$INSTALLED_PACKAGES" ] && INSTALLED_PACKAGES=( $(brew cask list) )
 
-  echo "==> ${group} packages"
-  for pkg in "$@"; do
-    local base=$(echo $pkg | awk '{print $1}')
-    [[ "$base" == *\/* ]] && base=$(basename "$base")
+#
+# Package list
+#
 
-    local found=""
+CORE_PKGS=(
+  1password
+  aerial
+  alfred
+  appcleaner
+  bartender
+  betterzip
+  betterzipql
+  emacs-pretest
+  firefox
+  fluid
+  flux
+  google-chrome
+  gpg-suite
+  hammerspoon
+  iina
+  istat-menus
+  iterm2
+  karabiner-elements
+  logitech-gaming-software
+  logitech-options
+  mplayerx
+  osxfuse
+  qlcolorcode
+  qlmarkdown
+  qlstephen
+  resolutionator
+  stay
+  ubersicht
+  vlc
+)
 
-    for i in ${INSTALLED_PACKAGES[@]}; do
-      [[ "$base" == "$i" ]] && found=1
-    done
+WORK_PKGS=(
+  atom
+  bbedit
+  chromedriver
+  cyberduck
+  dash
+  docker-edge
+  github-desktop
+  google-cloud-sdk
+  insomnia
+  java
+  kaleidoscope
+  licecap
+  medis
+  minikube
+  minishift
+  muzzle
+  paw
+  postico
+  postman
+  robo-3t
+  rowanj-gitx
+  sequel-pro
+  slack
+  stride
+  transmit
+  vagrant
+  virtualbox
+  visual-studio-code
+)
 
-    if [ -z "$found" ]; then
-      echo " -> Missing: ${base}"
-      brew cask install ${pkg[@]}
-    else
-      echo " -> Installed: ${base}"
-    fi
-  done
-}
+PERSONAL_PKGS=(
+  4k-video-downloader
+  adium-beta
+  android-file-transfer
+  audio-hijack
+  autodmg
+  bowtie
+  calibre
+  chicken
+  daisydisk
+  deluge
+  discord
+  dropbox
+  ethereum-wallet
+  filebot
+  gog-galaxy
+  google-photos-backup-and-sync
+  hackety-hack
+  handbrake
+  irccloud
+  istumbler
+  keybase
+  little-snitch
+  makemkv
+  messenger
+  micro-snitch
+  mist
+  omnigraffle
+  openemu
+  parallels-desktop
+  peakhour
+  plex-media-player
+  qlimagesize
+  qlprettypatch
+  qlvideo
+  quicklook-csv
+  quicklook-json
+  quicklookapk
+  rclone-browser
+  ring
+  screenhero
+  sixtyforce
+  skyfonts
+  skype
+  spotify
+  suspicious-package
+  teamviewer
+  transmission
+  unetbootin
+  virtualc64
+  viscosity
+  vmware-fusion
+  vnc-viewer
+  wavebox
+  webpquicklook
+  witgui
+  xld
+  yakyak
+)
+
+
+#
+# Main
+#
 
 main() {
+  cache_installed_packages
 
-  #
-  # Define packages
-  #
-
-  local core_pkgs=(
-    1password
-    aerial
-    alfred
-    appcleaner
-    bartender
-    betterzip
-    betterzipql
-    emacs-pretest
-    firefox
-    fluid
-    flux
-    google-chrome
-    gpg-suite
-    hammerspoon
-    iina
-    istat-menus
-    iterm2
-    karabiner-elements
-    logitech-gaming-software
-    logitech-options
-    mplayerx
-    osxfuse
-    qlcolorcode
-    qlmarkdown
-    qlstephen
-    resolutionator
-    stay
-    ubersicht
-    vlc
-  )
-
-  local work_pkgs=(
-    atom
-    bbedit
-    chromedriver
-    cyberduck
-    dash
-    docker-edge
-    github-desktop
-    google-cloud-sdk
-    insomnia
-    java
-    kaleidoscope
-    licecap
-    medis
-    minikube
-    minishift
-    muzzle
-    paw
-    postico
-    postman
-    robo-3t
-    rowanj-gitx
-    sequel-pro
-    slack
-    stride
-    transmit
-    vagrant
-    virtualbox
-    visual-studio-code
-  )
-
-  local personal_pkgs=(
-    4k-video-downloader
-    adium-beta
-    android-file-transfer
-    audio-hijack
-    autodmg
-    bowtie
-    calibre
-    chicken
-    daisydisk
-    deluge
-    discord
-    dropbox
-    ethereum-wallet
-    filebot
-    gog-galaxy
-    google-photos-backup-and-sync
-    hackety-hack
-    handbrake
-    irccloud
-    istumbler
-    keybase
-    little-snitch
-    makemkv
-    messenger
-    micro-snitch
-    mist
-    omnigraffle
-    openemu
-    parallels-desktop
-    peakhour
-    plex-media-player
-    qlimagesize
-    qlprettypatch
-    qlvideo
-    quicklook-csv
-    quicklook-json
-    quicklookapk
-    rclone-browser
-    ring
-    screenhero
-    sixtyforce
-    skyfonts
-    skype
-    spotify
-    suspicious-package
-    teamviewer
-    transmission
-    unetbootin
-    virtualc64
-    viscosity
-    vmware-fusion
-    vnc-viewer
-    wavebox
-    webpquicklook
-    witgui
-    xld
-    yakyak
-  )
-
-  #
-  # Install packages
-  #
-
-  install_packages "core" "${core_pkgs[@]}"
+  install_packages "core" "${CORE_PKGS[@]}"
 
   if [[ " $* " == *" work "* ]]; then
-    install_packages "work" "${work_pkgs[@]}"
+    install_packages "work" "${WORK_PKGS[@]}"
   fi
 
   if [[ " $* " == *" personal "* ]]; then
-    install_packages "personal" "${personal_pkgs[@]}"
+    install_packages "personal" "${PERSONAL_PKGS[@]}"
   fi
+}
+
+
+#
+# The rest...
+#
+
+INSTALLED_PACKAGES=()
+
+package_name() {
+  local install_args="$1"
+  local pkg
+
+  pkg="$(echo "$install_args" | awk '{ print $1 }')"
+  [[ "$pkg" == *'/'* ]] && pkg="$(basename "$pkg")"
+
+  echo "$pkg"
+}
+
+cache_installed_packages() {
+  if [ ${#INSTALLED_PACKAGES[@]} -eq 0 ]; then
+    echo "--> Getting list of installed packages"
+    mapfile -t INSTALLED_PACKAGES < <($PACKAGE_LIST_CMD)
+  fi
+}
+
+is_package_installed() {
+  local pkg="$1"
+  cache_installed_packages
+
+  for i in "${INSTALLED_PACKAGES[@]}"; do
+    [[ "$pkg" == "$i" ]] && return 0
+  done
+  return 1
+}
+
+install_package() {
+  $PACKAGE_INSTALL_CMD "$@"
+}
+
+install_packages() {
+  local group="$1"
+  local pkg
+  shift 1
+
+  echo "--> Group: ${group}"
+  for install_args in "$@"; do
+    pkg="$(package_name "$install_args")"
+
+    if is_package_installed "$pkg"; then
+      echo "    Exists: ${pkg}"
+    else
+      echo "    Installing: ${pkg}"
+      install_package "$install_args"
+    fi
+  done
 }
 
 main "$@"
