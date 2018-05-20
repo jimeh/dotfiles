@@ -6,10 +6,13 @@ install_ruby_global_packages () {
   gem install --no-rdoc --no-ri \
       bundler \
       foreman \
-      rubocop \
       lunchy \
+      method_source \
+      pry-doc \
       rbenv-rehash \
       reek \
+      rubocop \
+      seeing_is_believing \
       travis
 }
 
