@@ -77,6 +77,7 @@ PERSONAL_PKGS=(
   4k-video-downloader
   adium-beta
   android-file-transfer
+  android-platform-tools
   audio-hijack
   autodmg
   bowtie
