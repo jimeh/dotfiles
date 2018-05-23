@@ -49,6 +49,7 @@ WORK_PKGS=(
   cyberduck
   dash
   docker-edge
+  fork
   github-desktop
   google-cloud-sdk
   insomnia
