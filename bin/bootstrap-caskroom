@@ -18,7 +18,7 @@ CORE_PKGS=(
   bartender
   betterzip
   betterzipql
-  emacs-pretest
+  emacs
   firefox
   fluid
   flux
