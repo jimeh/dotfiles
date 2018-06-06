@@ -25,6 +25,7 @@ SYMLINKS=(
   irbrc
   peco
   powconfig
+  pryrc
   reek
   rspec
   rubocop.yml
