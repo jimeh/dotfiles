@@ -53,6 +53,7 @@ CORE_PKGS=(
   watch
   wget
   yank
+  yarn
   zsh
 )
 
