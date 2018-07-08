@@ -6,6 +6,7 @@
 .projectile
 .stignore
 .stfolder
+.vscode
 log/*.gz
 log/*.bz2
 routes.txt
