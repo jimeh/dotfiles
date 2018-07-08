@@ -21,6 +21,7 @@ install_go_global_packages () {
     github.com/nsf/gocode
     github.com/rakyll/hey
     github.com/rogpeppe/godef
+    github.com/spf13/cobra/cobra
     github.com/vektra/mockery/.../
     golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
