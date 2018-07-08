@@ -4,6 +4,7 @@ function obj.init()
   local apptoggle = require('app_toggle')
 
   apptoggle:bind({'cmd', 'alt', 'ctrl'}, 'A', 'Activity Monitor')
+  apptoggle:bind({'cmd', 'ctrl'}, '1', 'Microsoft To-Do')
   apptoggle:bind({'cmd', 'ctrl'}, '4', 'Skitch')
   apptoggle:bind({'cmd', 'ctrl'}, 'A', 'YakYak')
   apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Portico')
