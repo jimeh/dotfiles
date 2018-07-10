@@ -30,6 +30,10 @@ alias di="colordiff"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 alias open_ports="sudo lsof -i -P | grep --color=never -i \"listen\""
 
+# Ansible
+alias ap="ansible-playbook"
+alias av="ansible-vault"
+
 # Misc.
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
