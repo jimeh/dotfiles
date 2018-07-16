@@ -20,6 +20,7 @@ install_node_global_packages () {
       httpsnippet \
       jsonlint \
       localtunnel \
+      markdown-it \
       prettier \
       tldr \
       tslint \
