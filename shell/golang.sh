@@ -4,7 +4,7 @@
 
 export GOPATH="$HOME/.go:$HOME/Projects/Go"
 path_prepend "$HOME/.go/bin"
-path_prepend "$HOME/Projects/Go"
+path_prepend "$HOME/Projects/Go/bin"
 
 # aliases
 alias gv="govendor"
