@@ -49,3 +49,4 @@ source "$DOTSHELL/kubernetes.sh"
 
 # Environment Setup
 source "$DOTSHELL/env.sh"
+source "$DOTSHELL/tmpdir.sh"
