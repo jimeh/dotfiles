@@ -40,7 +40,6 @@ source "$DOTSHELL/less.sh"
 
 # Development
 source "$DOTSHELL/nodejs.sh"
-source "$DOTSHELL/python.sh"
 source "$DOTSHELL/ruby.sh"
 source "$DOTSHELL/rust.sh"
 source "$DOTSHELL/golang.sh"
