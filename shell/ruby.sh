@@ -47,9 +47,15 @@ if [ -n "$BASH_VERSION" ]; then
   alias bcn="bundle clean"
 fi
 
-if [ -n "$(command -v rbenv)" ]; then
-  eval "$(rbenv init --no-rehash -)"
+# lazy-load rbenv
+if [ -d "$HOME/.rbenv/shims" ]; then
+  path_prepend "$HOME/.rbenv/shims"
 fi
+
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 # lunchy auto-completion
 if [ -n "$BASH_VERSION" ]; then
