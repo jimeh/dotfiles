@@ -63,12 +63,12 @@ install_symlinks () {
   fi
 
   # Symlink each path
-  for i in ${SYMLINKS[@]}; do
+  for i in "${SYMLINKS[@]}"; do
     symlink "$SYMLINK_PATH/$i" "$TARGET/.$i"
   done
 
   # Symlink shell init file for bash and zsh
-  for i in ${LOAD_FILES[@]}; do
+  for i in "${LOAD_FILES[@]}"; do
     symlink "$DOTFILES_LINK/load_shellrc.sh" "$TARGET/.$i"
   done
 }
