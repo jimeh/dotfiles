@@ -35,7 +35,6 @@ fi
 source "$DOTSHELL/emacs.sh"
 source "$DOTSHELL/git.sh"
 source "$DOTSHELL/tmux.sh"
-source "$DOTSHELL/thefuck.sh"
 source "$DOTSHELL/ctags.sh"
 source "$DOTSHELL/less.sh"
 

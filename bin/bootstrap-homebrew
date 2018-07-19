@@ -48,7 +48,6 @@ CORE_PKGS=(
   source-highlight
   sshfs
   the_silver_searcher
-  thefuck
   tmux
   tree
   watch
