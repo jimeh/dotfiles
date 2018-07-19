@@ -47,9 +47,6 @@ source "$DOTSHELL/docker.sh"
 source "$DOTSHELL/google-cloud.sh"
 source "$DOTSHELL/kubernetes.sh"
 
-# Applications
-source "$DOTSHELL/cgminer.sh"
-
 # Services
 source "$DOTSHELL/services.sh"
 
