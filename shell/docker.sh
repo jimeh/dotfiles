@@ -2,8 +2,6 @@
 # Docker Related
 #
 
-alias docker-cloud="docker run -it -v ~/.docker:/root/.docker:ro --rm dockercloud/cli"
-
 alias d="docker"
 alias dc="docker-compose"
 alias co="docker-compose"
