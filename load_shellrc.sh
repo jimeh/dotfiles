@@ -1,1 +1,1 @@
-source "$HOME/.dotfiles/shellrc.sh"
+source "$HOME/.dotfiles/zshrc.zsh"

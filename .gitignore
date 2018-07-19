@@ -1,10 +1,12 @@
 .AppleDouble
-Icon*
+.SyncArchive/*
 .SyncID
 .SyncIgnore
-.SyncArchive/*
 .dropbox
+Icon*
 bin/boot2docker.iso
 bundle/cache/*
 private/*
 tmux/plugins/*
+zsh/zplug/cache/*
+zsh/zplug/repos/*

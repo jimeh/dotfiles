@@ -16,13 +16,14 @@ if [ -f "/usr/local/etc/bash_completion.d/tmux" ]; then
 fi
 
 # Tmuxifier
-if [ -d "$DOTSHELL/tmux/tmuxifier" ]; then
-  if [ -d "$HOME/.dotfiles/private/tmux-layouts" ]; then
-    export TMUXIFIER_LAYOUT_PATH="$HOME/.dotfiles/private/tmux-layouts"
+if [ -d "$DOTFILES/tmux/tmuxifier" ]; then
+  if [ -d "$DOTPFILES/tmux-layouts" ]; then
+    export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
   else
     export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
   fi
-  path_prepend "$DOTSHELL/tmux/tmuxifier/bin"
+
+  path_prepend "$DOTFILES/tmux/tmuxifier/bin"
   eval "$(tmuxifier init -)"
 
   alias m="tmuxifier"
@@ -33,6 +34,6 @@ fi
 
 use-tmuxifier-dev() {
   path_prepend "$HOME/Projects/tmuxifier/bin"
-  path_remove "$DOTSHELL/tmux/tmuxifier/bin"
+  path_remove "$DOTFILES/tmux/tmuxifier/bin"
   export TMUXIFIER="$HOME/Projects/tmuxifier"
 }

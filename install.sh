@@ -32,7 +32,7 @@ SYMLINKS=(
   tmux
   tmux.conf
 )
-LOAD_FILES=(profile zshrc)
+LOAD_FILES=(zshrc)
 
 
 #

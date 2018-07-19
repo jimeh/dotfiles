@@ -4,15 +4,12 @@
 [submodule "private"]
 	path = private
 	url = git@bitbucket.org:jimeh/dotfiles-private.git
-[submodule "shell/tmux/tmuxifier"]
-	path = shell/tmux/tmuxifier
+[submodule "tmux/tmuxifier"]
+	path = tmux/tmuxifier
 	url = git@github.com:jimeh/tmuxifier.git
-[submodule "shell/bash/git-aware-prompt"]
-	path = shell/bash/git-aware-prompt
-	url = git@github.com:jimeh/git-aware-prompt.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "shell/zsh/zplug"]
-	path = shell/zsh/zplug
+[submodule "zsh/zplug/zplug"]
+	path = zsh/zplug/zplug
 	url = https://github.com/zplug/zplug
