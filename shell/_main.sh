@@ -48,7 +48,6 @@ source "$DOTSHELL/google-cloud.sh"
 source "$DOTSHELL/kubernetes.sh"
 
 # Applications
-source "$DOTSHELL/rtorrent.sh"
 source "$DOTSHELL/cgminer.sh"
 
 # Services
