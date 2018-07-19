@@ -47,18 +47,8 @@ if [ -n "$BASH_VERSION" ]; then
   alias bcn="bundle clean"
 fi
 
-# Load rbenv or RVM depending on which is available
-if [ -d "$HOME/.rbenv/bin" ]; then
-  path_prepend "$HOME/.rbenv/bin"
-fi
-
 if [ -n "$(command -v rbenv)" ]; then
-  eval "$(rbenv init -)"
-fi
-
-if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-  path_append "$HOME/.rvm/bin"
-  source "$HOME/.rvm/scripts/rvm"
+  eval "$(rbenv init --no-rehash -)"
 fi
 
 # lunchy auto-completion
