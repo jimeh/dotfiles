@@ -21,17 +21,14 @@ UNBUNDLED_COMMANDS=(shotgun)
 source "$DOTZSH/zplug/init.zsh"
 alias zp="zplug"
 
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
-
+zplug "lib/history", from:oh-my-zsh, defer:0
+zplug "jimeh/zsh-peco-history", defer:2
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
-zplug "jimeh/zsh-peco-history", defer:2
-zplug "b4b4r07/enhancd", use:"init.sh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
-# zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
 zplug "jimeh/plain.zsh-theme", as:theme
 
 # Install plugins if there are plugins that have not been installed
@@ -43,19 +40,12 @@ if ! zplug check --verbose; then
   fi
 fi
 
-if zplug check "b4b4r07/enhancd"; then
-  export ENHANCD_COMMAND=c
-  export ENHANCD_FILTER="fzf:peco --layout=bottom-up"
-fi
-
 # Configure zsh-syntax-highlighting
 if zplug check zsh-users/zsh-syntax-highlighting; then
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 fi
 
 zplug load
-
-# source "$DOTZSH/themes/plain/plain.zsh-theme"
 
 #
 # Basic Z-Shell settings
