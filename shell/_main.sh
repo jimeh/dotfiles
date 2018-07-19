@@ -47,8 +47,5 @@ source "$DOTSHELL/docker.sh"
 source "$DOTSHELL/google-cloud.sh"
 source "$DOTSHELL/kubernetes.sh"
 
-# Services
-source "$DOTSHELL/services.sh"
-
 # Environment Setup
 source "$DOTSHELL/env.sh"

@@ -34,6 +34,9 @@ alias open_ports="sudo lsof -i -P | grep --color=never -i \"listen\""
 alias ap="ansible-playbook"
 alias av="ansible-vault"
 
+# Flush DNS cache
+alias flush_dns="dscacheutil -flushcache"
+
 # Misc.
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
