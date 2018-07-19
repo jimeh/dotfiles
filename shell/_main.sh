@@ -46,7 +46,6 @@ source "$DOTSHELL/golang.sh"
 source "$DOTSHELL/docker.sh"
 source "$DOTSHELL/google-cloud.sh"
 source "$DOTSHELL/kubernetes.sh"
-source "$DOTSHELL/travis-ci.sh"
 source "$DOTSHELL/amdsdk.sh"
 
 # Applications
