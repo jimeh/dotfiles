@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+set -e
+
+main() {
+  local ref="$1"
+  local commits
+  local files
+
+  [ -z "$ref" ] && ref="HEAD"
+  commits="$(git rev-list "$ref")"
+
+  for commit in $commits; do
+    files="$(git diff-tree --no-commit-id --name-only -r $commit)"
+    for file in $files; do
+      echo "${commit}: $file"
+    done
+  done
+}
+
+main "$@"
