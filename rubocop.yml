@@ -1,8 +1,8 @@
-AllCops:
-  TargetRubyVersion: 2.1
+# AllCops:
+#   TargetRubyVersion: 2.1
 
-Rails:
-  Enabled: true
+# Rails:
+#   Enabled: true
 
 Documentation:
   Enabled: false
