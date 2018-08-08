@@ -32,9 +32,4 @@ install_node_global_packages () {
 # Load nvm if it's available
 if [ -f "$HOME/.nvm/nvm.sh" ]; then
   source "$HOME/.nvm/nvm.sh"
-
-  # And it's shell completion
-  if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.nvm/bash_completion" ]; then
-    source "$HOME/.nvm/bash_completion"
-  fi
 fi
