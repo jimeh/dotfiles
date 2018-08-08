@@ -50,23 +50,6 @@ if [[ $TMPDIR == "/var/folders/"* ]] || [[ $TMPDIR == "" ]]; then
 fi
 
 # ==============================================================================
-# Basic Z-Shell settings
-# ==============================================================================
-
-# Disable auto-title.
-DISABLE_AUTO_TITLE="true"
-
-# Enable bash-style completion.
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
-# Disable shared history.
-unsetopt share_history
-
-# Disable attempted correction of commands (is wrong 98% of the time).
-unsetopt correctall
-
-# ==============================================================================
 # zplug
 # ==============================================================================
 
@@ -104,6 +87,14 @@ fi
 zplug load
 
 # ==============================================================================
+# Bash compatibility
+# ==============================================================================
+
+# Enable bash-style completion.
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+# ==============================================================================
 # Load custom scripts
 # ==============================================================================
 
@@ -132,3 +123,16 @@ source "$DOTZSH/kubernetes.zsh"
 if [ -f "$DOTPFILES/shellrc.sh" ]; then
   source "$DOTPFILES/shellrc.sh"
 fi
+
+# ==============================================================================
+# Basic Z-Shell settings
+# ==============================================================================
+
+# Disable auto-title.
+DISABLE_AUTO_TITLE="true"
+
+# Disable shared history.
+unsetopt share_history
+
+# Disable attempted correction of commands (is wrong 98% of the time).
+unsetopt correctall
