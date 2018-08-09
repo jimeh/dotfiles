@@ -91,6 +91,7 @@ PERSONAL_PKGS=(
   ethereum-wallet
   filebot
   gog-galaxy
+  goofy
   google-photos-backup-and-sync
   hackety-hack
   handbrake
