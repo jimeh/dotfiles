@@ -12,7 +12,7 @@ alias ll="ls -lah"
 alias duh="du -h"
 
 # Helpers
-alias reload="source ~/.profile"
+alias reload="exec $SHELL -l"
 
 # Editors
 alias n="nano"

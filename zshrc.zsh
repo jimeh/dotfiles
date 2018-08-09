@@ -87,12 +87,14 @@ fi
 zplug load
 
 # ==============================================================================
-# Bash compatibility
+# Completion
 # ==============================================================================
 
 # Enable bash-style completion.
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+
+fpath=("$DOTZSH/completion" "${fpath[@]}")
 
 # ==============================================================================
 # Load custom scripts
