@@ -145,7 +145,7 @@ function wm:init ()
   )
 
   -- move to screen above
-  bind({'cmd', 'ctrl'}, 'P',
+  bind({'cmd', 'ctrl', 'alt'}, '.',
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenNorth()
@@ -154,7 +154,7 @@ function wm:init ()
   )
 
   -- move to screen bellow
-  bind({'cmd', 'ctrl'}, 'N',
+  bind({'cmd', 'ctrl', 'alt'}, ',',
     function ()
       local win = hs.window.focusedWindow()
       win:moveOneScreenSouth()
