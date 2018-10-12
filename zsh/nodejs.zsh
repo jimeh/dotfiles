@@ -22,6 +22,7 @@ install_node_global_packages () {
       localtunnel \
       markdown-it \
       prettier \
+      stylelint \
       tldr \
       tslint \
       typescript \
