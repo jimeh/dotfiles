@@ -4,7 +4,9 @@
 
 install_ruby_global_packages () {
   gem install --no-rdoc --no-ri \
+      brakeman \
       bundler \
+      bundler-audit \
       foreman \
       lunchy \
       method_source \
@@ -12,8 +14,7 @@ install_ruby_global_packages () {
       rbenv-rehash \
       reek \
       rubocop \
-      seeing_is_believing \
-      travis
+      seeing_is_believing
 }
 
 # Aliases
