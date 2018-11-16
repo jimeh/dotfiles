@@ -114,13 +114,14 @@ source "$DOTZSH/tmux.zsh"
 source "$DOTZSH/less.zsh"
 
 # Development
+source "$DOTZSH/android-sdk.zsh"
+source "$DOTZSH/docker.zsh"
+source "$DOTZSH/golang.zsh"
+source "$DOTZSH/google-cloud.zsh"
+source "$DOTZSH/kubernetes.zsh"
 source "$DOTZSH/nodejs.zsh"
 source "$DOTZSH/ruby.zsh"
 source "$DOTZSH/rust.zsh"
-source "$DOTZSH/golang.zsh"
-source "$DOTZSH/docker.zsh"
-source "$DOTZSH/google-cloud.zsh"
-source "$DOTZSH/kubernetes.zsh"
 
 if [ -f "$DOTPFILES/shellrc.sh" ]; then
   source "$DOTPFILES/shellrc.sh"
