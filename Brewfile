@@ -17,7 +17,6 @@ brew 'ctop'
 brew 'dep'
 brew 'dpkg'
 brew 'geckodriver'
-brew 'get_iplayer'
 brew 'git-crypt'
 brew 'git-standup'
 brew 'git'
@@ -54,6 +53,23 @@ brew 'wget'
 brew 'yank'
 brew 'yarn'
 brew 'zsh'
+
+brew 'ffmpeg', args: [
+  'with-chromaprint',
+  'with-fdk-aac',
+  'with-libass',
+  'with-librsvg',
+  'with-libsoxr',
+  'with-libssh',
+  'with-libvidstab',
+  'with-openh264',
+  'with-openssl',
+  'with-rubberband',
+  'with-srt',
+  'with-tesseract',
+  'with-webp'
+]
+brew 'get_iplayer'
 
 cask 'osxfuse'
 brew 'sshfs'
@@ -126,6 +142,7 @@ cask 'visual-studio-code'
 # Personal Apps
 if `hostname -s`.strip == 'noct'
   cask '4k-video-downloader'
+  cask 'adobe-creative-cloud'
   cask 'android-file-transfer'
   cask 'android-platform-tools'
   cask 'audio-hijack'
