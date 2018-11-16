@@ -11,6 +11,7 @@ alias gv="govendor"
 
 install_go_global_packages () {
   local packages=(
+    github.com/akavel/up
     github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
     github.com/derekparker/delve/cmd/dlv
