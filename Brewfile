@@ -206,4 +206,14 @@ if `hostname -s`.strip == 'noct'
   cask 'witgui'
   cask 'xld'
   cask 'yakyak'
+
+  mas 'Apple Remote Desktop', id: 409_907_375
+  mas 'Awaken', id: 404_221_531
+  mas 'HTTP Client', id: 418_138_339
+  mas 'HiddenMe', id: 467_040_476
+  mas 'Medis', id: 1_063_631_769
+  mas 'Pocket', id: 568_494_494
+  mas 'Reeder 3', id: 880_001_334
+  mas 'Textual 7', id: 1_262_957_439
+  mas 'feedly', id: 865_500_966
 end
