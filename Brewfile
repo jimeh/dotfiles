@@ -1,6 +1,7 @@
 # rubocop:disable Naming/FileName
 
 cask_args appdir: '/Applications'
+tap 'alecthomas/homebrew-tap'
 tap 'goreleaser/tap'
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
@@ -24,6 +25,7 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
+brew 'gometalinter'
 brew 'goreleaser'
 brew 'heroku'
 brew 'htop'
@@ -37,6 +39,7 @@ brew 'luarocks'
 brew 'mysql'
 brew 'openshift-cli'
 brew 'peco'
+brew 'pgformatter'
 brew 'postgresql'
 brew 'pyenv'
 brew 'rbenv'
@@ -214,6 +217,7 @@ if `hostname -s`.strip == 'noct'
   mas 'HTTP Client', id: 418_138_339
   mas 'HiddenMe', id: 467_040_476
   mas 'Medis', id: 1_063_631_769
+  mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
   mas 'Textual 7', id: 1_262_957_439
