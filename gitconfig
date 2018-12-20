@@ -2,6 +2,8 @@
 	name = Jim Myhrberg
 	email = contact@jimeh.me
 	signingkey = contact@jimeh.me
+[commit]
+	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore
 	hooksPath = ~/.githooks
