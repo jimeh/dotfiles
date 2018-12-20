@@ -12,16 +12,16 @@ alias gv="govendor"
 install_go_global_packages () {
   local packages=(
     github.com/akavel/up
-    github.com/alecthomas/gometalinter
     github.com/asciimoo/wuzz
     github.com/derekparker/delve/cmd/dlv
     github.com/golang/lint/golint
     github.com/kisielk/errcheck
     github.com/kr/pretty
+    github.com/mdempsky/gocode
     github.com/mdempsky/unconvert
-    github.com/nsf/gocode
     github.com/rakyll/hey
     github.com/rogpeppe/godef
+    github.com/sourcegraph/go-langserver
     github.com/spf13/cobra/cobra
     github.com/vektra/mockery/.../
     golang.org/x/tools/cmd/godoc
@@ -34,6 +34,4 @@ install_go_global_packages () {
     echo "installing/updating \"$package\""
     go get -u "$package"
   done
-
-  gometalinter --install
 }

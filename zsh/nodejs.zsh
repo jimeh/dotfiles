@@ -12,12 +12,15 @@ alias tl="tldr"
 
 install_node_global_packages () {
   npm install -g \
+      appcenter-cli \
+      bash-language-server \
       eslint \
       eslint-config-prettier \
       eslint-plugin-prettier \
       eslint_d \
       htmllint-cli \
       httpsnippet \
+      javascript-typescript-langserver \
       jsonlint \
       localtunnel \
       markdown-it \
@@ -27,7 +30,8 @@ install_node_global_packages () {
       tslint \
       typescript \
       typescript-formatter \
-      uuid-cli
+      uuid-cli \
+      vscode-css-languageserver-bin
 }
 
 # Load nvm if it's available

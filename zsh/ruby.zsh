@@ -14,7 +14,8 @@ install_ruby_global_packages () {
       rbenv-rehash \
       reek \
       rubocop \
-      seeing_is_believing
+      seeing_is_believing \
+      solargraph
 }
 
 # Aliases
