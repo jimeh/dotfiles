@@ -1,7 +1,9 @@
+# rubocop:disable Naming/FileName
+
 cask_args appdir: '/Applications'
 tap 'goreleaser/tap'
-tap 'homebrew/cask-drivers'
 tap 'homebrew/cask'
+tap 'homebrew/cask-drivers'
 
 #
 # Command-Line Tools (Brew)
@@ -17,9 +19,9 @@ brew 'ctop'
 brew 'dep'
 brew 'dpkg'
 brew 'geckodriver'
+brew 'git'
 brew 'git-crypt'
 brew 'git-standup'
-brew 'git'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
 brew 'goreleaser'
@@ -217,3 +219,5 @@ if `hostname -s`.strip == 'noct'
   mas 'Textual 7', id: 1_262_957_439
   mas 'feedly', id: 865_500_966
 end
+
+# rubocop:enable Naming/FileName
