@@ -14,7 +14,6 @@ install_go_global_packages () {
     github.com/akavel/up
     github.com/asciimoo/wuzz
     github.com/derekparker/delve/cmd/dlv
-    github.com/golang/lint/golint
     github.com/kisielk/errcheck
     github.com/kr/pretty
     github.com/mdempsky/gocode

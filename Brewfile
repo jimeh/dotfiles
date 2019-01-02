@@ -1,7 +1,7 @@
 # rubocop:disable Naming/FileName
 
 cask_args appdir: '/Applications'
-tap 'alecthomas/homebrew-tap'
+tap 'golangci/tap'
 tap 'goreleaser/tap'
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
@@ -25,7 +25,7 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
-brew 'gometalinter'
+brew 'golangci-lint'
 brew 'goreleaser'
 brew 'heroku'
 brew 'htop'
