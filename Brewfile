@@ -209,7 +209,6 @@ if `hostname -s`.strip == 'noct'
   cask 'whatsapp'
   cask 'witgui'
   cask 'xld'
-  cask 'yakyak'
 
   mas 'Apple Remote Desktop', id: 409_907_375
   mas 'Awaken', id: 404_221_531
