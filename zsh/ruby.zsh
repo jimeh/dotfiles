@@ -3,7 +3,7 @@
 #
 
 install_ruby_global_packages () {
-  gem install --no-rdoc --no-ri \
+  gem install --no-document \
       brakeman \
       bundler \
       bundler-audit \
