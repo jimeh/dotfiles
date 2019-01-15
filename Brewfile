@@ -1,8 +1,6 @@
 # rubocop:disable Naming/FileName
 
 cask_args appdir: '/Applications'
-tap 'golangci/tap'
-tap 'goreleaser/tap'
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
 
@@ -25,8 +23,6 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
-brew 'golangci-lint'
-brew 'goreleaser'
 brew 'heroku'
 brew 'htop'
 brew 'httpie'
@@ -36,6 +32,7 @@ brew 'kubernetes-helm'
 brew 'less'
 brew 'lua'
 brew 'luarocks'
+brew 'mkvtoolnix'
 brew 'mysql'
 brew 'openshift-cli'
 brew 'peco'
@@ -58,6 +55,15 @@ brew 'wget'
 brew 'yank'
 brew 'yarn'
 brew 'zsh'
+
+tap 'golangci/tap'
+brew 'golangci-lint'
+
+tap 'goreleaser/tap'
+brew 'goreleaser'
+
+tap 'nektos/tap'
+brew 'act'
 
 brew 'ffmpeg', args: [
   'with-chromaprint',
@@ -148,11 +154,13 @@ cask 'visual-studio-code'
 if `hostname -s`.strip == 'noct'
   cask '4k-video-downloader'
   cask 'adobe-creative-cloud'
+  cask 'aegisub'
   cask 'android-file-transfer'
   cask 'android-platform-tools'
   cask 'audio-hijack'
   cask 'authy'
   cask 'autodmg'
+  cask 'avidemux'
   cask 'balenaetcher'
   cask 'boom-3d'
   cask 'calibre'
@@ -175,6 +183,7 @@ if `hostname -s`.strip == 'noct'
   cask 'makemkv'
   cask 'messenger'
   cask 'micro-snitch'
+  cask 'mkvtoolnix-app'
   cask 'monodraw'
   cask 'omnigraffle'
   cask 'openemu'
@@ -219,6 +228,7 @@ if `hostname -s`.strip == 'noct'
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
   mas 'Textual 7', id: 1_262_957_439
+  mas 'Wire', id: 931_134_707
   mas 'feedly', id: 865_500_966
 end
 
