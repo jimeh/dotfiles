@@ -108,6 +108,9 @@ cask 'stay'
 cask 'ubersicht'
 cask 'vlc'
 
+tap 'homebrew/cask-fonts'
+cask 'font-menlo-for-powerline'
+
 # Work Apps
 cask 'atom'
 cask 'bbedit'
