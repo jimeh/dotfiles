@@ -242,4 +242,8 @@ if `hostname -s`.strip == 'noct'
   mas 'feedly', id: 865_500_966
 end
 
+if `hostname -s`.strip == 'UAC00013'
+  cask 'microsoft-teams'
+end
+
 # rubocop:enable Naming/FileName
