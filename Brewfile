@@ -23,7 +23,6 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
-brew 'heroku'
 brew 'htop'
 brew 'httpie'
 brew 'jq'
@@ -56,14 +55,21 @@ brew 'yank'
 brew 'yarn'
 brew 'zsh'
 
+# Custom taps
+
 tap 'golangci/tap'
 brew 'golangci-lint'
 
 tap 'goreleaser/tap'
 brew 'goreleaser'
 
+tap 'heroku/brew'
+brew 'heroku'
+
 tap 'nektos/tap'
 brew 'act'
+
+# sshfs requires osxfuse
 
 cask 'osxfuse'
 brew 'sshfs'
