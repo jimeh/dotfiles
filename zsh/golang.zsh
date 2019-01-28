@@ -2,12 +2,8 @@
 # Go (golang) environment setup.
 #
 
-export GOPATH="$HOME/.go:$HOME/Projects/Go"
-path_prepend "$HOME/.go/bin"
-path_prepend "$HOME/Projects/Go/bin"
-
-# aliases
-alias gv="govendor"
+export GOPATH="$HOME/.go"
+path_prepend "$GOPATH/bin"
 
 install_go_global_packages () {
   local packages=(
@@ -16,12 +12,12 @@ install_go_global_packages () {
     github.com/derekparker/delve/cmd/dlv
     github.com/kisielk/errcheck
     github.com/kr/pretty
-    github.com/mdempsky/gocode
     github.com/mdempsky/unconvert
     github.com/rakyll/hey
     github.com/rogpeppe/godef
-    github.com/sourcegraph/go-langserver
+    github.com/saibing/bingo
     github.com/spf13/cobra/cobra
+    github.com/stamblerre/gocode
     github.com/vektra/mockery/.../
     golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
