@@ -65,23 +65,6 @@ brew 'goreleaser'
 tap 'nektos/tap'
 brew 'act'
 
-brew 'ffmpeg', args: [
-  'with-chromaprint',
-  'with-fdk-aac',
-  'with-libass',
-  'with-librsvg',
-  'with-libsoxr',
-  'with-libssh',
-  'with-libvidstab',
-  'with-openh264',
-  'with-openssl',
-  'with-rubberband',
-  'with-srt',
-  'with-tesseract',
-  'with-webp'
-]
-brew 'get_iplayer'
-
 cask 'osxfuse'
 brew 'sshfs'
 
@@ -111,11 +94,7 @@ cask 'logitech-gaming-software'
 cask 'logitech-options'
 cask 'mplayerx'
 cask 'name-mangler'
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'qlstephen'
 cask 'resolutionator'
-cask 'scroll-reverser'
 cask 'stay'
 cask 'ubersicht'
 cask 'vlc'
@@ -136,7 +115,6 @@ cask 'kaleidoscope'
 cask 'licecap'
 cask 'minikube'
 cask 'minishift'
-cask 'muzzle'
 cask 'paw'
 cask 'postico'
 cask 'postman'
@@ -144,7 +122,6 @@ cask 'robo-3t'
 cask 'rowanj-gitx'
 cask 'sequel-pro'
 cask 'slack'
-cask 'trailer'
 cask 'transmit'
 cask 'vagrant'
 cask 'virtualbox'
@@ -152,6 +129,23 @@ cask 'visual-studio-code'
 
 # Personal Apps
 if `hostname -s`.strip == 'noct'
+  brew 'ffmpeg', args: [
+    'with-chromaprint',
+    'with-fdk-aac',
+    'with-libass',
+    'with-librsvg',
+    'with-libsoxr',
+    'with-libssh',
+    'with-libvidstab',
+    'with-openh264',
+    'with-openssl',
+    'with-rubberband',
+    'with-srt',
+    'with-tesseract',
+    'with-webp'
+  ]
+  brew 'get_iplayer'
+
   cask '4k-video-downloader'
   cask 'adobe-creative-cloud'
   cask 'aegisub'
@@ -165,6 +159,7 @@ if `hostname -s`.strip == 'noct'
   cask 'boom-3d'
   cask 'calibre'
   cask 'chicken'
+  cask 'chromedriver'
   cask 'daisydisk'
   cask 'deluge'
   cask 'discord'
@@ -185,20 +180,25 @@ if `hostname -s`.strip == 'noct'
   cask 'micro-snitch'
   cask 'mkvtoolnix-app'
   cask 'monodraw'
+  cask 'muzzle'
   cask 'omnigraffle'
   cask 'openemu'
   cask 'parallels'
   cask 'peakhour'
   cask 'plex-media-player'
   cask 'pocket-casts'
+  cask 'qlcolorcode'
   cask 'qlimagesize'
+  cask 'qlmarkdown'
   cask 'qlprettypatch'
+  cask 'qlstephen'
   cask 'qlvideo'
   cask 'quicklook-csv'
   cask 'quicklook-json'
   cask 'quicklookapk'
   cask 'rclone-browser'
   cask 'ring'
+  cask 'scroll-reverser'
   cask 'sixtyforce'
   cask 'skitch'
   cask 'skyfonts'
@@ -208,6 +208,7 @@ if `hostname -s`.strip == 'noct'
   cask 'steam'
   cask 'suspicious-package'
   cask 'teamviewer'
+  cask 'trailer'
   cask 'transmission'
   cask 'virtualc64'
   cask 'viscosity'
