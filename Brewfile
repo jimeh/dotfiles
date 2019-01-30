@@ -130,6 +130,7 @@ cask 'insomnia'
 cask 'java'
 cask 'kaleidoscope'
 cask 'licecap'
+cask 'microsoft-teams'
 cask 'minikube'
 cask 'minishift'
 cask 'paw'
@@ -245,10 +246,6 @@ if hostname == 'noct'
   mas 'Textual 7', id: 1_262_957_439
   mas 'Wire', id: 931_134_707
   mas 'feedly', id: 865_500_966
-end
-
-if `hostname -s`.strip == 'UAC00013'
-  cask 'microsoft-teams'
 end
 
 # rubocop:enable Naming/FileName
