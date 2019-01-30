@@ -1,5 +1,10 @@
 # rubocop:disable Naming/FileName
 
+#
+# Setup
+#
+
+hostname = `hostname -s`.strip
 cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
@@ -139,8 +144,8 @@ cask 'vagrant'
 cask 'virtualbox'
 cask 'visual-studio-code'
 
-# Personal Apps
-if `hostname -s`.strip == 'noct'
+# noct
+if hostname == 'noct'
   brew 'ffmpeg', args: [
     'with-chromaprint',
     'with-fdk-aac',
