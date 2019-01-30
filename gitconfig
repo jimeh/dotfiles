@@ -46,6 +46,8 @@
 	prompt = false
 [diff]
 	tool = Kaleidoscope
+[diff "sopsdiffer"]
+	textconv = sops -d
 [credential]
 	helper = osxkeychain
 [filter "media"]
