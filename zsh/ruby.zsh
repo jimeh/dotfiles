@@ -5,7 +5,8 @@
 install_ruby_global_packages () {
   gem install --no-document \
       brakeman \
-      bundler \
+      'bundler:~> 2.0' \
+      'bundler:~> 1.0' \
       bundler-audit \
       foreman \
       lunchy \
