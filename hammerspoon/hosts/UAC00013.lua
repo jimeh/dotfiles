@@ -8,7 +8,7 @@ function obj.init()
   apptoggle:bind({'cmd', 'ctrl'}, 'B', 'Sequel Pro')
   apptoggle:bind({'cmd', 'ctrl'}, 'D', 'Mail')
   apptoggle:bind({'cmd', 'ctrl'}, 'E', 'Emacs', '/Applications/Emacs.app')
-  apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Calendar')
+  apptoggle:bind({'cmd', 'ctrl'}, 'C', 'Calendar')
   apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Microsoft Teams')
 end
 
