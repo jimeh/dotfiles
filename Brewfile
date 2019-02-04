@@ -27,6 +27,7 @@ brew 'git'
 brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
+brew 'gnu-getopt'
 brew 'go'
 brew 'htop'
 brew 'httpie'
