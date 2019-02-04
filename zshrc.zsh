@@ -110,9 +110,10 @@ source "$DOTZSH/linux.zsh"
 # Utils
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/git.zsh"
+source "$DOTZSH/gnu-getopt.zsh"
 source "$DOTZSH/homebrew.zsh"
-source "$DOTZSH/tmux.zsh"
 source "$DOTZSH/less.zsh"
+source "$DOTZSH/tmux.zsh"
 
 # Development
 source "$DOTZSH/android-sdk.zsh"

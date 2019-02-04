@@ -27,7 +27,6 @@ brew 'git'
 brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
-brew 'gnu-getopt'
 brew 'go'
 brew 'htop'
 brew 'httpie'
@@ -248,6 +247,10 @@ if hostname == 'noct'
   mas 'Textual 7', id: 1_262_957_439
   mas 'Wire', id: 931_134_707
   mas 'feedly', id: 865_500_966
+end
+
+if hostname == 'UAC00013'
+  brew 'gnu-getopt'
 end
 
 # rubocop:enable Naming/FileName
