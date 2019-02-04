@@ -37,6 +37,7 @@ brew 'less'
 brew 'lua'
 brew 'luarocks'
 brew 'mariadb'
+brew 'mas'
 brew 'mkvtoolnix'
 brew 'openshift-cli'
 brew 'peco'
@@ -251,6 +252,9 @@ end
 
 if hostname == 'UAC00013'
   brew 'gnu-getopt'
+
+  mas 'Microsoft Remote Desktop 8', id: 715_768_417
+  mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
 end
 
 # rubocop:enable Naming/FileName
