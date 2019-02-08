@@ -14,7 +14,7 @@ function obj.init()
   apptoggle:bind({'cmd', 'ctrl'}, 'F', 'Messenger')
   apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Keybase')
   apptoggle:bind({'cmd', 'ctrl'}, 'T', 'IRCCloud')
-  apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
+  apptoggle:bind({'cmd', 'ctrl'}, 'W', 'Microsoft Teams')
   apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Things')
   apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
 end
