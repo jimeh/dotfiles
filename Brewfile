@@ -31,8 +31,6 @@ brew 'go'
 brew 'htop'
 brew 'httpie'
 brew 'jq'
-brew 'kubernetes-cli'
-brew 'kubernetes-helm'
 brew 'less'
 brew 'lua'
 brew 'luarocks'
@@ -164,6 +162,9 @@ if hostname == 'noct'
     'with-webp'
   ]
   brew 'get_iplayer'
+
+  brew 'kubernetes-cli'
+  brew 'kubernetes-helm'
 
   cask '4k-video-downloader'
   cask 'adobe-creative-cloud'
