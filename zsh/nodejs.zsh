@@ -21,6 +21,7 @@ install_node_global_packages () {
       htmllint-cli \
       httpsnippet \
       javascript-typescript-langserver \
+      js-beautify \
       jsonlint \
       localtunnel \
       markdown-it \
