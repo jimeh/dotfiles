@@ -8,8 +8,9 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 install_rust_global_packages() {
-  rustup component add rustfmt-preview
-  rustup component add rust-src
-  cargo +nightly install --force clippy
-  cargo install --force racer
+  rustup component add \
+         rls \
+         rust-analysis \
+         rust-src \
+         rustfmt \
 }
