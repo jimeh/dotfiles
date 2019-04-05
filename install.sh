@@ -11,6 +11,7 @@ PRIVATE_PATH="private"
 SYMLINKS=(
   ackrc
   alacritty.yml
+  bitbar
   bundle
   coffeelint.json
   emacs.d
