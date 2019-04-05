@@ -165,6 +165,8 @@ if hostname == 'noct'
   ]
   brew 'get_iplayer'
 
+  brew 'blueutil'
+  brew 'circleci'
   brew 'kubernetes-cli'
   brew 'kubernetes-helm'
 
