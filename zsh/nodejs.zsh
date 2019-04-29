@@ -27,7 +27,6 @@ install_node_global_packages () {
       markdown-it \
       prettier \
       stylelint \
-      tldr \
       tslint \
       typescript \
       typescript-formatter \
