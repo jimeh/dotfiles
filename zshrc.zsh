@@ -61,6 +61,7 @@ source "$ZPLUG_HOME/init.zsh"
 alias zp="zplug"
 
 zplug "lib/history", from:oh-my-zsh, defer:1
+zplug "lib/completion", from:oh-my-zsh, defer:1
 zplug "jimeh/zsh-peco-history", defer:2
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
@@ -89,6 +90,9 @@ zplug load
 # ==============================================================================
 # Completion
 # ==============================================================================
+
+# Show menu and fix incorrect case immediately with the first tab key press
+setopt MENU_COMPLETE
 
 # Enable bash-style completion.
 autoload -Uz +X compinit && compinit
