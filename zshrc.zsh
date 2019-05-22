@@ -91,9 +91,6 @@ zplug load
 # Completion
 # ==============================================================================
 
-# Show menu and fix incorrect case immediately with the first tab key press
-setopt MENU_COMPLETE
-
 # Enable bash-style completion.
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
