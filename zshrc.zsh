@@ -119,6 +119,7 @@ source "$DOTZSH/tmux.zsh"
 # Development
 source "$DOTZSH/android-sdk.zsh"
 source "$DOTZSH/docker.zsh"
+source "$DOTZSH/flutter.zsh"
 source "$DOTZSH/golang.zsh"
 source "$DOTZSH/google-cloud.zsh"
 source "$DOTZSH/kubernetes.zsh"
