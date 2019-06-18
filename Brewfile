@@ -50,8 +50,6 @@ brew 'redis'
 brew 'ruby-build'
 brew 'rustup-init'
 brew 'shellcheck'
-brew 'skopeo'
-brew 'sops'
 brew 'source-highlight'
 brew 'telnet'
 brew 'the_silver_searcher'
@@ -262,6 +260,8 @@ end
 if hostname == 'UAC00013'
   brew 'gnu-getopt'
   brew 'packer'
+  brew 'skopeo'
+  brew 'sops'
 
   mas 'Microsoft Remote Desktop 8', id: 715_768_417
   mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
