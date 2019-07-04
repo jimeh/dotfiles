@@ -60,6 +60,18 @@ rbenv() {
   rbenv "$@"
 }
 
+rbenv-each-version () {
+  local current_version="$RBENV_VERSION"
+
+  for v in $(ls "${HOME}/.rbenv/versions"); do
+    echo "==> Ruby $v:"
+    export RBENV_VERSION="$v"
+    eval $*
+  done
+
+  export RBENV_VERSION="$current_version"
+}
+
 # lunchy auto-completion
 if which gem &> /dev/null && gem which lunchy &> /dev/null; then
   LUNCHY_DIR="$(dirname `gem which lunchy`)/../extras"
@@ -67,3 +79,17 @@ if which gem &> /dev/null && gem which lunchy &> /dev/null; then
     . "$LUNCHY_DIR/lunchy-completion.zsh"
   fi
 fi
+
+# Solargraph related commands
+
+solargraph-install () {
+  rbenv-each-version "gem install solargraph"
+}
+
+solargraph-download-cores () {
+  rbenv-each-version "solargraph download-core"
+}
+
+solargraph-list-versions () {
+  rbenv-each-version "gem list -q solargraph"
+}
