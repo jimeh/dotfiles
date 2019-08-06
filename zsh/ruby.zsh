@@ -93,3 +93,12 @@ solargraph-download-cores () {
 solargraph-list-versions () {
   rbenv-each-version "gem list -q solargraph"
 }
+
+rubygems-upgrade () {
+  rbenv-each-version "gem update --system"
+}
+
+upgrade-bundler () {
+  rbenv-each-version \
+    "gem install --no-document 'bundler:~> 1.0' 'bundler:~> 2.0'"
+}
