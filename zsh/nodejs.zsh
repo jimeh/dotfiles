@@ -13,7 +13,6 @@ alias tl="tldr"
 install_node_global_packages () {
   npm install -g \
       appcenter-cli \
-      bash-language-server \
       eslint \
       eslint-config-prettier \
       eslint-plugin-prettier \
