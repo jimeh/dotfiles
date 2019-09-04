@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Naming/FileName
-
 #
 # Setup
 #
@@ -30,6 +28,7 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global', args: ['with-ctags', 'with-pygments']
 brew 'go'
+brew 'highlight'
 brew 'htop'
 brew 'httpie'
 brew 'jq'
@@ -37,6 +36,8 @@ brew 'less'
 brew 'lua'
 brew 'luarocks'
 brew 'mas'
+brew 'mosh'
+brew 'node'
 brew 'peco'
 brew 'pgformatter'
 brew 'postgresql'
@@ -287,5 +288,3 @@ if hostname == 'UAC00013'
   mas 'Microsoft Remote Desktop 8', id: 715_768_417
   mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
 end
-
-# rubocop:enable Naming/FileName
