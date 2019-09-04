@@ -9,6 +9,7 @@ DOTFILES_LINK=".dotfiles"
 SYMLINK_PATH="$DOTFILES_LINK"
 PRIVATE_PATH="private"
 SYMLINKS=(
+  Brewfile
   ackrc
   alacritty.yml
   bitbar
