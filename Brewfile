@@ -15,7 +15,7 @@ tap 'homebrew/cask-drivers'
 
 brew 'ack'
 brew 'ansible'
-brew 'aspell', args: ['with-lang-el', 'with-lang-sv']
+brew 'aspell', args: %w[with-lang-el with-lang-sv]
 brew 'bash'
 brew 'bazaar'
 brew 'colordiff'
@@ -26,7 +26,7 @@ brew 'geckodriver'
 brew 'git'
 brew 'git-crypt'
 brew 'git-standup'
-brew 'global', args: ['with-ctags', 'with-pygments']
+brew 'global', args: %w[with-ctags with-pygments]
 brew 'go'
 brew 'highlight'
 brew 'htop'
@@ -169,20 +169,20 @@ cask 'visual-studio-code'
 
 # noct
 if hostname == 'noct'
-  brew 'ffmpeg', args: [
-    'with-chromaprint',
-    'with-fdk-aac',
-    'with-libass',
-    'with-librsvg',
-    'with-libsoxr',
-    'with-libssh',
-    'with-libvidstab',
-    'with-openh264',
-    'with-openssl',
-    'with-rubberband',
-    'with-srt',
-    'with-tesseract',
-    'with-webp'
+  brew 'ffmpeg', args: %w[
+    with-chromaprint
+    with-fdk-aac
+    with-libass
+    with-librsvg
+    with-libsoxr
+    with-libssh
+    with-libvidstab
+    with-openh264
+    with-openssl
+    with-rubberband
+    with-srt
+    with-tesseract
+    with-webp
   ]
   brew 'get_iplayer'
 
