@@ -15,7 +15,7 @@ tap 'homebrew/cask-drivers'
 
 brew 'ack'
 brew 'ansible'
-brew 'aspell', args: %w[with-lang-el with-lang-sv]
+brew 'aspell'
 brew 'bash'
 brew 'bazaar'
 brew 'colordiff'
@@ -26,7 +26,7 @@ brew 'geckodriver'
 brew 'git'
 brew 'git-crypt'
 brew 'git-standup'
-brew 'global', args: %w[with-ctags with-pygments]
+brew 'global'
 brew 'go'
 brew 'highlight'
 brew 'htop'
@@ -95,7 +95,7 @@ cask 'betterzip'
 cask 'bitbar'
 cask 'daisydisk'
 cask 'emacs'
-cask 'firefox-beta'
+cask 'firefox'
 cask 'fluid'
 cask 'flux'
 cask 'google-chrome'
@@ -170,7 +170,6 @@ cask 'visual-studio-code'
 # noct
 if hostname == 'noct'
   brew 'ffmpeg', args: %w[
-    with-chromaprint
     with-fdk-aac
     with-libass
     with-librsvg
@@ -261,7 +260,6 @@ if hostname == 'noct'
   cask 'wavebox'
   cask 'webpquicklook'
   cask 'whatsapp'
-  cask 'witgui'
   cask 'xld'
 
   mas 'Apple Remote Desktop', id: 409_907_375
