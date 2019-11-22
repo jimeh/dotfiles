@@ -8,6 +8,7 @@ hostname = `hostname -s`.strip
 cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
+tap 'homebrew/cask-versions'
 
 #
 # Command-Line Tools (Brew)
@@ -106,12 +107,11 @@ cask 'intel-power-gadget'
 cask 'istat-menus'
 cask 'iterm2'
 cask 'karabiner-elements'
-cask 'logitech-gaming-software'
 cask 'logitech-options'
 cask 'mplayerx'
 cask 'name-mangler'
 cask 'resolutionator'
-cask 'soulver'
+cask 'soulver2'
 cask 'stay'
 cask 'ubersicht'
 cask 'vlc'
@@ -229,6 +229,7 @@ if hostname == 'noct'
   cask 'openemu'
   cask 'parallels'
   cask 'peakhour'
+  cask 'plex'
   cask 'plex-media-player'
   cask 'pocket-casts'
   cask 'qlcolorcode'
@@ -271,7 +272,7 @@ if hostname == 'noct'
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
   mas 'Textual 7', id: 1_262_957_439
-  mas 'Wire', id: 931_134_707
+  mas 'Things 3', id: 904_280_696
   mas 'feedly', id: 865_500_966
 end
 
