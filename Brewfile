@@ -273,6 +273,7 @@ if hostname == 'noct'
   mas 'Reeder 3', id: 880_001_334
   mas 'Textual 7', id: 1_262_957_439
   mas 'Things 3', id: 904_280_696
+  mas 'WireGuard', id: 1_451_685_025
   mas 'feedly', id: 865_500_966
 end
 
