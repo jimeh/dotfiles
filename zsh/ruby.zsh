@@ -3,20 +3,23 @@
 #
 
 install_ruby_global_packages () {
-  gem install --no-document \
-      brakeman \
-      'bundler:~> 1.0' \
-      'bundler:~> 2.0' \
-      bundler-audit \
-      foreman \
-      lunchy \
-      method_source \
-      pry-doc \
-      rbenv-rehash \
-      reek \
-      rubocop \
-      seeing_is_believing \
-      solargraph
+  local packages=(
+    'bundler:~> 1.0'
+    'bundler:~> 2.0'
+    brakeman
+    bundler-audit
+    foreman
+    lunchy
+    method_source
+    pry-doc
+    rbenv-rehash
+    reek
+    rubocop
+    seeing_is_believing
+    solargraph
+  )
+
+  gem install --no-document "${packages[@]}"
 }
 
 # Aliases

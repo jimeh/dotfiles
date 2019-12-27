@@ -8,9 +8,12 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 install_rust_global_packages() {
-  rustup component add \
-         rls \
-         rust-analysis \
-         rust-src \
-         rustfmt \
+  local packages=(
+    rls
+    rust-analysis
+    rust-src
+    rustfmt
+  )
+
+  rustup component add "${packages[@]}"
 }

@@ -11,26 +11,29 @@ alias cof="coffee"
 alias tl="tldr"
 
 install_node_global_packages () {
-  npm install -g \
-      appcenter-cli \
-      eslint \
-      eslint-config-prettier \
-      eslint-plugin-prettier \
-      eslint_d \
-      htmllint-cli \
-      httpsnippet \
-      javascript-typescript-langserver \
-      js-beautify \
-      jsonlint \
-      localtunnel \
-      markdown-it \
-      prettier \
-      stylelint \
-      tslint \
-      typescript \
-      typescript-formatter \
-      uuid-cli \
-      vscode-css-languageserver-bin
+  local packages=(
+    appcenter-cli
+    eslint
+    eslint-config-prettier
+    eslint-plugin-prettier
+    eslint_d
+    htmllint-cli
+    httpsnippet
+    javascript-typescript-langserver
+    js-beautify
+    jsonlint
+    localtunnel
+    markdown-it
+    prettier
+    stylelint
+    tslint
+    typescript
+    typescript-formatter
+    uuid-cli
+    vscode-css-languageserver-bin
+  )
+
+  npm install -g "${packages[@]}"
 }
 
 # Load nvm if it's available
