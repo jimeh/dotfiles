@@ -6,6 +6,7 @@ install_python_global_packages () {
   local packages=(
     'ansible'
     'molecule[docker]'
+    'yamllint'
   )
 
   if (( $+commands[brew] )); then
