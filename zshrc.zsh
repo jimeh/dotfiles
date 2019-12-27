@@ -124,6 +124,7 @@ source "$DOTZSH/golang.zsh"
 source "$DOTZSH/google-cloud.zsh"
 source "$DOTZSH/kubernetes.zsh"
 source "$DOTZSH/nodejs.zsh"
+source "$DOTZSH/python.zsh"
 source "$DOTZSH/ruby.zsh"
 source "$DOTZSH/rust.zsh"
 
