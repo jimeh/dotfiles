@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Set sane defaults for QLColorCode QuickLook plugin
+      osx_defaults:
+        domain: org.n8gray.QLColorCode
+        key: extraHLFlags
+        type: string
+        value: '-l -W --kw-case=none'
+        state: present
