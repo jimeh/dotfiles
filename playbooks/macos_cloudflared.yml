@@ -6,19 +6,23 @@
         name: cloudflare/cloudflare
         state: present
       register: cloudflare_tap
+      tags: install
     - name: Update homebrew package list
       homebrew:
         update_homebrew: true
       when: cloudflare_tap.changed
+      tags: install
     - name: Install cloudflared
       homebrew:
         name: cloudflared
         update_homebrew: true
         state: present
+      tags: install
     - name: Create cloudflared config directory
       file:
         path: /usr/local/etc/cloudflared
         state: directory
+      tags: config
     - name: Create cloudflared config file
       copy:
         dest: /usr/local/etc/cloudflared/config.yaml
@@ -26,8 +30,18 @@
           proxy-dns: true
           proxy-dns-upstream:
             - https://dns.bah.io/dns-query
-    - debug:
-        msg: >-
-          To install and start cloudflared service run:
-          sudo cloudflared service install --
-          Then set the DNS server to 127.0.0.1 in System Preferences.
+      tags: config
+    - name: Start cloudflared service
+      shell:
+        cmd: cloudflared service install
+      become: true
+      tags:
+        - never
+        - start
+    - name: Stop cloudflared service
+      shell:
+        cmd: cloudflared service uninstall
+      become: true
+      tags:
+        - never
+        - stop
