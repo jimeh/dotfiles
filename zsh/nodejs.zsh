@@ -12,6 +12,9 @@ alias tl="tldr"
 
 install_node_global_packages () {
   local packages=(
+    @prettier/plugin-php
+    @prettier/plugin-ruby
+    @prettier/plugin-xml
     appcenter-cli
     eslint
     eslint-config-prettier
@@ -25,6 +28,7 @@ install_node_global_packages () {
     localtunnel
     markdown-it
     prettier
+    prettier-plugin-toml
     stylelint
     tslint
     typescript
