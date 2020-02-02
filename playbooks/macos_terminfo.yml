@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Ensure ~/.terminfo directory exists
+      file:
+        path: "{{ ansible_facts.env.HOME }}/.terminfo"
+        state: directory
+    - name: Create temporary file to store terminfo source
+      tempfile:
+      register: tempfile
+    - name: Populate temporary file with terminfo source
+      copy:
+        dest: "{{ tempfile.path }}"
+        content: |
+          # From [[info:efaq#Colors%20on%20a%20TTY][Colors on a TTY]]
+          # Use colon separators.
+          screen-24bit|screen with 24-bit direct color mode,
+            use=screen-256color,
+            setb24=\E[48:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
+            setf24=\E[38:2:%p1%{65536}%/%d:%p1%{256}%/%{255}%&%d:%p1%{255}%&%dm,
+          # Use semicolon separators.
+          screen-24bits|screen with 24-bit direct color mode,
+            use=screen-256color,
+            setb24=\E[48;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%dm,
+            setf24=\E[38;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%dm,
+    - name: Compile terminfo with system tic
+      command: tic -x {{ tempfile.path }}
+    - name: Remove temporary file
+      file:
+        state: absent
+        path: "{{ tempfile.path }}"
