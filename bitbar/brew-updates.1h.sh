@@ -9,7 +9,7 @@ exit_with_error() {
   exit 1;
 }
 
-/usr/local/bin/brew update > /dev/null || exit_with_error;
+/usr/local/bin/brew update > /dev/null #|| exit_with_error;
 
 PINNED=$(/usr/local/bin/brew list --pinned);
 OUTDATED=$(/usr/local/bin/brew outdated --quiet);
