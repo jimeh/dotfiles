@@ -39,19 +39,15 @@ alias cu="bundle exec cucumber"
 alias scu="RAILS_ENV=cucumber bundle exec spring cucumber"
 alias va="vagrant"
 
-alias bc="bundle check"
+# Bundler aliases
+alias bcn="bundle clean"
 alias bco="bundle console"
-
-if [ -n "$BASH_VERSION" ]; then
-  # Bundler aliases
-  alias be="bundle exec"
-  alias bl="bundle list"
-  alias bp="bundle package"
-  alias bo="bundle open"
-  alias bu="bundle update"
-  alias bi="bundle_install"
-  alias bcn="bundle clean"
-fi
+alias be="bundle exec"
+alias bi="bundle_install"
+alias bl="bundle list"
+alias bo="bundle open"
+alias bp="bundle package"
+alias bu="bundle update"
 
 # lazy-load rbenv
 if [ -d "$HOME/.rbenv/shims" ]; then
