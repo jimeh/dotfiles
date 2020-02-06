@@ -8,16 +8,10 @@
     <string>me.jimeh.logrotate</string>
     <key>ProgramArguments</key>
     <array>
-      <string>~/.dotfiles/bin/logrotate-ex</string>
+      <string>sh</string>
+      <string>-c</string>
+      <string>$HOME/.dotfiles/bin/logrotate-ex</string>
     </array>
-    <key>EnableGlobbing</key>
-    <true/>
-    <!-- -->
-    <key>StandardOutPath</key>
-    <string>~/Library/Logs/logrotate-ex.log</string>
-    <key>StandardErrorPath</key>
-    <string>~/Library/Logs/logrotate-ex.error.log</string>
-    <!-- -->
     <key>RunAtLoad</key>
     <false/>
     <key>EnvironmentVariables</key>
