@@ -122,20 +122,35 @@ install_dokku() {
 # Helper functions
 #
 
+ok() {
+  printf "OK:\t%s\n" "$1"
+}
+
+info() {
+  printf "INFO:\t%s\n" "$1"
+}
+
 symlink() {
-  if [ ! -e "$2" ]; then
-    echo "   symlink: $2 --> $1"
-    ln -s "$1" "$2"
+  local source="$1"
+  local target="$2"
+
+  if [ ! -e "$target" ]; then
+    ok "symlink: $target --> $source"
+    ln -s "$source" "$target"
   else
-    echo "    exists: $2"
+    info "symlink: $target exists"
   fi
 }
 
 git_clone () {
-  if [ ! -e "$2" ]; then
-    git clone "$1" "$2"
+  local clone_url="$1"
+  local target="$2"
+
+  if [ ! -e "$target" ]; then
+    git clone "$clone_url" "$target"
+    ok "git clone: $clone_url --> $target"
   else
-    echo "[ERROR] $2 already exists"
+    info "git clone: $target already exists"
   fi
 }
 
