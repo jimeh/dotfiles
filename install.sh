@@ -100,22 +100,6 @@ install_rbenv () {
   git_clone 'https://github.com/rbenv/ruby-build.git' "$TARGET/.rbenv/plugins/ruby-build"
 }
 
-install_nvm () {
-  git_clone 'https://github.com/creationix/nvm.git' "$TARGET/.nvm"
-}
-
-install_rustup () {
-  curl https://sh.rustup.rs -sSf | sh
-}
-
-install_virtualenv () {
-  curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | bash
-}
-
-install_dokku() {
-  git_clone 'https://github.com/progrium/dokku.git' "$TARGET/.dokku"
-}
-
 install_emacs_config() {
   git_clone 'https://github.com/plexus/chemacs.git' "$TARGET/.config/chemacs"
   symlink "$TARGET/.config/chemacs/.emacs" "$TARGET/.emacs"
@@ -210,13 +194,6 @@ case "$1" in
     echo '       private: Install private dotfiles.'
     echo '      homebrew: Install Homebrew (Mac OS X only).'
     echo '         rbenv: Install rbenv, a Ruby version manager.'
-    echo '           nvm: Install nvm, a Node.js version manager.'
-    echo '           gvm: Install gvm, a Go version manager.'
-    echo '        rustup: Install rustup, a Rust version manager.'
-    echo '    virtualenv: Install virtualenv-burrito, a Python version and' \
-         'environment manager.'
-    echo '         dokku: Clone dokku to ~/.dokku enabling use of' \
-         'dokku_client.sh.'
     echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
     ;;
 esac
