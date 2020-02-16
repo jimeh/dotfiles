@@ -15,7 +15,6 @@ SYMLINKS=(
   bitbar
   bundle
   coffeelint.json
-  emacs.d
   erlang
   eslintrc.js
   gemrc
@@ -117,6 +116,12 @@ install_dokku() {
   git_clone 'https://github.com/progrium/dokku.git' "$TARGET/.dokku"
 }
 
+install_emacs_config() {
+  git_clone 'https://github.com/plexus/chemacs.git' "$TARGET/.config/chemacs"
+  symlink "$TARGET/.config/chemacs/.emacs" "$TARGET/.emacs"
+  git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.emacs.d"
+}
+
 
 #
 # Helper functions
@@ -163,6 +168,9 @@ case "$1" in
   symlinks|links)
     install_symlinks
     ;;
+  emacs-config|emacs)
+    install_emacs_config
+    ;;
   private)
     install_private
     ;;
@@ -198,6 +206,7 @@ case "$1" in
     echo '          info: Target and source directory info.'
     echo '      symlinks: Install symlinks for various dotfiles into' \
          'target directory.'
+    echo '  emacs_config: Install Emacs configuration.'
     echo '       private: Install private dotfiles.'
     echo '      homebrew: Install Homebrew (Mac OS X only).'
     echo '         rbenv: Install rbenv, a Ruby version manager.'
