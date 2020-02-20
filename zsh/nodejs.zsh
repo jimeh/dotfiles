@@ -27,6 +27,7 @@ install_node_global_packages () {
     jsonlint
     localtunnel
     markdown-it
+    mermaid.cli
     prettier
     prettier-plugin-toml
     stylelint
