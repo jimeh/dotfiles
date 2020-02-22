@@ -2,8 +2,26 @@
 # ZSH Environment Setup
 #
 
-# Ensure values in path variable are unique.
+# Ensure values in path variable are unique
 typeset -U path
+
+# Prevent loading ZSH startup from files /etc on macOS. The /etc/zprofile file
+# screws around with PATH, so we want to avoid it, and instead manually load the
+# files we care about.
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Disable loading startup files from /etc
+  unsetopt GLOBAL_RCS
+
+  # Setup default PATH just like /etc/zprofile does
+  if [ -x "/usr/libexec/path_helper" ]; then
+    eval `/usr/libexec/path_helper -s`
+  fi
+
+  # Load /etc/zshenv if it exists
+  if [ -f "/etc/zshenv" ]; then
+    source "/etc/zshenv";
+  fi
+fi
 
 # Path helpers
 path_list () {
@@ -49,10 +67,10 @@ if [[ "$TMPDIR" == "/var/folders/"* ]] || [[ "$TMPDIR" == "" ]]; then
   mkdir -p "$TMPDIR"
 fi
 
-# Ensure basic systems paths are in desired order.
+# Ensure basic systems paths are in desired order
 path_prepend "/sbin"
-path_prepend "/bin"
 path_prepend "/usr/sbin"
+path_prepend "/bin"
 path_prepend "/usr/bin"
 path_prepend "/usr/local/sbin"
 path_prepend "/usr/local/bin"

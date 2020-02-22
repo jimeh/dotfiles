@@ -2,9 +2,11 @@
 # Z-Shell Init
 #
 
-# Fix PATH re-ordering done by macOS, by loading ~/.zshenv again.
-if [[ "$(uname)" == "Darwin" ]] && [ -x "/usr/libexec/path_helper" ]; then
-  source "$HOME/.zshenv"
+# In our zshenv file we have on macOS disabled loading ZSH startup files from
+# /etc to avoid /etc/zprofile messing up our carefully constructed PATH. So we
+# need to manually load the other files we care about.
+if [[ "$OSTYPE" == "darwin"* ]] && [ -f "/etc/zshrc" ]; then
+  source "/etc/zshrc";
 fi
 
 
@@ -75,8 +77,8 @@ fpath=("$DOTZSH/completion" "${fpath[@]}")
 source "$DOTZSH/aliases.zsh"
 
 # OS specific
-if [[ "$(uname)" == "Darwin" ]]; then source "$DOTZSH/macos.zsh"; fi
-if [[ "$(uname)" == "Linux" ]]; then source "$DOTZSH/linux.zsh"; fi
+if [[ "$OSTYPE" == "darwin"* ]]; then source "$DOTZSH/macos.zsh"; fi
+if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
 source "$DOTZSH/emacs.zsh"
