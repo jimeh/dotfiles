@@ -32,8 +32,10 @@ SYMLINKS=(
   rubocop.yml
   tmux
   tmux.conf
+  zshenv
+  zshrc
 )
-LOAD_FILES=(zshrc)
+LOAD_FILES=()
 
 
 #
@@ -66,11 +68,6 @@ install_symlinks () {
   # Symlink each path
   for i in "${SYMLINKS[@]}"; do
     symlink "$SYMLINK_PATH/$i" "$TARGET/.$i"
-  done
-
-  # Symlink shell init file for bash and zsh
-  for i in "${LOAD_FILES[@]}"; do
-    symlink "$DOTFILES_LINK/load_shellrc.sh" "$TARGET/.$i"
   done
 }
 

@@ -2,52 +2,11 @@
 # Z-Shell Init
 #
 
-if [ -n "$0" ] && [ -f "$0" ]; then
-  DOTFILES="`dirname \"$0\"`"
-elif [ -d "$HOME/.dotfiles" ]; then
-  DOTFILES="$HOME/.dotfiles"
+# Fix PATH re-ordering done by macOS, by loading ~/.zshenv again.
+if [[ "$(uname)" == "Darwin" ]] && [ -x "/usr/libexec/path_helper" ]; then
+  source "$HOME/.zshenv"
 fi
 
-# ==============================================================================
-# Environment variables
-# ==============================================================================
-
-# Export path variables.
-DOTPFILES="$DOTFILES/private"
-DOTBIN="$DOTFILES/bin"
-DOTZSH="$DOTFILES/zsh"
-
-# Path helpers.
-source "$DOTZSH/path_helpers.zsh"
-
-# Ensure /usr/local/bin is before various system-paths
-path_prepend "/usr/local/bin"
-
-# Editors
-export EDITOR="emacsclient-wrapper"
-export GEM_EDITOR="mate"
-
-# Locale Setup
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
-
-# ensure bin and sbin paths from /usr/local are in PATH
-path_add_after "/usr/local/sbin" "/usr/local/bin"
-
-# ensure bin and sbin paths from /usr are in PATH
-path_add_after "/usr/sbin" "/usr/bin"
-
-# Add user's bin directory to PATH
-path_prepend "$HOME/bin"
-
-# Add dotfiles' bin directory to PATH
-path_prepend "$DOTBIN"
-
-# Ensure TMPDIR is the same for local and remote ssh logins
-if [[ $TMPDIR == "/var/folders/"* ]] || [[ $TMPDIR == "" ]]; then
-  export TMPDIR="/tmp/user-$USER"
-  mkdir -p "$TMPDIR"
-fi
 
 # ==============================================================================
 # zplug
@@ -87,6 +46,16 @@ fi
 
 zplug load
 
+
+# ==============================================================================
+# Private Dotfiles
+# ==============================================================================
+
+if [ -f "$DOTPFILES/zshrc" ]; then
+  source "$DOTPFILES/zshrc"
+fi
+
+
 # ==============================================================================
 # Completion
 # ==============================================================================
@@ -97,29 +66,26 @@ autoload -Uz +X bashcompinit && bashcompinit
 
 fpath=("$DOTZSH/completion" "${fpath[@]}")
 
+
 # ==============================================================================
-# Load custom scripts
+# Tool specific setup
 # ==============================================================================
 
 # Aliases
 source "$DOTZSH/aliases.zsh"
 
 # OS specific
-source "$DOTZSH/osx.zsh"
-source "$DOTZSH/linux.zsh"
+if [[ "$(uname)" == "Darwin" ]]; then source "$DOTZSH/macos.zsh"; fi
+if [[ "$(uname)" == "Linux" ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/git.zsh"
-source "$DOTZSH/gnu-getopt.zsh"
-source "$DOTZSH/homebrew.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/tmux.zsh"
 
 # Development
-source "$DOTZSH/android-sdk.zsh"
 source "$DOTZSH/docker.zsh"
-source "$DOTZSH/flutter.zsh"
 source "$DOTZSH/golang.zsh"
 source "$DOTZSH/google-cloud.zsh"
 source "$DOTZSH/kubernetes.zsh"
@@ -131,6 +97,7 @@ source "$DOTZSH/rust.zsh"
 if [ -f "$DOTPFILES/shellrc.sh" ]; then
   source "$DOTPFILES/shellrc.sh"
 fi
+
 
 # ==============================================================================
 # Basic Z-Shell settings
@@ -144,3 +111,12 @@ unsetopt share_history
 
 # Disable attempted correction of commands (is wrong 98% of the time).
 unsetopt correctall
+
+
+# ==============================================================================
+# Local Overrides
+# ==============================================================================
+
+if [ -f "$HOME/.zshrc.local" ]; then
+  source "$HOME/.zshrc.local"
+fi

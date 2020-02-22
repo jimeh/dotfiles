@@ -40,8 +40,3 @@ install_node_global_packages () {
 
   npm install -g "${packages[@]}"
 }
-
-# Load nvm if it's available
-if [ -f "$HOME/.nvm/nvm.sh" ]; then
-  source "$HOME/.nvm/nvm.sh"
-fi

@@ -1,9 +1,6 @@
 #
-# Go (golang) environment setup.
+# Go (golang) setup.
 #
-
-export GOPATH="$HOME/.go"
-path_prepend "$GOPATH/bin"
 
 install_go_global_packages () {
   local packages=(

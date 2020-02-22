@@ -40,6 +40,7 @@ alias scu="RAILS_ENV=cucumber bundle exec spring cucumber"
 alias va="vagrant"
 
 # Bundler aliases
+alias bch="bundle check"
 alias bcn="bundle clean"
 alias bco="bundle console"
 alias be="bundle exec"
@@ -50,10 +51,6 @@ alias bp="bundle package"
 alias bu="bundle update"
 
 # lazy-load rbenv
-if [ -d "$HOME/.rbenv/shims" ]; then
-  path_prepend "$HOME/.rbenv/shims"
-fi
-
 rbenv() {
   eval "$(command rbenv init -)"
   rbenv "$@"
