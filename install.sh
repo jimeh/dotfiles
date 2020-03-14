@@ -35,7 +35,6 @@ SYMLINKS=(
   zshenv
   zshrc
 )
-LOAD_FILES=()
 
 
 #
@@ -84,12 +83,12 @@ install_launch_agents () {
 
   # Setup private launch_agents
   if [ -f "$ROOT_PATH/$PRIVATE_PATH/install.sh" ]; then
-    "$ROOT_PATH/$PRIVATE_PATH/install.sh" agents
+    "$ROOT_PATH/$PRIVATE_PATH/install.sh" launch_agents
   fi
 }
 
 install_homebrew () {
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
 install_rbenv () {
@@ -160,18 +159,6 @@ case "$1" in
     ;;
   rbenv)
     install_rbenv
-    ;;
-  nvm)
-    install_nvm
-    ;;
-  rustup)
-    install_rustup
-    ;;
-  virtualenv|venv)
-    install_virtualenv
-    ;;
-  dokku)
-    install_dokku
     ;;
   launch_agents|agents)
     install_launch_agents
