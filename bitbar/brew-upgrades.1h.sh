@@ -82,7 +82,6 @@ main() {
     done
 
     if [ "${#pinned[@]}" -gt 0 ]; then
-
       echo '---'
       echo 'Pinned:'
       for i in "${!formulas[@]}"; do
