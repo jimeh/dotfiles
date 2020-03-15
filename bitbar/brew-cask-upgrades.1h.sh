@@ -33,7 +33,11 @@ main() {
 
   echo ":tropical_drink:↑${count} | dropdown=false"
   echo '---'
-  echo "$count outdated casks"
+  if [ "$count" == "1" ]; then
+    echo "$count outdated cask"
+  else
+    echo "$count outdated casks"
+  fi
 
   if [ "$count" -gt 0 ]; then
     echo 'Upgrade all casks | terminal=true refresh=true' \
