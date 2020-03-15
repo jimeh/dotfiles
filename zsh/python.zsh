@@ -5,6 +5,7 @@
 install_python_global_packages () {
   local packages=(
     'ansible'
+    'grip'
     'molecule[docker]'
     'yamllint'
   )
