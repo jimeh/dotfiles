@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'fileutils'
+
 #
 # Setup
 #
@@ -29,6 +31,7 @@ brew 'git-crypt'
 brew 'git-standup'
 brew 'global'
 brew 'go'
+brew 'hey'
 brew 'highlight'
 brew 'htop'
 brew 'httpie'
@@ -39,6 +42,7 @@ brew 'luarocks'
 brew 'mas'
 brew 'mosh'
 brew 'node'
+brew 'pandoc'
 brew 'peco'
 brew 'pgformatter'
 brew 'postgresql'
@@ -191,6 +195,10 @@ if hostname == 'noct'
   brew 'kubernetes-helm'
   brew 'mariadb'
 
+  brew 'grafana'
+  brew 'node_exporter'
+  brew 'prometheus'
+
   cask '4k-video-downloader'
   cask 'adobe-creative-cloud'
   cask 'aegisub'
@@ -262,13 +270,23 @@ if hostname == 'noct'
   cask 'webpquicklook'
   cask 'whatsapp'
   cask 'xld'
+  cask 'zoomus'
+
+  cask 'basictex'
+  FileUtils.ln_s(
+    Dir.glob('/usr/local/texlive/*basic/bin/*/pdflatex').max,
+    '/usr/local/bin/pdflatex',
+    force: true
+  )
 
   mas 'Apple Remote Desktop', id: 409_907_375
   mas 'Awaken', id: 404_221_531
+  mas 'Bear', id: 1_091_189_122
   mas 'HTTP Client', id: 418_138_339
   mas 'HiddenMe', id: 467_040_476
   mas 'Medis', id: 1_063_631_769
   mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
+  mas 'MindNode', id: 1_289_197_285
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
   mas 'Textual 7', id: 1_262_957_439
