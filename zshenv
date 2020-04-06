@@ -96,6 +96,11 @@ fi
 # Third-party Environment Setup
 # ==============================================================================
 
+# Linuxbrew
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Android SDK environment setup.
 if [ -d "$HOME/Library/Android/sdk" ]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
