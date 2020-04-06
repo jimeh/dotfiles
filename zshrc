@@ -15,8 +15,8 @@ fi
 # ==============================================================================
 
 ZPLUG_HOME="$DOTZSH/zplug/zplug"
-ZPLUG_CACHE_DIR="$DOTZSH/zplug/cache"
-ZPLUG_REPOS="$DOTZSH/zplug/repos"
+ZPLUG_CACHE_DIR="$HOME/.local/zsh/zplug/cache"
+ZPLUG_REPOS="$HOME/.local/zsh/zplug/repos"
 
 source "$ZPLUG_HOME/init.zsh"
 alias zp="zplug"
