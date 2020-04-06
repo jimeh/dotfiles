@@ -3,10 +3,17 @@
 #
 
 # macOS systems
-if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
-  alias emacs="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
+    alias emacs="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+  fi
+
+  if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+    alias emacsclient="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+  fi
 fi
 
-if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
-  alias emacsclient="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+if [[ "$OSTYPE" == "linux"* ]]; then
+  alias emacs="env TERM=screen-24bit emacs -nw"
+  alias emacsclient="env TERM=screen-24bit emacsclient"
 fi
