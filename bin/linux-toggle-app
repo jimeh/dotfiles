@@ -73,7 +73,7 @@ fi
 PID=$(pgrep "$APP_NAME" | head -n 1)
 
 # If the application is not running, we will try to launch it.
-if [ -z $PID ]; then
+if [ -z "$PID" ]; then
   echo "$APP_NAME not running, launching it.."
   "$APP_BIN"
 else
@@ -94,12 +94,10 @@ else
     # minimized it will be raised as well.
     if [ "$MOVE_TO" == "yes" ]; then
       xdotool search --onlyvisible --name "$WIN_NAME" windowactivate
-      # wmctrl -x -a "$WIN_NAME"
     else
-      # WIN_ID=$(xdotool search --onlyvisible --name "$WIN_NAME")
-      # xdotool set_desktop "$WIN_ID" $(xdotool get_desktop)
-      # xdotool windowactivate "$WIN_ID"
-      wmctrl -x -R "$WIN_NAME"
+      # This allows window name to be a regular expression
+      WIN_TITLE="$(xdotool search --onlyvisible --name "$WIN_NAME" getwindowname %@ | head -n 1)"
+      wmctrl -R "$WIN_TITLE"
     fi
   fi
 fi
