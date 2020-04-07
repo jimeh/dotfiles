@@ -135,6 +135,7 @@ path_prepend "/opt/tmux/bin"
 
 # Ruby setup
 path_prepend "$HOME/.rbenv/shims"
+path_prepend "$HOME/.rbenv/bin"
 
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
