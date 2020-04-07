@@ -1,109 +1,149 @@
-#!/bin/bash
+#! /usr/bin/env bash
+if [ -n "$DEBUG" ]; then set -x; fi
 
-# Borrowed from:
-# - http://bytefreaks.net/gnulinux/bash/howto-make-terminator-terminal-act-like-guake-terminal-in-fedora-20ubuntu-14-10
+show-help() {
+  echo "usage: $(basename "$0") [<options>]"
+  echo
+  echo "Toggle visibility of a window belonging to a specific process:"
+  echo "   - If not running the <executable> will be launched."
+  echo "   - If process is running <window-name> (or first window found) will be"
+  echo "     activated and focused."
+  echo "   - If process is running and <window-name> is in focus, minimize it."
+  echo
+  echo "Options:"
+  echo "   -p   (Required) process name given to pgrep to narrow list of"
+  echo "        possible target windows."
+  echo "   -e   Executable name or path used to launch process when it is not"
+  echo "        running. If not specified, will attempt to use process name"
+  echo "        instead."
+  echo "   -w   Title/name of window which belongs to process to focus on."
+  echo "        Allows regular expression matching. If not specified, the first"
+  echo "        window found belonging to process will be used."
+  echo "   -b   Bring window to current desktop if it is on another one."
+  echo "   -a   Assign window to all desktops/workspaces after activating it."
+  echo "   -h   Display this help message."
+  echo
+  echo "Requirements:"
+  echo "   - xdotool"
+  echo "   - wmctrl"
+}
 
-# The purpose of this script is to allow the user to toggle the visibility of
-# (almost) any window.  Please note it will work on the first match, so if there
-# are multiple instances of an application it would be a random window of them
-# the one to be affected.
+error() {
+  echo -e "ERROR: $*" 1>&2
+}
 
-# Only checks dependencies on request to keep toggling behavior as fast as
-# possible.
-if [ "$1" == "--install-deps" ]; then
-  # Checking that all dependencies are met, since we cannot proceed without
-  # them.
-  DEPENDENCIES=("xdotool" "wmctrl")
-  MANAGERS=("yum" "apt-get")
+error-help() {
+  error "$@"
+  show-help 1>&2
+}
 
-  echo "Checking dependencies:"
-  for DEPENDENCY in ${DEPENDENCIES[@]}; do
-    if hash $DEPENDENCY 2>/dev/null; then
-      echo "- $DEPENDENCY: ok"
+OPT_PROC=""
+OPT_BIN=""
+OPT_WIN=""
+OPT_BRING=""
+OPT_ALL=""
+
+parse-arguments() {
+  while getopts ":p:e:w:bah" opt; do
+    case ${opt} in
+      p )
+        OPT_PROC="$OPTARG"
+        ;;
+      e )
+        OPT_BIN="$OPTARG"
+        ;;
+      w )
+        OPT_WIN="$OPTARG"
+        ;;
+      b )
+        OPT_BRING="1"
+        ;;
+      a )
+        OPT_ALL="1"
+        ;;
+      h )
+        show-help
+        ;;
+      \? )
+        error-help "Invalid option: -${OPTARG}\n" 1>&2
+        exit 1
+        ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [ -z "$OPT_PROC" ]; then
+    error-help "-p option is required."
+    exit 1
+  fi
+
+  if [ -z "$OPT_BIN" ]; then
+    OPT_BIN="$OPT_PROC"
+  fi
+
+  if ! command -v "$OPT_BIN" &>/dev/null; then
+    error "\"${OPT_BIN}\" does not seem to be a valid executable."
+    exit 2
+  fi
+}
+
+main() {
+  local target
+  local pid
+  local win_id
+  local focused_id
+
+  parse-arguments "$@"
+
+  mapfile -t target < <(find-window)
+  pid="${target[0]}"
+  win_id="${target[1]}"
+
+  if [ -z "$pid" ]; then
+    echo "$OPT_PROC not running, launching with: \"$OPT_PROC\""
+    "$OPT_PROC"
+  else
+    echo "$OPT_PROC instance found"
+    focused_id="$(xdotool getactivewindow)"
+
+    if [ "$win_id" == "$focused_id" ]; then
+      echo "Target window is in focus, minimizing"
+      xdotool windowminimize "$win_id"
     else
-      echo "- $DEPENDENCY: not found"
-      for MANAGER in ${MANAGERS[@]}; do
-        if hash $MANAGER 2>/dev/null; then
-          echo -n "$DEPENDENCY is missing, would you like to try and install " \
-               "it via $MANAGER now? [Y/N] (default is Y): "
-          read ANSWER
-          if [[ "$ANSWER" == "Y" || "$ANSWER" == "y" || "$ANSWER" == "" ]]; then
-            sudo "$MANAGER" install "$DEPENDENCY"
-          else
-            echo "Terminating"
-            exit -1
-          fi
+      if [ -n "$OPT_BRING" ]; then
+        echo "Bring window to current desktop and activate"
+        wmctrl -i -R "$win_id"
+
+        if [ -n "$OPT_ALL" ]; then
+          echo "Assign window to all desktops"
+          xdotool set_desktop_for_window "$win_id" -1
         fi
-      done
+      else
+        echo "Activating window triggering desktop switch as needed"
+        xdotool windowactivate "$win_id"
+      fi
+    fi
+  fi
+}
+
+find-window() {
+  local pid
+  local win_id
+  local opts
+
+  opts=(--all --onlyvisible)
+
+  if [ -n "$OPT_WIN" ]; then
+    opts+=(--name "$OPT_WIN")
+  fi
+
+  for pid in $(pgrep "$OPT_PROC"); do
+    win_id="$(xdotool search --pid "$pid" "${opts[@]}")"
+    if [ -n "$win_id" ]; then
+      echo -e "$pid\n$win_id"
+      break
     fi
   done
+}
 
-  exit 0
-fi
-
-if [ "$1" == "-a" ]; then
-  MOVE_TO="yes"
-  shift 1
-fi
-
-APP_NAME="$1"
-
-if [ -n "$2" ]; then
-  APP_BIN="$2"
-else
-  APP_BIN="$APP_NAME"
-fi
-
-if [ -n "$3" ]; then
-  WIN_NAME="$3"
-else
-  WIN_NAME="$APP_NAME"
-fi
-
-# Checking if the application name provided by the user exists
-if ! command -v "$APP_BIN" 2>/dev/null; then
-  echo -e "$APP_BIN does not seem to be a valid executable\nTerminating"
-  exit -2
-fi
-
-# Check if a process matching APP_NAME exists, and in the case of multiple
-# processes (for example Slack), limit it to the first process which has a
-# window who's title matches WIN_NAME.
-PID=""
-for pid in $(pgrep "$APP_NAME"); do
-  if xdotool search --all --onlyvisible --pid "$pid" --name "$WIN_NAME" &>/dev/null; then
-    PID="$pid"
-    break
-  fi
-done
-
-# If the application is not running, we will try to launch it.
-if [ -z "$PID" ]; then
-  echo "$APP_NAME not running, launching it.."
-  "$APP_BIN"
-else
-  # Since the application has a live instance, we can proceed with the rest of
-  # the code.  We will get the PID of the application that is currently focused,
-  # if it is not the application we passed as parameter we will change the focus
-  # to that. In the other case, we will minimize the application.
-  echo -n "$APP_NAME instance found - "
-  FOCUSED="$(xdotool getactivewindow getwindowpid)"
-  if [[ "$PID" == "$FOCUSED" ]]; then
-    echo "It was focused so we are minimizing it"
-    # We minimize the active window which we know in this case that it is the
-    # application we passed as parameter.
-    xdotool getactivewindow windowminimize
-  else
-    echo "We are setting the focus on it"
-    # We set the focus to the application we passed as parameter. If it is
-    # minimized it will be raised as well.
-    if [ "$MOVE_TO" == "yes" ]; then
-      xdotool search --all --onlyvisible --pid "$PID" --name "$WIN_NAME" \
-              windowactivate
-    else
-      # This allows window name to be a regular expression
-      WIN_TITLE="$(xdotool search --all --onlyvisible --pid "$PID" --name "$WIN_NAME" getwindowname)"
-      wmctrl -R "$WIN_TITLE"
-    fi
-  fi
-fi
+main "$@"
