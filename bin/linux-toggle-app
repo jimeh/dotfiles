@@ -66,11 +66,16 @@ if ! command -v "$APP_BIN" 2>/dev/null; then
   exit -2
 fi
 
-# Checking if the application is running. We are using pgrep as various
-# application are python scripts and we will not be able to find them using
-# pidof. pgrep will look through the currently running processes and list the
-# process IDs of all the processes that are called $APP_NAME.
-PID=$(pgrep "$APP_NAME" | head -n 1)
+# Check if a process matching APP_NAME exists, and in the case of multiple
+# processes (for example Slack), limit it to the first process which has a
+# window who's title matches WIN_NAME.
+PID=""
+for pid in $(pgrep "$APP_NAME"); do
+  if xdotool search --all --onlyvisible --pid "$pid" --name "$WIN_NAME" &>/dev/null; then
+    PID="$pid"
+    break
+  fi
+done
 
 # If the application is not running, we will try to launch it.
 if [ -z "$PID" ]; then
@@ -82,8 +87,8 @@ else
   # if it is not the application we passed as parameter we will change the focus
   # to that. In the other case, we will minimize the application.
   echo -n "$APP_NAME instance found - "
-  FOCUSED=$(xdotool getactivewindow getwindowpid)
-  if [[ $PID == $FOCUSED ]]; then
+  FOCUSED="$(xdotool getactivewindow getwindowpid)"
+  if [[ "$PID" == "$FOCUSED" ]]; then
     echo "It was focused so we are minimizing it"
     # We minimize the active window which we know in this case that it is the
     # application we passed as parameter.
@@ -93,10 +98,11 @@ else
     # We set the focus to the application we passed as parameter. If it is
     # minimized it will be raised as well.
     if [ "$MOVE_TO" == "yes" ]; then
-      xdotool search --onlyvisible --name "$WIN_NAME" windowactivate
+      xdotool search --all --onlyvisible --pid "$PID" --name "$WIN_NAME" \
+              windowactivate
     else
       # This allows window name to be a regular expression
-      WIN_TITLE="$(xdotool search --onlyvisible --name "$WIN_NAME" getwindowname %@ | head -n 1)"
+      WIN_TITLE="$(xdotool search --all --onlyvisible --pid "$PID" --name "$WIN_NAME" getwindowname)"
       wmctrl -R "$WIN_TITLE"
     fi
   fi
