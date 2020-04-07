@@ -10,7 +10,7 @@ install_python_global_packages () {
     'yamllint'
   )
 
-  if (( $+commands[brew] )); then
+  if [[ "$OSTYPE" == "darwin"* ]] && (( $+commands[brew] )); then
     brew list python >/dev/null || brew install python
   fi
 
