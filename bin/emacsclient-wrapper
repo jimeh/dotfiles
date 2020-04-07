@@ -6,8 +6,9 @@ ALTERNATE_EDITOR="nano"
 
 # Set to binary bundled in Emacs.app if it exists
 if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
-  EMACSCLIENT="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+  EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 fi
 
 # Execute emacsclient
-exec $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"
+exec env TERM=screen-24bit \
+     $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"
