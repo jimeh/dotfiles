@@ -100,8 +100,8 @@ main() {
   win_id="${target[1]}"
 
   if [ -z "$pid" ]; then
-    echo "$OPT_PROC not running, launching with: \"$OPT_PROC\""
-    "$OPT_PROC"
+    echo "$OPT_PROC not running, launching with: \"$OPT_BIN\""
+    "$OPT_BIN"
   else
     echo "$OPT_PROC instance found"
     focused_id="$(xdotool getactivewindow)"
