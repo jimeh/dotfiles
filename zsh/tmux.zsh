@@ -12,19 +12,37 @@ fi
 
 # Tmuxifier
 if [ -d "$DOTFILES/tmux/tmuxifier" ]; then
-  if [ -d "$DOTPFILES/tmux-layouts" ]; then
-    export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
-  else
-    export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-  fi
-
-  path_prepend "$DOTFILES/tmux/tmuxifier/bin"
-  eval "$(tmuxifier init -)"
-
   alias m="tmuxifier"
   alias ms="tmuxifier load-session"
   alias mw="tmuxifier load-window"
   alias mm="tmuxifier load-session main"
+
+  # lazy-load tmuxifier
+  tmuxifier() {
+    load-tmuxifier
+    tmuxifier "$@"
+  }
+
+  _tmuxifier() {
+    load-tmuxifier
+    _tmuxifier "$@"
+  }
+
+  compctl -K _tmuxifier tmuxifier
+
+  load-tmuxifier() {
+    # unset lazy-load functions
+    unset -f load-tmuxifier _tmuxifier tmuxifier
+
+    if [ -d "$DOTPFILES/tmux-layouts" ]; then
+      export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
+    else
+      export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+    fi
+
+    path_prepend "$DOTFILES/tmux/tmuxifier/bin"
+    eval "$(command tmuxifier init -)"
+  }
 fi
 
 use-tmuxifier-dev() {

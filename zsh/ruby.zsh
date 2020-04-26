@@ -50,31 +50,50 @@ alias bo="bundle open"
 alias bp="bundle package"
 alias bu="bundle update"
 
-# lazy-load rbenv
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
+if (( $+commands[rbenv] )); then
+  # lazy-load rbenv
+  rbenv() {
+    load-rbenv
+    rbenv "$@"
+  }
 
-rbenv-each-version () {
-  local current_version="$RBENV_VERSION"
+  _rbenv() {
+    load-rbenv
+    _rbenv "$@"
+  }
 
-  for v in $(ls "${HOME}/.rbenv/versions"); do
-    echo "==> Ruby $v:"
-    export RBENV_VERSION="$v"
-    eval $*
-  done
+  compctl -K _rbenv rbenv
 
-  export RBENV_VERSION="$current_version"
-}
+  load-rbenv() {
+    unset -f load-rbenv _rbenv rbenv
+    eval "$(command rbenv init -)"
+  }
 
-# lunchy auto-completion
-if which gem &> /dev/null && gem which lunchy &> /dev/null; then
-  LUNCHY_DIR="$(dirname `gem which lunchy`)/../extras"
-  if [ -f "$LUNCHY_DIR/lunchy-completion.zsh" ]; then
-    . "$LUNCHY_DIR/lunchy-completion.zsh"
-  fi
+  rbenv-each-version () {
+    local current_version="$RBENV_VERSION"
+
+    for v in $(ls "${HOME}/.rbenv/versions"); do
+      echo "==> Ruby $v:"
+      export RBENV_VERSION="$v"
+      eval $*
+    done
+
+    export RBENV_VERSION="$current_version"
+  }
 fi
+
+# lazy-load lunchy auto-completation
+_lunchy() {
+  unset -f _lunchy
+  local lunchy_dir
+  if which gem &> /dev/null && gem which lunchy &> /dev/null; then
+    lunchy_dir="$(dirname `gem which lunchy`)/../extras"
+    if [ -f "${lunchy_dir}/lunchy-completion.bash" ]; then
+      source "${lunchy_dir}/lunchy-completion.bash"
+    fi
+  fi
+  _lunchy "$@"
+}
 
 # Solargraph related commands
 

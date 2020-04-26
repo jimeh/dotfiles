@@ -7,5 +7,9 @@ alias hl="helm"
 alias mk="minikube"
 
 if (( $+commands[kubectl] )); then
-  eval "$(kubectl completion zsh)"
+  # lazy-load kubectl setup
+  _kubectl() {
+    unset -f _kubectl
+    eval "$(command kubectl completion zsh)"
+  }
 fi
