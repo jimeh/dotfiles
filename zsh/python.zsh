@@ -17,8 +17,8 @@ install_python_global_packages () {
   local pipcmd="pip"
   if (( $+commands[pip3] )); then; pipcmd="pip3"; fi
 
-  $pipcmd install --upgrade setuptools
-  $pipcmd install --upgrade "${packages[@]}"
+  "$pipcmd" install --upgrade setuptools
+  "$pipcmd" install --upgrade "${packages[@]}"
 }
 
 # Aliases
