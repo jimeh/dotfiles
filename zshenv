@@ -4,7 +4,7 @@
 
 # Enable ZSH profiling?
 if [[ -n "$ZPROF" ]]; then
-  zmodload zsh/zprof;
+  zmodload zsh/zprof
 fi
 
 # Ensure values in path variable are unique

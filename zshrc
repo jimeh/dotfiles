@@ -6,7 +6,7 @@
 # /etc to avoid /etc/zprofile messing up our carefully constructed PATH. So we
 # need to manually load the other files we care about.
 if [[ "$OSTYPE" == "darwin"* ]] && [ -f "/etc/zshrc" ]; then
-  source "/etc/zshrc";
+  source "/etc/zshrc"
 fi
 
 
