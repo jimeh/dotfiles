@@ -98,7 +98,14 @@ fi
 
 # Linuxbrew
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  # Inline linux-brew setup to improve shell startup speed by around 200ms.
+  export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+  export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+  export INFOPATH="${HOMEBREW_PREFIX}/share/info${INFOPATH+:$INFOPATH}"
+  path_prepend "${HOMEBREW_PREFIX}/bin"
+  path_prepend "${HOMEBREW_PREFIX}/sbin"
 fi
 
 # Android SDK environment setup.
