@@ -5,11 +5,6 @@ alias tmn="tm new"
 alias tml="tm ls"
 alias tmm="tmn -s main"
 
-# Tmux Completion
-if [ -f "/usr/local/etc/bash_completion.d/tmux" ]; then
-  source "/usr/local/etc/bash_completion.d/tmux"
-fi
-
 # Tmuxifier
 if [ -d "$DOTFILES/tmux/tmuxifier" ]; then
   alias m="tmuxifier"
