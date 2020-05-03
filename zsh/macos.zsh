@@ -2,6 +2,17 @@
 # macOS Specific
 #
 
+# Aliases
+alias o="open"
+
+# Flush DNS cache
+alias flush_dns="dscacheutil -flushcache"
+
+# Open man page in Preview.
+pman () {
+  man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
 # Fix wifi issues on OS X 10.10.x Yosemite.
 #  - from: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
 alias fix_wifi="sudo ifconfig awdl0 down"

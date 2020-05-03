@@ -3,7 +3,6 @@
 #
 
 # System
-alias o="open"
 alias s="ssh"
 alias ec="echo"
 alias ls="ls -B"
@@ -41,15 +40,11 @@ if (( $+commands[flutter] )); then
   alias fl="flutter"
 fi
 
-# Flush DNS cache
-alias flush_dns="dscacheutil -flushcache"
-
 # Misc.
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
-alias netlisteners='lsof -i -Pn | grep LISTEN'
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 alias fku="fuck you"
@@ -78,11 +73,6 @@ authmeo() {
 #  - from: http://alias.sh/make-and-cd-directory
 mcd() {
   mkdir -p "$1" && cd "$1";
-}
-
-# Open man page in Preview.
-pman () {
-  man -t "${1}" | open -f -a /Applications/Preview.app
 }
 
 # Extract most common archives with single command.
