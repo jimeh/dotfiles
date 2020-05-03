@@ -28,7 +28,7 @@ stop ()   {
 
 status () {
   echo -n 'Emacs GUI Server... '
-  ! result=`eval $EMACSCLIENT -s "$SOCKET_FILE" --eval \"\(print \'OK\)\" 2>/dev/null`
+  ! result="$(eval $EMACSCLIENT -s "$SOCKET_FILE" --eval \"\(print \'OK\)\" 2>/dev/null)"
   if [[ $result == "OK" ]]; then
     echo 'RUNNING'
   else
