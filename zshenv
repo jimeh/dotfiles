@@ -2,6 +2,11 @@
 # ZSH Environment Setup
 #
 
+# Enable ZSH profiling?
+if [[ -n "$ZPROF" ]]; then
+  zmodload zsh/zprof;
+fi
+
 # Ensure values in path variable are unique
 typeset -U path
 
