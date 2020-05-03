@@ -11,43 +11,45 @@ fi
 
 
 # ==============================================================================
-# zplug
+# Zinit
 # ==============================================================================
 
-ZPLUG_HOME="$DOTZSH/zplug/zplug"
-ZPLUG_CACHE_DIR="$HOME/.local/zsh/zplug/cache"
-ZPLUG_REPOS="$HOME/.local/zsh/zplug/repos"
+declare -A ZINIT
+ZINIT[BIN_DIR]="$DOTZSH/zinit"
+ZINIT[HOME_DIR]="$HOME/.local/zsh/zinit"
 
-source "$ZPLUG_HOME/init.zsh"
-alias zp="zplug"
+source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
-zplug "lib/history", from:oh-my-zsh, defer:1
-zplug "lib/completion", from:oh-my-zsh, defer:1
-zplug "jimeh/zsh-peco-history", defer:2
-zplug "plugins/bundler", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
+# Enable using oh-my-zsh compatible themes.
+zinit snippet OMZ::lib/theme-and-appearance.zsh
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::plugins/git
+zinit cdclear -q # forget completions provided up to this point
 
-zplug "jimeh/plain.zsh-theme", as:theme
+# Enable interactive selection of completions.
+zinit snippet OMZ::lib/completion.zsh
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo
-    zplug install
-  fi
-fi
+# Set various sane defaults for ZSH history management.
+zinit snippet OMZ::lib/history.zsh
 
-# Configure zsh-syntax-highlighting
-if zplug check zsh-users/zsh-syntax-highlighting; then
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-fi
+# Enable Ruby Bundler plugin from oh-my-zsh.
+zinit snippet OMZ::plugins/bundler
 
-zplug load
+zinit ice pick'plain.zsh-theme'
+zinit light jimeh/plain.zsh-theme
 
+zinit ice wait'0' lucid
+zinit load jimeh/zsh-peco-history
+
+zinit ice wait'0' lucid blockf
+zinit light zsh-users/zsh-completions
+
+zinit ice wait'0' lucid atload"!_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+zinit ice wait'0' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+zinit light zdharma/fast-syntax-highlighting
 
 # ==============================================================================
 # Private Dotfiles
@@ -56,17 +58,6 @@ zplug load
 if [ -f "$DOTPFILES/zshrc" ]; then
   source "$DOTPFILES/zshrc"
 fi
-
-
-# ==============================================================================
-# Completion
-# ==============================================================================
-
-# Enable bash-style completion.
-autoload -Uz +X compinit && compinit
-autoload -Uz +X bashcompinit && bashcompinit
-
-fpath=("$DOTZSH/completion" "${fpath[@]}")
 
 
 # ==============================================================================
