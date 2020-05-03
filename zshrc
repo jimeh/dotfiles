@@ -96,10 +96,6 @@ source "$DOTZSH/python.zsh"
 source "$DOTZSH/ruby.zsh"
 source "$DOTZSH/rust.zsh"
 
-if [ -f "$DOTPFILES/shellrc.sh" ]; then
-  source "$DOTPFILES/shellrc.sh"
-fi
-
 
 # ==============================================================================
 # Basic Z-Shell settings
