@@ -11,6 +11,7 @@ install_ruby_global_packages () {
     foreman
     lunchy
     method_source
+    procodile
     pry-doc
     rbenv-rehash
     reek
