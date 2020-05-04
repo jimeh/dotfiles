@@ -22,9 +22,9 @@ alias egs="$DOTBIN/emacs-gui-server"
 
 # Utils
 alias ma="make"
+alias va="vagrant"
 alias di="colordiff"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
-alias open_ports="sudo lsof -i -P | grep --color=never -i \"listen\""
 
 # Homebrew
 if (( $+commands[brew] )); then

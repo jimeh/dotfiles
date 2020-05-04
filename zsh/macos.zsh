@@ -4,9 +4,8 @@
 
 # Aliases
 alias o="open"
-
-# Flush DNS cache
 alias flush_dns="dscacheutil -flushcache"
+alias open_ports="sudo lsof -i -Pn | grep LISTEN"
 
 # Open man page in Preview.
 pman () {

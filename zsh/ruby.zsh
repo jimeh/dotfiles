@@ -37,7 +37,6 @@ alias rai="bundle exec rails"
 alias rs="bundle exec rspec -f doc"
 alias cu="bundle exec cucumber"
 alias scu="RAILS_ENV=cucumber bundle exec spring cucumber"
-alias va="vagrant"
 
 # Bundler aliases
 alias bch="bundle check"
