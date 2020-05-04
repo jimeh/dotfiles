@@ -41,15 +41,15 @@ zinit light jimeh/plain.zsh-theme
 zinit ice wait'0' lucid
 zinit load jimeh/zsh-peco-history
 
+zinit ice wait'0' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
 zinit ice wait'0' lucid blockf
 zinit light zsh-users/zsh-completions
 
 zinit ice wait'0' lucid atload"!_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-zinit ice wait'0' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
-zinit light zdharma/fast-syntax-highlighting
 
 # ==============================================================================
 # Private Dotfiles
