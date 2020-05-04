@@ -82,19 +82,6 @@ if (( $+commands[rbenv] )); then
   }
 fi
 
-# lazy-load lunchy auto-completation
-_lunchy() {
-  unset -f _lunchy
-  local lunchy_dir
-  if which gem &> /dev/null && gem which lunchy &> /dev/null; then
-    lunchy_dir="$(dirname `gem which lunchy`)/../extras"
-    if [ -f "${lunchy_dir}/lunchy-completion.bash" ]; then
-      source "${lunchy_dir}/lunchy-completion.bash"
-    fi
-  fi
-  _lunchy "$@"
-}
-
 # Solargraph related commands
 
 solargraph-install () {
