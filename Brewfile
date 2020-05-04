@@ -294,15 +294,3 @@ if hostname == 'noct'
   mas 'WireGuard', id: 1_451_685_025
   mas 'feedly', id: 865_500_966
 end
-
-if hostname == 'UAC00013'
-  brew 'gnu-getopt'
-  brew 'mariadb@10.0'
-  brew 'packer'
-  brew 'skopeo'
-  brew 'sops'
-
-  mas 'HiddenMe', id: 467_040_476
-  mas 'Microsoft Remote Desktop 8', id: 715_768_417
-  mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
-end
