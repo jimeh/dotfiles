@@ -30,6 +30,7 @@ spoon.HeadphoneAutoPause:start()
 
 -- Enable push-to-talk microphone functionality when specific apps are running.
 hs.loadSpoon('PushToTalk')
+spoon.PushToTalk.detect_on_start = true
 spoon.PushToTalk.app_switcher = { ['TeamSpeak 3'] = 'push-to-talk' }
 spoon.PushToTalk:start()
 
