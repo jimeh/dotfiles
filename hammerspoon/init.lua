@@ -28,6 +28,11 @@ hs.loadSpoon('HeadphoneAutoPause')
 spoon.HeadphoneAutoPause.autoResume = false
 spoon.HeadphoneAutoPause:start()
 
+-- Enable push-to-talk microphone functionality when specific apps are running.
+hs.loadSpoon('PushToTalk')
+spoon.PushToTalk.app_switcher = { ['TeamSpeak 3'] = 'push-to-talk' }
+spoon.PushToTalk:start()
+
 --------------------------------------------------------------------------------
 -- Host specific configuration
 --------------------------------------------------------------------------------
