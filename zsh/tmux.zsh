@@ -1,3 +1,7 @@
+#
+# Tmux environment setup.
+#
+
 # Aliases
 alias tm="tmux"
 alias tma="tm att"
@@ -6,39 +10,40 @@ alias tml="tm ls"
 alias tmm="tmn -s main"
 
 # Tmuxifier
-if [ -d "$DOTFILES/tmux/tmuxifier" ]; then
-  alias m="tmuxifier"
-  alias ms="tmuxifier load-session"
-  alias mw="tmuxifier load-window"
-  alias mm="tmuxifier load-session main"
 
-  # lazy-load tmuxifier
-  tmuxifier() {
-    load-tmuxifier
-    tmuxifier "$@"
-  }
+zinit ice as'program' pick'bin/tmuxifier' from'gh'
+zinit light jimeh/tmuxifier
 
-  _tmuxifier() {
-    load-tmuxifier
-    _tmuxifier "$@"
-  }
+alias m="tmuxifier"
+alias ms="tmuxifier load-session"
+alias mw="tmuxifier load-window"
+alias mm="tmuxifier load-session main"
 
-  compctl -K _tmuxifier tmuxifier
+# lazy-load tmuxifier
+tmuxifier() {
+  load-tmuxifier
+  tmuxifier "$@"
+}
 
-  load-tmuxifier() {
-    # unset lazy-load functions
-    unset -f load-tmuxifier _tmuxifier tmuxifier
+_tmuxifier() {
+  load-tmuxifier
+  _tmuxifier "$@"
+}
 
-    if [ -d "$DOTPFILES/tmux-layouts" ]; then
-      export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
-    else
-      export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-    fi
+compctl -K _tmuxifier tmuxifier
 
-    path_prepend "$DOTFILES/tmux/tmuxifier/bin"
-    eval "$(command tmuxifier init -)"
-  }
-fi
+load-tmuxifier() {
+  # unset lazy-load functions
+  unset -f load-tmuxifier _tmuxifier tmuxifier
+
+  if [ -d "$DOTPFILES/tmux-layouts" ]; then
+    export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
+  else
+    export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+  fi
+
+  eval "$(command tmuxifier init -)"
+}
 
 use-tmuxifier-dev() {
   path_prepend "$HOME/Projects/tmuxifier/bin"
