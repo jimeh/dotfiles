@@ -44,16 +44,16 @@ zinit snippet OMZ::plugins/bundler
 zinit ice pick'plain.zsh-theme'
 zinit light jimeh/plain.zsh-theme
 
-zinit ice wait'0' lucid
-zinit load jimeh/zsh-peco-history
+zinit ice wait lucid
+zinit light jimeh/zsh-peco-history
 
-zinit ice wait'0' lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice wait'0' lucid blockf
+zinit ice wait lucid blockf
 zinit light zsh-users/zsh-completions
 
-zinit ice wait'0' lucid atload"!_zsh_autosuggest_start"
+zinit ice wait lucid atload"!_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
 
