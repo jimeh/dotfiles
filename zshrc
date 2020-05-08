@@ -15,9 +15,15 @@ fi
 # ==============================================================================
 
 declare -A ZINIT
-ZINIT[BIN_DIR]="$DOTZSH/zinit"
 ZINIT[HOME_DIR]="$HOME/.local/zsh/zinit"
+ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
+# Ask to clone Zinit if it's not already available on disk.
+[ ! -d "${ZINIT[BIN_DIR]}" ] && \
+  read -q "REPLY?Zinit not installed, clone to ${ZINIT[BIN_DIR]}? [y/N]:" && \
+  echo && git clone "https://github.com/zdharma/zinit.git" "${ZINIT[BIN_DIR]}"
+
+# Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
 # Enable using oh-my-zsh compatible themes.
