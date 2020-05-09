@@ -7,6 +7,9 @@ if [[ -n "$ZPROF" ]]; then
   zmodload zsh/zprof
 fi
 
+# Ensure compinit is NOT loaded before Zinit loads in ~/zshrc.
+skip_global_compinit=1
+
 # Ensure values in path variable are unique
 typeset -U path
 
