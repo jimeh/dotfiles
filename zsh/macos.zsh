@@ -26,6 +26,12 @@ osx-disable-lookup-word-hotkey () {
   echo "Command-Control-D hotkey disabled. Please reboot to take effect."
 }
 
+# Disable low-priority throttle for background tasks. Helps speed to up initial
+# Time Machine backup. But do remember to re-enable when done.
+#  - from: https://osxdaily.com/2016/04/17/speed-up-time-machine-by-removing-low-process-priority-throttling/
+alias osx-disable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=0'
+alias osx-enable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=1'
+
 #
 # Power management
 #
