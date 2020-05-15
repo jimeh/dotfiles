@@ -13,7 +13,6 @@ SYMLINKS=(
   ackrc
   alacritty.yml
   bitbar
-  bundle
   coffeelint.json
   erlang
   eslintrc.js
