@@ -29,6 +29,7 @@ SYMLINKS=(
   reek.yml
   rspec
   rubocop.yml
+  solargraph.yml
   tmux
   tmux.conf
   zshenv
