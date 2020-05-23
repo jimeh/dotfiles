@@ -64,7 +64,7 @@ install_symlinks() {
 
   # Symlink each path
   for i in "${SYMLINKS[@]}"; do
-    symlink "$SYMLINK_PATH/$i" "$TARGET/.$i"
+    dot_symlink "$i" "$SYMLINK_PATH" "$TARGET"
   done
 }
 
@@ -117,6 +117,26 @@ symlink() {
   local target="$2"
 
   if [ ! -e "$target" ]; then
+    ok "symlink: $target --> $source"
+    ln -s "$source" "$target"
+  else
+    info "symlink: $target exists"
+  fi
+}
+
+dot_symlink() {
+  local name="$1"
+  local source="$2/${name}"
+  local target="$3/.${name}"
+  local cur_name
+
+  if [ ! -e "$target" ]; then
+    cur_name="$(dirname "$name")"
+    while [ "$cur_name" != "." ] && [ "$cur_name" != "/" ]; do
+      source="../${source}"
+      cur_name="$(dirname "$cur_name")"
+    done
+    mkdir -p "$(dirname "$target")"
     ok "symlink: $target --> $source"
     ln -s "$source" "$target"
   else
