@@ -18,8 +18,3 @@ alias gd="git difftool"
 alias gpl="git pull --rebase"
 alias gix="gitx"
 alias gx="gitx"
-
-# Git Completion
-if [ -d "/usr/local/share/zsh/site-functions" ]; then
-  fpath=("/usr/local/share/zsh/site-functions" "${fpath[@]}")
-fi
