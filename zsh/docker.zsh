@@ -10,7 +10,7 @@ docker_remove_exited () {
   docker rm "$(docker ps -f='status=exited' -q)"
 }
 
-if (( $+commands[docker] )); then
+if command-exists docker; then
   zinit ice from'gh-r' as'program' mv'ctop-* -> ctop'
   zinit light bcicen/ctop
 fi

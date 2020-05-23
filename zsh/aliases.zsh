@@ -27,7 +27,7 @@ alias di="colordiff"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 
 # Homebrew
-if (( $+commands[brew] )); then
+if command-exists brew; then
   alias br="brew"
   alias ca="brew cask"
   alias cask="brew cask"
@@ -36,7 +36,7 @@ if (( $+commands[brew] )); then
 fi
 
 # Flutter
-if (( $+commands[flutter] )); then
+if command-exists flutter; then
   alias fl="flutter"
 fi
 

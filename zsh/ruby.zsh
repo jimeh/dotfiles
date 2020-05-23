@@ -50,7 +50,7 @@ alias bo="bundle open"
 alias bp="bundle package"
 alias bu="bundle update"
 
-if (( $+commands[rbenv] )); then
+if command-exists rbenv; then
   # lazy-load rbenv
   rbenv() {
     load-rbenv

@@ -10,12 +10,12 @@ install_python_global_packages () {
     'yamllint'
   )
 
-  if [[ "$OSTYPE" == "darwin"* ]] && (( $+commands[brew] )); then
+  if [[ "$OSTYPE" == "darwin"* ]] && command-exists brew; then
     brew list python >/dev/null || brew install python
   fi
 
   local pipcmd="pip"
-  if (( $+commands[pip3] )); then; pipcmd="pip3"; fi
+  if command-exists pip3; then pipcmd="pip3"; fi
 
   "$pipcmd" install --upgrade setuptools
   "$pipcmd" install --upgrade "${packages[@]}"
