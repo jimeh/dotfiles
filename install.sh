@@ -36,12 +36,11 @@ SYMLINKS=(
   zshrc
 )
 
-
 #
 # Initial Setup
 #
 
-if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ] ; then
+if [ -n "${BASH_SOURCE[0]}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
   ROOT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 elif [ -n "$0" ] && [ -f "$0" ]; then
   ROOT_PATH=$(cd "$(dirname "$0")" && pwd)
@@ -50,12 +49,11 @@ else
   exit 1
 fi
 
-
 #
 # Main Functions
 #
 
-install_symlinks () {
+install_symlinks() {
   # Symlink dotfiles root
   symlink "$ROOT_PATH" "$TARGET/$DOTFILES_LINK"
 
@@ -70,12 +68,12 @@ install_symlinks () {
   done
 }
 
-install_private () {
+install_private() {
   git_clone "git@github.com:jimeh/dotfiles-private.git" \
-            "$ROOT_PATH/$PRIVATE_PATH"
+    "$ROOT_PATH/$PRIVATE_PATH"
 }
 
-install_launch_agents () {
+install_launch_agents() {
   mkdir -p "$HOME/Library/LaunchAgents"
   for file in $ROOT_PATH/launch_agents/*.plist; do
     symlink "$file" "$HOME/Library/LaunchAgents/$(basename "$file")"
@@ -87,11 +85,11 @@ install_launch_agents () {
   fi
 }
 
-install_homebrew () {
+install_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
-install_rbenv () {
+install_rbenv() {
   git_clone 'https://github.com/rbenv/rbenv.git' "$TARGET/.rbenv"
   git_clone 'https://github.com/rbenv/ruby-build.git' "$TARGET/.rbenv/plugins/ruby-build"
 }
@@ -101,7 +99,6 @@ install_emacs_config() {
   symlink "$TARGET/.config/chemacs/.emacs" "$TARGET/.emacs"
   git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.emacs.d"
 }
-
 
 #
 # Helper functions
@@ -127,7 +124,7 @@ symlink() {
   fi
 }
 
-git_clone () {
+git_clone() {
   local clone_url="$1"
   local target="$2"
 
@@ -139,28 +136,27 @@ git_clone () {
   fi
 }
 
-
 #
 # Argument Handling
 #
 
 case "$1" in
-  symlinks|links)
+  symlinks | links)
     install_symlinks
     ;;
-  emacs-config|emacs)
+  emacs-config | emacs)
     install_emacs_config
     ;;
   private)
     install_private
     ;;
-  homebrew|brew)
+  homebrew | brew)
     install_homebrew
     ;;
   rbenv)
     install_rbenv
     ;;
-  launch_agents|agents)
+  launch_agents | agents)
     install_launch_agents
     ;;
   info)
@@ -173,7 +169,7 @@ case "$1" in
     echo 'Available commands:'
     echo '          info: Target and source directory info.'
     echo '      symlinks: Install symlinks for various dotfiles into' \
-         'target directory.'
+      'target directory.'
     echo '  emacs_config: Install Emacs configuration.'
     echo '       private: Install private dotfiles.'
     echo '      homebrew: Install Homebrew (Mac OS X only).'

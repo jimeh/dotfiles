@@ -3,7 +3,7 @@ set -e
 
 PREFIX="/opt/tmux"
 
-help() {
+show-help() {
   echo "usage: ./install-tmux.sh <VERSION>"
 }
 
@@ -24,17 +24,17 @@ install() {
 deps() {
   sudo apt-get update
   sudo apt-get install -y \
-       bc \
-       build-essential \
-       libevent-dev \
-       libncurses5-dev
+    bc \
+    build-essential \
+    libevent-dev \
+    libncurses5-dev
 }
 
 main() {
   local command="$1"
 
   if [ -z "$command" ]; then
-    echo "$(help)" 1>&2
+    show-help 1>&2
     exit 1
   fi
 
@@ -45,4 +45,4 @@ main() {
   fi
 }
 
-main $@
+main "$@"

@@ -10,7 +10,7 @@ alias ngi="npm install -g"
 alias cof="coffee"
 alias tl="tldr"
 
-install_node_global_packages () {
+install_node_global_packages() {
   local packages=(
     @prettier/plugin-php
     @prettier/plugin-ruby

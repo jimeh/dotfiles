@@ -3,6 +3,6 @@
 count=1
 echo "====> Attempt $count"
 while "$@"; do
-  (( count++ ))
+  ((count++))
   echo "====> Attempt $count"
 done

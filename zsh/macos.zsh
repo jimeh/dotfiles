@@ -8,7 +8,7 @@ alias flush_dns="dscacheutil -flushcache"
 alias open_ports="sudo lsof -i -Pn | grep LISTEN"
 
 # Open man page in Preview.
-pman () {
+pman() {
   man -t "${1}" | open -f -a /Applications/Preview.app
 }
 
@@ -20,9 +20,9 @@ alias unfix_wifi="sudo ifconfig awdl0 up"
 # Disable the system built-in cmd+ctrl+d global hotkey to lookup word in
 # dictionary on OS X. Must reboot after running.
 #  - from: ://apple.stackexchange.com/a/114269
-osx-disable-lookup-word-hotkey () {
+osx-disable-lookup-word-hotkey() {
   defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 \
-           '<dict><key>enabled</key><false/></dict>'
+    '<dict><key>enabled</key><false/></dict>'
   echo "Command-Control-D hotkey disabled. Please reboot to take effect."
 }
 
@@ -39,7 +39,7 @@ alias osx-enable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=1'
 # Set all relevant power management settings to force the machine to save a
 # sleep image and immediately enter "standby" along with FileVault destroying
 # disk decryption keys.
-pm-hibernate () {
+pm-hibernate() {
   sudo pmset -a hibernatemode 25
   sudo pmset -a standby 1
   sudo pmset -a standbydelayhigh 0
@@ -50,7 +50,7 @@ pm-hibernate () {
 
 # Restore all settings modified by pm-hibernate to their defaults, effectively
 # restoring default sleep behavior for macOS laptops.
-pm-safesleep () {
+pm-safesleep() {
   sudo pmset -a hibernatemode 3
   sudo pmset -a standbydelayhigh 86400
   sudo pmset -a standbydelaylow 0
@@ -59,13 +59,13 @@ pm-safesleep () {
 }
 
 # Trigger hibernation now.
-hibernate () {
+hibernate() {
   pm-hibernate
   sudo pmset sleepnow
 }
 
 # Trigger a safe-sleep now.
-safesleep () {
+safesleep() {
   pm-safesleep
   sudo pmset sleepnow
 }

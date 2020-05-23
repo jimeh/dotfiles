@@ -1,24 +1,28 @@
 #! /usr/bin/env bash
 
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
   echo "usage: smart-health-check <device>"
   exit 1
 fi
 
 trim() {
-  local string="$@"
+  local string="$*"
   string="${string#"${string%%[![:space:]]*}"}"
   string="${string%"${string##*[![:space:]]}"}"
   echo -n "$string"
 }
 
 check-status() {
-  local raw_status="$(smartctl -H $1)"
-  local status="$(echo "$raw_status" | grep "^SMART overall-health")"
+  local device="$1"
+  local raw_status
+  local status
+
+  raw_status="$(smartctl -H "$device")"
+  status="$(echo "$raw_status" | grep "^SMART overall-health")"
 
   if [[ "$(trim "$status")" != *"PASSED" ]]; then
     echo "$(tput setaf 1)SMART Status: FAIL:$(tput sgr0)" \
-         "smartctl -H $1:"
+      "smartctl -H ${device}:"
     echo ""
     echo "$raw_status"
     exit 3
@@ -26,23 +30,27 @@ check-status() {
 }
 
 check-attributes() {
+  local device="$1"
   local attr
   local fail=0
-  local raw_status="$(smartctl -A $1)"
-  local report="$(echo "$raw_status" | grep "^ID# ")"
+  local raw_status
+  local report
+
+  raw_status="$(smartctl -A "$device")"
+  report="$(echo "$raw_status" | grep "^ID# ")"
 
   for id in 1 5 10 196 197 198; do
     attr="$(echo "$raw_status" | grep "^\s*${id}\s")"
     if [ -n "$(trim "$attr")" ] && [[ "$(trim "$attr")" != *" 0" ]]; then
       fail=1
-      report="$report\n$attr"
+      report="${report}\n${attr}"
     fi
   done
 
   if [ $fail != 0 ]; then
     echo "$(tput setaf 2)SMART Status: PASSED:$(tput sgr0)" \
-         "$(tput setaf 1)- may FAIL soon:$(tput sgr0)" \
-         "smartctl -A $1:"
+      "$(tput setaf 1)- may FAIL soon:$(tput sgr0)" \
+      "smartctl -A ${device}:"
     echo ""
     echo -e "$report"
     exit 2
@@ -50,10 +58,11 @@ check-attributes() {
 }
 
 main() {
-  check-status $1
-  check-attributes $1
+  local device="$1"
+
+  check-status "$device"
+  check-attributes "$device"
   echo "SMART Status: $(tput setaf 2)PASSED$(tput sgr0)"
 }
-
 
 main $@

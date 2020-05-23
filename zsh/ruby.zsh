@@ -2,7 +2,7 @@
 # Ruby environment setup.
 #
 
-install_ruby_global_packages () {
+install_ruby_global_packages() {
   local packages=(
     'bundler:~> 1.0'
     'bundler:~> 2.0'
@@ -68,39 +68,39 @@ if command-exists rbenv; then
     unset -f load-rbenv _rbenv rbenv
     eval "$(command rbenv init -)"
   }
-
-  rbenv-each-version () {
-    local current_version="$RBENV_VERSION"
-
-    for v in $(ls "${HOME}/.rbenv/versions"); do
-      echo "==> Ruby $v:"
-      export RBENV_VERSION="$v"
-      eval $*
-    done
-
-    export RBENV_VERSION="$current_version"
-  }
 fi
+
+rbenv-each-version() {
+  local current_version="$RBENV_VERSION"
+
+  for v in $(ls "${HOME}/.rbenv/versions"); do
+    echo "==> Ruby $v:"
+    export RBENV_VERSION="$v"
+    eval $*
+  done
+
+  export RBENV_VERSION="$current_version"
+}
 
 # Solargraph related commands
 
-solargraph-install () {
+solargraph-install() {
   rbenv-each-version "gem install solargraph"
 }
 
-solargraph-download-cores () {
+solargraph-download-cores() {
   rbenv-each-version "solargraph download-core"
 }
 
-solargraph-list-versions () {
+solargraph-list-versions() {
   rbenv-each-version "gem list -q solargraph"
 }
 
-rubygems-upgrade () {
+rubygems-upgrade() {
   rbenv-each-version "gem update --system"
 }
 
-upgrade-bundler () {
+upgrade-bundler() {
   rbenv-each-version \
     "gem install --no-document 'bundler:~> 1.0' 'bundler:~> 2.0'"
 }

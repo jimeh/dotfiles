@@ -3,7 +3,7 @@ set -e
 
 PREFIX="/opt/emacs"
 
-help() {
+show-help() {
   echo "usage: ./install-emacs.sh <VERSION>"
 }
 
@@ -24,17 +24,31 @@ install() {
 deps() {
   sudo apt-get update
   sudo apt-get install -y \
-       build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev \
-       libgif-dev libtiff4-dev libncurses5-dev libxft-dev librsvg2-dev \
-       libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev \
-       libghc-gconf-dev libotf-dev libm17n-dev libgnutls-dev
+    build-essential \
+    libghc-gconf-dev \
+    libgif-dev \
+    libgnutls-dev \
+    libgpm-dev \
+    libjpeg-dev \
+    libm17n-dev \
+    libmagick++-dev \
+    libmagickcore-dev \
+    libncurses5-dev \
+    libotf-dev \
+    libpng12-dev \
+    librsvg2-dev \
+    libtiff4-dev \
+    libx11-dev \
+    libxft-dev \
+    libxml2-dev \
+    xaw3dg-dev
 }
 
 main() {
   local command="$1"
 
   if [ -z "$command" ]; then
-    echo "$(help)" 1>&2
+    show-help 1>&2
     exit 1
   fi
 
@@ -45,4 +59,4 @@ main() {
   fi
 }
 
-main $@
+main "$@"

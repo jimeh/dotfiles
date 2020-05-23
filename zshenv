@@ -10,6 +10,10 @@ fi
 # Ensure compinit is NOT loaded before Zinit loads in ~/zshrc.
 skip_global_compinit=1
 
+# ==============================================================================
+# PATH Setup
+# ==============================================================================
+
 # Ensure values in path variable are unique
 typeset -U path
 
@@ -22,16 +26,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # Setup default PATH just like /etc/zprofile does
   if [ -x "/usr/libexec/path_helper" ]; then
-    eval `/usr/libexec/path_helper -s`
+    eval $(/usr/libexec/path_helper -s)
   fi
 
   # Load /etc/zshenv if it exists
   if [ -f "/etc/zshenv" ]; then
-    source "/etc/zshenv";
+    source "/etc/zshenv"
   fi
 fi
 
-# Path helpers
+# ==============================================================================
+# PATH Helpers
+# ==============================================================================
+
 path_list () {
   print -l "${(@)path}"
 }
@@ -51,7 +58,6 @@ path_prepend () {
     path=("$1" "${(@)path:#$1}")
   fi
 }
-
 
 # ==============================================================================
 # System Environment Setup
@@ -88,7 +94,6 @@ path_prepend "$DOTBIN"
 
 # Add user's bin directory to PATH
 path_prepend "$HOME/bin"
-
 
 # ==============================================================================
 # Private Dotfiles Environment

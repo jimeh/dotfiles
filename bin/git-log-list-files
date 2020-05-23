@@ -10,7 +10,7 @@ main() {
   commits="$(git rev-list "$ref")"
 
   for commit in $commits; do
-    files="$(git diff-tree --no-commit-id --name-only -r $commit)"
+    files="$(git diff-tree --no-commit-id --name-only -r "$commit")"
     for file in $files; do
       echo "${commit}: $file"
     done

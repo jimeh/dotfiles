@@ -15,7 +15,7 @@ icon="$3"
 
 if [ -z "$name" ] || [ -z "$url" ]; then
   echo 'usage: create-chrome-ssb "Google Music"' \
-       '"https://play.google.com/music"'
+    '"https://play.google.com/music"'
   exit 1
 fi
 
@@ -31,11 +31,10 @@ if [ -d "$app_path" ]; then
   exit 1
 fi
 
-
 # Various paths used when creating the app.
 resource_dir="${app_path}/Contents/Resources"
 exec_dir="${app_path}/Contents/MacOS"
-exec_file="${exec_dir}/${name//[[:space:]]}"
+exec_file="${exec_dir}/${name//[[:space:]]/}"
 plist_file="${app_path}/Contents/Info.plist"
 
 app_support="\${HOME}/Library/Application Support"
@@ -46,10 +45,10 @@ bundle_identifier="me.jimeh.chrome-ssb.${name}"
 mkdir -p "$resource_dir" "$exec_dir"
 
 # convert the icon and copy into Resources
-if [ -f "$icon" ] ; then
+if [ -f "$icon" ]; then
   sips -s format tiff "$icon" \
-       --out "${resource_dir}/icon.tiff" \
-       --resampleWidth 128 >& /dev/null
+    --out "${resource_dir}/icon.tiff" \
+    --resampleWidth 128 >&/dev/null
   tiff2icns -noLarge "${resource_dir}/icon.tiff" >&/dev/null
 
   if [ -f "${resource_dir}/icon.tiff" ]; then
@@ -58,7 +57,7 @@ if [ -f "$icon" ] ; then
 fi
 
 # Create the executable.
-cat > "$exec_file" <<EOF
+cat > "$exec_file" << EOF
 #!/bin/sh
 mkdir -p "${profile_dir}"
 exec "${chrome_path}" \\
@@ -70,7 +69,7 @@ EOF
 chmod +x "$exec_file"
 
 # Create the Info.plist.
-cat > "$plist_file" <<EOF
+cat > "$plist_file" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" “http://www.apple.com/DTDs/PropertyList-1.0.dtd”>
 <plist version=”1.0″>

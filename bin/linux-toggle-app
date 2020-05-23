@@ -46,25 +46,25 @@ OPT_ALL=""
 parse-arguments() {
   while getopts ":p:e:w:bah" opt; do
     case ${opt} in
-      p )
+      p)
         OPT_PROC="$OPTARG"
         ;;
-      e )
+      e)
         OPT_BIN="$OPTARG"
         ;;
-      w )
+      w)
         OPT_WIN="$OPTARG"
         ;;
-      b )
+      b)
         OPT_BRING="1"
         ;;
-      a )
+      a)
         OPT_ALL="1"
         ;;
-      h )
+      h)
         show-help
         ;;
-      \? )
+      \?)
         error-help "Invalid option: -${OPTARG}\n" 1>&2
         exit 1
         ;;
@@ -81,7 +81,7 @@ parse-arguments() {
     OPT_BIN="$OPT_PROC"
   fi
 
-  if ! command -v "$OPT_BIN" &>/dev/null; then
+  if ! command -v "$OPT_BIN" &> /dev/null; then
     error "\"${OPT_BIN}\" does not seem to be a valid executable."
     exit 2
   fi

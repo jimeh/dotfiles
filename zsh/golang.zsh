@@ -2,7 +2,7 @@
 # Go (golang) setup.
 #
 
-install_go_global_packages () {
+install_go_global_packages() {
   local packages=(
     github.com/akavel/up
     github.com/asciimoo/wuzz

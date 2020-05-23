@@ -3,7 +3,7 @@ set -e
 
 PREFIX="/opt/zsh"
 
-help() {
+show-help() {
   echo "usage: ./install-zsh.sh <VERSION>"
 }
 
@@ -24,14 +24,14 @@ install() {
 deps() {
   sudo apt-get update
   sudo apt-get install -y \
-       build-essential
+    build-essential
 }
 
 main() {
   local command="$1"
 
   if [ -z "$command" ]; then
-    echo "$(help)" 1>&2
+    show-help 1>&2
     exit 1
   fi
 

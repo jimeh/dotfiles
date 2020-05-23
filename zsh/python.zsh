@@ -2,7 +2,7 @@
 # Python environment setup
 #
 
-install_python_global_packages () {
+install_python_global_packages() {
   local packages=(
     'ansible'
     'grip'

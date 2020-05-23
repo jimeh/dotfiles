@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 set -e
 
-abs_dirname () {
+abs_dirname()  {
   local path="$1"
   local cwd
   cwd="$(pwd)"
 
   while [ -n "$path" ]; do
-    cd "${path%/*}" 2>/dev/null
+    cd "${path%/*}" 2> /dev/null
     local name="${path##*/}"
     path="$(resolve_link "$name" || true)"
   done
@@ -16,12 +16,12 @@ abs_dirname () {
   cd "$cwd"
 }
 
-abs_path () {
+abs_path()  {
   local path="$1"
   echo "$(cd "$(abs_dirname "$path")" && pwd)/$(basename "$path")"
 }
 
-resolve_link () {
+resolve_link()  {
   $(type -p greadlink readlink | head -1) "$1"
 }
 
@@ -38,7 +38,7 @@ resolve_archive() {
   echo "$archive"
 }
 
-resolve_volname () {
+resolve_volname()  {
   local archive="$1"
   local file
   local dir
@@ -47,13 +47,13 @@ resolve_volname () {
   dir="$(dirname "$archive")"
 
   docker run --rm \
-         --volume "${dir}:/source" \
-         alpine:latest \
-         sh -c "tar --exclude=\"*/*/*\" -tzf \"/source/${file}\" \
-                    | grep -v '^[^/]\+/[^/]\+$' | sed s'/.$//'" 2>/dev/null
+    --volume "${dir}:/source" \
+    alpine:latest \
+    sh -c "tar --exclude=\"*/*/*\" -tzf \"/source/${file}\" \
+               | grep -v '^[^/]\+/[^/]\+$' | sed s'/.$//'" 2> /dev/null
 }
 
-help () {
+help()  {
   echo "usage: docker-volume-restore <archive> [<volume-name>]"
   echo ""
   echo "Restores contents from a *.tar.gz archive to a Docker volume."
@@ -66,7 +66,7 @@ help () {
   echo "                    top-level directory in the archive."
 }
 
-main () {
+main()  {
   local archive="$1"
   local volname="$2"
   local archive_volname
@@ -92,19 +92,19 @@ main () {
     volname="$archive_volname"
   fi
 
-  if docker volume inspect "$volname" &>/dev/null; then
+  if docker volume inspect "$volname" &> /dev/null; then
     echo "ERROR: Volume \"${volname}\" already exists." 1>&2
     exit 1
   fi
 
-  echo "Restoring volume ${volume} from: ${archive_file}"
-  docker volume create "$volname"
+  echo "Restoring volume ${volname} from: ${archive_file}"
+  docker volume create "${volname}"
   docker run --rm \
-         --volume "${volname}:/target" \
-         --volume "${archive_dir}:/source" \
-         alpine:latest \
-         sh -c "cd /target && tar --strip-components=1 \
-                                  -xvzf \"/source/${archive_file}\""
+    --volume "${volname}:/target" \
+    --volume "${archive_dir}:/source" \
+    alpine:latest \
+    sh -c "cd /target && tar --strip-components=1 \
+                             -xvzf \"/source/${archive_file}\""
 
   echo "Volume \"${volname}\" was restored from: ${archive_file}"
 }

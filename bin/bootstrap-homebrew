@@ -5,7 +5,6 @@ set -e
 PACKAGE_LIST_CMD="brew list"
 PACKAGE_INSTALL_CMD="brew install"
 
-
 #
 # Package list
 #
@@ -63,7 +62,6 @@ PERSONAL_PKGS=(
   "mkvtoolnix --with-qt"
 )
 
-
 #
 # Main
 #
@@ -77,7 +75,6 @@ main() {
     install_packages "personal" "${PERSONAL_PKGS[@]}"
   fi
 }
-
 
 #
 # The rest...

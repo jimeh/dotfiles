@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 set -e
 
-abs_dirname () {
+abs_dirname()  {
   local path="$1"
   local cwd
   cwd="$(pwd)"
 
   while [ -n "$path" ]; do
-    cd "${path%/*}" 2>/dev/null
+    cd "${path%/*}" 2> /dev/null
     local name="${path##*/}"
     path="$(resolve_link "$name" || true)"
   done
@@ -16,16 +16,16 @@ abs_dirname () {
   cd "$cwd"
 }
 
-abs_path () {
+abs_path()  {
   local path="$1"
   echo "$(cd "$(abs_dirname "$path")" && pwd)/$(basename "$path")"
 }
 
-resolve_link () {
+resolve_link()  {
   $(type -p greadlink readlink | head -1) "$1"
 }
 
-resolve_dest () {
+resolve_dest()  {
   local dest="$1"
 
   if [ -z "$dest" ]; then
@@ -42,7 +42,7 @@ resolve_dest () {
   echo "$dest"
 }
 
-resolve_dest_dir () {
+resolve_dest_dir()  {
   local dest="$1"
   local dir
 
@@ -55,7 +55,7 @@ resolve_dest_dir () {
   echo "$dir"
 }
 
-help () {
+help()  {
   echo "usage: docker-volume-backup <volume> [<output-filename>]"
   echo ""
   echo "Backs up contents of a Docker volume to a gzipped tar archive."
@@ -66,7 +66,7 @@ help () {
   echo "                        Defaults to: ./<volume>_<date>_<time>.tar.gz"
 }
 
-main () {
+main()  {
   local volname="$1"
   local dest="$2"
   local dest_dir
@@ -76,7 +76,7 @@ main () {
     exit 1
   fi
 
-  if ! docker volume inspect "$volname" &>/dev/null; then
+  if ! docker volume inspect "$volname" &> /dev/null; then
     echo "ERROR: Volume \"${volname}\" does not exist." 1>&2
     exit 1
   fi
@@ -87,10 +87,10 @@ main () {
 
   echo "Starting volume backup to: ${dest}"
   docker run --rm \
-         --volume "${volname}:/source/${volname}" \
-         --volume "${dest_dir}:/target" \
-         alpine:latest \
-         sh -c "cd /source && tar -cvzf \"/target/${dest_file}\" \"${volname}\""
+    --volume "${volname}:/source/${volname}" \
+    --volume "${dest_dir}:/target" \
+    alpine:latest \
+    sh -c "cd /source && tar -cvzf \"/target/${dest_file}\" \"${volname}\""
 
   echo "Volume \"${volname}\" was backed up to: ${dest}"
 }

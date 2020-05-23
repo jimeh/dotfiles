@@ -27,9 +27,10 @@ ZINIT[HOME_DIR]="$HOME/.local/zsh/zinit"
 ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
 # Ask to clone Zinit if it's not already available on disk.
-[ ! -d "${ZINIT[BIN_DIR]}" ] && \
-  read -q "REPLY?Zinit not installed, clone to ${ZINIT[BIN_DIR]}? [y/N]:" && \
-  echo && git clone "https://github.com/zdharma/zinit.git" "${ZINIT[BIN_DIR]}"
+[ ! -d "${ZINIT[BIN_DIR]}" ] &&
+  read -q "REPLY?Zinit not installed, clone to ${ZINIT[BIN_DIR]}? [y/N]:" &&
+  echo &&
+  git clone --depth=1 "https://github.com/zdharma/zinit.git" "${ZINIT[BIN_DIR]}"
 
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
@@ -64,7 +65,6 @@ zinit light zsh-users/zsh-completions
 zinit ice wait lucid atload"!_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-
 # ==============================================================================
 # Private Dotfiles
 # ==============================================================================
@@ -72,7 +72,6 @@ zinit light zsh-users/zsh-autosuggestions
 if [ -f "$DOTPFILES/zshrc" ]; then
   source "$DOTPFILES/zshrc"
 fi
-
 
 # ==============================================================================
 # Tool specific setup
@@ -101,7 +100,6 @@ source "$DOTZSH/python.zsh"
 source "$DOTZSH/ruby.zsh"
 source "$DOTZSH/rust.zsh"
 
-
 # ==============================================================================
 # Basic Z-Shell settings
 # ==============================================================================
@@ -114,7 +112,6 @@ unsetopt share_history
 
 # Disable attempted correction of commands (is wrong 98% of the time).
 unsetopt correctall
-
 
 # ==============================================================================
 # Local Overrides

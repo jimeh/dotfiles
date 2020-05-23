@@ -15,20 +15,19 @@ if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
   EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 fi
 
-
 # Functions
-start ()  {
-  EMACS_GUI_SERVER=1 env $EMACS \
+start()   {
+  EMACS_GUI_SERVER=1 env "$EMACS" \
     --eval "(setq server-socket-dir \"$SOCKET_DIR\")" --daemon
 }
 
-stop ()   {
+stop()    {
   env $EMACSCLIENT -s "$SOCKET_FILE" --eval "(kill-emacs)"
 }
 
-status () {
+status()  {
   echo -n 'Emacs GUI Server... '
-  ! result="$(eval $EMACSCLIENT -s "$SOCKET_FILE" --eval \"\(print \'OK\)\" 2>/dev/null)"
+  ! result="$(eval $EMACSCLIENT -s "$SOCKET_FILE" --eval \"\(print \'OK\)\" 2> /dev/null)"
   if [[ $result == "OK" ]]; then
     echo 'RUNNING'
   else

@@ -5,7 +5,6 @@ set -e
 PACKAGE_LIST_CMD="brew cask list"
 PACKAGE_INSTALL_CMD="brew cask install"
 
-
 #
 # Package list
 #
@@ -136,7 +135,6 @@ PERSONAL_PKGS=(
   yakyak
 )
 
-
 #
 # Main
 #
@@ -154,7 +152,6 @@ main() {
     install_packages "personal" "${PERSONAL_PKGS[@]}"
   fi
 }
-
 
 #
 # The rest...

@@ -50,8 +50,8 @@ main() {
   formulas_list="$(printf '%s\n' "${formulas[@]}" | sort)"
 
   count="$(
-    comm -13 <(echo "$pinned_list") <(echo "$formulas_list") \
-      | grep -c '[^[:space:]]'
+    comm -13 <(echo "$pinned_list") <(echo "$formulas_list") |
+      grep -c '[^[:space:]]'
   )"
 
   echo ":beer:↑${count} | dropdown=false"
@@ -64,7 +64,7 @@ main() {
 
   if [ "$count" -gt 0 ]; then
     echo 'Upgrade all formula | terminal=true refresh=true' \
-         'bash=/usr/local/bin/brew param1=upgrade'
+      'bash=/usr/local/bin/brew param1=upgrade'
     echo '---'
 
     echo 'Upgrade:'
@@ -77,8 +77,8 @@ main() {
 
       echo "$pkg"
       echo "--${current_version[$i]} → ${new_version[$i]} |" \
-           "terminal=true refresh=true bash=/usr/local/bin/brew" \
-           "param1=upgrade param2=${pkg}"
+        "terminal=true refresh=true bash=/usr/local/bin/brew" \
+        "param1=upgrade param2=${pkg}"
     done
 
     if [ "${#pinned[@]}" -gt 0 ]; then

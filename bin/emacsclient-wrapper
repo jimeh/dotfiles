@@ -11,4 +11,4 @@ fi
 
 # Execute emacsclient
 exec env TERM=screen-24bit \
-     $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"
+  $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"

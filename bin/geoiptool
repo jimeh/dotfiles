@@ -7,9 +7,8 @@
 # content, at your own risk of course :) --jimeh
 #
 
-
 padlen=13
-ipaddress=$1
+ipaddress="$1"
 
 if [[ "$1" == "--raw" ]] || [[ "$1" == "-r" ]]; then
   padlen=0
@@ -19,7 +18,7 @@ elif [[ "$2" == "--raw" ]] || [[ "$2" == "-r" ]]; then
 fi
 
 case "$1" in
-  "-h" | "--help" )
+  "-h" | "--help")
     echo "usage: geoiptool [<ipaddress>]"
     echo ""
     echo "Options:"
@@ -28,8 +27,8 @@ case "$1" in
     echo "Look up details for given IP address via http://www.geoiptool.com/. If no IP"
     echo "address is given, your own public IP will be used instead."
     ;;
-  * )
-    curl -s "http://www.geoiptool.com/en/?IP=${ipaddress}" -H "User-Agent: " | \
+  *)
+    curl -s "http://www.geoiptool.com/en/?IP=${ipaddress}" -H "User-Agent: " |
       awk -F '(</?[^>]+>)+' \
         "/Host Name/,/Latitude/ {
           if (/:/) {
