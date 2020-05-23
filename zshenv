@@ -76,12 +76,12 @@ if [[ "$TMPDIR" == "/var/folders/"* ]] || [[ "$TMPDIR" == "" ]]; then
 fi
 
 # Ensure basic systems paths are in desired order
-path_prepend "/sbin"
-path_prepend "/usr/sbin"
 path_prepend "/bin"
+path_prepend "/sbin"
 path_prepend "/usr/bin"
-path_prepend "/usr/local/sbin"
+path_prepend "/usr/sbin"
 path_prepend "/usr/local/bin"
+path_prepend "/usr/local/sbin"
 
 # Add dotfiles' bin directory to PATH
 path_prepend "$DOTBIN"
