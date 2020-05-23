@@ -40,7 +40,7 @@ brew 'less'
 brew 'lua'
 brew 'luarocks'
 brew 'mas'
-brew 'mosh'
+brew 'mosh', args: ['HEAD']
 brew 'node'
 brew 'pandoc'
 brew 'peco'
