@@ -23,6 +23,7 @@ alias egs="$DOTBIN/emacs-gui-server"
 # Utils
 alias ma="make"
 alias va="vagrant"
+alias tf="terraform"
 alias di="colordiff"
 alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 
