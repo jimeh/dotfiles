@@ -66,6 +66,19 @@ zinit ice wait lucid atload"!_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
 # ==============================================================================
+# Completion
+# ==============================================================================
+
+# Group completions by type under group headings
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Improve selection of Makefile completions - from:
+# https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:make:*' tag-order targets
+
+# ==============================================================================
 # Private Dotfiles
 # ==============================================================================
 
