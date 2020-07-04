@@ -1,0 +1,14 @@
+[{*.sh,*.bash,*.zsh,zshenv,zshrc}]
+indent_style = space
+indent_size = 2
+
+# shfmt options
+shell_variant = bash        # like -ln bash
+binary_next_line = false    # like -bn
+switch_case_indent = true   # like -ci
+space_redirects = true      # like -sr
+keep_padding = false        # like -kp
+function_next_line = false  # like -fn
+
+[tmux/plugins/**]
+ignore = true
