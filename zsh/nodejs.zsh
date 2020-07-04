@@ -30,6 +30,7 @@ install_node_global_packages() {
     mermaid.cli
     prettier
     prettier-plugin-toml
+    standard-version
     stylelint
     tslint
     typescript
