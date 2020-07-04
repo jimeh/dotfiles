@@ -8,3 +8,9 @@
         type: string
         value: '-l -W --kw-case=none'
         state: present
+    - name: "Safari: Enable Debug menu"
+      osx_defaults:
+        domain: com.apple.Safari
+        key: IncludeInternalDebugMenu
+        type: integer
+        value: 1

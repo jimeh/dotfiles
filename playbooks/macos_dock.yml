@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  tasks:
+    - name: "Dock: Set icon size"
+      osx_defaults:
+        domain: com.apple.dock
+        key: tilesize
+        type: float
+        value: 55
+      notify: restart Dock
+    - name: "Dock: Enable magnification"
+      osx_defaults:
+        domain: com.apple.dock
+        key: magnification
+        type: boolean
+        value: true
+      notify: restart Dock
+    - name: "Dock: Set magnified icon size"
+      osx_defaults:
+        domain: com.apple.dock
+        key: largesize
+        type: float
+        value: 70
+      notify: restart Dock
+    - name: "Dock: Do not show recent apps"
+      osx_defaults:
+        domain: com.apple.dock
+        key: show-recents
+        type: boolean
+        value: false
+      notify: restart Dock
+    - name: "Dock: Do not auto-hide"
+      osx_defaults:
+        domain: com.apple.dock
+        key: autohide
+        type: boolean
+        value: false
+      notify: restart Dock
+  handlers:
+    - name: restart Dock
+      command: killall Dock
