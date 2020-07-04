@@ -10,10 +10,6 @@ install_python_global_packages() {
     'yamllint'
   )
 
-  if [[ "$OSTYPE" == "darwin"* ]] && command-exists brew; then
-    brew list python >/dev/null || brew install python
-  fi
-
   local pipcmd="pip"
   if command-exists pip3; then pipcmd="pip3"; fi
 
@@ -22,6 +18,26 @@ install_python_global_packages() {
 }
 
 # Aliases
-alias ap="ansible-playbook"
-alias av="ansible-vault"
-alias mo="molecule"
+alias ap="env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES ansible-playbook"
+alias av="env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES ansible-vault"
+alias mo="env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES molecule"
+
+if command-exists pyenv; then
+  # lazy-load pyenv
+  pyenv() {
+    load-pyenv
+    pyenv "$@"
+  }
+
+  _pyenv() {
+    load-pyenv
+    _pyenv "$@"
+  }
+
+  compctl -K _pyenv pyenv
+
+  load-pyenv() {
+    unset -f load-pyenv _pyenv pyenv
+    eval "$(command pyenv init -)"
+  }
+fi

@@ -157,6 +157,10 @@ path_prepend "/opt/tmux/bin"
 path_prepend "$HOME/.rbenv/shims"
 path_prepend "$HOME/.rbenv/bin"
 
+# Python setup
+path_prepend "$HOME/.pyenv/shims"
+path_prepend "$HOME/.pyenv/bin"
+
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
 
