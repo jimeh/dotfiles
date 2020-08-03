@@ -46,7 +46,7 @@ alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
 alias digg="ab -kc 50 -t 30"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
-alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias servethis="python -m http.server"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 alias fku="fuck you"
 alias fucking="sudo"
