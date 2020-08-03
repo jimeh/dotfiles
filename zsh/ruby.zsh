@@ -16,6 +16,7 @@ install_ruby_global_packages() {
     rbenv-rehash
     reek
     rubocop
+    rubocop-daemon
     seeing_is_believing
     solargraph
   )
@@ -30,6 +31,7 @@ alias he="heroku"
 alias f="foreman"
 alias fs="foreman start"
 alias fr="foreman run"
+alias pe="procodile exec"
 
 # Aliases for specific ruby commands
 alias ru="bundle exec ruby"
