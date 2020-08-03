@@ -161,6 +161,10 @@ path_prepend "$HOME/.rbenv/bin"
 path_prepend "$HOME/.pyenv/shims"
 path_prepend "$HOME/.pyenv/bin"
 
+# Node setup
+path_prepend "$HOME/.nodenv/shims"
+path_prepend "$HOME/.nodenv/bin"
+
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
 

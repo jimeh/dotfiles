@@ -42,6 +42,28 @@ install_node_global_packages() {
   npm install -g "${packages[@]}"
 }
 
+# Support for nodenv (https://github.com/nodenv/nodenv)
+if command-exists nodenv; then
+  # lazy-load nodenv
+  nodenv() {
+    load-nodenv
+    nodenv "$@"
+  }
+
+  _nodenv() {
+    load-nodenv
+    _nodenv "$@"
+  }
+
+  compctl -K _nodenv nodenv
+
+  load-nodenv() {
+    unset -f load-nodenv _nodenv nodenv
+    eval "$(command nodenv init -)"
+  }
+fi
+
+# Support for nvm (https://github.com/nvm-sh/nvm)
 if [ -f "$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="$HOME/.nvm"
 
