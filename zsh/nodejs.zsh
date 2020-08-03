@@ -12,6 +12,8 @@ alias tl="tldr"
 
 install_node_global_packages() {
   local packages=(
+    @commitlint/cli
+    @commitlint/config-conventional
     @prettier/plugin-php
     @prettier/plugin-ruby
     @prettier/plugin-xml
