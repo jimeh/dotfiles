@@ -27,7 +27,7 @@ main() {
       current_version+=("${BASH_REMATCH[2]}")
       new_version+=("${BASH_REMATCH[3]}")
     fi
-  done < <(/usr/local/bin/brew cask outdated -v)
+  done < <(/usr/local/bin/brew cask outdated --verbose)
 
   count="${#formulas[@]}"
 

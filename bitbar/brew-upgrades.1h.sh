@@ -44,7 +44,7 @@ main() {
       new_version+=("${BASH_REMATCH[3]}")
       pinned_version+=("NONE")
     fi
-  done < <(/usr/local/bin/brew outdated -v)
+  done < <(/usr/local/bin/brew outdated --verbose)
 
   pinned_list="$(printf '%s\n' "${pinned[@]}" | sort)"
   formulas_list="$(printf '%s\n' "${formulas[@]}" | sort)"
