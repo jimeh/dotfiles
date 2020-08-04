@@ -13,7 +13,6 @@ install_ruby_global_packages() {
     method_source
     procodile
     pry-doc
-    rbenv-rehash
     reek
     rubocop
     rubocop-daemon
@@ -21,6 +20,7 @@ install_ruby_global_packages() {
     solargraph
   )
 
+  gem install --no-document rbenv-rehash
   gem install --no-document "${packages[@]}"
 }
 
@@ -53,56 +53,5 @@ alias bp="bundle package"
 alias bu="bundle update"
 
 if command-exists rbenv; then
-  # lazy-load rbenv
-  rbenv() {
-    load-rbenv
-    rbenv "$@"
-  }
-
-  _rbenv() {
-    load-rbenv
-    _rbenv "$@"
-  }
-
-  compctl -K _rbenv rbenv
-
-  load-rbenv() {
-    unset -f load-rbenv _rbenv rbenv
-    eval "$(command rbenv init -)"
-  }
+  source "$DOTZSH/rbenv.zsh"
 fi
-
-rbenv-each-version() {
-  local current_version="$RBENV_VERSION"
-
-  for v in $(ls "${HOME}/.rbenv/versions"); do
-    echo "==> Ruby $v:"
-    export RBENV_VERSION="$v"
-    eval $*
-  done
-
-  export RBENV_VERSION="$current_version"
-}
-
-# Solargraph related commands
-
-solargraph-install() {
-  rbenv-each-version "gem install solargraph"
-}
-
-solargraph-download-cores() {
-  rbenv-each-version "solargraph download-core"
-}
-
-solargraph-list-versions() {
-  rbenv-each-version "gem list -q solargraph"
-}
-
-rubygems-upgrade() {
-  rbenv-each-version "gem update --system"
-}
-
-upgrade-bundler() {
-  rbenv-each-version \
-    "gem install --no-document 'bundler:~> 1.0' 'bundler:~> 2.0'"
-}
