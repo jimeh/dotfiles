@@ -66,6 +66,14 @@ brew 'zsh'
 tap 'heroku/brew'
 brew 'heroku'
 
+# node.js version manager
+tap 'nodenv/nodenv'
+brew 'nodenv'
+brew 'nodenv-aliases'
+brew 'nodenv-each'
+brew 'nodenv-nvmrc'
+brew 'nodenv-package-rehash'
+
 # sshfs requires osxfuse
 cask 'osxfuse'
 brew 'sshfs'
