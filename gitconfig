@@ -6,7 +6,6 @@
 	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore
-	hooksPath = ~/.githooks
 [color]
 	status = auto
 	branch = auto
