@@ -16,6 +16,7 @@ install_ruby_global_packages() {
     reek
     rubocop
     rubocop-daemon
+    schmersion
     seeing_is_believing
     solargraph
   )
@@ -32,6 +33,7 @@ alias f="foreman"
 alias fs="foreman start"
 alias fr="foreman run"
 alias pe="procodile exec"
+alias sm="schmersion"
 
 # Aliases for specific ruby commands
 alias ru="bundle exec ruby"
