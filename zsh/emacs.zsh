@@ -5,6 +5,7 @@
 # macOS systems
 if [[ "$OSTYPE" == "darwin"* ]]; then
   if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
+    alias emacsgui="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/Emacs"
     alias emacs="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/Emacs -nw"
   fi
 
