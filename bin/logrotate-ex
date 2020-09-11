@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # Parse confx files and generate the conf files.
 for file in $HOME/.logrotate.d/*.confx; do
@@ -7,4 +7,4 @@ for file in $HOME/.logrotate.d/*.confx; do
 done
 
 # Run logrorate like normal against conf files.
-logrotate ~/.logrotate.d/*.conf
+exec logrotate ~/.logrotate.d/*.conf
