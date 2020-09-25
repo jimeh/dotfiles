@@ -1,6 +1,10 @@
 #
-# Go (golang) setup.
+# Go (golang) environment setup.
 #
+
+# ==============================================================================
+# global golang packages
+# ==============================================================================
 
 install_go_global_packages() {
   local packages=(
@@ -23,4 +27,9 @@ install_go_global_packages() {
     echo "installing/updating \"$package\""
     go get -u "$package"
   done
+
+  if command-exists goenv && [ "$(goenv version-name)" != "system" ]; then
+    echo "running: goenv rehash..."
+    goenv rehash
+  fi
 }

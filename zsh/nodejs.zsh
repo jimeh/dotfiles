@@ -1,14 +1,67 @@
 #
-# Node.js
+# Node.js environment setup.
 #
 
-# Aliases
+# ==============================================================================
+# nodenv
+# ==============================================================================
+
+# install nodenv
+zinit ice wait lucid as'program' pick'bin/nodenv' from'gh' \
+  atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
+zinit light nodenv/nodenv
+
+# install node-build
+zinit ice wait lucid as'program' pick'bin/node-build' from'gh'
+zinit light nodenv/node-build
+
+# install nodenv-aliases plugin
+zinit ice wait lucid as'program' pick'bin/nodenv-aliases' from'gh'
+zinit light nodenv/nodenv-aliases
+
+# install nodenv-each plugin
+zinit ice wait lucid as'program' pick'bin/nodenv-each' from'gh'
+zinit light nodenv/nodenv-each
+
+# install nodenv-nvmrc plugin
+zinit ice wait lucid as'program' pick'bin/nodenv-nvmrc' from'gh'
+zinit light ouchxp/nodenv-nvmrc
+
+# install nodenv-package-rehash plugin
+zinit ice wait lucid as'program' pick'bin/nodenv-package-*' from'gh'
+zinit light nodenv/nodenv-package-rehash
+
+# lazy-load nodenv
+nodenv() {
+  load-nodenv
+  nodenv "$@"
+}
+
+_nodenv() {
+  load-nodenv
+  _nodenv "$@"
+}
+
+compctl -K _nodenv nodenv
+
+load-nodenv() {
+  unset -f load-nodenv _nodenv nodenv
+  eval "$(command nodenv init -)"
+}
+
+# ==============================================================================
+# aliases
+# ==============================================================================
+
 alias no="node"
 alias np="npm"
 alias ni="npm install"
 alias ngi="npm install -g"
 alias cof="coffee"
-alias tl="tldr"
+
+# ==============================================================================
+# global node packages
+# ==============================================================================
 
 install_node_global_packages() {
   local packages=(
@@ -43,54 +96,3 @@ install_node_global_packages() {
 
   npm install -g "${packages[@]}"
 }
-
-# Support for nodenv (https://github.com/nodenv/nodenv)
-if command-exists nodenv; then
-  # lazy-load nodenv
-  nodenv() {
-    load-nodenv
-    nodenv "$@"
-  }
-
-  _nodenv() {
-    load-nodenv
-    _nodenv "$@"
-  }
-
-  compctl -K _nodenv nodenv
-
-  load-nodenv() {
-    unset -f load-nodenv _nodenv nodenv
-    eval "$(command nodenv init -)"
-  }
-fi
-
-# Support for nvm (https://github.com/nvm-sh/nvm)
-if [ -f "$HOME/.nvm/nvm.sh" ]; then
-  export NVM_DIR="$HOME/.nvm"
-
-  # If default alias is set, add that Node version's bin direcotry to PATH to
-  # ensure CLI tools from npm packages work before nvm is lazy-loaded.
-  if [ -s "$NVM_DIR/alias/default" ]; then
-    path_prepend "$NVM_DIR/versions/node/$(cat "$NVM_DIR/alias/default")/bin"
-  fi
-
-  # lazy-load nvm
-  nvm() {
-    load-nvm
-    nvm "$@"
-  }
-
-  _nvm() {
-    load-nvm
-    _nvm "$@"
-  }
-
-  compctl -K _nvm nvm
-
-  load-nvm() {
-    unset -f load-nvm nvm _nvm
-    source "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-  }
-fi

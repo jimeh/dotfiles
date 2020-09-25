@@ -153,15 +153,15 @@ path_prepend "/opt/emacs/bin"
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
-# Ruby setup
+# Ruby setup for rbenv (./zsh/ruby.zsh)
 path_prepend "$HOME/.rbenv/shims"
 path_prepend "$HOME/.rbenv/bin"
 
-# Python setup
+# Python setup for pyenv (./zsh/python.zsh)
 path_prepend "$HOME/.pyenv/shims"
 path_prepend "$HOME/.pyenv/bin"
 
-# Node setup
+# Node setup for nodenv (./zsh/nodejs.zsh)
 path_prepend "$HOME/.nodenv/shims"
 path_prepend "$HOME/.nodenv/bin"
 
