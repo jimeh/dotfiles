@@ -14,6 +14,7 @@ SYMLINKS=(
   alacritty.yml
   bitbar
   coffeelint.json
+  config/solargraph/config.yml
   erlang
   eslintrc.js
   gemrc
@@ -29,7 +30,6 @@ SYMLINKS=(
   reek.yml
   rspec
   rubocop.yml
-  solargraph.yml
   tmux
   tmux.conf
   zshenv

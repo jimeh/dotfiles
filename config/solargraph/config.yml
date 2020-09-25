@@ -1,0 +1,14 @@
+---
+exclude:
+  - vendor/**/*
+  - ".bundle/**/*"
+reporters:
+  - rubocop
+  - require_not_found
+  - typecheck
+max_files: 5000
+formatter:
+  cops: all
+  extra_args:
+    - --except
+    - Lint/Debugger,Lint/UnusedBlockArgument,Lint/UnusedMethodArgument,Style/EmptyMethod
