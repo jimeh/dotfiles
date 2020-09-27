@@ -11,6 +11,10 @@ zinit ice wait lucid as'program' pick'bin/pyenv' from'gh' \
   atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
 zinit light pyenv/pyenv
 
+zinit ice wait lucid as'program' pick'plugins/python-build/bin/python-build' \
+  from'gh' id-as'pyenv/python-build'
+zinit light pyenv/pyenv
+
 # lazy-load pyenv
 pyenv() {
   load-pyenv
