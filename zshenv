@@ -155,15 +155,12 @@ export GOENV_GOPATH_PREFIX="$HOME/.goenv/go"
 
 # Ruby setup for rbenv (./zsh/ruby.zsh)
 path_prepend "$HOME/.rbenv/shims"
-path_prepend "$HOME/.rbenv/bin"
 
 # Python setup for pyenv (./zsh/python.zsh)
 path_prepend "$HOME/.pyenv/shims"
-path_prepend "$HOME/.pyenv/bin"
 
 # Node setup for nodenv (./zsh/nodejs.zsh)
 path_prepend "$HOME/.nodenv/shims"
-path_prepend "$HOME/.nodenv/bin"
 
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
