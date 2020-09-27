@@ -3,6 +3,37 @@
 #
 
 # ==============================================================================
+# goenv
+# ==============================================================================
+
+# install goenv
+zinit ice wait lucid as'program' pick'bin/goenv' from'gh' \
+  atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
+zinit light syndbg/goenv
+
+zinit ice wait lucid as'program' pick'plugins/go-build/bin/go-build' from'gh' \
+  id-as'syndbg/go-build'
+zinit light syndbg/goenv
+
+# lazy-load goenv
+goenv() {
+  load-goenv
+  goenv "$@"
+}
+
+_goenv() {
+  load-goenv
+  _goenv "$@"
+}
+
+compctl -K _goenv goenv
+
+load-goenv() {
+  unset -f load-goenv _goenv goenv
+  eval "$(command goenv init -)"
+}
+
+# ==============================================================================
 # global golang packages
 # ==============================================================================
 

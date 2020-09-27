@@ -137,10 +137,6 @@ path_append "/opt/flutter/bin/cache/dart-sdk/bin"
 # Use gnu-getop if available
 path_prepend "/usr/local/opt/gnu-getopt/bin"
 
-# Go (golang) environment setup
-export GOPATH="$HOME/.go"
-path_prepend "$GOPATH/bin"
-
 # Homebrew setup
 export HOMEBREW_NO_ANALYTICS=1
 
@@ -152,6 +148,10 @@ path_prepend "/opt/emacs/bin"
 
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
+
+# Go setup for golang (./zsh/golang.zsh)
+path_prepend "$HOME/.goenv/shims"
+export GOENV_GOPATH_PREFIX="$HOME/.goenv/go"
 
 # Ruby setup for rbenv (./zsh/ruby.zsh)
 path_prepend "$HOME/.rbenv/shims"
