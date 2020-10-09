@@ -48,6 +48,7 @@ install_go_global_packages() {
     github.com/kisielk/errcheck
     github.com/mdempsky/unconvert
     github.com/rogpeppe/godef
+    golang.org/x/lint/golint
     golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/guru
