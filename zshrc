@@ -79,6 +79,14 @@ zstyle ':completion:*:make:*:targets' call-command true
 zstyle ':completion:*:make:*' tag-order targets
 
 # ==============================================================================
+# Edit command line
+# ==============================================================================
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# ==============================================================================
 # Private Dotfiles
 # ==============================================================================
 
