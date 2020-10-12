@@ -80,6 +80,7 @@ install_ruby_global_packages() {
     'bundler:~> 2.0'
     brakeman
     bundler-audit
+    dotenv
     foreman
     lunchy
     method_source
