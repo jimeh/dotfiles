@@ -82,6 +82,7 @@ install_ruby_global_packages() {
     bundler-audit
     dotenv
     foreman
+    hippo-cli
     lunchy
     method_source
     procodile
