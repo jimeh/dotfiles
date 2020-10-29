@@ -1,5 +1,6 @@
 .AppleDouble
 .DS_Store
+._zinit/*
 .bin
 .bundle
 .byebug_history
@@ -8,6 +9,7 @@
 .stignore
 .vagrant
 .vscode
+.zinitrc.zsh
 log/*.bz2
 log/*.gz
 routes.txt

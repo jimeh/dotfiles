@@ -8,8 +8,8 @@
 
 # install goenv
 zinit ice wait lucid as'program' pick'bin/goenv' from'gh' \
-  atclone'src/configure && make -C src; ../libexec/goenv init - > zgoenv.zsh' \
-  atpull'%atclone' src'zgoenv.zsh' nocompile'!'
+  atclone'src/configure && make -C src; ./libexec/goenv init - > .zinitrc.zsh' \
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
 zinit light syndbg/goenv
 
 zinit ice wait lucid as'program' pick'plugins/go-build/bin/go-build' from'gh' \
