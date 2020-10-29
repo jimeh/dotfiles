@@ -8,7 +8,8 @@
 
 # install nodenv
 zinit ice wait lucid as'program' pick'bin/nodenv' from'gh' \
-  atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
+  atclone'src/configure && make -C src; libexec/nodenv init - > .zinitrc.zsh' \
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
 zinit light nodenv/nodenv
 
 # install node-build
@@ -30,24 +31,6 @@ zinit light ouchxp/nodenv-nvmrc
 # install nodenv-package-rehash plugin
 zinit ice wait lucid as'program' pick'bin/nodenv-package-*' from'gh'
 zinit light nodenv/nodenv-package-rehash
-
-# lazy-load nodenv
-nodenv() {
-  load-nodenv
-  nodenv "$@"
-}
-
-_nodenv() {
-  load-nodenv
-  _nodenv "$@"
-}
-
-compctl -K _nodenv nodenv
-
-load-nodenv() {
-  unset -f load-nodenv _nodenv nodenv
-  eval "$(command nodenv init -)"
-}
 
 # ==============================================================================
 # aliases

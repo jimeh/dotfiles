@@ -8,7 +8,8 @@
 
 # Install rbenv
 zinit ice wait lucid as'program' pick'bin/rbenv' from'gh' \
-  atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
+  atclone'src/configure && make -C src; libexec/rbenv init - > .zinitrc.zsh' \
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
 zinit light rbenv/rbenv
 
 # install ruby-build
@@ -18,24 +19,6 @@ zinit light rbenv/ruby-build
 # install rbenv-each plugin
 zinit ice wait lucid as'program' pick'bin/rbenv-each' from'gh'
 zinit light rbenv/rbenv-each
-
-# lazy-load rbenv
-rbenv() {
-  load-rbenv
-  rbenv "$@"
-}
-
-_rbenv() {
-  load-rbenv
-  _rbenv "$@"
-}
-
-compctl -K _rbenv rbenv
-
-load-rbenv() {
-  unset -f load-rbenv _rbenv rbenv
-  eval "$(command rbenv init -)"
-}
 
 # ==============================================================================
 # aliases

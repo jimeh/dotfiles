@@ -8,7 +8,7 @@
 
 # install goenv
 zinit ice wait lucid as'program' pick'bin/goenv' from'gh' \
-  atclone'src/configure && make -C src; ./libexec/goenv init - > .zinitrc.zsh' \
+  atclone'src/configure && make -C src; libexec/goenv init - > .zinitrc.zsh' \
   atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
 zinit light syndbg/goenv
 

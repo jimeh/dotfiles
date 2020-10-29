@@ -8,30 +8,13 @@
 
 # install pyenv
 zinit ice wait lucid as'program' pick'bin/pyenv' from'gh' \
-  atclone'src/configure && make -C src' atpull'%atclone' nocompile'!'
+  atclone'src/configure && make -C src; libexec/pyenv init - > .zinitrc.zsh' \
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
 zinit light pyenv/pyenv
 
 zinit ice wait lucid as'program' pick'plugins/python-build/bin/python-build' \
   from'gh' id-as'pyenv/python-build'
 zinit light pyenv/pyenv
-
-# lazy-load pyenv
-pyenv() {
-  load-pyenv
-  pyenv "$@"
-}
-
-_pyenv() {
-  load-pyenv
-  _pyenv "$@"
-}
-
-compctl -K _pyenv pyenv
-
-load-pyenv() {
-  unset -f load-pyenv _pyenv pyenv
-  eval "$(command pyenv init -)"
-}
 
 # ==============================================================================
 # aliases
