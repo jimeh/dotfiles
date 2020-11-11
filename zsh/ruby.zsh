@@ -63,6 +63,7 @@ install_ruby_global_packages() {
     'bundler:~> 2.0'
     brakeman
     bundler-audit
+    debase
     dotenv
     foreman
     hippo-cli
@@ -73,6 +74,7 @@ install_ruby_global_packages() {
     reek
     rubocop
     rubocop-daemon
+    ruby-debug-ide
     schmersion
     seeing_is_believing
     solargraph
