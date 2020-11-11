@@ -36,6 +36,8 @@ install_go_global_packages() {
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/guru
     golang.org/x/tools/gopls
+    mvdan.cc/gofumpt
+    mvdan.cc/gofumpt/gofumports
   )
 
   for package in "${packages[@]}"; do
