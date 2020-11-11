@@ -32,6 +32,10 @@ osx-disable-lookup-word-hotkey() {
 alias osx-disable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=0'
 alias osx-enable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=1'
 
+# Developer mode (debuggers)
+alias devmode-on='sudo /usr/sbin/DevToolsSecurity -enable'
+alias devmode-off='sudo /usr/sbin/DevToolsSecurity -disable'
+
 #
 # Power management
 #
