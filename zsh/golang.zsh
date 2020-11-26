@@ -3,20 +3,6 @@
 #
 
 # ==============================================================================
-# goenv
-# ==============================================================================
-
-# install goenv
-zinit ice wait lucid as'program' pick'bin/goenv' from'gh' \
-  atclone'src/configure && make -C src; libexec/goenv init - > .zinitrc.zsh' \
-  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
-zinit light syndbg/goenv
-
-zinit ice wait lucid as'program' pick'plugins/go-build/bin/go-build' from'gh' \
-  id-as'syndbg/go-build'
-zinit light syndbg/goenv
-
-# ==============================================================================
 # global golang packages
 # ==============================================================================
 
@@ -42,7 +28,7 @@ install_go_global_packages() {
 
   for package in "${packages[@]}"; do
     echo "installing/updating \"$package\""
-    go get -u "$package"
+    GO111MODULE=on go get -u "$package"
   done
 
   if command-exists goenv && [ "$(goenv version-name)" != "system" ]; then
