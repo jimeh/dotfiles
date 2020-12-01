@@ -30,10 +30,15 @@ alias devnullsmtp="java -jar $DOTBIN/DevNullSmtp.jar"
 # Homebrew
 if command-exists brew; then
   alias br="brew"
-  alias ca="brew cask"
-  alias cask="brew cask"
   alias bb="brew bundle"
   alias bbg="brew bundle --global"
+
+  cask() {
+    local cmd="$1"
+    shift 1
+    brew "$cmd" --cask "$@"
+  }
+  alias ca="cask"
 fi
 
 # Flutter
