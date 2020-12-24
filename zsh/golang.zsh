@@ -11,6 +11,7 @@ install_go_global_packages() {
     github.com/akavel/up
     github.com/asciimoo/wuzz
     github.com/cweill/gotests/...
+    github.com/erning/gorun
     github.com/go-delve/delve/cmd/dlv
     github.com/golang/mock/gomock
     github.com/golang/mock/mockgen
@@ -21,6 +22,7 @@ install_go_global_packages() {
     golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/guru
+    golang.org/x/tools/cmd/stringer
     golang.org/x/tools/gopls
     mvdan.cc/gofumpt
     mvdan.cc/gofumpt/gofumports
