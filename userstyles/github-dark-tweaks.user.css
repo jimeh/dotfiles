@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name          GitHub Dark Tweaks
 @description   Custom tweaks for GitHub Dark (https://github.com/StylishThemes/GitHub-Dark)
-@version       1.0.1
+@version       1.0.2
 @license       MIT
 @author        Jim Myhrberg (https://jimeh.me/)
 @namespace     jimeh.me
@@ -24,7 +24,6 @@
 @var color ghdt-diff-hover-bg "Diff Hover BG" rgba(255, 255, 255, .04)
 @var color ghdt-diff-hover-selected-bg "Diff Hover Selected BG" rgba(255, 255, 255, .08)
 ==/UserStyle== */
-
 @-moz-document domain("githubusercontent.com"),
 domain("www.githubstatus.com"),
 regexp("^https?://((education|graphql|guides|raw|resources|status|developer|support|vscode-auth)\\.)?github\\.com/((?!(sponsors)).)*$") {
@@ -34,33 +33,32 @@ regexp("^https?://((education|graphql|guides|raw|resources|status|developer|supp
     Make red/green diff background colors more subtle, with configuration
     options to fully customize them.
   */
+  .highlight .blob-num-deletion {
+    color: ghdt-diff-del-fringe-text !important;
+    background-color: ghdt-diff-del-fringe-bg !important;
+  }
 
-  .highlight {
-    .blob-num-deletion {
-      color: ghdt-diff-del-fringe-text !important;
-      background-color: ghdt-diff-del-fringe-bg !important;
-    }
+  .highlight .blob-code-deletion {
+    background-color: ghdt-diff-del-code-bg !important;
+  }
 
-    .blob-code-deletion {
-      background-color: ghdt-diff-del-code-bg !important;
-      .x {
-        color: ghdt-diff-del-region-text !important;
-        background-color: ghdt-diff-del-region-bg !important;
-      }
-    }
+  .highlight .blob-code-deletion .x {
+    color: ghdt-diff-del-region-text !important;
+    background-color: ghdt-diff-del-region-bg !important;
+  }
 
-    .blob-num-addition {
-      color: ghdt-diff-add-fringe-text !important;
-      background-color: ghdt-diff-add-fringe-bg !important;
-    }
+  .highlight .blob-num-addition {
+    color: ghdt-diff-add-fringe-text !important;
+    background-color: ghdt-diff-add-fringe-bg !important;
+  }
 
-    .blob-code-addition {
-      background-color: ghdt-diff-add-code-bg !important;
-      .x {
-        color: ghdt-diff-add-region-text !important;
-        background-color: ghdt-diff-add-region-bg !important;
-      }
-    }
+  .highlight .blob-code-addition {
+    background-color: ghdt-diff-add-code-bg !important;
+  }
+
+  .highlight .blob-code-addition .x {
+    color: ghdt-diff-add-region-text !important;
+    background-color: ghdt-diff-add-region-bg !important;
   }
 
   .diff-table > tbody > tr[data-hunk]:hover > td::after,
