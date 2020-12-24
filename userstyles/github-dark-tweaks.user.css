@@ -1,0 +1,74 @@
+/* ==UserStyle==
+@name          GitHub Dark Tweaks
+@description   Custom tweaks for GitHub Dark (https://github.com/StylishThemes/GitHub-Dark)
+@author        Jim Myhrberg (https://jimeh.me/)
+@version       1.0.0
+@namespace     jimeh.me
+@homepageURL   https://github.com/jimeh/dotfiles/blob/master/userstyles/github-dark-tweaks.user.css
+@updateURL     https://github.com/jimeh/dotfiles/raw/master/userstyles/github-dark-tweaks.user.css
+@preprocessor  stylus
+
+@var color ghdt-diff-del-fringe-text "Diff Del Fringe Text" #f85149
+@var color ghdt-diff-del-fringe-bg "Diff Del Fringe BG" rgba(218, 54, 51, 0.05)
+@var color ghdt-diff-del-code-bg "Diff Del Code BG" rgba(218, 54, 51, 0.15)
+@var color ghdt-diff-del-region-text "Diff Del Region Text" #eee
+@var color ghdt-diff-del-region-bg "Diff Del Region BG" rgba(218, 54, 51, 0.45)
+
+@var color ghdt-diff-add-fringe-text "Diff Add Fringe Text" #3fb950
+@var color ghdt-diff-add-fringe-bg "Diff Add Fringe BG" rgba(35, 134, 54, 0.05)
+@var color ghdt-diff-add-code-bg "Diff Add Code BG" rgba(35, 134, 54, 0.15)
+@var color ghdt-diff-add-region-text "Diff Add Region Text" #eee
+@var color ghdt-diff-add-region-bg "Diff Add Region BG" rgba(35, 134, 54, 0.6)
+
+@var color ghdt-diff-hover-bg "Diff Hover BG" rgba(255, 255, 255, .04)
+@var color ghdt-diff-hover-selected-bg "Diff Hover Selected BG" rgba(255, 255, 255, .08)
+==/UserStyle== */
+
+@-moz-document domain("githubusercontent.com"),
+domain("www.githubstatus.com"),
+regexp("^https?://((education|graphql|guides|raw|resources|status|developer|support|vscode-auth)\\.)?github\\.com/((?!(sponsors)).)*$") {
+  /*
+    GitHub Diff Tweaks
+
+    Make red/green diff background colors more subtle, with configuration
+    options to fully customize them.
+  */
+
+  .highlight {
+    .blob-num-deletion {
+      color: ghdt-diff-del-fringe-text !important;
+      background-color: ghdt-diff-del-fringe-bg !important;
+    }
+
+    .blob-code-deletion {
+      background-color: ghdt-diff-del-code-bg !important;
+      .x {
+        color: ghdt-diff-del-region-text !important;
+        background-color: ghdt-diff-del-region-bg !important;
+      }
+    }
+
+    .blob-num-addition {
+      color: ghdt-diff-add-fringe-text !important;
+      background-color: ghdt-diff-add-fringe-bg !important;
+    }
+
+    .blob-code-addition {
+      background-color: ghdt-diff-add-code-bg !important;
+      .x {
+        color: ghdt-diff-add-region-text !important;
+        background-color: ghdt-diff-add-region-bg !important;
+      }
+    }
+  }
+
+  .diff-table > tbody > tr[data-hunk]:hover > td::after,
+  .highlight > tbody > tr:hover > td::after {
+    background: ghdt-diff-hover-bg !important;
+  }
+
+  .diff-table > tbody > tr[data-hunk]:hover > td.selected-line::after,
+  .highlight > tbody > tr:hover > td.blob-code-inner.highlighted::after {
+    background: ghdt-diff-hover-selected-bg !important;
+  }
+}
