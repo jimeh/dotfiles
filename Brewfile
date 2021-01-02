@@ -272,6 +272,7 @@ if hostname == 'noct'
 
   # Safari Extensions
   mas 'Cascadea', id: 1_432_182_561
+  mas 'Dark Reader for Safari', id: 1_438_243_180
   mas 'Evernote Web Clipper', id: 1_481_669_779
   mas 'Octotree Pro', id: 1_457_450_145
   mas 'Save to Pocket', id: 1_477_385_213
