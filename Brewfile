@@ -143,7 +143,6 @@ cask 'fork'
 cask 'hex-fiend'
 cask 'insomnia'
 cask 'insomnia-designer'
-cask 'java'
 cask 'kaleidoscope'
 cask 'licecap'
 cask 'paw'
@@ -173,6 +172,9 @@ if hostname == 'noct'
     with-webp
   ]
   brew 'get_iplayer'
+
+  cask 'basecamp'
+  cask 'eset-cyber-security-pro'
 
   brew 'go-jsonnet'
   brew 'influxdb'
@@ -207,13 +209,13 @@ if hostname == 'noct'
   cask 'get-iplayer-automator'
   cask 'gog-galaxy'
   cask 'handbrake'
-  cask 'hey'
   cask 'istumbler'
   cask 'kapitainsky-rclone-browser'
   cask 'keybase'
   cask 'little-snitch'
   cask 'makemkv'
-  cask 'messenger-unofficial'
+  cask 'mailplane'
+  cask 'messenger'
   cask 'mkvtoolnix'
   cask 'monodraw'
   cask 'mullvadvpn'
@@ -257,13 +259,13 @@ if hostname == 'noct'
   mas 'GoodNotes 5', id: 1_444_383_602
   mas 'HTTP Client', id: 418_138_339
   mas 'HiddenMe', id: 467_040_476
-  mas 'Kiwi for Gmail Lite', id: 1_006_184_923
   mas 'Medis', id: 1_063_631_769
   mas 'Messenger', id: 1_480_068_668
   mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
   mas 'MindNode', id: 1_289_197_285
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
+  mas 'Spark', id: 1_176_895_641
   mas 'Textual 7', id: 1_262_957_439
   mas 'Things 3', id: 904_280_696
   mas 'Twitter', id: 1_482_454_543
