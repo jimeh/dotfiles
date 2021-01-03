@@ -78,6 +78,7 @@ install_ruby_global_packages() {
     schmersion
     seeing_is_believing
     solargraph
+    steep
   )
 
   gem install --no-document rbenv-rehash
