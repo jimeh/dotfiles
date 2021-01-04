@@ -260,7 +260,6 @@ if hostname == 'noct'
   mas 'HTTP Client', id: 418_138_339
   mas 'HiddenMe', id: 467_040_476
   mas 'Medis', id: 1_063_631_769
-  mas 'Messenger', id: 1_480_068_668
   mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
   mas 'MindNode', id: 1_289_197_285
   mas 'Pocket', id: 568_494_494
