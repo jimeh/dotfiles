@@ -23,6 +23,8 @@
 
 @var color ghdt-diff-hover-bg "Diff Hover BG" rgba(255, 255, 255, .04)
 @var color ghdt-diff-hover-selected-bg "Diff Hover Selected BG" rgba(255, 255, 255, .08)
+
+@var color ghdt-search-keyword-hl "Search Keyword Highlight BG" rgba(107, 82, 23, .4)
 ==/UserStyle== */
 @-moz-document domain("githubusercontent.com"),
 domain("www.githubstatus.com"),
@@ -69,5 +71,14 @@ regexp("^https?://((education|graphql|guides|raw|resources|status|developer|supp
   .diff-table > tbody > tr[data-hunk]:hover > td.selected-line::after,
   .highlight > tbody > tr:hover > td.blob-code-inner.highlighted::after {
     background: ghdt-diff-hover-selected-bg !important;
+  }
+
+  /*
+    GitHub Search Tweaks
+
+    Make keyword highlight background a bit more obvious.
+  */
+  .blob-code .hx_keyword-hl {
+    background-color: ghdt-search-keyword-hl !important;
   }
 }
