@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name          GitHub Dark Tweaks
 @description   Custom tweaks for GitHub Dark (https://github.com/StylishThemes/GitHub-Dark)
-@version       1.0.3
+@version       1.0.4
 @license       CC0-1.0
 @author        Jim Myhrberg (https://jimeh.me/)
 @namespace     jimeh.me
@@ -28,7 +28,8 @@
 ==/UserStyle== */
 @-moz-document domain("githubusercontent.com"),
 domain("www.githubstatus.com"),
-regexp("^https?://((education|graphql|guides|raw|resources|status|developer|support|vscode-auth)\\.)?github\\.com/((?!(sponsors)).)*$") {
+regexp("^https?://((education|graphql|guides|raw|resources|status|developer|support|vscode-auth)\\.)?github\\.com/((?!(sponsors)).)*$")
+{
   /*
     GitHub Diff Tweaks
 
