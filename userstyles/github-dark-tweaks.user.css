@@ -35,30 +35,30 @@ regexp("^https?://((education|graphql|guides|raw|resources|status|developer|supp
     Make red/green diff background colors more subtle, with configuration
     options to fully customize them.
   */
-  .highlight .blob-num-deletion {
+  .blob-num-deletion {
     color: ghdt-diff-del-fringe-text !important;
     background-color: ghdt-diff-del-fringe-bg !important;
   }
 
-  .highlight .blob-code-deletion {
+  .blob-code-deletion {
     background-color: ghdt-diff-del-code-bg !important;
   }
 
-  .highlight .blob-code-deletion .x {
+  .blob-code-deletion .x {
     color: ghdt-diff-del-region-text !important;
     background-color: ghdt-diff-del-region-bg !important;
   }
 
-  .highlight .blob-num-addition {
+  .blob-num-addition {
     color: ghdt-diff-add-fringe-text !important;
     background-color: ghdt-diff-add-fringe-bg !important;
   }
 
-  .highlight .blob-code-addition {
+  .blob-code-addition {
     background-color: ghdt-diff-add-code-bg !important;
   }
 
-  .highlight .blob-code-addition .x {
+  .blob-code-addition .x {
     color: ghdt-diff-add-region-text !important;
     background-color: ghdt-diff-add-region-bg !important;
   }
