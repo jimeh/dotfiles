@@ -8,7 +8,10 @@ reporters:
   - typecheck
 max_files: 5000
 formatter:
-  cops: all
-  extra_args:
-    - --except
-    - Lint/Debugger,Lint/UnusedBlockArgument,Lint/UnusedMethodArgument,Style/EmptyMethod
+  rubocop:
+    cops: all
+    except:
+      - Lint/Debugger
+      - Lint/UnusedBlockArgument
+      - Lint/UnusedMethodArgument
+      - Style/EmptyMethod
