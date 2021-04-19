@@ -17,29 +17,38 @@ zinit light stefanmaric/g
 
 install_go_global_packages() {
   local packages=(
-    github.com/akavel/up
-    github.com/asciimoo/wuzz
-    github.com/cweill/gotests/...
-    github.com/erning/gorun
-    github.com/go-delve/delve/cmd/dlv
-    github.com/golang/mock/gomock
-    github.com/golang/mock/mockgen
-    github.com/kisielk/errcheck
-    github.com/mdempsky/unconvert
-    github.com/rogpeppe/godef
-    golang.org/x/lint/golint
-    golang.org/x/tools/cmd/godoc
-    golang.org/x/tools/cmd/goimports
-    golang.org/x/tools/cmd/guru
-    golang.org/x/tools/cmd/stringer
-    golang.org/x/tools/gopls
-    mvdan.cc/gofumpt
-    mvdan.cc/gofumpt/gofumports
+    github.com/akavel/up@latest
+    github.com/asciimoo/wuzz@latest
+    github.com/cweill/gotests/...@latest
+    github.com/erning/gorun@latest
+    github.com/go-delve/delve/cmd/dlv@latest
+    github.com/golang/mock/gomock@latest
+    github.com/golang/mock/mockgen@latest
+    github.com/icholy/gomajor@latest
+    github.com/kisielk/errcheck@latest
+    github.com/lighttiger2505/sqls@latest
+    github.com/mdempsky/unconvert@latest
+    github.com/ramya-rao-a/go-outline@latest
+    github.com/rogpeppe/godef@latest
+    github.com/segmentio/golines@latest
+    github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
+    golang.org/x/lint/golint@latest
+    golang.org/x/tools/cmd/godoc@latest
+    golang.org/x/tools/cmd/goimports@latest
+    golang.org/x/tools/cmd/guru@latest
+    golang.org/x/tools/cmd/stringer@latest
+    golang.org/x/tools/gopls@latest
+    mvdan.cc/gofumpt/gofumports@latest
+    mvdan.cc/gofumpt@latest
   )
 
   for package in "${packages[@]}"; do
     echo "installing/updating \"$package\""
-    GO111MODULE=on go get -u "$package"
+    if [[ "$package" == *"@"* ]]; then
+      GO111MODULE=on go install "$package"
+    else
+      GO111MODULE=on go get -u "$package"
+    fi
   done
 
   if command-exists goenv && [ "$(goenv version-name)" != "system" ]; then
