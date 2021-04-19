@@ -149,8 +149,9 @@ path_prepend "/opt/emacs/bin"
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
-# Go setup for golang (./zsh/golang.zsh)
+# Go setup (./zsh/golang.zsh)
 export GOPATH="$HOME/.go"
+export GOROOT="$HOME/.local/go"
 path_prepend "$GOPATH/bin"
 
 # Ruby setup for rbenv (./zsh/ruby.zsh)

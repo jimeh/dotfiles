@@ -3,6 +3,15 @@
 #
 
 # ==============================================================================
+# g - Simple go version manager, gluten-free
+# ==============================================================================
+
+# Create symlink for "g" called "gv", as I have "g" aliased to "git".
+zinit ice wait lucid as'program' pick'bin/g' from'gh' \
+  atclone'cd bin && ln -s g gv' atpull'%atclone'
+zinit light stefanmaric/g
+
+# ==============================================================================
 # global golang packages
 # ==============================================================================
 
