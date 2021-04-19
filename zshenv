@@ -154,6 +154,15 @@ export GOPATH="$HOME/.go"
 export GOROOT="$HOME/.local/go"
 path_prepend "$GOPATH/bin"
 
+# Ruby setup for rbenv (./zsh/ruby.zsh)
+path_prepend "$HOME/.rbenv/shims"
+
+# Python setup for pyenv (./zsh/python.zsh)
+path_prepend "$HOME/.pyenv/shims"
+
+# Node setup for nodenv (./zsh/nodejs.zsh)
+path_prepend "$HOME/.nodenv/shims"
+
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
 
