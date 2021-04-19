@@ -111,7 +111,6 @@ source "$DOTZSH/git.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/rclone.zsh"
 source "$DOTZSH/tmux.zsh"
-source "$DOTZSH/vterm.zsh"
 
 # Development
 source "$DOTZSH/docker.zsh"

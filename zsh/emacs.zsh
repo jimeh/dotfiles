@@ -23,3 +23,20 @@ fi
 
 # add doom-emacs' bin directory to path if it exists
 path_prepend "$HOME/.config/doom-emacs/bin"
+
+# Setup vterm if shell is within vterm inside Emacs.
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+  if [[ -n "${EMACS_VTERM_PATH}" ]] &&
+    [[ -f "${EMACS_VTERM_PATH}/etc/emacs-vterm-zsh.sh" ]]; then
+    source "${EMACS_VTERM_PATH}/etc/emacs-vterm-zsh.sh"
+  fi
+
+  # Some commands to invoke emacs functions
+  find-file() {
+    vterm_cmd find-file "$(realpath "${@:-.}")"
+  }
+
+  say() {
+    vterm_cmd message "%s" "$*"
+  }
+fi
