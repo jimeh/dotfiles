@@ -26,6 +26,12 @@ declare -A ZINIT
 ZINIT[HOME_DIR]="$HOME/.local/zsh/zinit"
 ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
+# Load zinit module if it exists. For more info, run: zinit module help
+if [ -d "${ZINIT[BIN_DIR]}/zmodules/Src/zdharma" ]; then
+  module_path+=("${ZINIT[BIN_DIR]}/zmodules/Src")
+  zmodload zdharma/zplugin
+fi
+
 # Ask to clone Zinit if it's not already available on disk.
 [ ! -d "${ZINIT[BIN_DIR]}" ] &&
   read -q "REPLY?Zinit not installed, clone to ${ZINIT[BIN_DIR]}? [y/N]:" &&
