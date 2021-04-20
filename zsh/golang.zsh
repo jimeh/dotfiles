@@ -20,6 +20,7 @@ install_go_global_packages() {
     github.com/akavel/up@latest
     github.com/asciimoo/wuzz@latest
     github.com/cweill/gotests/...@latest
+    github.com/cweill/gotests/gotests@latest
     github.com/erning/gorun@latest
     github.com/go-delve/delve/cmd/dlv@latest
     github.com/golang/mock/gomock@latest
