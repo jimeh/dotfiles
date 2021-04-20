@@ -17,7 +17,7 @@ zinit ice wait lucid as'program' pick'bin/node-build' from'gh'
 zinit light nodenv/node-build
 
 # install nodenv-aliases plugin
-zinit ice wait lucid as'program' pick'bin/nodenv-aliases' from'gh'
+zinit ice wait lucid as'program' pick'bin/nodenv-alias' from'gh'
 zinit light nodenv/nodenv-aliases
 
 # install nodenv-each plugin
