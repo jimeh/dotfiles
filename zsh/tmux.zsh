@@ -21,6 +21,12 @@ alias ms="tmuxifier load-session"
 alias mw="tmuxifier load-window"
 alias mm="tmuxifier load-session main"
 
+if [ -d "$DOTPFILES/tmux-layouts" ]; then
+  export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
+else
+  export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+fi
+
 use-tmuxifier-dev() {
   path_prepend "$HOME/Projects/tmuxifier/bin"
   path_remove "$DOTFILES/tmux/tmuxifier/bin"
