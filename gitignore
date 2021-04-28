@@ -4,6 +4,7 @@
 .bin
 .bundle
 .byebug_history
+.dir-locals.el
 .projectile
 .stfolder
 .stignore
