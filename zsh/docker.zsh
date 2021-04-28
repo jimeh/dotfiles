@@ -12,6 +12,6 @@ docker_remove_exited() {
 }
 
 alias d="docker"
-alias dc="docker-compose"
-alias co="docker-compose"
+alias dc="docker compose"
+alias co="docker compose"
 alias dre="docker_remove_exited"
