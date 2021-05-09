@@ -21,7 +21,7 @@ alias ms="tmuxifier load-session"
 alias mw="tmuxifier load-window"
 alias mm="tmuxifier load-session main"
 
-if [ -d "$DOTPFILES/tmux-layouts" ]; then
+if [ -n "$DOTPFILES" ] && [ -d "$DOTPFILES/tmux-layouts" ]; then
   export TMUXIFIER_LAYOUT_PATH="$DOTPFILES/tmux-layouts"
 else
   export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
