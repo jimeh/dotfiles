@@ -7,11 +7,14 @@ alias hl="helm"
 alias mk="minikube"
 
 if command-exists kubectl; then
-  # lazy-load kubectl setup
+  # lazy-load kubectl completion
   _kubectl() {
     unset -f _kubectl
     eval "$(command kubectl completion zsh)"
   }
+
+  zinit ice wait lucid as'program' from'gh-r'
+  zinit light stackrox/kube-linter
 
   zinit ice wait lucid as'program' from'gh-r' mv'kind-* -> kind' \
     atclone'./kind completion zsh > _kind' atpull'%atclone'
