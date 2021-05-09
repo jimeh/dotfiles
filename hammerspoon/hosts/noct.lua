@@ -15,7 +15,7 @@ function obj.init()
   apptoggle:bind({'cmd', 'ctrl'}, 'S', 'Music')
   apptoggle:bind({'cmd', 'ctrl'}, 'T', 'Discord')
   apptoggle:bind({'cmd', 'ctrl'}, 'W', 'WhatsApp')
-  apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Things', '/Applications/Things3.app')
+  apptoggle:bind({'cmd', 'ctrl'}, 'X', 'Reminders')
   apptoggle:bind({'cmd', 'ctrl'}, 'Z', 'Slack')
 end
 

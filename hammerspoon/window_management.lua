@@ -83,6 +83,7 @@ function wm:init ()
   --
 
   bind({'cmd', 'ctrl', 'alt'}, 'F', self.resizeWindow(770, 634))
+  bind({'cmd', 'ctrl', 'alt'}, 'X', self.adjustWindow(0, 3, 10, 14))
 
   -- resize windows
   bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'J', self.resizeWindowOnGrid(-1, 0))
