@@ -68,15 +68,10 @@ brew 'tree'
 brew 'watch'
 brew 'wget'
 brew 'yank'
-brew 'yarn'
 brew 'zsh'
 
 tap 'heroku/brew'
 brew 'heroku'
-
-# sshfs requires osxfuse
-cask 'osxfuse'
-brew 'sshfs'
 
 #
 # Desktop Apps (Cask)
@@ -103,6 +98,7 @@ cask 'karabiner-elements'
 cask 'logitech-options'
 cask 'mplayerx'
 cask 'name-mangler'
+cask 'osxfuse'
 cask 'resolutionator'
 cask 'soulver2'
 cask 'stay'
