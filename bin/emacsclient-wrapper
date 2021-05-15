@@ -4,11 +4,23 @@
 EMACSCLIENT="emacsclient"
 ALTERNATE_EDITOR="nano"
 
+if [ -d "/opt/emacs/bin" ] && [[ ":${PATH}:" != *":/opt/emacs/bin:"* ]]; then
+  export PATH="/opt/emacs/bin:$PATH"
+fi
+
 # Set to binary bundled in Emacs.app if it exists
-if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
-  EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+    EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+  fi
+fi
+
+if command -v toe &> /dev/null && toe | grep '24bit' &> /dev/null; then
+  FULL_COLOR_TERM="$(toe | grep '24bit' | head -n1 | awk '{ print $1 }')"
+  if [ -n "$FULL_COLOR_TERM" ]; then
+    export TERM="$FULL_COLOR_TERM"
+  fi
 fi
 
 # Execute emacsclient
-exec env TERM=screen-24bit \
-  $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"
+exec $EMACSCLIENT --alternate-editor=$ALTERNATE_EDITOR "$@"

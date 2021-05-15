@@ -2,23 +2,18 @@
 # Emacs
 #
 
-# macOS systems
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
-    export EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
-    alias emacsgui="env TERM=screen-24bit $EMACS"
-    alias emacs="env TERM=screen-24bit $EMACS -nw"
-  fi
+# Depends on EMACS and EMACSCLIENT environment variables set in ~/.zshenv
 
-  if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
-    alias emacsclient="env TERM=screen-24bit /Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
-  fi
-fi
-
-# Linux systems
-if [[ "$OSTYPE" == "linux"* ]]; then
-  alias emacs="env TERM=screen-24bit emacs -nw"
-  alias emacsclient="env TERM=screen-24bit emacsclient"
+# Enforce 24-bit color mode if available
+if command-exists toe && toe | grep '24bit' &> /dev/null; then
+  FULL_COLOR_TERM="$(toe | grep '24bit' | head -n1 | awk '{ print $1 }')"
+  alias emacsgui="env TERM=$FULL_COLOR_TERM $EMACS"
+  alias emacs="env TERM=$FULL_COLOR_TERM $EMACS -nw"
+  alias emacsclient="env TERM=$FULL_COLOR_TERM $EMACSCLIENT"
+else
+  alias emacsgui="$EMACS"
+  alias emacs="$EMACS -nw"
+  alias emacsclient="$EMACSCLIENT"
 fi
 
 # add doom-emacs' bin directory to path if it exists

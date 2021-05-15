@@ -146,6 +146,20 @@ export KUBECONFIG="$HOME/.kube/config:.kube/config"
 # Use custom emacs install if available
 path_prepend "/opt/emacs/bin"
 
+# Set Emacs-related environment variables
+export EMACS="emacs"
+export EMACSCLIENT="emacsclient"
+
+# On macOS we want to use the Emacs.app application bundle
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
+    export EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
+  fi
+  if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
+    export EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+  fi
+fi
+
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
