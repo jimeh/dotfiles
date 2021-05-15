@@ -59,7 +59,7 @@ install_symlinks() {
 
   # Setup private dotfiles
   if [ -f "$ROOT_PATH/$PRIVATE_PATH/install.sh" ]; then
-    "$ROOT_PATH/$PRIVATE_PATH/install.sh" links
+    "$ROOT_PATH/$PRIVATE_PATH/install.sh" symlinks
   fi
 
   # Symlink each path
@@ -81,8 +81,15 @@ install_launch_agents() {
 
   # Setup private launch_agents
   if [ -f "$ROOT_PATH/$PRIVATE_PATH/install.sh" ]; then
-    "$ROOT_PATH/$PRIVATE_PATH/install.sh" launch_agents
+    "$ROOT_PATH/$PRIVATE_PATH/install.sh" launch-agents
   fi
+}
+
+install_terminfo() {
+  for file in $ROOT_PATH/terminfo/*.terminfo; do
+    log ok "tic -x" "$file"
+    tic -x "$file"
+  done
 }
 
 install_homebrew() {
@@ -104,23 +111,69 @@ install_emacs_config() {
 # Helper functions
 #
 
-ok() {
-  printf "OK:\t%s\n" "$1"
-}
+# Colors
+C_RED="$(tput setaf 1)"
+C_GREEN="$(tput setaf 2)"
+C_YELLOW="$(tput setaf 3)"
+C_BLUE="$(tput setaf 4)"
+C_MAGENTA="$(tput setaf 5)"
+C_CYAN="$(tput setaf 6)"
+C_GREY="$(tput setaf 7)"
+C_RESET="$(tput sgr0)"
 
-info() {
-  printf "INFO:\t%s\n" "$1"
+# Symbols
+S_RARROW="${C_CYAN}-->${C_RESET}"
+
+log() {
+  local type="$1"
+  local prefix="$2"
+  shift 2
+  local message="$@"
+
+  type="$(echo "$type" | tr '[:lower:]' '[:upper:]')"
+  case "$type" in
+    OK)
+      type="${C_GREEN}${type}:${C_RESET}"
+      ;;
+    WARN | ERROR)
+      type="${C_RED}${type}:${C_RESET}"
+      ;;
+    *)
+      type="${C_YELLOW}${type}:${C_RESET}"
+      ;;
+  esac
+
+  if [ -n "$prefix" ]; then
+    prefix="${C_GREY}${prefix}: ${C_RESET}"
+  fi
+
+  printf "${type}\t${prefix}${message}\n"
 }
 
 symlink() {
   local source="$1"
   local target="$2"
+  local linksource
 
-  if [ ! -e "$target" ]; then
-    ok "symlink: $target --> $source"
+  if [ "$target" == "$source" ]; then
+    log ok symlink "$target"
+  elif [ ! -e "$target" ] && [ ! -L "$target" ]; then
+    log link symlink "$target ${S_RARROW} $source"
     ln -s "$source" "$target"
+  elif [ -L "$target" ]; then
+    linksource="$(readlink "$target")"
+    if [ "$linksource" == "$source" ]; then
+      log ok symlink "$target ${S_RARROW} $source"
+    else
+      log warn symlink "$target ${S_RARROW} $linksource" \
+        "${C_CYAN}(should be ${C_RESET}$source${C_CYAN})${C_RESET}"
+    fi
+  elif [ -f "$target" ]; then
+    log warn symlink "$target exists and is a file"
+  elif [ -d "$target" ]; then
+    log warn symlink "$target exists and is a directory"
   else
-    info "symlink: $target exists"
+    log warn symlink "$target exists"
   fi
 }
 
@@ -130,18 +183,15 @@ dot_symlink() {
   local target="$3/.${name}"
   local cur_name
 
-  if [ ! -e "$target" ]; then
+  if [ "$(dirname "$name")" != "." ] && [ "$(dirname "$name")" != "/" ]; then
     cur_name="$(dirname "$name")"
     while [ "$cur_name" != "." ] && [ "$cur_name" != "/" ]; do
       source="../${source}"
       cur_name="$(dirname "$cur_name")"
     done
-    mkdir -p "$(dirname "$target")"
-    ok "symlink: $target --> $source"
-    ln -s "$source" "$target"
-  else
-    info "symlink: $target exists"
   fi
+
+  symlink "$source" "$target"
 }
 
 git_clone() {
@@ -150,9 +200,9 @@ git_clone() {
 
   if [ ! -e "$target" ]; then
     git clone "$clone_url" "$target"
-    ok "git clone: $clone_url --> $target"
+    log ok git-clone "$clone_url ${S_RARROW} $target"
   else
-    info "git clone: $target already exists"
+    log info git-clone "$target already exists"
   fi
 }
 
@@ -176,8 +226,11 @@ case "$1" in
   rbenv)
     install_rbenv
     ;;
-  launch_agents | agents)
+  launch-agents | launch_agents | agents)
     install_launch_agents
+    ;;
+  terminfo)
+    install_terminfo
     ;;
   info)
     echo "Target directory: $TARGET"
