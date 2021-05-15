@@ -75,6 +75,7 @@ install_node_global_packages() {
     typescript-formatter
     uuid-cli
     vscode-css-languageserver-bin
+    yarn
   )
 
   npm install -g "${packages[@]}"
