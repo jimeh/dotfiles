@@ -19,6 +19,10 @@ fi
 # add doom-emacs' bin directory to path if it exists
 path_prepend "$HOME/.config/doom-emacs/bin"
 
+# install emacs-sandbox.sh
+zinit ice wait lucid as'program' pick'emacs-sandbox.sh' from'gh'
+zinit light alphapapa/emacs-sandbox.sh
+
 # Setup vterm if shell is within vterm inside Emacs.
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
   if [[ -n "${EMACS_VTERM_PATH}" ]] &&
