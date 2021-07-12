@@ -4,6 +4,8 @@
 	signingkey = contact@jimeh.me
 [commit]
 	gpgsign = true
+[tag]
+	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore
 [color]
