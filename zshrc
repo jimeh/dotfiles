@@ -149,3 +149,9 @@ unsetopt correctall
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"
 fi
+
+if [ -d "$DOTZSH/site-functions" ]; then
+  fpath=("$DOTZSH/site-functions" $fpath)
+fi
+
+autoload -U +X bashcompinit && bashcompinit
