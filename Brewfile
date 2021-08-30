@@ -173,6 +173,7 @@ if hostname == 'noct'
   brew 'jsonnet-bundler'
   brew 'kubernetes-cli'
   brew 'kubernetes-helm'
+  brew 'kubectx'
   brew 'mariadb'
   cask 'lens'
 

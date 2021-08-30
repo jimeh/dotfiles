@@ -13,6 +13,12 @@ if command-exists kubectl; then
     eval "$(command kubectl completion zsh)"
   }
 
+  switch() {
+    unset -f switch
+    source "$(brew --prefix switch)/switch.sh"
+    switch "$@"
+  }
+
   zinit ice wait lucid as'program' from'gh-r'
   zinit light stackrox/kube-linter
 
