@@ -1,7 +1,9 @@
 ---
 exclude:
-  - vendor/**/*
   - ".bundle/**/*"
+  - "spec/**/*"
+  - "test/**/*"
+  - "vendor/**/*"
 reporters:
   - rubocop
   - require_not_found
