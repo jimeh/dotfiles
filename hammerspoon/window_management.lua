@@ -318,7 +318,7 @@ end
 -- https://github.com/Hammerspoon/hammerspoon/issues/235#issuecomment-101069303
 wm.moveWindowToSpace = function (direction)
   return function()
-    local mouseOrigin = mouse.getAbsolutePosition()
+    local mouseOrigin = mouse.absolutePosition()
     local win = hs.window.focusedWindow()
     local app = win:application()
     local clickPoint = win:zoomButtonRect()
