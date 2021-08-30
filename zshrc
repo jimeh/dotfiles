@@ -59,8 +59,6 @@ zinit snippet OMZ::plugins/bundler
 zinit ice pick'plain.zsh-theme'
 zinit light jimeh/plain.zsh-theme
 
-zinit ice wait lucid
-zinit light jimeh/zsh-peco-history
 
 zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
 zinit light zdharma/fast-syntax-highlighting
@@ -113,6 +111,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
 source "$DOTZSH/emacs.zsh"
+source "$DOTZSH/fzf.zsh"
 source "$DOTZSH/git.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/rclone.zsh"
