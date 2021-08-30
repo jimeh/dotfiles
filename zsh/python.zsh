@@ -33,6 +33,7 @@ install_python_global_packages() {
     'ansible'
     'grip'
     'molecule[docker]'
+    'passlib'
     'yamllint'
   )
 
