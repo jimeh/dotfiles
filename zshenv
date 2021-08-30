@@ -152,11 +152,10 @@ export EMACSCLIENT="emacsclient"
 
 # On macOS we want to use the Emacs.app application bundle
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
+  path_prepend "/Applications/Emacs.app/Contents/MacOS/bin"
+  if [ ! -f "/Applications/Emacs.app/Contents/MacOS/bin/emacs" ] && \
+    [ -f "/Applications/Emacs.app/Contents/MacOS/Emacs" ]; then
     export EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
-  fi
-  if [ -f "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient" ]; then
-    export EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
   fi
 fi
 
