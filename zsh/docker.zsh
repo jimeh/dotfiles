@@ -17,5 +17,5 @@ export DOCKER_SCAN_SUGGEST=false
 
 alias d="docker"
 alias dc="docker compose"
-alias co="docker compose"
+alias co="docker-compose"
 alias dre="docker_remove_exited"
