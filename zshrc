@@ -127,6 +127,7 @@ source "$DOTZSH/nodejs.zsh"
 source "$DOTZSH/python.zsh"
 source "$DOTZSH/ruby.zsh"
 source "$DOTZSH/rust.zsh"
+source "$DOTZSH/scaleway.zsh"
 
 # ==============================================================================
 # Basic Z-Shell settings
