@@ -41,15 +41,15 @@ main() {
 
   if [ "$count" -gt 0 ]; then
     echo 'Upgrade all casks | terminal=true refresh=true' \
-      'bash=/usr/local/bin/brew param1=cask param2=upgrade'
+      'bash=/usr/local/bin/brew param1=upgrade param2=--cask'
     echo '---'
 
     echo 'Upgrade:'
     for i in "${!formulas[@]}"; do
       echo "${formulas[$i]}"
       echo "--${current_version[$i]} → ${new_version[$i]} |" \
-        "terminal=true refresh=true bash=/usr/local/bin/brew param1=cask" \
-        "param2=upgrade param3=${formulas[$i]}"
+        "terminal=true refresh=true bash=/usr/local/bin/brew param1=upgrade" \
+        "param2=--cask param3=${formulas[$i]}"
     done
   fi
 }
