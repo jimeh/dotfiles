@@ -16,6 +16,21 @@ if command-exists kubectl; then
   zinit ice wait lucid as'program' from'gh-r'
   zinit light stackrox/kube-linter
 
+  if ! kubectl krew &> /dev/null; then
+    krew-bin() {
+      echo "krew-$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e \
+        's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' \
+        -e 's/aarch64$/arm64/')"
+    }
+
+    zinit ice wait lucid as'null' from'gh-r' bpick'krew.tar.gz' \
+      atclone'KREW='"'$(krew-bin)'"' && ./$KREW install krew'
+    zinit light kubernetes-sigs/krew
+
+    export KREW_ROOT="$HOME/.krew"
+    path_append "${KREW_ROOT}/bin"
+  fi
+
   zinit ice wait lucid as'program' from'gh-r' mv'kind-* -> kind' \
     atclone'./kind completion zsh > _kind' atpull'%atclone'
   zinit light kubernetes-sigs/kind

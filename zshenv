@@ -141,7 +141,11 @@ path_prepend "/usr/local/opt/gnu-getopt/bin"
 export HOMEBREW_NO_ANALYTICS=1
 
 # Kubernetes setup
-export KUBECONFIG="$HOME/.kube/config:.kube/config"
+export KUBECONFIG="$HOME/.kube/config"
+if [ -d "$HOME/.krew" ]; then
+  export KREW_ROOT="$HOME/.krew"
+  path_append "$HOME/.krew/bin"
+fi
 
 # Use custom emacs install if available
 path_prepend "/opt/emacs/bin"
