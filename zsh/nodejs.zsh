@@ -75,6 +75,8 @@ install_node_global_packages() {
     typescript-formatter
     uuid-cli
     vscode-css-languageserver-bin
+    vscode-json-languageserver
+    yaml-language-server
     yarn
   )
 
