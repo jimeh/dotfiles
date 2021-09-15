@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+[ -n "$ENVY_DEBUG" ] && set -x
+
+export ENVY_ROOT=""
+
+envy__locate_up() {
+  local name="$1"
+  local cwd="$(pwd)"
+  local wd="$cwd"
+  local found=""
+
+  while [ -z "$found" ] && [ "$wd" != "/" ]; do
+    if [ -f "${wd}/${name}" ]; then
+      found="${wd}/${name}"
+    else
+      cd ..
+      wd="$(pwd)"
+    fi
+  done
+
+  echo "$found"
+  cd "$cwd"
+}
+
+envy__locate_in_root() {
+  local name="$1"
+  local root="$2"
+  local cwd="$(pwd)"
+
+  if [ -z "$root" ]; then
+    envy__locate_up "$name"
+    return 0
+  fi
+
+  if [ -f "${root}/${name}" ]; then
+    echo "${root}/${name}"
+  fi
+}
+
+envy__main() {
+  local baserc
+  local localrc
+  local namedrc
+  local namedlocalrc
+  local envname="$1"
+  local shifted
+
+  baserc="$(envy__locate_in_root ".envrc")"
+  if [ -n "$baserc" ]; then
+    if [ -z "$ENVY_ROOT" ]; then
+      export ENVY_ROOT="$(dirname "$baserc")"
+    fi
+    source "$baserc"
+  fi
+
+  localrc="$(envy__locate_in_root ".envrc.local" "$ENVY_ROOT")"
+  if [ -n "$localrc" ]; then
+    if [ -z "$ENVY_ROOT" ]; then
+      export ENVY_ROOT="$(dirname "$localrc")"
+    fi
+    source "$localrc"
+  fi
+
+  if [ "${#envname}" -lt 64 ]; then
+    namedrc="$(envy__locate_in_root ".envrc.${envname}" "$ENVY_ROOT")"
+    if [ -n "$namedrc" ]; then
+      shift 1
+      shifted="1"
+      if [ -z "$ENVY_ROOT" ]; then
+        export ENVY_ROOT="$(dirname "$namedrc")"
+      fi
+      source "$namedrc"
+    fi
+
+    namedlocalrc="$(envy__locate_in_root ".envrc.${envname}.local" "$ENVY_ROOT")"
+    if [ -n "$namedlocalrc" ]; then
+      if [ -z "$shifted" ]; then
+        shift 1
+      fi
+      if [ -z "$ENVY_ROOT" ]; then
+        export ENVY_ROOT="$(dirname "$namedlocalrc")"
+      fi
+      source "$namedlocalrc"
+    fi
+  fi
+
+  exec "$@"
+}
+
+envy__main "$@"
