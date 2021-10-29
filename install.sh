@@ -206,13 +206,38 @@ git_clone() {
   fi
 }
 
+zsh_init() {
+  zsh -l -i -c 'exit'
+}
+
 #
 # Argument Handling
 #
 
+display_help() {
+  echo 'usage: ./install.sh [-h/--help] [<command>]'
+  echo ''
+  echo 'Available commands:'
+  echo '        <none>: Run symlinks and shell_init commands.'
+  echo '      symlinks: Install symlinks for dotfiles into target directory.'
+  echo '    shell_init: Launch zsh instance so zinit installs all deps.'
+  echo '          info: Display target and source directory information.'
+  echo '  emacs_config: Install Emacs configuration.'
+  echo '       private: Install private dotfiles.'
+  echo '      homebrew: Install Homebrew (Mac OS X only).'
+  echo '         rbenv: Install rbenv, a Ruby version manager.'
+  echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
+  echo '          help: Display this message.'
+}
+
+if [[ " $* " == *" --help "* ]] || [[ " $* " == *" -h "* ]]; then
+  display_help
+  exit
+fi
+
 case "$1" in
-  symlinks | links)
-    install_symlinks
+  "help")
+    display_help
     ;;
   emacs-config | emacs)
     install_emacs_config
@@ -236,17 +261,14 @@ case "$1" in
     echo "Target directory: $TARGET"
     echo "Detected dotfiles root: $ROOT_PATH"
     ;;
+  shell_init)
+    zsh_init
+    ;;
+  symlinks | links)
+    install_symlinks
+    ;;
   *)
-    echo 'usage: ./install.sh [command]'
-    echo ''
-    echo 'Available commands:'
-    echo '          info: Target and source directory info.'
-    echo '      symlinks: Install symlinks for various dotfiles into' \
-      'target directory.'
-    echo '  emacs_config: Install Emacs configuration.'
-    echo '       private: Install private dotfiles.'
-    echo '      homebrew: Install Homebrew (Mac OS X only).'
-    echo '         rbenv: Install rbenv, a Ruby version manager.'
-    echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
+    install_symlinks
+    zsh_init
     ;;
 esac
