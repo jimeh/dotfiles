@@ -85,6 +85,13 @@ install_launch_agents() {
   fi
 }
 
+install_xbar_scripts() {
+  mkdir -p "$HOME/Library/Application Support/xbar/plugins"
+  for file in $ROOT_PATH/xbar/*; do
+    symlink "$file" "$HOME/Library/Application Support/xbar/plugins/$(basename "$file")"
+  done
+}
+
 install_terminfo() {
   for file in $ROOT_PATH/terminfo/*.terminfo; do
     log ok "tic -x" "$file"
@@ -253,6 +260,9 @@ case "$1" in
     ;;
   launch-agents | launch_agents | agents)
     install_launch_agents
+    ;;
+  xbar_scripts | xbar-scripts | xbar)
+    install_xbar_scripts
     ;;
   terminfo)
     install_terminfo
