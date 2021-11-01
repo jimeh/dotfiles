@@ -195,6 +195,11 @@ module Brew
             terminal: false, refresh: true, shell: brew_path,
             param1: 'services', param2: 'stop', param3: service.name
           )
+          printer.item(
+            'Restart',
+            terminal: false, refresh: true, shell: brew_path,
+            param1: 'services', param2: 'restart', param3: service.name
+          )
         else
           printer.item(
             'Start',
