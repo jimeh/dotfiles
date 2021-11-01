@@ -156,28 +156,26 @@ module Brew
       printer.item("#{prefix}↑#{formulas.size + casks.size}", dropdown: false)
       printer.sep
       printer.item('Brew Updates')
-      pinned_msg = " / #{pinned.size} pinned" if pinned.size.positive?
-      printer.item(
-        "#{formulas.size} formulas / #{casks.size} casks#{pinned_msg}"
-      ) do |printer|
+
+      printer.item(status_label) do |printer|
         printer.item(':hourglass: Refresh', refresh: true)
         printer.sep
-        if (formulas.size + casks.size).positive?
+        if formulas.size.positive? && casks.size.positive?
           printer.item(
-            'Upgrade All',
+            "Upgrade All (#{formulas.size + casks.size})",
             terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
           )
         end
         if formulas.size.positive?
           printer.item(
-            'Upgrade All Formulas',
+            "Upgrade All Formulas (#{formulas.size})",
             terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
             param2: '--formula'
           )
         end
         if casks.size.positive?
           printer.item(
-            'Upgrade All Casks',
+            "Upgrade All Casks (#{casks.size})",
             terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
             param2: '--cask'
           )
@@ -192,11 +190,21 @@ module Brew
 
     private
 
+    def status_label
+      label = []
+      label << "#{formulas.size} formulas" if formulas.size.positive?
+      label << "#{casks.size} casks" if casks.size.positive?
+      label << "#{pinned.size} pinned" if pinned.size.positive?
+
+      label = ['no updates available'] if label.empty?
+      label.join(' / ')
+    end
+
     def print_formulas(printer)
       return unless formulas.size.positive?
 
       printer.sep
-      printer.item('Formulas:')
+      printer.item("Formulas (#{formulas.size}):")
       formulas.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item(
@@ -239,7 +247,7 @@ module Brew
       return unless casks.size.positive?
 
       printer.sep
-      printer.item('Casks:')
+      printer.item("Casks (#{casks.size}):")
       casks.each do |cask|
         printer.item(cask.name) do |printer|
           printer.item(
@@ -275,7 +283,7 @@ module Brew
       return unless pinned.size.positive?
 
       printer.sep
-      printer.item('Pinned Formulas:')
+      printer.item("Pinned Formulas (#{pinned.size}):")
       pinned.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item('Upgrade')
