@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# <xbar.title>Brew Formula Updates</xbar.title>
+# <xbar.title>Brew Updates</xbar.title>
 # <xbar.version>v2.0.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
-# <xbar.desc>Show outdated Homebrew formulas</xbar.desc>
-# <xbar.image>https://i.imgur.com/6PC6OPg.png</xbar.image>
+# <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
+# <xbar.image>https://i.imgur.com/gHrTZpd.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 #
 # <xbar.var>string(VAR_BREW_PATH="/usr/local/bin/brew"): Path to "brew" executable.</xbar.var>
@@ -131,8 +131,20 @@ module Brew
     end
   end
 
+  class Cask
+    attr_reader :name, :installed_version, :latest_version
+
+    def initialize(attributes = {})
+      @name = attributes['name']
+      @installed_version = attributes['installed_versions']
+      @latest_version = attributes['current_version']
+    end
+
+    alias current_version installed_version
+  end
+
   class FormulaUpdates < Common
-    prefix ':beer:'
+    prefix ':beers:'
 
     def run
       printer = default_printer
@@ -140,21 +152,28 @@ module Brew
       brew_check(printer)
       brew_update
 
-      printer.item("#{prefix}↑#{formulas.size}", dropdown: false)
+      printer.item("#{prefix}↑#{formulas.size + casks.size}", dropdown: false)
       printer.sep
-      printer.item('Brew Formula Updates')
+      printer.item('Brew Updates')
       pinned_msg = " / #{pinned.size} pinned" if pinned.size.positive?
       printer.item(
-        "#{formulas.size} outdated#{pinned_msg}"
+        "#{formulas.size} formulas / #{casks.size} casks#{pinned_msg}"
       ) do |printer|
         printer.sep
         printer.item(':hourglass: Refresh', refresh: true)
       end
+      printer.item('Upgrade All') do |printer|
+        printer.item('Are you sure?')
+        printer.item(
+          'Yes',
+          terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
+        )
+      end
 
       print_formulas(printer)
+      print_casks(printer)
       print_pinned(printer)
       printer.sep
-      printer.item('Refresh', refresh: true)
     end
 
     private
@@ -162,12 +181,16 @@ module Brew
     def print_formulas(printer)
       return unless formulas.size.positive?
 
-      printer.item(
-        'Upgrade all formula',
-        terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
-      )
       printer.sep
-      printer.item('Upgrade:')
+      printer.item('Formulas:')
+      printer.item('Upgrade All') do |printer|
+        printer.item('Are you sure?')
+        printer.item(
+          'Yes',
+          terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
+          param2: '--formula'
+        )
+      end
       formulas.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item(
@@ -196,7 +219,6 @@ module Brew
           )
           printer.item('Uninstall') do |printer|
             printer.item('Are you sure?')
-            printer.sep
             printer.item(
               'Yes',
               terminal: true, refresh: true,
@@ -207,11 +229,55 @@ module Brew
       end
     end
 
+    def print_casks(printer)
+      return unless casks.size.positive?
+
+      printer.sep
+      printer.item('Casks:')
+      printer.item('Upgrade All') do |printer|
+        printer.item('Are you sure?')
+        printer.item(
+          'Yes',
+          terminal: true, refresh: true,
+          shell: brew_path, param1: 'upgrade', param2: '--cask'
+        )
+      end
+      casks.each do |cask|
+        printer.item(cask.name) do |printer|
+          printer.item(
+            'Upgrade',
+            terminal: true, refresh: true, shell: brew_path,
+            param1: 'upgrade', param2: '--cask', param3: cask.name
+          )
+          printer.item(
+            "Upgrade (#{cask.current_version} → #{cask.latest_version})",
+            alternate: true, terminal: true, refresh: true,
+            shell: brew_path, param1: 'upgrade', param2: '--cask',
+            param3: cask.name
+          )
+          printer.sep
+          printer.item("Installed: #{cask.installed_version}")
+          printer.item("Latest: #{cask.latest_version}")
+          printer.sep
+          printer.item('Uninstall') do |printer|
+            printer.item('Are you sure?')
+            printer.sep
+            printer.item(
+              'Yes',
+              terminal: true, refresh: true,
+              shell: brew_path, param1: 'uninstall',
+              param2: '--cask', param3: cask.name
+            )
+          end
+        end
+      end
+    end
+
     def print_pinned(printer)
       return unless pinned.size.positive?
 
       printer.sep
-      printer.item('Pinned:')
+      printer.item('Pinned Formulas:')
       pinned.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item('Upgrade')
@@ -233,7 +299,6 @@ module Brew
           )
           printer.item('Uninstall') do |printer|
             printer.item('Are you sure?')
-            printer.sep
             printer.item(
               'Yes',
               terminal: true, refresh: true,
@@ -245,17 +310,23 @@ module Brew
     end
 
     def formulas
-      @formulas ||= outdated.reject(&:pinned)
+      @formulas ||= all_formulas.reject(&:pinned)
     end
 
     def pinned
-      @pinned ||= outdated.select(&:pinned)
+      @pinned ||= all_formulas.select(&:pinned)
+    end
+
+    def all_formulas
+      @all_formulas ||= outdated['formulae'].map { |line| Formula.new(line) }
+    end
+
+    def casks
+      @casks ||= outdated['casks'].map { |line| Cask.new(line) }
     end
 
     def outdated
-      @outdated ||= JSON.parse(
-        cmd(brew_path, 'outdated', '--formula', '--json')
-      )['formulae'].map { |line| Formula.new(line) }
+      @outdated ||= JSON.parse(cmd(brew_path, 'outdated', '--json'))
     end
   end
 end
