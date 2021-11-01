@@ -8,6 +8,7 @@
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
 # <xbar.image>https://i.imgur.com/gHrTZpd.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
+# <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>string(VAR_BREW_PATH="/usr/local/bin/brew"): Path to "brew" executable.</xbar.var>
 

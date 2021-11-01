@@ -8,6 +8,7 @@
 # <xbar.desc>List and manage Brew Services</xbar.desc>
 # <xbar.image>https://i.imgur.com/cAVfsvF.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
+# <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>boolean(VAR_GROUPS=true): List services in started/stopped groups?</xbar.var>
 # <xbar.var>string(VAR_BREW_PATH="/usr/local/bin/brew"): Path to "brew" executable.</xbar.var>
