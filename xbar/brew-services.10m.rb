@@ -152,6 +152,23 @@ module Brew
       ) do |printer|
         printer.sep
         printer.item(':hourglass: Refresh', refresh: true)
+        printer.sep
+        printer.item(
+          "Start All (#{stopped_services.size} services)",
+          terminal: false, refresh: true, shell: brew_path,
+          param1: 'services', param2: 'start', param3: '--all'
+        )
+        printer.item(
+          "Stop All (#{started_services.size} services)",
+          terminal: false, refresh: true, shell: brew_path,
+          param1: 'services', param2: 'stop', param3: '--all'
+        )
+        printer.item(
+          'Restart All ' \
+          "(#{started_services.size + stopped_services.size} services)",
+          terminal: false, refresh: true, shell: brew_path,
+          param1: 'services', param2: 'restart', param3: '--all'
+        )
       end
       printer.sep
       use_groups? ? print_service_groups(printer) : print_services(printer)
