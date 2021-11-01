@@ -160,15 +160,28 @@ module Brew
       printer.item(
         "#{formulas.size} formulas / #{casks.size} casks#{pinned_msg}"
       ) do |printer|
-        printer.sep
         printer.item(':hourglass: Refresh', refresh: true)
-      end
-      printer.item('Upgrade All') do |printer|
-        printer.item('Are you sure?')
-        printer.item(
-          'Yes',
-          terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
-        )
+        printer.sep
+        if (formulas.size + casks.size).positive?
+          printer.item(
+            'Upgrade All',
+            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
+          )
+        end
+        if formulas.size.positive?
+          printer.item(
+            'Upgrade All Formulas',
+            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
+            param2: '--formula'
+          )
+        end
+        if casks.size.positive?
+          printer.item(
+            'Upgrade All Casks',
+            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
+            param2: '--cask'
+          )
+        end
       end
 
       print_formulas(printer)
@@ -184,14 +197,6 @@ module Brew
 
       printer.sep
       printer.item('Formulas:')
-      printer.item('Upgrade All') do |printer|
-        printer.item('Are you sure?')
-        printer.item(
-          'Yes',
-          terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
-          param2: '--formula'
-        )
-      end
       formulas.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item(
@@ -235,14 +240,6 @@ module Brew
 
       printer.sep
       printer.item('Casks:')
-      printer.item('Upgrade All') do |printer|
-        printer.item('Are you sure?')
-        printer.item(
-          'Yes',
-          terminal: true, refresh: true,
-          shell: brew_path, param1: 'upgrade', param2: '--cask'
-        )
-      end
       casks.each do |cask|
         printer.item(cask.name) do |printer|
           printer.item(
