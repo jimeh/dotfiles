@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.0.0</xbar.version>
+# <xbar.version>v2.1.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
