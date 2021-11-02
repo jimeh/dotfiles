@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v2.0.0</xbar.version>
+# <xbar.version>v2.1.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
-# <xbar.image>https://i.imgur.com/tWwrwLs.png</xbar.image>
+# <xbar.image>https://i.imgur.com/RDfpTLl.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
