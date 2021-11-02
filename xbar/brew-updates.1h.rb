@@ -6,7 +6,7 @@
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
-# <xbar.image>https://i.imgur.com/gHrTZpd.png</xbar.image>
+# <xbar.image>https://i.imgur.com/2VRODKH.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
