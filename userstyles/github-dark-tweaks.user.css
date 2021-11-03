@@ -5,8 +5,8 @@
 @license       CC0-1.0
 @author        Jim Myhrberg (https://jimeh.me/)
 @namespace     jimeh.me
-@homepageURL   https://github.com/jimeh/dotfiles/blob/master/userstyles/github-dark-tweaks.user.css
-@updateURL     https://github.com/jimeh/dotfiles/raw/master/userstyles/github-dark-tweaks.user.css
+@homepageURL   https://github.com/jimeh/dotfiles/blob/main/userstyles/github-dark-tweaks.user.css
+@updateURL     https://github.com/jimeh/dotfiles/raw/main/userstyles/github-dark-tweaks.user.css
 @preprocessor  stylus
 
 @var color ghdt-diff-del-fringe-text "Diff Del Fringe Text" #f85149
