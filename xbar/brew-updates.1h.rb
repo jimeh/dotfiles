@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.1.0</xbar.version>
+# <xbar.version>v2.2.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -45,12 +45,42 @@ module Xbar
     def print_item(text, **props)
       output = [text]
       unless props.empty?
+        props = normalize_props(props)
         output << PARAM_SEP
         output += props.map { |k, v| "#{k}=\"#{v}\"" }
       end
 
       $stdout.print(SUB_STR * nested_level, output.join(' '))
       $stdout.puts
+    end
+
+    def plugin_refresh_uri
+      @plugin_refresh_uri ||= 'xbar://app.xbarapp.com/refreshPlugin' \
+                              "?path=#{File.basename(__FILE__)}"
+    end
+
+    def normalize_props(props = {})
+      props = props.dup
+
+      if props[:shell].is_a?(Array)
+        cmd = props[:shell]
+        props[:shell] = cmd[0]
+        cmd[1..-1].each_with_index do |c, i|
+          props["param#{i + 1}".to_sym] = c
+        end
+      end
+
+      # Refresh Xbar after shell command has run in terminal
+      if props[:terminal] && props[:refresh] && props[:shell]
+        props[:refresh] = false
+        i = 1
+        i += 1 while props.key?("param#{i}".to_sym)
+        props["param#{i}".to_sym] = ';'
+        props["param#{i + 1}".to_sym] = 'open'
+        props["param#{i + 2}".to_sym] = "'#{plugin_refresh_uri}'"
+      end
+
+      props
     end
 
     def sub_printer
@@ -163,21 +193,21 @@ module Brew
         if formulas.size.positive? && casks.size.positive?
           printer.item(
             "Upgrade All (#{formulas.size + casks.size})",
-            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade'
+            terminal: true, refresh: true, shell: [brew_path, 'upgrade']
           )
         end
         if formulas.size.positive?
           printer.item(
             "Upgrade All Formulas (#{formulas.size})",
-            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
-            param2: '--formula'
+            terminal: true, refresh: true,
+            shell: [brew_path, 'upgrade', '--formula']
           )
         end
         if casks.size.positive?
           printer.item(
             "Upgrade All Casks (#{casks.size})",
-            terminal: true, refresh: true, shell: brew_path, param1: 'upgrade',
-            param2: '--cask'
+            terminal: true, refresh: true,
+            shell: [brew_path, 'upgrade', '--cask']
           )
         end
       end
@@ -210,12 +240,12 @@ module Brew
           printer.item(
             'Upgrade',
             terminal: true, refresh: true,
-            shell: brew_path, param1: 'upgrade', param2: formula.name
+            shell: [brew_path, 'upgrade', formula.name]
           )
           printer.item(
             "Upgrade (#{formula.current_version} → #{formula.latest_version})",
             alternate: true, terminal: true, refresh: true,
-            shell: brew_path, param1: 'upgrade', param2: formula.name
+            shell: [brew_path, 'upgrade', formula.name]
           )
           printer.sep
           printer.item("Installed: #{formula.installed_versions.join(', ')}")
@@ -224,19 +254,19 @@ module Brew
           printer.item(
             'Pin',
             terminal: false, refresh: true,
-            shell: brew_path, param1: 'pin', param2: formula.name
+            shell: [brew_path, 'pin', formula.name]
           )
           printer.item(
             "Pin (to #{formula.current_version})",
             alternate: true, terminal: false, refresh: true,
-            shell: brew_path, param1: 'pin', param2: formula.name
+            shell: [brew_path, 'pin', formula.name]
           )
           printer.item('Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: brew_path, param1: 'uninstall', param2: formula.name
+              shell: [brew_path, 'uninstall', formula.name]
             )
           end
         end
@@ -252,14 +282,13 @@ module Brew
         printer.item(cask.name) do |printer|
           printer.item(
             'Upgrade',
-            terminal: true, refresh: true, shell: brew_path,
-            param1: 'upgrade', param2: '--cask', param3: cask.name
+            terminal: true, refresh: true,
+            shell: [brew_path, 'upgrade', '--cask', cask.name]
           )
           printer.item(
             "Upgrade (#{cask.current_version} → #{cask.latest_version})",
             alternate: true, terminal: true, refresh: true,
-            shell: brew_path, param1: 'upgrade', param2: '--cask',
-            param3: cask.name
+            shell: [brew_path, 'upgrade', '--cask', cask.name]
           )
           printer.sep
           printer.item("Installed: #{cask.installed_version}")
@@ -271,8 +300,7 @@ module Brew
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: brew_path, param1: 'uninstall',
-              param2: '--cask', param3: cask.name
+              shell: [brew_path, 'uninstall', '--cask', cask.name]
             )
           end
         end
@@ -301,14 +329,14 @@ module Brew
           printer.item(
             'Unpin',
             terminal: false, refresh: true,
-            shell: brew_path, param1: 'unpin', param2: formula.name
+            shell: [brew_path, 'unpin', formula.name]
           )
           printer.item('Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: brew_path, param1: 'uninstall', param2: formula.name
+              shell: [brew_path, 'uninstall', formula.name]
             )
           end
         end
