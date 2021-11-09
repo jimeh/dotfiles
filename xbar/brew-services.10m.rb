@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v2.1.0</xbar.version>
+# <xbar.version>v2.2.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -46,12 +46,42 @@ module Xbar
     def print_item(text, **props)
       output = [text]
       unless props.empty?
+        props = normalize_props(props)
         output << PARAM_SEP
         output += props.map { |k, v| "#{k}=\"#{v}\"" }
       end
 
       $stdout.print(SUB_STR * nested_level, output.join(' '))
       $stdout.puts
+    end
+
+    def plugin_refresh_uri
+      @plugin_refresh_uri ||= 'xbar://app.xbarapp.com/refreshPlugin' \
+                              "?path=#{File.basename(__FILE__)}"
+    end
+
+    def normalize_props(props = {})
+      props = props.dup
+
+      if props[:shell].is_a?(Array)
+        cmd = props[:shell]
+        props[:shell] = cmd[0]
+        cmd[1..-1].each_with_index do |c, i|
+          props["param#{i + 1}".to_sym] = c
+        end
+      end
+
+      # Refresh Xbar after shell command has run in terminal
+      if props[:terminal] && props[:refresh] && props[:shell]
+        props[:refresh] = false
+        i = 1
+        i += 1 while props.key?("param#{i}".to_sym)
+        props["param#{i}".to_sym] = ';'
+        props["param#{i + 1}".to_sym] = 'open'
+        props["param#{i + 2}".to_sym] = "'#{plugin_refresh_uri}'"
+      end
+
+      props
     end
 
     def sub_printer
@@ -175,8 +205,8 @@ module Brew
         if stopped_services.size.positive?
           printer.item(
             "Start All (#{stopped_services.size} services)",
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'start', param3: '--all'
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'start', '--all']
           )
         else
           printer.item("Start All (#{stopped_services.size} services)")
@@ -184,8 +214,8 @@ module Brew
         if started_services.size.positive?
           printer.item(
             "Stop All (#{started_services.size} services)",
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'stop', param3: '--all'
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'stop', '--all']
           )
         else
           printer.item("Stop All (#{started_services.size} services)")
@@ -194,8 +224,8 @@ module Brew
           printer.item(
             'Restart All ' \
             "(#{started_services.size + stopped_services.size} services)",
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'restart', param3: '--all'
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'restart', '--all']
           )
         else
           printer.item("Restart All (#{services.size} services)")
@@ -282,20 +312,20 @@ module Brew
         if service.started? || service.error? || service.unknown_status?
           printer.item(
             'Stop',
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'stop', param3: service.name
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'stop', service.name]
           )
           printer.item(
             'Restart',
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'restart', param3: service.name
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'restart', service.name]
           )
         end
         if service.stopped? || service.unknown_status?
           printer.item(
             'Start',
-            terminal: false, refresh: true, shell: brew_path,
-            param1: 'services', param2: 'start', param3: service.name
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'start', service.name]
           )
         end
 
@@ -311,8 +341,7 @@ module Brew
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: brew_path, param1: 'uninstall',
-              param2: service.name
+              shell: [brew_path, 'uninstall', service.name]
             )
           end
         end
