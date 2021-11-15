@@ -33,6 +33,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if [ -f "/etc/zshenv" ]; then
     source "/etc/zshenv"
   fi
+
+  # Fix Go race detector issues: https://github.com/golang/go/issues/49138
+  export MallocNanoZone=0
 fi
 
 # ==============================================================================
