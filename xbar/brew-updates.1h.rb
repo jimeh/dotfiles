@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.2.0</xbar.version>
+# <xbar.version>v2.2.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -77,7 +77,8 @@ module Xbar
         i += 1 while props.key?("param#{i}".to_sym)
         props["param#{i}".to_sym] = ';'
         props["param#{i + 1}".to_sym] = 'open'
-        props["param#{i + 2}".to_sym] = "'#{plugin_refresh_uri}'"
+        props["param#{i + 2}".to_sym] = '-jg'
+        props["param#{i + 3}".to_sym] = "'#{plugin_refresh_uri}'"
       end
 
       props
