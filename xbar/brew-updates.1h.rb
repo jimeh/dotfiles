@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.2.1</xbar.version>
+# <xbar.version>v2.2.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -194,21 +194,23 @@ module Brew
         if formulas.size.positive? && casks.size.positive?
           printer.item(
             "Upgrade All (#{formulas.size + casks.size})",
-            terminal: true, refresh: true, shell: [brew_path, 'upgrade']
+            terminal: true, refresh: true,
+            shell: [brew_path, 'upgrade'] +
+            formulas.map(&:name) + casks.map(&:name)
           )
         end
         if formulas.size.positive?
           printer.item(
             "Upgrade All Formulas (#{formulas.size})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--formula']
+            shell: [brew_path, 'upgrade', '--formula'] + formulas.map(&:name)
           )
         end
         if casks.size.positive?
           printer.item(
             "Upgrade All Casks (#{casks.size})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--cask']
+            shell: [brew_path, 'upgrade', '--cask'] + casks.map(&:name)
           )
         end
       end
