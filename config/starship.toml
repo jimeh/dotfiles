@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.1.0
+# Version: 0.1.1
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -22,7 +22,61 @@ $git_status\
 $hg_branch\
 $line_break\
 $character"""
-right_format = """$all"""
+right_format = """
+$all\
+$cmake\
+$cobol\
+$crystal\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$red\
+$rlang\
+$ruby\
+$rust\
+$scala\
+$swift\
+$vlang\
+$zig\
+$aws\
+$azure\
+$conda\
+$docker_context\
+$gcloud\
+$helm\
+$kubernetes\
+$nix_shell\
+$openstack\
+$package\
+$singularity\
+$terraform\
+$vagrant\
+$vcsh\
+$shlvl\
+$cmd_duration\
+$status\
+$jobs\
+$shell\
+$sudo\
+$battery\
+$memory_usage\
+$time"""
 
 # ------------------------------------------------------------------------------
 # Main left prompt components
