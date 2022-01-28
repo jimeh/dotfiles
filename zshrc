@@ -36,7 +36,7 @@ fi
 [ ! -d "${ZINIT[BIN_DIR]}" ] &&
   read -q "REPLY?Zinit not installed, clone to ${ZINIT[BIN_DIR]}? [y/N]:" &&
   echo &&
-  git clone --depth=1 "https://github.com/zdharma/zinit.git" "${ZINIT[BIN_DIR]}"
+  git clone --depth=1 "https://github.com/zdharma-continuum/zinit.git" "${ZINIT[BIN_DIR]}"
 
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
@@ -61,7 +61,7 @@ zinit light jimeh/plain.zsh-theme
 
 
 zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice wait lucid blockf
 zinit light zsh-users/zsh-completions
