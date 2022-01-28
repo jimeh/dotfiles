@@ -1,54 +1,33 @@
+# ------------------------------------------------------------------------------
+# jimeh's Starship Config
+# ------------------------------------------------------------------------------
+# Version: 0.1.0
+# URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
+# ------------------------------------------------------------------------------
+# This is minimalistic Starship (https://starship.rs/) prompt setup with most
+# features shifted to the right prompt, and disabled, allowing for easy cherry
+# picking of specific features to enable.
+# ------------------------------------------------------------------------------
+#
 add_newline = false
-right_format = """
-$docker_context\
-$package\
-$cmake\
-$cobol\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$helm\
-$java\
-$julia\
-$kotlin\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$swift\
-$terraform\
-$vlang\
-$vagrant\
-$zig\
-$nix_shell\
-$conda\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$crystal\
-$jobs\
-$battery\
-$time\
-$cmd_duration\
-$status\
-$shell\
-"""
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$line_break\
+$character"""
+right_format = """$all"""
 
+# ------------------------------------------------------------------------------
+# Main left prompt components
+# ------------------------------------------------------------------------------
+#
 [username]
 show_always = true
 format = "[$user]($style)"
@@ -65,7 +44,8 @@ truncate_to_repo = false
 truncation_length = 99
 format = '[$path]($style)[$read_only]($read_only_style) '
 style = ""
-read_only = "⊘"
+read_only = ""
+read_only_style = "bold red"
 
 [line_break]
 disabled = true
@@ -75,64 +55,321 @@ success_symbol = "[❯](bold fg:118)"
 error_symbol = "[❯](bold fg:46)"
 vicmd_symbol = "[❮](bold fg:46)"
 
+# ------------------------------------------------------------------------------
+# Source Control
+# ------------------------------------------------------------------------------
+#
 [git_branch]
 format = '([$symbol$branch]($style))'
 style = "fg:51"
-symbol = ""
+symbol = ""
 truncation_length = 24
+
+[git_commit]
+tag_symbol = ""
+format = '[\($hash$tag\)]($style)'
+style = "bold fg:213"
+only_detached = true
+tag_disabled = false
+
+[git_state]
+format = '\[[$state($progress_current/$progress_total)]($style)\]'
+style = "bold fg:208"
+
+[git_metrics]
+added_style = "bold fg:148"
+deleted_style = "bold fg:196"
+format = '([\[](fg:51)([+$added]($added_style))([-$deleted]($deleted_style))[\]](fg:51))'
+disabled = true
 
 [git_status]
 format = '([$all_status$ahead_behind]($style)) '
 style = "bold fg:201"
 stashed = ""
-ahead = "^" #"⬆"
-behind = "v" #"⬇"
+ahead = ""
+behind = ""
 modified = "!"
 untracked = "?"
-diverged = "⇳"
+diverged = ""
 deleted = "✖"
 
-# ahead = "🡡"
+[hg_branch]
+format = '([$symbol$branch]($style))'
+style = "fg:51"
+symbol = ""
+truncation_length = 24
+
+# ------------------------------------------------------------------------------
+# Right prompt "status" components
+# ------------------------------------------------------------------------------
+#
+[shlvl]
+symbol = " "
+format = "( [$symbol$shlvl]($style))"
+disabled = true
+
 [cmd_duration]
-format = '( \([$duration]($style)\))'
+format = '( [\(](fg:245)[$duration]($style)[\)](fg:245))'
 style = "bold fg:220"
 
-[status]
+[sudo]
+symbol = " "
+format = "[$symbol]($style)"
+style = "bold dimmed red"
 disabled = false
+
+[status]
 format = "( [$symbol$status]($style))"
 style = "bold red"
-
-[sudo]
-disabled = true
-
-[package]
 disabled = false
 
-[golang]
-format = "[( $symbol$version)]($style)"
+[jobs]
+symbol = "✦"
+format = "( [$symbol$number]($style))"
+style = "bold blue"
+symbol_threshold = 1
+number_threshold = 1
+disabled = false
+
+[shell]
+bash_indicator = " bsh"
+fish_indicator = " fsh"
+zsh_indicator = " zsh"
+powershell_indicator = " psh"
+ion_indicator = " ion"
+elvish_indicator = " esh"
+tcsh_indicator = " tsh"
+xonsh_indicator = " xsh"
+cmd_indicator = " cmd"
+nu_indicator = " nu"
+format = "[$indicator]($style)"
 disabled = true
 
-[ruby]
-format = "[( $symbol$version)]($style)"
+[battery]
+format = "( [$symbol$percentage]($style))"
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[memory_usage]
+threshold = 75
+symbol = " "
+format = '( [$symbol${ram}]($style))'
+disabled = true
+
+[time]
+format = '( [\[](fg:237)[$time]($style)[\]](fg:237))'
+style = "bold fg:239"
+disabled = false
+
+# ------------------------------------------------------------------------------
+# Languages
+# ------------------------------------------------------------------------------
+#
+[cmake]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[crystal]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[cobol]
+symbol = "漣 "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[dart]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[deno]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[dotnet]
+symbol = " "
+format = "( [$symbol($version)( 🎯 $tfm)]($style))"
+disabled = true
+
+[elixir]
+symbol = " "
+format = '( [$symbol($version \(OTP $otp_version\))]($style))'
+disabled = true
+
+[elm]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[erlang]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[golang]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[java]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[julia]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[kotlin]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[lua]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[nim]
+symbol = " "
+format = "( [$symbol$version]($style))"
 disabled = true
 
 [nodejs]
-format = "[( $symbol$version)]($style)"
+symbol = " "
+format = "( [$symbol$version]($style))"
 disabled = true
 
-[aws]
+[ocaml]
+format = '( [$symbol$version(\($switch_indicator$switch_name\))]($style))'
 disabled = true
 
-[gcloud]
+[perl]
+symbol = " "
+format = "( [$symbol$version]($style))"
 disabled = true
 
-[docker_context]
+[php]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[purescript]
+format = "( [$symbol$version]($style))"
 disabled = true
 
 [python]
+symbol = " "
 format = '( [${symbol}${pyenv_prefix}${version}( \($virtualenv\))]($style))'
+disabled = true
+
+[rlang]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[red]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[ruby]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[rust]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[scala]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[swift]
+symbol = "ﯣ "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[vlang]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[zig]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+# ------------------------------------------------------------------------------
+# Tools
+# ------------------------------------------------------------------------------
+#
+[aws]
+symbol = " "
+format = '( [$symbol($profile)( \($region\))( \[$duration\])]($style))'
+disabled = true
+
+[azure]
+symbol = "ﴃ "
+format = "( [$symbol($subscription)]($style))"
+disabled = true
+
+[conda]
+symbol = " "
+format = "( [$symbol$environment]($style))"
+
+[docker_context]
+symbol = " "
+format = "( [$symbol$context]($style))"
+disabled = true
+
+[gcloud]
+symbol = " "
+format = '( [$symbol$account(@$domain)(\($region\))]($style))'
+disabled = true
+
+[helm]
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[kubernetes]
+symbol = "☸ "
+format = '( [$symbol$context(\($namespace\))]($style))'
+disabled = true
+
+[nix_shell]
+symbol = " "
+format = '( [$symbol$state(\($name\))]($style))'
+disabled = true
+
+[openstack]
+symbol = " "
+format = '( [$symbol$cloud(\($project\))]($style))'
+disabled = true
+
+[package]
+symbol = " "
+format = "( [$symbol$version]($style))"
+disabled = true
+
+[pulumi]
+format = "( [$symbol$stack]($style))"
+disabled = true
+
+[singularity]
+format = '( [$symbol\[$env\]]($style))'
 disabled = true
 
 [terraform]
 format = "( [$symbol$workspace]($style))"
+disabled = true
+
+[vagrant]
+format = "( [$symbol($version )]($style))"
+disabled = true
+
+[vcsh]
+format = "(vcsh [$symbol$repo]($style))"
 disabled = true
