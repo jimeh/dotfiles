@@ -56,9 +56,10 @@ zinit snippet OMZ::lib/history.zsh
 # Enable Ruby Bundler plugin from oh-my-zsh.
 zinit snippet OMZ::plugins/bundler
 
-zinit ice pick'plain.zsh-theme'
-zinit light jimeh/plain.zsh-theme
-
+zinit ice lucid as'program' from'gh-r' \
+  atclone'./starship completions zsh > _starship; ./starship init zsh --print-full-init > .zinitrc.zsh' \
+  atpull'%atclone' pick'starship' src'.zinitrc.zsh'
+zinit light starship/starship
 
 zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting

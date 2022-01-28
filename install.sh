@@ -15,6 +15,7 @@ SYMLINKS=(
   bitbar
   coffeelint.json
   config/solargraph/config.yml
+  config/starship.toml
   erlang
   eslintrc.js
   gemrc

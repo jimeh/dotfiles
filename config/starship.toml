@@ -1,0 +1,138 @@
+add_newline = false
+right_format = """
+$docker_context\
+$package\
+$cmake\
+$cobol\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+$jobs\
+$battery\
+$time\
+$cmd_duration\
+$status\
+$shell\
+"""
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "fg:251"
+style_root = "bold fg:196 bg:52"
+
+[hostname]
+ssh_only = false
+format = "([@$hostname]($style) )"
+style = "fg:251"
+
+[directory]
+truncate_to_repo = false
+truncation_length = 99
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = ""
+read_only = "⊘"
+
+[line_break]
+disabled = true
+
+[character]
+success_symbol = "[❯](bold fg:118)"
+error_symbol = "[❯](bold fg:46)"
+vicmd_symbol = "[❮](bold fg:46)"
+
+[git_branch]
+format = '([$symbol$branch]($style))'
+style = "fg:51"
+symbol = ""
+truncation_length = 24
+
+[git_status]
+format = '([$all_status$ahead_behind]($style)) '
+style = "bold fg:201"
+stashed = ""
+ahead = "^" #"⬆"
+behind = "v" #"⬇"
+modified = "!"
+untracked = "?"
+diverged = "⇳"
+deleted = "✖"
+
+# ahead = "🡡"
+[cmd_duration]
+format = '( \([$duration]($style)\))'
+style = "bold fg:220"
+
+[status]
+disabled = false
+format = "( [$symbol$status]($style))"
+style = "bold red"
+
+[sudo]
+disabled = true
+
+[package]
+disabled = false
+
+[golang]
+format = "[( $symbol$version)]($style)"
+disabled = true
+
+[ruby]
+format = "[( $symbol$version)]($style)"
+disabled = true
+
+[nodejs]
+format = "[( $symbol$version)]($style)"
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[python]
+format = '( [${symbol}${pyenv_prefix}${version}( \($virtualenv\))]($style))'
+disabled = true
+
+[terraform]
+format = "( [$symbol$workspace]($style))"
+disabled = true
