@@ -31,6 +31,7 @@ install_go_global_packages() {
     github.com/kisielk/errcheck@latest
     github.com/lighttiger2505/sqls@latest
     github.com/mdempsky/unconvert@latest
+    github.com/nametake/golangci-lint-langserver@latest
     github.com/ramya-rao-a/go-outline@latest
     github.com/rogpeppe/godef@latest
     github.com/segmentio/golines@latest
@@ -41,7 +42,8 @@ install_go_global_packages() {
     golang.org/x/tools/cmd/guru@latest
     golang.org/x/tools/cmd/stringer@latest
     golang.org/x/tools/gopls@latest
-    mvdan.cc/gofumpt/gofumports@latest
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    google.golang.org/protobuf/cmd/protoc-gen-go@latest
     mvdan.cc/gofumpt@latest
   )
 
