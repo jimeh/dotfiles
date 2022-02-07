@@ -161,12 +161,18 @@ log() {
 symlink() {
   local source="$1"
   local target="$2"
+  local target_dir
   local linksource
 
   if [ "$target" == "$source" ]; then
     log ok symlink "$target"
   elif [ ! -e "$target" ] && [ ! -L "$target" ]; then
     log link symlink "$target ${S_RARROW} $source"
+
+    target_dir="$(dirname "$target")"
+    if [ ! -d "$target_dir" ]; then
+      mkdir -p "$target_dir"
+    fi
     ln -s "$source" "$target"
   elif [ -L "$target" ]; then
     linksource="$(readlink "$target")"
