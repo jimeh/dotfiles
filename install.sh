@@ -254,7 +254,7 @@ case "$1" in
   "help")
     display_help
     ;;
-  emacs-config | emacs)
+  emacs_config | emacs-config | emacs)
     install_emacs_config
     ;;
   private)
@@ -266,7 +266,7 @@ case "$1" in
   rbenv)
     install_rbenv
     ;;
-  launch-agents | launch_agents | agents)
+  launch_agents | launch-agents | agents)
     install_launch_agents
     ;;
   xbar_scripts | xbar-scripts | xbar)
@@ -279,7 +279,7 @@ case "$1" in
     echo "Target directory: $TARGET"
     echo "Detected dotfiles root: $ROOT_PATH"
     ;;
-  shell_init)
+  shell_init | shell-init)
     zsh_init
     ;;
   symlinks | links)
