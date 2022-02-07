@@ -14,7 +14,6 @@ alias duh="du -h"
 alias reload="exec $SHELL -l"
 
 # Editors
-alias n="nano"
 alias t="mate"
 alias e="$DOTBIN/emacsclient-wrapper"
 alias eg="$DOTBIN/emacs-gui-client"
