@@ -163,7 +163,7 @@ format = "( [$symbol$shlvl]($style))"
 disabled = true
 
 [cmd_duration]
-format = '( [\(](fg:245)[$duration]($style)[\)](fg:245))'
+format = '( [\(](fg:242)[$duration]($style)[\)](fg:242))'
 style = "bold fg:220"
 
 [sudo]
