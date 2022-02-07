@@ -14,6 +14,7 @@ SYMLINKS=(
   alacritty.yml
   bitbar
   coffeelint.json
+  config/kitty/kitty.conf
   config/solargraph/config.yml
   config/starship.toml
   erlang
