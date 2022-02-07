@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v2.2.1</xbar.version>
+# <xbar.version>v2.2.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -310,6 +310,13 @@ module Brew
              end
 
       printer.item("#{icon} #{service.name}") do |printer|
+        if service.stopped? || service.unknown_status?
+          printer.item(
+            'Start',
+            terminal: false, refresh: true,
+            shell: [brew_path, 'services', 'start', service.name]
+          )
+        end
         if service.started? || service.error? || service.unknown_status?
           printer.item(
             'Stop',
@@ -320,13 +327,6 @@ module Brew
             'Restart',
             terminal: false, refresh: true,
             shell: [brew_path, 'services', 'restart', service.name]
-          )
-        end
-        if service.stopped? || service.unknown_status?
-          printer.item(
-            'Start',
-            terminal: false, refresh: true,
-            shell: [brew_path, 'services', 'start', service.name]
           )
         end
 
