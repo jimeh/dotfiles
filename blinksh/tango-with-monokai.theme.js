@@ -1,10 +1,10 @@
 // Tango with Monokai theme
 
-term_set("cursor-color", "#f5f5f5");
-term_set("cursor-blink", false);
-term_set("foreground-color", "#ffffff");
-term_set("background-color", "#000000");
-term_set("color-palette-overrides", [
+t.prefs_.set("cursor-color", "#f5f5f5");
+t.prefs_.set("cursor-blink", false);
+t.prefs_.set("foreground-color", "#ffffff");
+t.prefs_.set("background-color", "#000000");
+t.prefs_.set("color-palette-overrides", [
   "#000000", // black
   "#cf5041", // red
   "#8bba48", // green
