@@ -51,4 +51,8 @@ if command-exists kubectl; then
 
   zinit ice wait lucid as'program' from'gh-r' pick'kubeseal'
   zinit light bitnami-labs/sealed-secrets
+
+  zinit ice wait lucid as'program' from'gh-r' mv'argocd-* -> argocd' \
+    atclone'./argocd completion zsh > _argocd' atpull'%atclone'
+  zinit light argoproj/argo-cd
 fi
