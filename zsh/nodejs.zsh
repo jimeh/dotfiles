@@ -3,34 +3,20 @@
 #
 
 # ==============================================================================
-# nodenv
+# Volta
 # ==============================================================================
 
-# install nodenv
-zinit ice wait lucid as'program' pick'bin/nodenv' from'gh' \
-  atclone'src/configure && make -C src; libexec/nodenv init - > .zinitrc.zsh' \
-  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
-zinit light nodenv/nodenv
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    zinit_volta_bpick='*macos-aarch64*'
+  else
+    zinit_volta_bpick='*macos.tar*'
+  fi
+fi
 
-# install node-build
-zinit ice wait lucid as'program' pick'bin/node-build' from'gh'
-zinit light nodenv/node-build
-
-# install nodenv-aliases plugin
-zinit ice wait lucid as'program' pick'bin/nodenv-alias' from'gh'
-zinit light nodenv/nodenv-aliases
-
-# install nodenv-each plugin
-zinit ice wait lucid as'program' pick'bin/nodenv-each' from'gh'
-zinit light nodenv/nodenv-each
-
-# install nodenv-nvmrc plugin
-zinit ice wait lucid as'program' pick'bin/nodenv-nvmrc' from'gh'
-zinit light ouchxp/nodenv-nvmrc
-
-# install nodenv-package-rehash plugin
-zinit ice wait lucid as'program' pick'bin/nodenv-package-*' from'gh'
-zinit light nodenv/nodenv-package-rehash
+zinit ice wait lucid as'program' from'gh-r' bpick"$zinit_volta_bpick" \
+  atclone'./volta completions zsh > _volta' atpull'%atclone'
+zinit light volta-cli/volta
 
 # ==============================================================================
 # aliases
@@ -48,6 +34,9 @@ alias cof="coffee"
 
 install_node_global_packages() {
   local packages=(
+    npm
+    npx
+    yarn
     @commitlint/cli
     @commitlint/config-conventional
     @prettier/plugin-php
@@ -77,8 +66,7 @@ install_node_global_packages() {
     vscode-css-languageserver-bin
     vscode-json-languageserver
     yaml-language-server
-    yarn
   )
 
-  npm install -g "${packages[@]}"
+  volta install "${packages[@]}"
 }

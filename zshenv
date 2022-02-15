@@ -177,8 +177,8 @@ path_prepend "$HOME/.rbenv/shims"
 # Python setup for pyenv (./zsh/python.zsh)
 path_prepend "$HOME/.pyenv/shims"
 
-# Node setup for nodenv (./zsh/nodejs.zsh)
-path_prepend "$HOME/.nodenv/shims"
+# Node setup for volta (./zsh/nodejs.zsh)
+path_prepend "$HOME/.volta/bin"
 
 # Rust setup
 path_prepend "$HOME/.cargo/bin"
