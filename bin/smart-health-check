@@ -65,4 +65,4 @@ main() {
   echo "SMART Status: $(tput setaf 2)PASSED$(tput sgr0)"
 }
 
-main $@
+main "$@"
