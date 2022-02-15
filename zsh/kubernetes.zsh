@@ -49,6 +49,6 @@ if command-exists kubectl; then
     atclone'./kustomize completion zsh > _kustomize' atpull'%atclone'
   zinit light kubernetes-sigs/kustomize
 
-  zinit ice wait lucid as'program' from'gh-r' mv'kubeseal-* -> kubeseal'
+  zinit ice wait lucid as'program' from'gh-r' pick'kubeseal'
   zinit light bitnami-labs/sealed-secrets
 fi
