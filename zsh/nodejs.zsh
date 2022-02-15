@@ -49,7 +49,6 @@ install_node_global_packages() {
     eslint_d
     htmllint-cli
     httpsnippet
-    javascript-typescript-langserver
     js-beautify
     jsonlint
     localtunnel
@@ -62,6 +61,7 @@ install_node_global_packages() {
     tslint
     typescript
     typescript-formatter
+    typescript-language-server
     uuid-cli
     vscode-css-languageserver-bin
     vscode-json-languageserver
