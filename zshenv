@@ -150,6 +150,11 @@ fi
 # Use custom emacs install if available
 path_prepend "/opt/emacs/bin"
 
+# evm setup.
+export EVM_MODE=user
+export EVM_NATIVE_FULL_AOT=1
+path_prepend "$HOME/.evm/shims"
+
 # Set Emacs-related environment variables
 export EMACS="emacs"
 export EMACSCLIENT="emacsclient"

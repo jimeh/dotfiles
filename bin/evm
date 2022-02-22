@@ -1,0 +1,312 @@
+#! /usr/bin/env bash
+set -e
+
+show-help() {
+  echo 'usage: evm <command>'
+  echo ''
+  echo 'Commands:'
+  echo '  help               - Show this message'
+  echo '  info               - Show evm configuration details.'
+  echo '  list               - List installed versions.'
+  echo '  use <version>      - Activate specified version.'
+  echo '  install <git-ref>  - Download, compile and install Emacs.'
+  echo '  build-deps         - Install build dependencies for Emacs.'
+}
+
+main() {
+  local command="$1"
+  shift 1
+
+  check-os
+
+  if [ -z "$command" ]; then
+    show-help 1>&2
+    exit 1
+  fi
+
+  case "$command" in
+    build-deps | deps)
+      install-deps "$@"
+      ;;
+    info)
+      info
+      ;;
+    install)
+      install "$@"
+      ;;
+    use | switch | activate)
+      activate-version "$@"
+      ;;
+    list | ls | versions)
+      versions "$@"
+      ;;
+    *)
+      show-help
+      ;;
+  esac
+}
+
+check-os() {
+  if [[ "$OSTYPE" != "linux"* ]]; then
+    echo "Only Linux-based operating systems are supported" 1>&2
+    exit 2
+  fi
+}
+
+check-write-op() {
+  if conf-root-mode && [ "$UID" != "0" ]; then
+    echo "ERROR: evm must be run as root when" \
+      "EVM_MODE is not empty or \"user\"." 1>&2
+    exit 1
+  fi
+}
+
+trim() {
+  local string="$*"
+  string="${string#"${string%%[![:space:]]*}"}"
+  string="${string%"${string##*[![:space:]]}"}"
+  echo -n "$string"
+}
+
+conf-emacs-src-repo() {
+  echo "${EVM_EMACS_SRC_REPO:-emacs-mirror/emacs}"
+}
+
+conf-mode() {
+  if [ "${EVM_MODE:-user}" == "user" ]; then
+    echo "user"
+  else
+    echo "root"
+  fi
+}
+
+conf-root-mode() {
+  if [ "$(conf-mode)" != "root" ]; then
+    return 1
+  fi
+}
+
+default-root-dir() {
+  if conf-root-mode; then
+    echo "/opt/evm"
+  else
+    echo "$HOME/.evm"
+  fi
+}
+
+default-shims-dir() {
+  if conf-root-mode; then
+    echo "$(conf-root-dir)/bin"
+  else
+    echo "$(conf-root-dir)/shims"
+  fi
+}
+
+conf-root-dir() {
+  echo "${EVM_ROOT_DIR:-$(default-root-dir)}"
+}
+
+conf-shims-dir() {
+  echo "${EVM_VERSIONS_DIR:-$(default-shims-dir)}"
+}
+
+conf-versions-dir() {
+  echo "${EVM_VERSIONS_DIR:-$(conf-root-dir)/versions}"
+}
+
+conf-sources-dir() {
+  echo "${EVM_SOURCES_DIR:-$(conf-root-dir)/sources}"
+}
+
+conf-native-full-aot() {
+  echo "${EVM_NATIVE_FULL_AOT:-1}"
+}
+
+info() {
+  echo "---"
+  echo "# evm information"
+  echo "evm:"
+  echo "  mode: $(conf-mode)"
+  echo "  paths:"
+  echo "    root: $(conf-root-dir)"
+  echo "    shims: $(conf-shims-dir)"
+  echo "    versions: $(conf-versions-dir)"
+  echo "    sources: $(conf-sources-dir)"
+  echo "  building:"
+  echo "    native_full_aot: $(conf-native-full-aot)"
+}
+
+install() {
+  local ref="$1"
+  local version
+  local workdir
+  local dir
+  local file
+  local prefix
+
+  check-write-op
+
+  if [ -z "$ref" ]; then
+    echo "ERROR: git ref to install must be specified" 1>&2
+    exit 1
+  fi
+
+  version="${ref//\//-}_$(date +"%Y-%m-%d")"
+  workdir="$(conf-sources-dir)"
+  prefix="$(conf-versions-dir)/${version}"
+
+  file="emacs-${version}.tar.gz"
+  dir="emacs-${version}"
+
+  if [ -d "$prefix" ]; then
+    echo "target $prefix directory exists, remove to force-install" 1>&2
+    exit 1
+  fi
+
+  mkdir -p "$workdir"
+  cd "$workdir"
+  if [ ! -d "$dir" ]; then
+    if [ ! -f "$file" ]; then
+      curl -L "https://github.com/$(conf-emacs-src-repo)/tarball/${ref}" > \
+        "$file"
+    else
+      echo "source tarball ${workdir}/${file} exists, reusing..." 1>&2
+    fi
+    mkdir "$dir"
+    tar -C "$dir" --strip-components 1 -zxf "$file"
+  else
+    echo "source directory ${workdir}/${dir} exists, reusing..." 1>&2
+  fi
+  cd "$dir"
+
+  if [ -f "autogen/copy_autogen" ]; then
+    ./autogen/copy_autogen
+  fi
+
+  if [ -f "autogen.sh" ]; then
+    ./autogen.sh
+  fi
+
+  export CFLAGS="-O2"
+  export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+  ./configure \
+    --prefix="$prefix" \
+    --with-json \
+    --with-modules \
+    --with-native-compilation \
+    --with-pgtk \
+    --with-xinput2 \
+    --with-xwidgets
+  make -j "$(nproc)" NATIVE_FULL_AOT="$(conf-native-full-aot)"
+  make install
+}
+
+install-deps() {
+  sudo apt-get update
+  sudo apt-get install -y \
+    build-essential \
+    g++-10 \
+    gcc-10 \
+    libcairo2-dev \
+    libgccjit-10-dev \
+    libgccjit0 \
+    libgconf2-dev \
+    libgif-dev \
+    libgnutls28-dev \
+    libgpm-dev \
+    libgtk-3-dev \
+    libharfbuzz-dev \
+    libjansson-dev \
+    libjansson4 \
+    libjpeg-dev \
+    libjpeg-dev \
+    libm17n-dev \
+    libmagick++-dev \
+    libmagickcore-dev \
+    libmailutils-dev \
+    libncurses-dev \
+    libotf-dev \
+    libpng-dev \
+    librsvg2-dev \
+    libtiff-dev \
+    libwebp-dev \
+    libx11-dev \
+    libxft-dev \
+    libxml2-dev \
+    libxpm-dev \
+    texinfo \
+    xaw3dg-dev
+}
+
+current-version() {
+  trim "$(cat "$(conf-root-dir)/current" 2> /dev/null)"
+}
+
+activate-version() {
+  local version="$1"
+  local dir
+  local target
+  local base
+
+  check-write-op
+
+  if [ -z "$version" ]; then
+    echo "ERROR: version be specified" 1>&2
+    exit 1
+  fi
+
+  dir="$(conf-versions-dir)/${version}"
+
+  if [ ! -d "$dir" ]; then
+    echo "ERROR: version ${version} is not installed" 1>&2
+    exit 1
+  fi
+
+  mkdir -p "$(conf-shims-dir)"
+
+  # Remove old symlinks.
+  find "$(conf-shims-dir)" -maxdepth 1 -mindepth 1 -type l -delete
+
+  # Create new symlinks.
+  find "${dir}/bin" -type f -perm -a=x -exec ln -s "{}" "$(conf-shims-dir)/" \;
+
+  # Create symlink to `emacs` in case it is a symlink itself.
+  if [ -L "${dir}/bin/emacs" ]; then
+    ln -s "${dir}/bin/emacs" "$(conf-shims-dir)/"
+  fi
+
+  echo "$(trim "$version")" > "$(conf-root-dir)/current"
+}
+
+versions() {
+  local version_dirs
+  local version_dir
+  local version
+
+  version_dirs="$(find "$(conf-versions-dir)" -maxdepth 1 -mindepth 1 -type d \
+    -exec basename "{}" \;)"
+
+  while read -r version_dir; do
+    version="$(basename "$version_dir")"
+
+    if [ "$(trim "$version")" == "$(trim "$(current-version)")" ]; then
+      echo "* ${version}"
+    else
+      echo "  ${version}"
+    fi
+  done < <(echo "$version_dirs")
+}
+
+print-version() {
+  local version_dir="$1"
+  local version
+  version="$(basename "$version_dir")"
+
+  if [ "$(trim "$version")" == "$(trim "$(current-version)")" ]; then
+    echo "* ${version}"
+  else
+    echo "  ${version}"
+  fi
+}
+
+main "$@"
