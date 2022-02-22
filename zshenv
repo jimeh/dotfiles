@@ -184,6 +184,19 @@ path_prepend "$HOME/.volta/bin"
 path_prepend "$HOME/.cargo/bin"
 
 # ==============================================================================
+# Path setup for select binaries installed with zinit
+# ==============================================================================
+
+path_prepend "$HOME/.local/zsh/zinit/plugins/direnv---direnv"
+path_prepend "$HOME/.local/zsh/zinit/plugins/junegunn---fzf"
+path_prepend "$HOME/.local/zsh/zinit/plugins/mvdan---sh"
+path_prepend "$HOME/.local/zsh/zinit/plugins/pyenv---pyenv/bin"
+path_prepend "$HOME/.local/zsh/zinit/plugins/rbenv---rbenv/bin"
+path_prepend "$HOME/.local/zsh/zinit/plugins/rclone---rclone"
+path_prepend "$HOME/.local/zsh/zinit/plugins/stefanmaric---g/bin"
+path_prepend "$HOME/.local/zsh/zinit/plugins/volta-cli---volta"
+
+# ==============================================================================
 # Local Overrides
 # ==============================================================================
 
