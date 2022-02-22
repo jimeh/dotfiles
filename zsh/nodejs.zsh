@@ -12,6 +12,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   else
     zinit_volta_bpick='*macos.tar*'
   fi
+elif [[ "$OSTYPE" == "linux"* ]]; then
+  zinit_volta_bpick='*linux-openssl-1.1.tar.gz'
 fi
 
 zinit ice wait lucid as'program' from'gh-r' bpick"$zinit_volta_bpick" \
