@@ -3,7 +3,7 @@
 #
 
 if command-exists docker; then
-  zinit ice from'gh-r' as'program' mv'ctop-* -> ctop'
+  zinit ice wait lucid from'gh-r' as'program' mv'ctop-* -> ctop'
   zinit light bcicen/ctop
 fi
 
