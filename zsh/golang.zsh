@@ -15,6 +15,12 @@ zinit light stefanmaric/g
 # global golang packages
 # ==============================================================================
 
+list_go_global_packages() {
+  for bin in $(ls -1 ~/.go/bin); do
+    go version -m ~/.go/bin/$bin | grep '^[[:space:]]path' | awk '{ print $2 }'
+  done
+}
+
 install_go_global_packages() {
   local packages=(
     github.com/akavel/up@latest
