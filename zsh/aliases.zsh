@@ -61,18 +61,7 @@ myip() {
 }
 
 # appends your key to a server's authorized keys file
-authme() {
-  ssh "$1" 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
-    < ~/.ssh/id_rsa.pub
-}
-
-# ssh commands related to old SSH keys
-alias ssho="ssh -i ~/.ssh/old-id_rsa"
-authmeo() {
-  ssh -i ~/.ssh/old-id_rsa "$1" \
-    'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
-    < ~/.ssh/id_rsa.pub
-}
+alias authme="ssh-copy-id"
 
 # Make and cd into directory
 #  - from: http://alias.sh/make-and-cd-directory
