@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v2.2.2</xbar.version>
+# <xbar.version>v2.3.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -44,6 +44,9 @@ module Xbar
     private
 
     def print_item(text, **props)
+      props = props.dup
+      alt = props.delete(:alt)
+
       output = [text]
       unless props.empty?
         props = normalize_props(props)
@@ -53,6 +56,10 @@ module Xbar
 
       $stdout.print(SUB_STR * nested_level, output.join(' '))
       $stdout.puts
+
+      return if alt.nil? || alt.empty?
+
+      print_item(alt, **props.merge(alternate: true))
     end
 
     def plugin_refresh_uri
@@ -141,37 +148,22 @@ module Brew
   end
 
   class Service
-    attr_reader :name, :status, :user
+    attr_reader :name, :status, :user, :file, :exit_code
 
-    def self.from_line(line)
-      parts = line.split
-      name = parts[0]
-      if %w[started stopped error unknown].include?(parts[1])
-        status = parts[1]
-        user = parts[2]
-      else
-        # Some services (dbus and logrotate for example) don't show a status
-        # when running "brew services list" at the moment. Instead they only
-        # show the service name and the user. So we work around this issue.
-        status = 'unknown'
-        user = parts[1]
-      end
-
-      new(name: name, status: status, user: user)
-    end
-
-    def initialize(name:, status:, user: nil)
-      @name = name
-      @status = status
-      @user = user
+    def initialize(args = {})
+      @name = args.key?('name') ? args['name'] : args[:name]
+      @status = args.key?('status') ? args['status'] : args[:status]
+      @user = args.key?('user') ? args['user'] : args[:user]
+      @file = args.key?('file') ? args['file'] : args[:file]
+      @exit_code = args.key?('exit_code') ? args['exit_code'] : args[:exit_code]
     end
 
     def started?
-      @started ||= @status.downcase == 'started'
+      @started ||= %w[started scheduled].include?(@status.downcase)
     end
 
     def stopped?
-      @stopped ||= @status.downcase == 'stopped'
+      @stopped ||= %w[stopped none].include?(@status.downcase)
     end
 
     def error?
@@ -331,8 +323,11 @@ module Brew
         end
 
         printer.sep
-        printer.item("State: #{service.status}")
+        printer.item("Status: #{service.status}")
         printer.item("User: #{service.user || '<none>'}")
+        if !service.exit_code.nil? && !service.started?
+          printer.item("Exit code: #{service.exit_code}")
+        end
 
         if service.stopped?
           printer.sep
@@ -368,17 +363,11 @@ module Brew
     def services
       return @services if @services
 
-      found = false
-      @services = cmd(
-        brew_path, 'services', 'list'
-      ).each_line.each_with_object([]) do |line, memo|
-        # Ignore header line and everything before it.
-        unless found
-          found = line.strip.match(/^Name\s+Status\s+User\s+(File|Plist)$/)
-          next
-        end
+      output = cmd(brew_path, 'services', 'list', '--json')
+      data = JSON.parse(output)
 
-        memo.push(Service.from_line(line))
+      @services = data.each_with_object([]) do |item, memo|
+        memo.push(Service.new(item))
       end
     end
   end
