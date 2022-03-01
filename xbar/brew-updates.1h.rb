@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.2.2</xbar.version>
+# <xbar.version>v2.2.3</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -43,6 +43,9 @@ module Xbar
     private
 
     def print_item(text, **props)
+      props = props.dup
+      alt = props.delete(:alt)
+
       output = [text]
       unless props.empty?
         props = normalize_props(props)
@@ -52,6 +55,10 @@ module Xbar
 
       $stdout.print(SUB_STR * nested_level, output.join(' '))
       $stdout.puts
+
+      return if alt.nil? || alt.empty?
+
+      print_item(alt, **props.merge(alternate: true))
     end
 
     def plugin_refresh_uri
@@ -242,12 +249,9 @@ module Brew
         printer.item(formula.name) do |printer|
           printer.item(
             'Upgrade',
+            alt: 'Upgrade ' \
+                 "(#{formula.current_version} → #{formula.latest_version})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', formula.name]
-          )
-          printer.item(
-            "Upgrade (#{formula.current_version} → #{formula.latest_version})",
-            alternate: true, terminal: true, refresh: true,
             shell: [brew_path, 'upgrade', formula.name]
           )
           printer.sep
@@ -256,12 +260,8 @@ module Brew
           printer.sep
           printer.item(
             'Pin',
+            alt: "Pin (to #{formula.current_version})",
             terminal: false, refresh: true,
-            shell: [brew_path, 'pin', formula.name]
-          )
-          printer.item(
-            "Pin (to #{formula.current_version})",
-            alternate: true, terminal: false, refresh: true,
             shell: [brew_path, 'pin', formula.name]
           )
           printer.item('Uninstall') do |printer|
@@ -285,12 +285,9 @@ module Brew
         printer.item(cask.name) do |printer|
           printer.item(
             'Upgrade',
+            alt: 'Upgrade '\
+                 "(#{cask.current_version} → #{cask.latest_version})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--cask', cask.name]
-          )
-          printer.item(
-            "Upgrade (#{cask.current_version} → #{cask.latest_version})",
-            alternate: true, terminal: true, refresh: true,
             shell: [brew_path, 'upgrade', '--cask', cask.name]
           )
           printer.sep
@@ -317,10 +314,10 @@ module Brew
       printer.item("Pinned Formulas (#{pinned.size}):")
       pinned.each do |formula|
         printer.item(formula.name) do |printer|
-          printer.item('Upgrade')
           printer.item(
-            "Upgrade (#{formula.current_version} → #{formula.latest_version})",
-            alternate: true
+            'Upgrade',
+            alt: 'Upgrade ' \
+                 "(#{formula.current_version} → #{formula.latest_version})"
           )
           printer.sep
           printer.item("Pinned: #{formula.pinned_version}")
