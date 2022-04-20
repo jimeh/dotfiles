@@ -1,23 +1,23 @@
 // ==UserScript==
-// @name        Kagi Search (Yahoo redirect)
-// @description Redirects Yahoo searches to Kagi.com. Only relevant for desktop Safari users.
-// @version     0.0.3
-// @namespace   jimeh.me
-// @doanloadURL https://github.com/jimeh/dotfiles/raw/main/userscripts/kagi-for-safari.user.js
-// @run-at      document-start
-// @match       https://yahoo.com/search*
-// @match       https://search.yahoo.com/search*
-// @match       https://*.search.yahoo.com/search*
+// @name         Kagi Search (DuckDuckGo redirect)
+// @description  Redirects DuckDuckGo searches to Kagi.com. Only relevant for desktop Safari users.
+// @version      0.0.4
+// @namespace    jimeh.me
+// @downloadURL  https://github.com/jimeh/dotfiles/raw/main/userscripts/kagi-for-safari.user.js
+// @updateURL    https://github.com/jimeh/dotfiles/raw/main/userscripts/kagi-for-safari.user.js
+// @inject-into  auto
+// @run-at       document-start
+// @match        https://duckduckgo.com/*
 // ==/UserScript==
 (function () {
   if (
     navigator.vendor.match(/apple/i) && // Only activate in Safari.
-    window.location.hostname.slice(-16) == "search.yahoo.com" &&
-    window.location.pathname == "/search"
+    window.location.hostname == "duckduckgo.com" &&
+    window.location.pathname == "/"
   ) {
-    let q = (new URL(window.location)).searchParams.get("p");
+    let q = (new URL(window.location)).searchParams.get("q");
     if (q) {
-      console.log("Redirecting Yahoo search to Kagi.com");
+      console.log("Redirecting DuckDuckGo search to Kagi.com");
       window.location.href = "https://kagi.com/search?q=" + q;
     }
   }
