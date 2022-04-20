@@ -3,7 +3,7 @@
 // @description Redirects Yahoo searches to Kagi.com. Only relevant for desktop Safari users.
 // @version     0.0.3
 // @namespace   jimeh.me
-// @downloadURL https://github.com/jimeh/dotfiles/blob/main/userscripts/kagi-for-safari.user.js
+// @doanloadURL https://github.com/jimeh/dotfiles/raw/main/userscripts/kagi-for-safari.user.js
 // @run-at      document-start
 // @match       https://yahoo.com/search*
 // @match       https://search.yahoo.com/search*
