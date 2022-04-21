@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Kagi Search (DuckDuckGo redirect)
+// @name         Kagi for Safari (DuckDuckGo redirect)
 // @description  Redirects DuckDuckGo searches to Kagi.com. Only relevant for desktop Safari users.
 // @version      0.0.4
 // @namespace    jimeh.me
