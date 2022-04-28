@@ -35,7 +35,6 @@ install_go_global_packages() {
     github.com/cweill/gotests/gotests@latest
     github.com/erning/gorun@latest
     github.com/go-delve/delve/cmd/dlv@latest
-    github.com/golang/mock/gomock@latest
     github.com/golang/mock/mockgen@latest
     github.com/google/go-jsonnet/cmd/jsonnet@latest
     github.com/google/go-jsonnet/cmd/jsonnetfmt@latest
