@@ -10,6 +10,6 @@ export TERM="xterm-256color"
 
 path_append "/opt/tigervnc/bin"
 
-zinit ice wait lucid as'program' from'gh-r' mv'shfmt* -> shfmt' \
-  atclone'./shfmt completions zsh > _shfmt' atpull'%atclone'
-zinit light mvdan/sh
+zinit light-mode wait lucid as'program' from'gh-r' mv'shfmt* -> shfmt' \
+  atclone'./shfmt completions zsh > _shfmt' atpull'%atclone' \
+  for @mvdan/sh

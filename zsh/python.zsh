@@ -7,14 +7,14 @@
 # ==============================================================================
 
 # install pyenv
-zinit ice wait lucid as'program' pick'bin/pyenv' from'gh' \
+zinit light-mode wait lucid as'program' pick'bin/pyenv' from'gh' \
   atclone'src/configure && make -C src; libexec/pyenv init - > .zinitrc.zsh' \
-  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
-zinit light pyenv/pyenv
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!' \
+  for @pyenv/pyenv
 
-zinit ice wait lucid as'program' pick'plugins/python-build/bin/python-build' \
-  from'gh' id-as'pyenv/python-build'
-zinit light pyenv/pyenv
+zinit light-mode wait lucid as'program' pick'plugins/python-build/bin/python-build' \
+  from'gh' id-as'pyenv/python-build' \
+  for @pyenv/pyenv
 
 # ==============================================================================
 # aliases

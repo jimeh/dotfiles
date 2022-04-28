@@ -3,8 +3,8 @@
 #
 
 if command-exists docker; then
-  zinit ice wait lucid from'gh-r' as'program' mv'ctop-* -> ctop'
-  zinit light bcicen/ctop
+  zinit light-mode wait lucid from'gh-r' as'program' mv'ctop-* -> ctop' \
+    for @bcicen/ctop
 fi
 
 docker_remove_exited() {

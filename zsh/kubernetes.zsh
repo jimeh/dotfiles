@@ -19,8 +19,8 @@ if command-exists kubectl; then
     switch "$@"
   }
 
-  zinit ice wait lucid as'program' from'gh-r'
-  zinit light stackrox/kube-linter
+  zinit light-mode wait lucid as'program' from'gh-r' \
+    for @stackrox/kube-linter
 
   if ! kubectl krew &> /dev/null; then
     krew-bin() {
@@ -29,30 +29,30 @@ if command-exists kubectl; then
         -e 's/aarch64$/arm64/')"
     }
 
-    zinit ice wait lucid as'null' from'gh-r' bpick'krew.tar.gz' \
-      atclone'KREW='"'$(krew-bin)'"' && ./$KREW install krew'
-    zinit light kubernetes-sigs/krew
+    zinit light-mode wait lucid as'null' from'gh-r' bpick'krew.tar.gz' \
+      atclone'KREW='"'$(krew-bin)'"' && ./$KREW install krew' \
+      for @kubernetes-sigs/krew
 
     export KREW_ROOT="$HOME/.krew"
     path_append "${KREW_ROOT}/bin"
   fi
 
-  zinit ice wait lucid as'program' from'gh-r' mv'kind-* -> kind' \
-    atclone'./kind completion zsh > _kind' atpull'%atclone'
-  zinit light kubernetes-sigs/kind
+  zinit light-mode wait lucid as'program' from'gh-r' mv'kind-* -> kind' \
+    atclone'./kind completion zsh > _kind' atpull'%atclone' \
+    for @kubernetes-sigs/kind
 
-  zinit ice wait lucid as'program' from'gh-r' \
-    atclone'./flux completion zsh > _flux' atpull'%atclone'
-  zinit light fluxcd/flux2
+  zinit light-mode wait lucid as'program' from'gh-r' \
+    atclone'./flux completion zsh > _flux' atpull'%atclone' \
+    for @fluxcd/flux2
 
-  zinit ice wait lucid as'program' from'gh-r' \
-    atclone'./kustomize completion zsh > _kustomize' atpull'%atclone'
-  zinit light kubernetes-sigs/kustomize
+  zinit light-mode wait lucid as'program' from'gh-r' \
+    atclone'./kustomize completion zsh > _kustomize' atpull'%atclone' \
+    for @kubernetes-sigs/kustomize
 
-  zinit ice wait lucid as'program' from'gh-r' pick'kubeseal'
-  zinit light bitnami-labs/sealed-secrets
+  zinit light-mode wait lucid as'program' from'gh-r' pick'kubeseal' \
+    for @bitnami-labs/sealed-secrets
 
-  zinit ice wait lucid as'program' from'gh-r' mv'argocd-* -> argocd' \
-    atclone'./argocd completion zsh > _argocd' atpull'%atclone'
-  zinit light argoproj/argo-cd
+  zinit light-mode wait lucid as'program' from'gh-r' mv'argocd-* -> argocd' \
+    atclone'./argocd completion zsh > _argocd' atpull'%atclone' \
+    for @argoproj/argo-cd
 fi

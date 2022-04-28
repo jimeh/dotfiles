@@ -48,27 +48,28 @@ zinit snippet OMZ::plugins/git
 zinit cdclear -q # forget completions provided up to this point
 
 # Enable interactive selection of completions.
-zinit snippet OMZ::lib/completion.zsh
+zinit for @OMZ::lib/completion.zsh
 
 # Set various sane defaults for ZSH history management.
-zinit snippet OMZ::lib/history.zsh
+zinit for @OMZ::lib/history.zsh
 
 # Enable Ruby Bundler plugin from oh-my-zsh.
-zinit snippet OMZ::plugins/bundler
+zinit for @OMZ::plugins/bundler
 
-zinit ice lucid as'program' from'gh-r' \
+zinit light-mode lucid as'program' from'gh-r' \
   atclone'./starship completions zsh > _starship; ./starship init zsh --print-full-init > .zinitrc.zsh' \
-  atpull'%atclone' pick'starship' src'.zinitrc.zsh'
-zinit light starship/starship
+  atpull'%atclone' pick'starship' src'.zinitrc.zsh' \
+  for @starship/starship
 
-zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light-mode wait lucid \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+  for @zdharma-continuum/fast-syntax-highlighting
 
-zinit ice wait lucid blockf
-zinit light zsh-users/zsh-completions
+zinit light-mode wait lucid blockf \
+  for @zsh-users/zsh-completions
 
-zinit ice wait lucid atload"!_zsh_autosuggest_start"
-zinit light zsh-users/zsh-autosuggestions
+zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
+  for @zsh-users/zsh-autosuggestions
 
 # ==============================================================================
 # Completion

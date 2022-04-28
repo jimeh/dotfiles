@@ -2,7 +2,8 @@
 # direnv setup
 #
 
-zinit ice wait lucid from'gh-r' as'program' mv'direnv* -> direnv' \
+zinit light-mode wait lucid from'gh-r' as'program' pick'direnv' \
+  mv'direnv* -> direnv' \
   atclone'./direnv hook zsh > .zinitrc.zsh' atpull'%atclone' \
-  pick'direnv' src='.zinitrc.zsh'
-zinit light direnv/direnv
+  src='.zinitrc.zsh' \
+  for @direnv/direnv

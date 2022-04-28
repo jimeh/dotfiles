@@ -7,18 +7,18 @@
 # ==============================================================================
 
 # Install rbenv
-zinit ice wait lucid as'program' pick'bin/rbenv' from'gh' \
+zinit light-mode wait lucid as'program' pick'bin/rbenv' from'gh' \
   atclone'src/configure && make -C src; libexec/rbenv init - > .zinitrc.zsh' \
-  atpull'%atclone' src'.zinitrc.zsh' nocompile'!'
-zinit light rbenv/rbenv
+  atpull'%atclone' src'.zinitrc.zsh' nocompile'!' \
+  for @rbenv/rbenv
 
 # install ruby-build
-zinit ice wait lucid as'program' pick'bin/ruby-build' from'gh'
-zinit light rbenv/ruby-build
+zinit light-mode wait lucid as'program' pick'bin/ruby-build' from'gh' \
+  for @rbenv/ruby-build
 
 # install rbenv-each plugin
-zinit ice wait lucid as'program' pick'bin/rbenv-each' from'gh'
-zinit light rbenv/rbenv-each
+zinit light-mode wait lucid as'program' pick'bin/rbenv-each' from'gh' \
+  for @rbenv/rbenv-each
 
 # ==============================================================================
 # aliases

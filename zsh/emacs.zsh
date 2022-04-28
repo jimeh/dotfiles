@@ -20,8 +20,8 @@ fi
 path_prepend "$HOME/.config/doom-emacs/bin"
 
 # install emacs-sandbox.sh
-zinit ice wait lucid as'program' pick'emacs-sandbox.sh' from'gh'
-zinit light alphapapa/emacs-sandbox.sh
+zinit light-mode wait lucid as'program' pick'emacs-sandbox.sh' from'gh' \
+  for @alphapapa/emacs-sandbox.sh
 
 # Setup vterm if shell is within vterm inside Emacs.
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then

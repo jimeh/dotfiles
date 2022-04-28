@@ -16,9 +16,9 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
   zinit_volta_bpick='*linux-openssl-1.1.tar.gz'
 fi
 
-zinit ice wait lucid as'program' from'gh-r' bpick"$zinit_volta_bpick" \
-  atclone'./volta completions zsh > _volta' atpull'%atclone'
-zinit light volta-cli/volta
+zinit light-mode wait lucid as'program' from'gh-r' bpick"$zinit_volta_bpick" \
+  atclone'./volta completions zsh > _volta' atpull'%atclone' \
+  for @volta-cli/volta
 
 # ==============================================================================
 # aliases
