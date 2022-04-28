@@ -114,6 +114,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 # Utils
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/fzf.zsh"
+source "$DOTZSH/jq.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/rclone.zsh"
 source "$DOTZSH/tmux.zsh"
