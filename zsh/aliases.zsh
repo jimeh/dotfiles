@@ -19,7 +19,8 @@ alias e="$DOTBIN/emacsclient-wrapper"
 alias eg="$DOTBIN/emacs-gui-client"
 alias egs="$DOTBIN/emacs-gui-server"
 
-# Utils
+# Tools
+alias g="git"
 alias ma="make"
 alias va="vagrant"
 alias tf="terraform"
