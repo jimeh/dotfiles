@@ -111,9 +111,9 @@ install_rbenv() {
 }
 
 install_emacs_config() {
-  git_clone 'https://github.com/plexus/chemacs.git' "$TARGET/.config/chemacs"
-  symlink "$TARGET/.config/chemacs/.emacs" "$TARGET/.emacs"
-  git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.emacs.d"
+  git_clone 'https://github.com/plexus/chemacs2.git' "$TARGET/.config/chemacs2"
+  symlink "$TARGET/.config/chemacs2" "$TARGET/.emacs.d"
+  git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.config/emacs-siren"
 }
 
 #
