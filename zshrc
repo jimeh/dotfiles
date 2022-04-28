@@ -41,12 +41,6 @@ fi
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
-# Enable using oh-my-zsh compatible themes.
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::plugins/git
-zinit cdclear -q # forget completions provided up to this point
-
 # Enable interactive selection of completions.
 zinit for @OMZ::lib/completion.zsh
 
