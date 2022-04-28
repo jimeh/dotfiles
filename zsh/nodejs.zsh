@@ -6,17 +6,7 @@
 # Volta
 # ==============================================================================
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ "$(uname -m)" == "arm64" ]]; then
-    zinit_volta_bpick='*macos-aarch64*'
-  else
-    zinit_volta_bpick='*macos.tar*'
-  fi
-elif [[ "$OSTYPE" == "linux"* ]]; then
-  zinit_volta_bpick='*linux-openssl-1.1.tar.gz'
-fi
-
-zinit light-mode wait lucid as'program' from'gh-r' bpick"$zinit_volta_bpick" \
+zinit light-mode wait lucid as'program' from'gh-r' \
   atclone'./volta completions zsh > _volta' atpull'%atclone' \
   for @volta-cli/volta
 
