@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.1.1
+# Version: 0.1.2
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -221,6 +221,11 @@ disabled = false
 # Languages
 # ------------------------------------------------------------------------------
 #
+[buf]
+format = "( [$symbol($version)]($style))"
+symbol = " "
+disabled = true
+
 [cmake]
 format = "( [$symbol$version]($style))"
 disabled = true
