@@ -28,6 +28,7 @@ SYMLINKS=(
   irbrc
   peco
   powconfig
+  prettierrc.js
   pryrc
   reek.yml
   rspec
