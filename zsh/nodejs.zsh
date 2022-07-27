@@ -16,21 +16,21 @@ zinit light-mode wait lucid as'program' from'gh-r' \
 
 alias no="node"
 alias np="npm"
-alias ni="npm install"
-alias ngi="npm install -g"
-alias cof="coffee"
 
 # ==============================================================================
 # global node packages
 # ==============================================================================
 
 install_node_global_packages() {
-  local packages=(
+  local volta_packages=(
     npm
     npx
     yarn
+  )
+  local npm_packages=(
     @commitlint/cli
     @commitlint/config-conventional
+    @mermaid-js/mermaid-cli
     @prettier/plugin-php
     @prettier/plugin-ruby
     @prettier/plugin-xml
@@ -45,7 +45,6 @@ install_node_global_packages() {
     jsonlint
     localtunnel
     markdown-it
-    mermaid.cli
     prettier
     prettier-plugin-toml
     standard-version
@@ -60,5 +59,5 @@ install_node_global_packages() {
     yaml-language-server
   )
 
-  volta install "${packages[@]}"
+  volta install "${volta_packages[@]}" "${npm_packages[@]}"
 }
