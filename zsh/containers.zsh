@@ -1,7 +1,8 @@
 #
-# Docker Related
+# Containers
 #
 
+# Docker
 if command-exists docker; then
   zinit light-mode wait lucid from'gh-r' as'program' mv'ctop-* -> ctop' \
     for @bcicen/ctop
@@ -23,3 +24,9 @@ alias dre="docker_remove_exited"
 alias n="nerdctl"
 alias ne="nerdctl"
 alias nec="nerdctl compose"
+
+# Podman
+alias p="podman"
+alias pd="podman"
+alias pm="podman machine"
+alias pc="podman-compose"
