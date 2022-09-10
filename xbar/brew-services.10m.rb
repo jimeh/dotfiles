@@ -2,23 +2,64 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v2.3.0</xbar.version>
+# <xbar.version>v3.0.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
-# <xbar.image>https://i.imgur.com/RDfpTLl.png</xbar.image>
+# <xbar.image>https://i.imgur.com/gIQki4q.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>boolean(VAR_GROUPS=true): List services in started/stopped groups?</xbar.var>
 # <xbar.var>string(VAR_BREW_PATH="/usr/local/bin/brew"): Path to "brew" executable.</xbar.var>
+# <xbar.var>string(VAR_HIDDEN_SERVICES=""): Comma-separated list of services to hide.</xbar.var>
 
+# rubocop:disable Lint/ShadowingOuterLocalVariable
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/IfUnlessModifier
 
 require 'open3'
 require 'json'
 
 module Xbar
+  class Runner
+    attr_reader :service
+
+    def initialize(service)
+      @service = service
+    end
+
+    def run(argv = [])
+      return service.run if argv.empty?
+      return unless service.respond_to?(argv[0])
+
+      service.public_send(*argv)
+    end
+  end
+
+  class Config < Hash
+    def initialize
+      super
+
+      return unless File.exist?(filename)
+
+      merge!(JSON.parse(File.read(filename)))
+    end
+
+    def filename
+      @filename ||= "#{__FILE__}.vars.json"
+    end
+
+    def save
+      File.write(filename, JSON.pretty_generate(self))
+    end
+  end
+
   class Printer
     attr_reader :nested_level
 
@@ -70,10 +111,15 @@ module Xbar
     def normalize_props(props = {})
       props = props.dup
 
+      if props[:rpc] && props[:shell].nil?
+        props[:shell] = [__FILE__] + props[:rpc]
+        props.delete(:rpc)
+      end
+
       if props[:shell].is_a?(Array)
         cmd = props[:shell]
         props[:shell] = cmd[0]
-        cmd[1..-1].each_with_index do |c, i|
+        cmd[1..].each_with_index do |c, i|
           props["param#{i + 1}".to_sym] = c
         end
       end
@@ -148,7 +194,7 @@ module Brew
   end
 
   class Service
-    attr_reader :name, :status, :user, :file, :exit_code
+    attr_reader :name, :status, :user, :file, :exit_code, :hidden
 
     def initialize(args = {})
       @name = args.key?('name') ? args['name'] : args[:name]
@@ -156,6 +202,7 @@ module Brew
       @user = args.key?('user') ? args['user'] : args[:user]
       @file = args.key?('file') ? args['file'] : args[:file]
       @exit_code = args.key?('exit_code') ? args['exit_code'] : args[:exit_code]
+      @hidden = (args.key?('hidden') ? args['hidden'] : args[:hidden]) || false
     end
 
     def started?
@@ -173,6 +220,50 @@ module Brew
     def unknown_status?
       @unknown_status ||= @status.downcase == 'unknown'
     end
+
+    def hidden?
+      @hidden
+    end
+  end
+
+  class ServiceList < Array
+    def initialize(items)
+      super
+
+      replace(items)
+    end
+
+    def select
+      self.class.new(super)
+    end
+
+    def reject
+      self.class.new(super)
+    end
+
+    def started
+      @started ||= select(&:started?)
+    end
+
+    def stopped
+      @stopped ||= select(&:stopped?)
+    end
+
+    def errored
+      @errored ||= select(&:error?)
+    end
+
+    def unknown_status
+      @unknown_status ||= select(&:unknown_status?)
+    end
+
+    def hidden
+      @hidden ||= select(&:hidden?)
+    end
+
+    def visible
+      @visible ||= reject(&:hidden?)
+    end
   end
 
   class Services < Common
@@ -183,110 +274,158 @@ module Brew
 
       brew_check(printer)
 
-      printer.item(
-        "#{prefix}" \
-        "#{started_services.size}/#{services.size - started_services.size}",
-        dropdown: false
-      )
+      visible = all_services.visible
+
+      printer.item("#{prefix}#{visible.started.size}", dropdown: false)
       printer.sep
       printer.item('Brew Services')
 
-      printer.item(status_label) do |printer|
+      printer.item(status_label(visible)) do |printer|
         printer.sep
         printer.item(':hourglass: Refresh', refresh: true)
         printer.sep
-        if stopped_services.size.positive?
+        if visible.stopped.size.positive?
           printer.item(
-            "Start All (#{stopped_services.size} services)",
+            "Start All (#{visible.stopped.size} services)",
             terminal: false, refresh: true,
             shell: [brew_path, 'services', 'start', '--all']
           )
         else
-          printer.item("Start All (#{stopped_services.size} services)")
+          printer.item("Start All (#{visible.stopped.size} services)")
         end
-        if started_services.size.positive?
+        if visible.started.size.positive?
           printer.item(
-            "Stop All (#{started_services.size} services)",
+            "Stop All (#{visible.started.size} services)",
             terminal: false, refresh: true,
             shell: [brew_path, 'services', 'stop', '--all']
           )
         else
-          printer.item("Stop All (#{started_services.size} services)")
+          printer.item("Stop All (#{visible.started.size} services)")
         end
-        if services.size.positive?
+        if visible.size.positive?
+          count = visible.started.size + visible.stopped.size
           printer.item(
-            'Restart All ' \
-            "(#{started_services.size + stopped_services.size} services)",
+            "Restart All (#{count} services)",
             terminal: false, refresh: true,
             shell: [brew_path, 'services', 'restart', '--all']
           )
         else
-          printer.item("Restart All (#{services.size} services)")
+          printer.item("Restart All (#{visible.size} services)")
+        end
+        printer.sep
+        if use_groups?
+          printer.item('Disable groups', rpc: ['disable_groups'], refresh: true)
+        else
+          printer.item('Enable groups', rpc: ['enable_groups'], refresh: true)
         end
       end
-      use_groups? ? print_service_groups(printer) : print_services(printer)
+
+      print_services(printer, visible)
+
+      hidden = all_services.hidden
+      return if hidden.empty?
+
+      printer.sep
+      printer.item("Hidden (#{hidden.size})") do |printer|
+        unless use_groups?
+          printer.item(status_label(hidden))
+        end
+        print_services(printer, hidden)
+      end
+    end
+
+    def enable_groups
+      config['VAR_GROUPS'] = true
+      config.save
+    end
+
+    def disable_groups
+      config['VAR_GROUPS'] = false
+      config.save
+    end
+
+    def hide(*args)
+      hidden = config['VAR_HIDDEN_SERVICES']&.split(',')&.map(&:strip) || []
+      hidden += args
+
+      config['VAR_HIDDEN_SERVICES'] = hidden.uniq.sort.join(',')
+      config.save
+    end
+
+    def show(*args)
+      hidden = config['VAR_HIDDEN_SERVICES']&.split(',')&.map(&:strip) || []
+      hidden -= args
+
+      config['VAR_HIDDEN_SERVICES'] = hidden.uniq.sort.join(',')
+      config.save
     end
 
     private
 
-    def status_label
-      label = []
-      if started_services.size.positive?
-        label << "#{started_services.size} started"
-      end
-      if stopped_services.size.positive?
-        label << "#{stopped_services.size} stopped"
-      end
-      if errored_services.size.positive?
-        label << "#{errored_services.size} error"
-      end
-      if unknown_status_services.size.positive?
-        label << "#{unknown_status_services.size} unknown"
-      end
-
-      label = ['no services available'] if label.empty?
-      label.join(' / ')
+    def config
+      @config ||= Xbar::Config.new
     end
 
     def use_groups?
-      ENV.fetch('VAR_GROUPS', 'true') == 'true'
+      [true, 'true'].include?(config.fetch('VAR_GROUPS', 'true'))
     end
 
-    def print_service_groups(printer)
-      if started_services.size.positive?
-        printer.sep
-        printer.item("Started (#{started_services.size}):")
-        started_services.each do |service|
-          print_service(printer, service)
-        end
+    def status_label(services)
+      label = []
+      if services.started.size.positive?
+        label << "#{services.started.size} started"
       end
-      if stopped_services.size.positive?
-        printer.sep
-        printer.item("Stopped (#{stopped_services.size}):")
-        stopped_services.each do |service|
-          print_service(printer, service)
-        end
+      if services.stopped.size.positive?
+        label << "#{services.stopped.size} stopped"
       end
-      if errored_services.size.positive?
-        printer.sep
-        printer.item("Error (#{errored_services.size}):")
-        errored_services.each do |service|
-          print_service(printer, service)
-        end
+      if services.errored.size.positive?
+        label << "#{services.errored.size} error"
       end
-      if unknown_status_services.size.positive?
-        printer.sep
-        printer.item("Unknown Status (#{unknown_status_services.size}):")
-        unknown_status_services.each do |service|
-          print_service(printer, service)
-        end
+      if services.unknown_status.size.positive?
+        label << "#{services.unknown_status.size} unknown"
       end
+
+      label = ['no services available'] if label.empty?
+      label.join(', ')
     end
 
-    def print_services(printer)
+    def print_services(printer, services)
+      return print_service_groups(printer, services) if use_groups?
+
       printer.sep
       services.each do |service|
         print_service(printer, service)
+      end
+    end
+
+    def print_service_groups(printer, services)
+      if services.started.size.positive?
+        printer.sep
+        printer.item("Started (#{services.started.size}):")
+        services.started.each do |service|
+          print_service(printer, service)
+        end
+      end
+      if services.stopped.size.positive?
+        printer.sep
+        printer.item("Stopped (#{services.stopped.size}):")
+        services.stopped.each do |service|
+          print_service(printer, service)
+        end
+      end
+      if services.errored.size.positive?
+        printer.sep
+        printer.item("Error (#{services.errored.size}):")
+        services.errored.each do |service|
+          print_service(printer, service)
+        end
+      end
+      if services.unknown_status.size.positive?
+        printer.sep
+        printer.item("Unknown Status (#{services.unknown_status.size}):")
+        services.unknown_status.each do |service|
+          print_service(printer, service)
+        end
       end
     end
 
@@ -329,8 +468,14 @@ module Brew
           printer.item("Exit code: #{service.exit_code}")
         end
 
+        printer.sep
+        if service.hidden?
+          printer.item('Unhide', rpc: ['show', service.name], refresh: true)
+        else
+          printer.item('Hide', rpc: ['hide', service.name], refresh: true)
+        end
+
         if service.stopped?
-          printer.sep
           printer.item('Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.sep
@@ -344,40 +489,40 @@ module Brew
       end
     end
 
-    def started_services
-      @started_services ||= services.select(&:started?)
-    end
-
-    def stopped_services
-      @stopped_services ||= services.select(&:stopped?)
-    end
-
-    def errored_services
-      @errored_services ||= services.select(&:error?)
-    end
-
-    def unknown_status_services
-      @unknown_status_services ||= services.select(&:unknown_status?)
-    end
-
-    def services
-      return @services if @services
+    def all_services
+      return @all_services if @all_services
 
       output = cmd(brew_path, 'services', 'list', '--json')
       data = JSON.parse(output)
 
-      @services = data.each_with_object([]) do |item, memo|
-        memo.push(Service.new(item))
-      end
+      @all_services = ServiceList.new(
+        data.each_with_object([]) do |item, memo|
+          item['hidden'] = hidden_services.include?(item['name'])
+          memo.push(Service.new(item))
+        end
+      )
+    end
+
+    def hidden_services
+      @hidden_services ||= config.fetch('VAR_HIDDEN_SERVICES', '')
+                                 .split(',').uniq.map(&:strip)
     end
   end
 end
 
 begin
-  Brew::Services.new.run
+  services = Brew::Services.new
+  Xbar::Runner.new(services).run(ARGV)
 rescue StandardError => e
   puts "ERROR: #{e.message}:\n\t#{e.backtrace.join("\n\t")}"
   exit 1
 end
 
 # rubocop:enable Style/IfUnlessModifier
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ClassLength
+# rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Lint/ShadowingOuterLocalVariable
