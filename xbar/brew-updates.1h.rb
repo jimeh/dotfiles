@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.2.3</xbar.version>
+# <xbar.version>v2.3.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -18,6 +18,39 @@ require 'open3'
 require 'json'
 
 module Xbar
+  class Runner
+    attr_reader :service
+
+    def initialize(service)
+      @service = service
+    end
+
+    def run(argv = [])
+      return service.run if argv.empty?
+      return unless service.respond_to?(argv[0])
+
+      service.public_send(*argv)
+    end
+  end
+
+  class Config < Hash
+    def initialize
+      super
+
+      return unless File.exist?(filename)
+
+      merge!(JSON.parse(File.read(filename)))
+    end
+
+    def filename
+      @filename ||= "#{__FILE__}.vars.json"
+    end
+
+    def save
+      File.write(filename, JSON.pretty_generate(self))
+    end
+  end
+
   class Printer
     attr_reader :nested_level
 
@@ -69,10 +102,15 @@ module Xbar
     def normalize_props(props = {})
       props = props.dup
 
+      if props[:rpc] && props[:shell].nil?
+        props[:shell] = [__FILE__] + props[:rpc]
+        props.delete(:rpc)
+      end
+
       if props[:shell].is_a?(Array)
         cmd = props[:shell]
         props[:shell] = cmd[0]
-        cmd[1..-1].each_with_index do |c, i|
+        cmd[1..].each_with_index do |c, i|
           props["param#{i + 1}".to_sym] = c
         end
       end
@@ -237,7 +275,7 @@ module Brew
       label << "#{pinned.size} pinned" if pinned.size.positive?
 
       label = ['no updates available'] if label.empty?
-      label.join(' / ')
+      label.join(', ')
     end
 
     def print_formulas(printer)
@@ -366,7 +404,8 @@ module Brew
 end
 
 begin
-  Brew::FormulaUpdates.new.run
+  updates = Brew::FormulaUpdates.new
+  Xbar::Runner.new(updates).run(ARGV)
 rescue StandardError => e
   puts "ERROR: #{e.message}:\n\t#{e.backtrace.join("\n\t")}"
   exit 1
