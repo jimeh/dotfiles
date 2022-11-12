@@ -398,7 +398,7 @@ module Brew
     end
 
     def outdated
-      @outdated ||= JSON.parse(cmd(brew_path, 'outdated', '--json'))
+      @outdated ||= JSON.parse(cmd(brew_path, 'outdated', '--greedy', '--json'))
     end
   end
 end
