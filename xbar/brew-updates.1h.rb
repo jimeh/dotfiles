@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.3.1</xbar.version>
+# <xbar.version>v2.3.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -12,6 +12,13 @@
 #
 # <xbar.var>string(VAR_BREW_PATH="/usr/local/bin/brew"): Path to "brew" executable.</xbar.var>
 
+# rubocop:disable Lint/ShadowingOuterLocalVariable
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/IfUnlessModifier
 
 require 'open3'
@@ -185,7 +192,7 @@ module Brew
 
     def brew_update
       cmd(brew_path, 'update')
-    rescue CommandError => e
+    rescue CommandError
       # Continue as if nothing happened when brew update fails, as it likely
       # to be due to another update process is already running.
     end
@@ -412,3 +419,10 @@ rescue StandardError => e
 end
 
 # rubocop:enable Style/IfUnlessModifier
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ClassLength
+# rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Lint/ShadowingOuterLocalVariable
