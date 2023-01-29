@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v3.0.0</xbar.version>
+# <xbar.version>v3.0.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -283,35 +283,39 @@ module Brew
       printer.item(status_label(visible)) do |printer|
         printer.sep
         printer.item(':hourglass: Refresh', refresh: true)
-        printer.sep
-        if visible.stopped.size.positive?
-          printer.item(
-            "Start All (#{visible.stopped.size} services)",
-            terminal: false, refresh: true,
-            shell: [brew_path, 'services', 'start', '--all']
-          )
-        else
-          printer.item("Start All (#{visible.stopped.size} services)")
+
+        unless all_services.empty?
+          printer.sep
+          if visible.stopped.size.positive?
+            printer.item(
+              "Start All (#{visible.stopped.size} services)",
+              terminal: false, refresh: true,
+              shell: [brew_path, 'services', 'start', '--all']
+            )
+          else
+            printer.item("Start All (#{visible.stopped.size} services)")
+          end
+          if visible.started.size.positive?
+            printer.item(
+              "Stop All (#{visible.started.size} services)",
+              terminal: false, refresh: true,
+              shell: [brew_path, 'services', 'stop', '--all']
+            )
+          else
+            printer.item("Stop All (#{visible.started.size} services)")
+          end
+          if visible.size.positive?
+            count = visible.started.size + visible.stopped.size
+            printer.item(
+              "Restart All (#{count} services)",
+              terminal: false, refresh: true,
+              shell: [brew_path, 'services', 'restart', '--all']
+            )
+          else
+            printer.item("Restart All (#{visible.size} services)")
+          end
         end
-        if visible.started.size.positive?
-          printer.item(
-            "Stop All (#{visible.started.size} services)",
-            terminal: false, refresh: true,
-            shell: [brew_path, 'services', 'stop', '--all']
-          )
-        else
-          printer.item("Stop All (#{visible.started.size} services)")
-        end
-        if visible.size.positive?
-          count = visible.started.size + visible.stopped.size
-          printer.item(
-            "Restart All (#{count} services)",
-            terminal: false, refresh: true,
-            shell: [brew_path, 'services', 'restart', '--all']
-          )
-        else
-          printer.item("Restart All (#{visible.size} services)")
-        end
+
         printer.sep
         if use_groups?
           printer.item('Disable groups', rpc: ['disable_groups'], refresh: true)
@@ -493,6 +497,8 @@ module Brew
       return @all_services if @all_services
 
       output = cmd(brew_path, 'services', 'list', '--json')
+      return ServiceList.new([]) if output == ''
+
       data = JSON.parse(output)
 
       @all_services = ServiceList.new(
