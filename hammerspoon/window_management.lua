@@ -1,7 +1,11 @@
 -- luacheck: read_globals hs
 
-local mouse = require('hs.mouse')
+local eventtap = require('hs.eventtap')
 local grid = require('hs.grid')
+local hotkey = require('hs.hotkey')
+local mouse = require('hs.mouse')
+local timer = require('hs.timer')
+local window = require('hs.window')
 
 -- configuration
 local wm = {
@@ -17,7 +21,7 @@ function wm:init ()
   local bind = require('hs.hotkey').bind
   local bindAndRepeat = self.bindAndRepeat
 
-  hs.window.animationDuration = self.animationDuration
+  window.animationDuration = self.animationDuration
   grid.setGrid(self.gridSizes.default)
   grid.setMargins(self.margins)
   grid.ui.textSize = self.gridTextSize
@@ -27,7 +31,7 @@ function wm:init ()
   --
 
   -- show interactive grid menu
-  bind({'cmd', 'ctrl'}, '2',
+  bind({'cmd', 'ctrl'}, '1',
     function()
       grid.setGrid(self.gridSizes.interactive)
       grid.show(
@@ -130,7 +134,7 @@ function wm:init ()
   -- move to screen to the left
   bind({'cmd', 'ctrl'}, ',',
     function ()
-      local win = hs.window.focusedWindow()
+      local win = window.focusedWindow()
       win:moveOneScreenWest()
       grid.snap(win)
     end
@@ -139,7 +143,7 @@ function wm:init ()
   -- move to screen to the right
   bind({'cmd', 'ctrl'}, '.',
     function ()
-      local win = hs.window.focusedWindow()
+      local win = window.focusedWindow()
       win:moveOneScreenEast()
       grid.snap(win)
     end
@@ -148,7 +152,7 @@ function wm:init ()
   -- move to screen above
   bind({'cmd', 'ctrl', 'alt'}, '.',
     function ()
-      local win = hs.window.focusedWindow()
+      local win = window.focusedWindow()
       win:moveOneScreenNorth()
       grid.snap(win)
     end
@@ -157,7 +161,7 @@ function wm:init ()
   -- move to screen bellow
   bind({'cmd', 'ctrl', 'alt'}, ',',
     function ()
-      local win = hs.window.focusedWindow()
+      local win = window.focusedWindow()
       win:moveOneScreenSouth()
       grid.snap(win)
     end
@@ -170,7 +174,7 @@ end
 --
 
 wm.bindAndRepeat = function (mod, key, fn)
-  hs.hotkey.bind(mod, key, fn, nil, fn)
+  hotkey.bind(mod, key, fn, nil, fn)
 end
 
 wm.adjustWindow = function (x, y, w, h)
@@ -188,7 +192,7 @@ end
 
 wm.resizeWindow = function (w, h)
   return function ()
-    local win = hs.window.focusedWindow()
+    local win = window.focusedWindow()
     local f = win:frame()
 
     f.w = w
@@ -199,7 +203,7 @@ end
 
 wm.moveWindow = function(x, y)
   return function ()
-    local win = hs.window.focusedWindow()
+    local win = window.focusedWindow()
     local f = win:frame()
 
     f.x = x
@@ -210,7 +214,7 @@ end
 
 wm.moveWindowRelative = function (x, y)
   return function ()
-    local win = hs.window.focusedWindow()
+    local win = window.focusedWindow()
     local f = win:frame()
 
     f.x = f.x + x
@@ -319,42 +323,40 @@ end
 wm.moveWindowToSpace = function (direction)
   return function()
     local mouseOrigin = mouse.absolutePosition()
-    local win = hs.window.focusedWindow()
-    local app = win:application()
+    local win = window.focusedWindow()
     local clickPoint = win:zoomButtonRect()
 
     -- click and hold next to the zoom button close to the top of the window
     clickPoint.x = clickPoint.x + clickPoint.w + 5
     clickPoint.y = win:frame().y + 7
 
-    local mouseClickEvent = hs.eventtap.event.newMouseEvent(
-      hs.eventtap.event.types.leftMouseDown, clickPoint
+    local mouseClickEvent = eventtap.event.newMouseEvent(
+      eventtap.event.types.leftMouseDown, clickPoint
     )
     mouseClickEvent:post()
-    hs.timer.usleep(150000)
+    timer.usleep(150000)
 
-    local nextSpaceDownEvent = hs.eventtap.event.newKeyEvent(
+    local nextSpaceDownEvent = eventtap.event.newKeyEvent(
       {"ctrl"}, direction, true
     )
     nextSpaceDownEvent:post()
-    hs.timer.usleep(150000)
+    timer.usleep(150000)
 
-    local nextSpaceUpEvent = hs.eventtap.event.newKeyEvent(
+    local nextSpaceUpEvent = eventtap.event.newKeyEvent(
       {"ctrl"}, direction, false
     )
     nextSpaceUpEvent:post()
-    hs.timer.usleep(150000)
+    timer.usleep(150000)
 
-    local mouseReleaseEvent = hs.eventtap.event.newMouseEvent(
-      hs.eventtap.event.types.leftMouseUp, clickPoint
+    local mouseReleaseEvent = eventtap.event.newMouseEvent(
+      eventtap.event.types.leftMouseUp, clickPoint
     )
     mouseReleaseEvent:post()
-    hs.timer.usleep(150000)
+    timer.usleep(150000)
 
-    mouse.setAbsolutePosition(mouseOrigin)
+    mouse.absolutePosition(mouseOrigin)
   end
 end
-
 
 -- the end
 return wm

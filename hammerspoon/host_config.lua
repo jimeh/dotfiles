@@ -1,20 +1,23 @@
+local host = require('hs.host')
+
+local function require_file(path)
+  local modulename = string.gsub(path, "/", "."):gsub("%.lua$", "")
+  local ok, module = pcall(require, modulename)
+
+  return (ok and module or nil)
+end
+
 local obj = {}
 
 function obj:init()
-  local env = require('env')
-  local conf_file = "hosts/" .. env.hostname .. ".lua"
-  local conf_req = "hosts." .. env.hostname
+  local hostname = host.localizedName()
+  local conf_file = "hosts/" .. hostname .. ".lua"
+  local hostmod = require_file(conf_file)
 
-  if self.file_exists(conf_file) then
+  if hostmod then
     print("loading host config: " .. conf_file)
-    local conf_module = require(conf_req)
-    conf_module:init()
+    hostmod.init()
   end
-end
-
-function obj.file_exists(name)
-  local f = io.open(name, "r")
-  if f ~= nil then io.close(f) return true else return false end
 end
 
 return obj
