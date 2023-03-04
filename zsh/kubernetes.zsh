@@ -22,7 +22,10 @@ if command-exists kubectl; then
   zinit light-mode wait lucid as'program' from'gh-r' \
     for @stackrox/kube-linter
 
-  if ! kubectl krew &> /dev/null; then
+  export KREW_ROOT="$HOME/.krew"
+  path_append "${KREW_ROOT}/bin"
+
+  if ! command-exists kubectl-krew; then
     krew-bin() {
       echo "krew-$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e \
         's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' \
