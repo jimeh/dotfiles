@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.1.2
+# Version: 0.2.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -23,59 +23,78 @@ $hg_branch\
 $line_break\
 $character"""
 right_format = """
-$all\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$fossil_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
 $cmake\
 $cobol\
-$crystal\
+$daml\
 $dart\
 $deno\
 $dotnet\
 $elixir\
 $elm\
 $erlang\
+$fennel\
 $golang\
+$guix_shell\
+$haskell\
+$haxe\
 $java\
 $julia\
 $kotlin\
+$gradle\
 $lua\
 $nim\
 $nodejs\
 $ocaml\
+$opa\
 $perl\
 $php\
 $pulumi\
 $purescript\
 $python\
-$red\
+$raku\
 $rlang\
+$red\
 $ruby\
 $rust\
 $scala\
 $swift\
+$terraform\
 $vlang\
+$vagrant\
 $zig\
-$aws\
-$azure\
+$buf\
+$nix_shell\
 $conda\
-$docker_context\
+$meson\
+$spack\
+$aws\
 $gcloud\
 $helm\
-$kubernetes\
-$nix_shell\
 $openstack\
-$package\
-$singularity\
-$terraform\
-$vagrant\
-$vcsh\
-$shlvl\
+$azure\
+$env_var\
+$crystal\
+$custom\
 $cmd_duration\
 $status\
+$line_break\
 $jobs\
 $shell\
 $sudo\
 $battery\
 $memory_usage\
+$os\
+$container\
 $time"""
 
 # ------------------------------------------------------------------------------
@@ -199,6 +218,14 @@ nu_indicator = " nu"
 format = "[$indicator]($style)"
 disabled = true
 
+[localip]
+format = '( @[$localipv4](bold red))'
+disabled = true
+
+[os]
+format = "( [$symbol]($style))"
+disabled = true
+
 [battery]
 format = "( [$symbol$percentage]($style))"
 
@@ -226,6 +253,10 @@ format = "( [$symbol($version)]($style))"
 symbol = " "
 disabled = true
 
+[c]
+format = '( [$symbol($version(-$name))]($style))'
+disabled = true
+
 [cmake]
 format = "( [$symbol$version]($style))"
 disabled = true
@@ -237,6 +268,10 @@ disabled = true
 [cobol]
 symbol = "漣 "
 format = "( [$symbol$version]($style))"
+disabled = true
+
+[daml]
+format = '( [$symbol($version)]($style))'
 disabled = true
 
 [dart]
@@ -268,9 +303,25 @@ symbol = " "
 format = "( [$symbol$version]($style))"
 disabled = true
 
+[fennel]
+format = '( [$symbol($version)]($style))'
+disabled = true
+
 [golang]
 symbol = " "
 format = "( [$symbol$version]($style))"
+disabled = true
+
+[guix_shell]
+format = '( [$symbol]($style))'
+disabled = true
+
+[haskell]
+format = '( [$symbol($version)]($style))'
+disabled = true
+
+[haxe]
+format = "( [$symbol($version)]($style))"
 disabled = true
 
 [java]
@@ -323,6 +374,10 @@ disabled = true
 [python]
 symbol = " "
 format = '( [${symbol}${pyenv_prefix}${version}( \($virtualenv\))]($style))'
+disabled = true
+
+[raku]
+format = '( [$symbol($version-$vm_version)]($style))'
 disabled = true
 
 [rlang]
@@ -379,14 +434,30 @@ disabled = true
 symbol = " "
 format = "( [$symbol$environment]($style))"
 
+[container]
+format = '( [$symbol \[$name\]]($style))'
+disabled = true
+
 [docker_context]
 symbol = " "
 format = "( [$symbol$context]($style))"
 disabled = true
 
+[env_var]
+format = "( with [$env_value]($style))"
+disabled = true
+
+[fossil_branch]
+format = '( [$symbol$branch]($style))'
+disabled = true
+
 [gcloud]
 symbol = " "
 format = '( [$symbol$account(@$domain)(\($region\))]($style))'
+disabled = true
+
+[gradle]
+fomat = "( [$symbol($version)]($style))"
 disabled = true
 
 [helm]
@@ -398,9 +469,17 @@ symbol = "☸ "
 format = '( [$symbol$context(\($namespace\))]($style))'
 disabled = true
 
+[meson]
+format = '( [$symbol$project]($style))'
+disabled = true
+
 [nix_shell]
 symbol = " "
 format = '( [$symbol$state(\($name\))]($style))'
+disabled = true
+
+[opa]
+format = '( [$symbol($version)]($style))'
 disabled = true
 
 [openstack]
@@ -413,6 +492,10 @@ symbol = " "
 format = "( [$symbol$version]($style))"
 disabled = true
 
+[pijul_channel]
+format = '( [$symbol$channel]($style))'
+disabled = true
+
 [pulumi]
 format = "( [$symbol$stack]($style))"
 disabled = true
@@ -421,12 +504,16 @@ disabled = true
 format = '( [$symbol\[$env\]]($style))'
 disabled = true
 
+[spack]
+format = '( [$symbol$environment]($style))'
+disabled = true
+
 [terraform]
 format = "( [$symbol$workspace]($style))"
 disabled = true
 
 [vagrant]
-format = "( [$symbol($version )]($style))"
+format = "( [$symbol($version)]($style))"
 disabled = true
 
 [vcsh]
