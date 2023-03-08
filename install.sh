@@ -33,6 +33,7 @@ SYMLINKS=(
   reek.yml
   rspec
   rubocop.yml
+  rustfmt.toml
   tmux
   tmux.conf
   zshenv
