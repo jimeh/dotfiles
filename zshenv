@@ -130,6 +130,12 @@ if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   path_prepend "${HOMEBREW_PREFIX}/sbin"
 fi
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  # export NIX_PATH="$HOME/.nix-defexpr"
+fi
+
 # Android SDK environment setup.
 if [ -d "$HOME/Library/Android/sdk" ]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
