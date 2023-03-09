@@ -1,18 +1,21 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# rubocop:disable Layout/LineLength
+
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.4.0</xbar.version>
+# <xbar.version>v2.5.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
-# <xbar.image>https://i.imgur.com/HLKYqYc.png</xbar.image>
+# <xbar.image>https://i.imgur.com/7gJDWmu.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>string(VAR_BREW_PATH=""): Path to "brew" executable.</xbar.var>
-# <xbar.var>boolean(VAR_GREEDY=false): Pass --greedy to brew outdated command</xbar.var>
+# <xbar.var>boolean(VAR_GREEDY=""): Comma separted list of greedy types for brew outdated command ("latest", "auto-updates").</xbar.var>
 
+# rubocop:enable Layout/LineLength
 # rubocop:disable Lint/ShadowingOuterLocalVariable
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/BlockLength
@@ -263,10 +266,46 @@ module Brew
 
       printer.item("#{prefix}↑#{formulas.size + casks.size}", dropdown: false)
       printer.sep
-      printer.item('Brew Updates')
+      printer.item('Brew Updates️') do |printer|
+        printer.item('Settings')
+        printer.sep
+
+        if greedy_latest?
+          printer.item(
+            ':white_check_mark: Greedy: Latest',
+            rpc: %w[remove_greedy latest],
+            refresh: true
+          )
+        else
+          printer.item(
+            ':ballot_box_with_check: Greedy: Latest',
+            rpc: %w[add_greedy latest],
+            refresh: true
+          )
+        end
+
+        if greedy_auto_updates?
+          printer.item(
+            ':white_check_mark: Greedy: Auto Updates',
+            rpc: %w[remove_greedy auto_updates],
+            refresh: true
+          )
+        else
+          printer.item(
+            ':ballot_box_with_check: Greedy: Auto Updates',
+            rpc: %w[add_greedy auto_updates],
+            refresh: true
+          )
+        end
+      end
 
       printer.item(status_label) do |printer|
-        printer.item(':hourglass: Refresh', refresh: true)
+        printer.item(
+          ':hourglass: Refresh',
+          alt: ':hourglass: Refresh (⌘R)',
+          refresh: true
+        )
+
         printer.sep
         if formulas.size.positive? && casks.size.positive?
           printer.item(
@@ -290,13 +329,6 @@ module Brew
             shell: [brew_path, 'upgrade', '--cask'] + casks.map(&:name)
           )
         end
-
-        printer.sep
-        if use_greedy?
-          printer.item('Disable greedy', rpc: ['disable_greedy'], refresh: true)
-        else
-          printer.item('Enable greedy', rpc: ['enable_greedy'], refresh: true)
-        end
       end
 
       print_formulas(printer)
@@ -305,13 +337,17 @@ module Brew
       printer.sep
     end
 
-    def enable_greedy
-      config['VAR_GREEDY'] = true
+    def add_greedy(*args)
+      vals = config['VAR_GREEDY']&.split(',') || []
+      vals += args
+      config['VAR_GREEDY'] = vals.uniq.sort.join(',')
       config.save
     end
 
-    def disable_greedy
-      config['VAR_GREEDY'] = false
+    def remove_greedy(*args)
+      vals = config['VAR_GREEDY']&.split(',') || []
+      vals -= args
+      config['VAR_GREEDY'] = vals.uniq.sort.join(',')
       config.save
     end
 
@@ -319,10 +355,6 @@ module Brew
 
     def config
       @config ||= Xbar::Config.new
-    end
-
-    def use_greedy?
-      [true, 'true'].include?(config.fetch('VAR_GREEDY', 'false'))
     end
 
     def status_label
@@ -454,12 +486,27 @@ module Brew
       @casks ||= outdated['casks'].map { |line| Cask.new(line) }
     end
 
+    def greedy_types
+      config['VAR_GREEDY']&.split(',')&.map(&:to_sym) || []
+    end
+
+    def greedy_latest?
+      greedy_types.include?(:latest)
+    end
+
+    def greedy_auto_updates?
+      greedy_types.include?(:auto_updates)
+    end
+
+    def greedy_args
+      args = []
+      args << '--greedy-latest' if greedy_latest?
+      args << '--greedy-auto-updates' if greedy_auto_updates?
+      args
+    end
+
     def outdated_args
-      [
-        'outdated',
-        (use_greedy? ? '--greedy' : nil),
-        '--json=v2'
-      ].compact
+      ['outdated', greedy_args, '--json=v2'].flatten.compact
     end
 
     def outdated
