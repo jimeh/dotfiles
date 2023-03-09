@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v3.0.2</xbar.version>
+# <xbar.version>v3.1.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
-# <xbar.image>https://i.imgur.com/gIQki4q.png</xbar.image>
+# <xbar.image>https://i.imgur.com/PusYz5W.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
@@ -302,11 +302,32 @@ module Brew
 
       printer.item("#{prefix}#{visible.started.size}", dropdown: false)
       printer.sep
-      printer.item('Brew Services')
+      printer.item('Brew Services') do |printer|
+        printer.item('Settings')
+        printer.sep
+
+        if use_groups?
+          printer.item(
+            ':white_check_mark: Use groups',
+            rpc: ['disable_groups'],
+            refresh: true
+          )
+        else
+          printer.item(
+            ':ballot_box_with_check: Use groups',
+            rpc: ['enable_groups'],
+            refresh: true
+          )
+        end
+      end
 
       printer.item(status_label(visible)) do |printer|
         printer.sep
-        printer.item(':hourglass: Refresh', refresh: true)
+        printer.item(
+          ':hourglass: Refresh',
+          alt: ':hourglass: Refresh (⌘R)',
+          refresh: true
+        )
 
         unless all_services.empty?
           printer.sep
@@ -338,13 +359,6 @@ module Brew
           else
             printer.item("Restart All (#{visible.size} services)")
           end
-        end
-
-        printer.sep
-        if use_groups?
-          printer.item('Disable groups', rpc: ['disable_groups'], refresh: true)
-        else
-          printer.item('Enable groups', rpc: ['enable_groups'], refresh: true)
         end
       end
 
@@ -426,6 +440,7 @@ module Brew
       end
     end
 
+    # rubocop:disable Style/GuardClause
     def print_service_groups(printer, services)
       if services.started.size.positive?
         printer.sep
@@ -456,12 +471,13 @@ module Brew
         end
       end
     end
+    # rubocop:enable Style/GuardClause
 
     def print_service(printer, service)
       icon = if service.started?
-               ':white_check_mark:'
+               '🟢'
              elsif service.stopped?
-               ':ballot_box_with_check:'
+               ':red_circle:'
              elsif service.error?
                ':warning:'
              elsif service.unknown_status?
