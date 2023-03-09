@@ -17,10 +17,14 @@ alias mo="env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES molecule"
 install_python_global_packages() {
   local packages=(
     'ansible'
-    'grip'
     'molecule[docker]'
     'passlib'
     'yamllint'
+
+    # for ChatGPT
+    'epc'
+    'git+https://github.com/mmabrouk/chatgpt-wrapper'
+    'sexpdata==0.0.4'
   )
 
   local pipcmd="pip"
