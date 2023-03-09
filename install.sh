@@ -15,6 +15,7 @@ SYMLINKS=(
   bitbar
   coffeelint.json
   config/kitty/kitty.conf
+  config/rtx/config.toml
   config/solargraph/config.yml
   config/starship.toml
   erlang
@@ -28,7 +29,6 @@ SYMLINKS=(
   irbrc
   peco
   powconfig
-  prettierrc.js
   pryrc
   reek.yml
   rspec
@@ -36,6 +36,7 @@ SYMLINKS=(
   rustfmt.toml
   tmux
   tmux.conf
+  tool-versions
   zshenv
   zshrc
 )

@@ -8,8 +8,8 @@
 
 # Install rbenv
 zinit light-mode wait lucid as'program' pick'bin/rbenv' from'gh' \
-  atclone'src/configure && make -C src; libexec/rbenv init - > .zinitrc.zsh' \
-  atpull'%atclone' src'.zinitrc.zsh' nocompile'!' \
+  atclone'src/configure && make -C src; libexec/rbenv init - > .rbenv.zsh' \
+  atpull'%atclone' src'.rbenv.zsh' nocompile'!' \
   for @rbenv/rbenv
 
 # install ruby-build

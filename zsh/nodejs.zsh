@@ -3,30 +3,10 @@
 #
 
 # ==============================================================================
-# Volta
-# ==============================================================================
-
-zinit light-mode wait lucid as'program' from'gh-r' \
-  atclone'./volta completions zsh > _volta' atpull'%atclone' \
-  for @volta-cli/volta
-
-# ==============================================================================
-# aliases
-# ==============================================================================
-
-alias no="node"
-alias np="npm"
-
-# ==============================================================================
 # global node packages
 # ==============================================================================
 
 install_node_global_packages() {
-  local volta_packages=(
-    npm
-    npx
-    yarn
-  )
   local npm_packages=(
     @commitlint/cli
     @commitlint/config-conventional
@@ -57,7 +37,8 @@ install_node_global_packages() {
     vscode-css-languageserver-bin
     vscode-json-languageserver
     yaml-language-server
+    yarn
   )
 
-  volta install "${volta_packages[@]}" "${npm_packages[@]}"
+  npm install -g "${npm_packages[@]}"
 }

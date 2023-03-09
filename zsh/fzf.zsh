@@ -2,10 +2,10 @@
 # fzf
 #
 
-export FZF_DEFAULT_OPTS="--bind=ctrl-k:kill-line --border=none --tabstop=4"
-export FZF_TMUX_HEIGHT=100%
-export FZF_TMUX=0
 export FZF_CTRL_T_OPTS="--preview='less {}'"
+export FZF_DEFAULT_OPTS="--bind=ctrl-k:kill-line --border=none --tabstop=4"
+export FZF_TMUX=0
+export FZF_TMUX_HEIGHT=100%
 
 # Install fzf binary from latest GitHub Release.
 zinit light-mode wait lucid from'gh-r' as'program' pick'fzf' \

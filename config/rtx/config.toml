@@ -1,0 +1,3 @@
+[settings]
+experimental = true
+shims_dir = "~/.rtx/shims"

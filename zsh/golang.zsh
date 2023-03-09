@@ -2,24 +2,9 @@
 # Go (golang) environment setup.
 #
 
-#
-# g - Simple go version manager, gluten-free
-#
-
-# Create symlink for "g" called "gv", as I have "g" aliased to "git".
-zinit light-mode wait lucid as'program' pick'bin/g' from'gh' \
-  atclone'cd bin && ln -s g gv' atpull'%atclone' \
-  for @stefanmaric/g
-
-#
-# gup - Update binaries installed with "go install"
-#
-zinit light-mode wait lucid as'program' from'gh-r' pick'gup' \
-  for @nao1215/gup
-
-#
+# ==============================================================================
 # global golang packages
-#
+# ==============================================================================
 
 list_go_global_packages() {
   for bin in $(ls -1 ~/.go/bin); do

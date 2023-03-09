@@ -12,8 +12,8 @@ alias tmm="tmn -s main"
 # Tmuxifier
 
 zinit light-mode wait lucid as'program' pick'bin/tmuxifier' from'gh' \
-  atclone'./bin/tmuxifier init - > .zinitrc.zsh' atpull'%atclone' \
-  src='.zinitrc.zsh' \
+  atclone'./bin/tmuxifier init - > .tmuxifier.zsh' atpull'%atclone' \
+  src='.tmuxifier.zsh' \
   for @jimeh/tmuxifier
 
 alias m="tmuxifier"

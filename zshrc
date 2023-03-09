@@ -10,15 +10,6 @@ if [[ "$OSTYPE" == "darwin"* ]] && [ -f "/etc/zshrc" ]; then
 fi
 
 # ==============================================================================
-# Helpers
-# ==============================================================================
-
-command-exists() {
-  (( ${+commands[$1]} ))
-  return $?
-}
-
-# ==============================================================================
 # Zinit
 # ==============================================================================
 
@@ -28,7 +19,7 @@ ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
 # Load zinit module if it exists. For more info, run: zinit module help
 if [ -d "${ZINIT[HOME_DIR]}/module/Src/zdharma_continuum" ]; then
-  module_path+=( "${ZINIT[HOME_DIR]}/module/Src" )
+  module_path+=("${ZINIT[HOME_DIR]}/module/Src")
   zmodload zdharma_continuum/zinit
 fi
 
@@ -49,11 +40,6 @@ zinit for @OMZ::lib/history.zsh
 
 # Enable Ruby Bundler plugin from oh-my-zsh.
 zinit for @OMZ::plugins/bundler
-
-zinit light-mode lucid as'program' from'gh-r' \
-  atclone'./starship completions zsh > _starship; ./starship init zsh --print-full-init > .zinitrc.zsh' \
-  atpull'%atclone' pick'starship' src'.zinitrc.zsh' \
-  for @starship/starship
 
 zinit light-mode wait lucid \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -97,6 +83,38 @@ if [ -f "$DOTPFILES/zshrc" ]; then
 fi
 
 # ==============================================================================
+# Environment and Tool Managers
+# ==============================================================================
+
+if command-exists direnv; then
+  eval "$(direnv hook zsh)"
+fi
+
+zinit light-mode wait lucid from'gh-r' as'program' pick'rtx' mv'rtx* -> rtx' \
+  atclone'./rtx complete --shell zsh > _rtx && chmod +x _rtx && ./rtx activate zsh > .rtx.zsh' \
+  atpull'%atclone' \
+  src='.rtx.zsh' \
+  for @jdxcode/rtx
+
+# ==============================================================================
+# Prompt
+# ==============================================================================
+
+if command-exists starship; then
+  eval "$(starship init zsh --print-full-init)"
+
+  _starship() {
+    unset -f _starship
+    eval "$(starship completions zsh)"
+  }
+  compctl -K _starship starship
+else
+  echo "WARN: starship not found, skipping prompt setup" >&2
+  echo "      install with: rtx install starship" >&2
+
+fi
+
+# ==============================================================================
 # Tool specific setup
 # ==============================================================================
 
@@ -111,14 +129,11 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 source "$DOTZSH/1password.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/fzf.zsh"
-source "$DOTZSH/jq.zsh"
 source "$DOTZSH/less.zsh"
-source "$DOTZSH/rclone.zsh"
 source "$DOTZSH/tmux.zsh"
 
 # Development
 source "$DOTZSH/containers.zsh"
-source "$DOTZSH/direnv.zsh"
 source "$DOTZSH/golang.zsh"
 source "$DOTZSH/google-cloud.zsh"
 source "$DOTZSH/kubernetes.zsh"

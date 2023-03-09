@@ -60,6 +60,15 @@ path_prepend () {
 }
 
 # ==============================================================================
+# Helpers
+# ==============================================================================
+
+command-exists() {
+  (( ${+commands[$1]} ))
+  return $?
+}
+
+# ==============================================================================
 # System Environment Setup
 # ==============================================================================
 
@@ -171,35 +180,23 @@ fi
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
-# Go setup (./zsh/golang.zsh)
-export GOPATH="$HOME/.go"
-export GOROOT="$HOME/.local/go"
-path_prepend "$GOPATH/bin"
-
 # Ruby setup for rbenv (./zsh/ruby.zsh)
 path_prepend "$HOME/.rbenv/shims"
 
-# Python setup for pyenv (./zsh/python.zsh)
-path_prepend "$HOME/.pyenv/shims"
-
-# Node setup for volta (./zsh/nodejs.zsh)
-path_prepend "$HOME/.volta/bin"
-
 # Rust setup
-path_prepend "$HOME/.cargo/bin"
+export CARGO_HOME="$HOME/.cargo"
+path_prepend "$CARGO_HOME/bin"
+
+# RTX shim setup
+path_prepend "$HOME/.rtx/shims"
 
 # ==============================================================================
 # Path setup for select binaries installed with zinit
 # ==============================================================================
 
-path_prepend "$HOME/.local/zsh/zinit/plugins/direnv---direnv"
+path_prepend "$HOME/.local/zsh/zinit/plugins/jdxcode---rtx"
 path_prepend "$HOME/.local/zsh/zinit/plugins/junegunn---fzf"
-path_prepend "$HOME/.local/zsh/zinit/plugins/mvdan---sh"
-path_prepend "$HOME/.local/zsh/zinit/plugins/pyenv---pyenv/bin"
 path_prepend "$HOME/.local/zsh/zinit/plugins/rbenv---rbenv/bin"
-path_prepend "$HOME/.local/zsh/zinit/plugins/rclone---rclone"
-path_prepend "$HOME/.local/zsh/zinit/plugins/stefanmaric---g/bin"
-path_prepend "$HOME/.local/zsh/zinit/plugins/volta-cli---volta"
 
 # ==============================================================================
 # Local Overrides

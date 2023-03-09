@@ -1,0 +1,11 @@
+bat        latest
+direnv     latest
+dust       latest
+exa        latest
+golang     latest
+jq         latest
+nodejs     lts
+python     latest
+shellcheck latest
+shfmt      latest
+starship   latest
