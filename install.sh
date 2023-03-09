@@ -119,6 +119,10 @@ install_emacs_config() {
   git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.config/emacs-siren"
 }
 
+install_rustup() {
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 #
 # Helper functions
 #
@@ -268,6 +272,9 @@ case "$1" in
     ;;
   rbenv)
     install_rbenv
+    ;;
+  rustup | rust)
+    install_rustup
     ;;
   launch_agents | launch-agents | agents)
     install_launch_agents

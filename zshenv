@@ -184,8 +184,14 @@ path_prepend "/opt/tmux/bin"
 path_prepend "$HOME/.rbenv/shims"
 
 # Rust setup
+export RUSTUP_HOME="$HOME/.rustup"
 export CARGO_HOME="$HOME/.cargo"
 path_prepend "$CARGO_HOME/bin"
+
+export RUST_BACKTRACE=1
+if command-exists sccache; then
+  export RUSTC_WRAPPER=sccache
+fi
 
 # RTX shim setup
 path_prepend "$HOME/.rtx/shims"
