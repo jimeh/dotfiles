@@ -79,6 +79,7 @@ install_ruby_global_packages() {
     seeing_is_believing
     solargraph
     steep
+    syntax_tree
     yard
   )
 
