@@ -69,6 +69,8 @@ zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
 # Completion
 # ==============================================================================
 
+setopt completealiases
+
 # Group completions by type under group headings
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -106,6 +108,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then source "$DOTZSH/macos.zsh"; fi
 if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
+source "$DOTZSH/1password.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/fzf.zsh"
 source "$DOTZSH/jq.zsh"
