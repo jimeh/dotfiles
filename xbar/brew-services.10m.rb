@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v3.1.0</xbar.version>
+# <xbar.version>v3.1.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -25,8 +25,35 @@
 
 require 'open3'
 require 'json'
+require 'set'
 
 module Xbar
+  class CommandError < StandardError; end
+
+  module Service
+    private
+
+    def config
+      @config ||= Xbar::Config.new
+    end
+
+    def printer
+      @printer ||= ::Xbar::Printer.new
+    end
+
+    def cmd(*args)
+      out, err, s = Open3.capture3(*args)
+      if s.exitstatus != 0
+        msg = "Command failed: #{args.join(' ')}"
+        msg += ": #{err}" unless err.empty?
+
+        raise CommandError, msg
+      end
+
+      out
+    end
+  end
+
   class Runner
     attr_reader :service
 
@@ -49,6 +76,12 @@ module Xbar
       return unless File.exist?(filename)
 
       merge!(JSON.parse(File.read(filename)))
+    end
+
+    def as_set(name)
+      values = self[name]&.to_s&.split(',')&.map(&:strip)&.reject(&:empty?)
+
+      ::Set.new(values || [])
     end
 
     def filename
@@ -145,9 +178,9 @@ module Xbar
 end
 
 module Brew
-  class CommandError < StandardError; end
-
   class Common
+    include Xbar::Service
+
     def self.prefix(value = nil)
       return @prefix if value.nil? || value == ''
 
@@ -160,17 +193,6 @@ module Brew
       self.class.prefix
     end
 
-    def default_printer
-      @default_printer ||= ::Xbar::Printer.new
-    end
-
-    def cmd(*args)
-      out, err, s = Open3.capture3(*args)
-      raise CommandError, "#{args.join(' ')}: #{err}" if s.exitstatus != 0
-
-      out
-    end
-
     def brew_path
       @brew_path ||= brew_path_from_env ||
                      brew_path_from_which ||
@@ -179,9 +201,12 @@ module Brew
     end
 
     def brew_path_from_env
-      return if ENV['VAR_BREW_PATH'].to_s == ''
+      env_value = config['VAR_BREW_PATH']&.to_s&.strip || ''
 
-      ENV['VAR_BREW_PATH']
+      return if env_value == ''
+      return unless File.exist?(env_value)
+
+      env_value
     end
 
     def brew_path_from_which
@@ -189,6 +214,8 @@ module Brew
       return if detect == ''
 
       detect
+    rescue Xbar::CommandError
+      nil
     end
 
     def brew_path_from_fs_check
@@ -294,8 +321,6 @@ module Brew
     prefix ':bulb:'
 
     def run
-      printer = default_printer
-
       brew_check(printer)
 
       visible = all_services.visible
@@ -387,26 +412,22 @@ module Brew
     end
 
     def hide(*args)
-      hidden = config['VAR_HIDDEN_SERVICES']&.split(',')&.map(&:strip) || []
-      hidden += args
+      hidden = hidden_services.clone
+      hidden += args.map(&:strip).reject(&:empty?)
 
-      config['VAR_HIDDEN_SERVICES'] = hidden.uniq.sort.join(',')
+      config['VAR_HIDDEN_SERVICES'] = hidden.sort.join(',')
       config.save
     end
 
     def show(*args)
-      hidden = config['VAR_HIDDEN_SERVICES']&.split(',')&.map(&:strip) || []
-      hidden -= args
+      hidden = hidden_services.clone
+      hidden -= args.map(&:strip).reject(&:empty?)
 
-      config['VAR_HIDDEN_SERVICES'] = hidden.uniq.sort.join(',')
+      config['VAR_HIDDEN_SERVICES'] = hidden.sort.join(',')
       config.save
     end
 
     private
-
-    def config
-      @config ||= Xbar::Config.new
-    end
 
     def use_groups?
       [true, 'true'].include?(config.fetch('VAR_GROUPS', 'true'))
@@ -550,8 +571,7 @@ module Brew
     end
 
     def hidden_services
-      @hidden_services ||= config.fetch('VAR_HIDDEN_SERVICES', '')
-                                 .split(',').uniq.map(&:strip)
+      @hidden_services ||= config.as_set('VAR_HIDDEN_SERVICES')
     end
   end
 end
@@ -560,8 +580,16 @@ begin
   services = Brew::Services.new
   Xbar::Runner.new(services).run(ARGV)
 rescue StandardError => e
-  puts "ERROR: #{e.message}:\n\t#{e.backtrace.join("\n\t")}"
-  exit 1
+  puts ":warning: #{File.basename(__FILE__)}"
+  puts '---'
+  puts 'exit status 1'
+  puts '---'
+  puts 'Error:'
+  puts e.message.to_s
+  e.backtrace.each do |line|
+    puts "--#{line}"
+  end
+  exit 0
 end
 
 # rubocop:enable Style/IfUnlessModifier
