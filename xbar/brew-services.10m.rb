@@ -577,8 +577,8 @@ module Brew
 end
 
 begin
-  services = Brew::Services.new
-  Xbar::Runner.new(services).run(ARGV)
+  service = Brew::Services.new
+  Xbar::Runner.new(service).run(ARGV)
 rescue StandardError => e
   puts ":warning: #{File.basename(__FILE__)}"
   puts '---'
