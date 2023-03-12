@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.5.0</xbar.version>
+# <xbar.version>v2.5.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -27,8 +27,35 @@
 
 require 'open3'
 require 'json'
+require 'set'
 
 module Xbar
+  class CommandError < StandardError; end
+
+  module Service
+    private
+
+    def config
+      @config ||= Xbar::Config.new
+    end
+
+    def printer
+      @printer ||= ::Xbar::Printer.new
+    end
+
+    def cmd(*args)
+      out, err, s = Open3.capture3(*args)
+      if s.exitstatus != 0
+        msg = "Command failed: #{args.join(' ')}"
+        msg += ": #{err}" unless err.empty?
+
+        raise CommandError, msg
+      end
+
+      out
+    end
+  end
+
   class Runner
     attr_reader :service
 
@@ -51,6 +78,12 @@ module Xbar
       return unless File.exist?(filename)
 
       merge!(JSON.parse(File.read(filename)))
+    end
+
+    def as_set(name)
+      values = self[name]&.to_s&.split(',')&.map(&:strip)&.reject(&:empty?)
+
+      ::Set.new(values || [])
     end
 
     def filename
@@ -147,9 +180,9 @@ module Xbar
 end
 
 module Brew
-  class CommandError < StandardError; end
-
   class Common
+    include Xbar::Service
+
     def self.prefix(value = nil)
       return @prefix if value.nil? || value == ''
 
@@ -162,17 +195,6 @@ module Brew
       self.class.prefix
     end
 
-    def default_printer
-      @default_printer ||= ::Xbar::Printer.new
-    end
-
-    def cmd(*args)
-      out, err, s = Open3.capture3(*args)
-      raise CommandError, "#{args.join(' ')}: #{err}" if s.exitstatus != 0
-
-      out
-    end
-
     def brew_path
       @brew_path ||= brew_path_from_env ||
                      brew_path_from_which ||
@@ -181,9 +203,12 @@ module Brew
     end
 
     def brew_path_from_env
-      return if ENV['VAR_BREW_PATH'].to_s == ''
+      env_value = config['VAR_BREW_PATH']&.to_s&.strip || ''
 
-      ENV['VAR_BREW_PATH']
+      return if env_value == ''
+      return unless File.exist?(env_value)
+
+      env_value
     end
 
     def brew_path_from_which
@@ -191,6 +216,8 @@ module Brew
       return if detect == ''
 
       detect
+    rescue Xbar::CommandError
+      nil
     end
 
     def brew_path_from_fs_check
@@ -216,13 +243,6 @@ module Brew
       )
 
       exit 0
-    end
-
-    def brew_update
-      cmd(brew_path, 'update')
-    rescue CommandError
-      # Continue as if nothing happened when brew update fails, as it likely
-      # to be due to another update process is already running.
     end
   end
 
@@ -259,8 +279,6 @@ module Brew
     prefix ':beers:'
 
     def run
-      printer = default_printer
-
       brew_check(printer)
       brew_update
 
@@ -338,23 +356,28 @@ module Brew
     end
 
     def add_greedy(*args)
-      vals = config['VAR_GREEDY']&.split(',') || []
-      vals += args
-      config['VAR_GREEDY'] = vals.uniq.sort.join(',')
+      vals = greedy_types.clone
+      vals += args.map(&:strip).reject(&:empty?)
+
+      config['VAR_GREEDY'] = vals.sort.join(',')
       config.save
     end
 
     def remove_greedy(*args)
-      vals = config['VAR_GREEDY']&.split(',') || []
-      vals -= args
-      config['VAR_GREEDY'] = vals.uniq.sort.join(',')
+      vals = greedy_types.clone
+      vals -= args.map(&:strip).reject(&:empty?)
+
+      config['VAR_GREEDY'] = vals.sort.join(',')
       config.save
     end
 
     private
 
-    def config
-      @config ||= Xbar::Config.new
+    def brew_update
+      cmd(brew_path, 'update')
+    rescue Xbar::CommandError
+      # Continue as if nothing happened when brew update fails, as it likely
+      # to be due to another update process is already running.
     end
 
     def status_label
@@ -487,15 +510,15 @@ module Brew
     end
 
     def greedy_types
-      config['VAR_GREEDY']&.split(',')&.map(&:to_sym) || []
+      @greedy_types ||= config.as_set('VAR_GREEDY')
     end
 
     def greedy_latest?
-      greedy_types.include?(:latest)
+      @greedy_latest ||= greedy_types.include?('latest')
     end
 
     def greedy_auto_updates?
-      greedy_types.include?(:auto_updates)
+      @greedy_auto_updates ||= greedy_types.include?('auto_updates')
     end
 
     def greedy_args
@@ -516,11 +539,19 @@ module Brew
 end
 
 begin
-  updates = Brew::FormulaUpdates.new
-  Xbar::Runner.new(updates).run(ARGV)
+  services = Brew::FormulaUpdates.new
+  Xbar::Runner.new(services).run(ARGV)
 rescue StandardError => e
-  puts "ERROR: #{e.message}:\n\t#{e.backtrace.join("\n\t")}"
-  exit 1
+  puts ":warning: #{File.basename(__FILE__)}"
+  puts '---'
+  puts 'exit status 1'
+  puts '---'
+  puts 'Error:'
+  puts e.message.to_s
+  e.backtrace.each do |line|
+    puts "--#{line}"
+  end
+  exit 0
 end
 
 # rubocop:enable Style/IfUnlessModifier
