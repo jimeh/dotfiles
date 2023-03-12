@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.5.1</xbar.version>
+# <xbar.version>v2.5.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -13,7 +13,7 @@
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>string(VAR_BREW_PATH=""): Path to "brew" executable.</xbar.var>
-# <xbar.var>boolean(VAR_GREEDY=""): Comma separted list of greedy types for brew outdated command ("latest", "auto-updates").</xbar.var>
+# <xbar.var>string(VAR_GREEDY=""): Comma separted list of greedy types for brew outdated command ("latest", "auto-updates").</xbar.var>
 
 # rubocop:enable Layout/LineLength
 # rubocop:disable Lint/ShadowingOuterLocalVariable
