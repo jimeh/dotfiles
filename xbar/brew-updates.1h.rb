@@ -4,18 +4,23 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.5.2</xbar.version>
+# <xbar.version>v2.6.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
-# <xbar.image>https://i.imgur.com/7gJDWmu.png</xbar.image>
+# <xbar.image>https://i.imgur.com/HbSHhaa.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>string(VAR_BREW_PATH=""): Path to "brew" executable.</xbar.var>
-# <xbar.var>string(VAR_GREEDY=""): Comma separted list of greedy types for brew outdated command ("latest", "auto-updates").</xbar.var>
+# <xbar.var>boolean(VAR_GREEDY_LATEST=false): Run "brew outdated" with --greedy-latest flag..</xbar.var>
+# <xbar.var>boolean(VAR_GREEDY_AUTO_UPDATES=false): Run "brew outdated" with --greedy-auto-updates flag.</xbar.var>
+# <xbar.var>boolean(VAR_POST_RUN_CLEANUP=false): Run "brew cleanup" after package changes.</xbar.var>
+# <xbar.var>boolean(VAR_POST_RUN_DOCTOR=false): Run "brew cleanup" after package changes.</xbar.var>
+# <xbar.var>string(VAR_UPGRADE_ALL_EXCLUDE=""): Comma-separated list formulas/casks to exclude from upgrade all operations.</xbar.var>
 
 # rubocop:enable Layout/LineLength
+
 # rubocop:disable Lint/ShadowingOuterLocalVariable
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/BlockLength
@@ -31,6 +36,7 @@ require 'set'
 
 module Xbar
   class CommandError < StandardError; end
+  class RPCError < StandardError; end
 
   module Service
     private
@@ -65,7 +71,9 @@ module Xbar
 
     def run(argv = [])
       return service.run if argv.empty?
-      return unless service.respond_to?(argv[0])
+      unless service.respond_to?(argv[0])
+        raise RPCError, "Unknown RPC method: #{argv[0]}"
+      end
 
       service.public_send(*argv)
     end
@@ -232,7 +240,7 @@ module Brew
       printer ||= default_printer
       return if File.exist?(brew_path)
 
-      printer.item("#{prefix}↑:warning:", dropdown: false)
+      printer.item("#{prefix}↑⚠️", dropdown: false)
       printer.sep
       printer.item('Homebrew not found', color: 'red')
       printer.item("Executable \"#{brew_path}\" does not exist.")
@@ -276,7 +284,7 @@ module Brew
   end
 
   class FormulaUpdates < Common
-    prefix ':beers:'
+    prefix '🍻'
 
     def run
       brew_check(printer)
@@ -285,67 +293,53 @@ module Brew
       printer.item("#{prefix}↑#{formulas.size + casks.size}", dropdown: false)
       printer.sep
       printer.item('Brew Updates️') do |printer|
-        printer.item('Settings')
-        printer.sep
-
-        if greedy_latest?
-          printer.item(
-            ':white_check_mark: Greedy: Latest',
-            rpc: %w[remove_greedy latest],
-            refresh: true
-          )
-        else
-          printer.item(
-            ':ballot_box_with_check: Greedy: Latest',
-            rpc: %w[add_greedy latest],
-            refresh: true
-          )
-        end
-
-        if greedy_auto_updates?
-          printer.item(
-            ':white_check_mark: Greedy: Auto Updates',
-            rpc: %w[remove_greedy auto_updates],
-            refresh: true
-          )
-        else
-          printer.item(
-            ':ballot_box_with_check: Greedy: Auto Updates',
-            rpc: %w[add_greedy auto_updates],
-            refresh: true
-          )
-        end
+        print_settings(printer)
       end
 
       printer.item(status_label) do |printer|
-        printer.item(
-          ':hourglass: Refresh',
-          alt: ':hourglass: Refresh (⌘R)',
-          refresh: true
-        )
+        printer.item('⏳ Refresh', alt: '⏳ Refresh (⌘R)', refresh: true)
 
         printer.sep
-        if formulas.size.positive? && casks.size.positive?
+        all_formulas = formulas.reject { |f| upgrade_all_exclude?(f.name) }
+        all_casks = casks.reject { |c| upgrade_all_exclude?(c.name) }
+        excluded = ((formulas - all_formulas) + (casks - all_casks))
+
+        if all_formulas.size.positive? && all_casks.size.positive?
+          names = all_formulas.map(&:name) + all_casks.map(&:name)
           printer.item(
-            "Upgrade All (#{formulas.size + casks.size})",
+            "⬆️ Upgrade All (#{all_formulas.size + all_casks.size})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade'] +
-            formulas.map(&:name) + casks.map(&:name)
+            shell: [
+              brew_path, 'upgrade'
+            ] + names + post_commands(names)
           )
         end
-        if formulas.size.positive?
+        if all_formulas.size.positive?
+          names = all_formulas.map(&:name)
           printer.item(
-            "Upgrade All Formulas (#{formulas.size})",
+            "⬆️ Upgrade All Formulas (#{all_formulas.size})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--formula'] + formulas.map(&:name)
+            shell: [
+              brew_path, 'upgrade', '--formula'
+            ] + names + post_commands(names)
           )
         end
-        if casks.size.positive?
+        if all_casks.size.positive?
+          names = all_casks.map(&:name)
           printer.item(
-            "Upgrade All Casks (#{casks.size})",
+            "⬆️ Upgrade All Casks (#{all_casks.size})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--cask'] + casks.map(&:name)
+            shell: [
+              brew_path, 'upgrade', '--cask'
+            ] + names + post_commands(names)
           )
+        end
+        if excluded.size.positive?
+          printer.sep
+          printer.item("Excluded (#{excluded.size}):")
+          excluded.sort_by(&:name).each do |item|
+            printer.item(item.name)
+          end
         end
       end
 
@@ -355,23 +349,71 @@ module Brew
       printer.sep
     end
 
-    def add_greedy(*args)
-      vals = greedy_types.clone
-      vals += args.map(&:strip).reject(&:empty?)
-
-      config['VAR_GREEDY'] = vals.sort.join(',')
+    def greedy_latest(*args)
+      config['VAR_GREEDY_LATEST'] = truthy?(args.first)
       config.save
     end
 
-    def remove_greedy(*args)
-      vals = greedy_types.clone
-      vals -= args.map(&:strip).reject(&:empty?)
+    def greedy_auto_updates(*args)
+      config['VAR_GREEDY_AUTO_UPDATES'] = truthy?(args.first)
+      config.save
+    end
 
-      config['VAR_GREEDY'] = vals.sort.join(',')
+    def post_run_cleanup(*args)
+      config['VAR_POST_RUN_CLEANUP'] = truthy?(args.first)
+      config.save
+    end
+
+    def post_run_doctor(*args)
+      config['VAR_POST_RUN_DOCTOR'] = truthy?(args.first)
+      config.save
+    end
+
+    def exclude_upgrade_all(*args)
+      exclude = upgrade_all_exclude.clone
+      exclude += args.map(&:strip).reject(&:empty?)
+
+      config['VAR_UPGRADE_ALL_EXCLUDE'] = exclude.sort.join(',')
+      config.save
+    end
+
+    def include_upgrade_all(*args)
+      exclude = upgrade_all_exclude.clone
+      exclude -= args.map(&:strip).reject(&:empty?)
+
+      config['VAR_UPGRADE_ALL_EXCLUDE'] = exclude.sort.join(',')
       config.save
     end
 
     private
+
+    def greedy_latest?
+      @greedy_latest ||= truthy?(config['VAR_GREEDY_LATEST'])
+    end
+
+    def greedy_auto_updates?
+      @greedy_auto_updates ||= truthy?(config['VAR_GREEDY_AUTO_UPDATES'])
+    end
+
+    def post_run_cleanup?
+      @post_run_cleanup ||= truthy?(config['VAR_POST_RUN_CLEANUP'])
+    end
+
+    def post_run_doctor?
+      @post_run_doctor ||= truthy?(config['VAR_POST_RUN_DOCTOR'])
+    end
+
+    def upgrade_all_exclude?(name)
+      upgrade_all_exclude.include?(name)
+    end
+
+    def upgrade_all_exclude
+      @upgrade_all_exclude ||= config.as_set('VAR_UPGRADE_ALL_EXCLUDE')
+    end
+
+    def truthy?(value)
+      %w[true yes 1 on y t].include?(value.to_s.downcase)
+    end
 
     def brew_update
       cmd(brew_path, 'update')
@@ -390,36 +432,89 @@ module Brew
       label.join(', ')
     end
 
+    def print_settings(printer)
+      printer.item('Settings')
+      printer.sep
+
+      print_rpc_toggle(
+        printer, 'Greedy: Latest', 'greedy_latest', greedy_latest?
+      )
+
+      print_rpc_toggle(
+        printer, 'Greedy: Auto Updates', 'greedy_auto_updates',
+        greedy_auto_updates?
+      )
+
+      print_rpc_toggle(
+        printer, 'Post Run: Cleanup', 'post_run_cleanup', post_run_cleanup?
+      )
+
+      print_rpc_toggle(
+        printer, 'Post-Run: Doctor', 'post_run_doctor', post_run_doctor?
+      )
+    end
+
+    def print_rpc_toggle(printer, name, rpc, current_value)
+      if current_value
+        icon = '✅'
+        value = 'false'
+      else
+        icon = '☑️'
+        value = 'true'
+      end
+
+      printer.item("#{icon} #{name}", rpc: [rpc, value], refresh: true)
+    end
+
     def print_formulas(printer)
       return unless formulas.size.positive?
 
       printer.sep
       printer.item("Formulas (#{formulas.size}):")
       formulas.each do |formula|
-        printer.item(formula.name) do |printer|
+        name = formula.name
+        name += ' ⤫' if upgrade_all_exclude?(name)
+        printer.item(name) do |printer|
           printer.item(
-            'Upgrade',
-            alt: 'Upgrade ' \
+            '⬆️ Upgrade',
+            alt: '⬆️ Upgrade ' \
                  "(#{formula.current_version} → #{formula.latest_version})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', formula.name]
+            shell: [
+              brew_path, 'upgrade', formula.name
+            ] + post_commands([formula.name])
           )
           printer.sep
-          printer.item("Installed: #{formula.installed_versions.join(', ')}")
-          printer.item("Latest: #{formula.latest_version}")
+          printer.item("→ Installed: #{formula.installed_versions.join(', ')}")
+          printer.item("↑ Latest: #{formula.latest_version}")
           printer.sep
           printer.item(
-            'Pin',
+            '📌 Pin',
             alt: "Pin (to #{formula.current_version})",
             terminal: false, refresh: true,
             shell: [brew_path, 'pin', formula.name]
           )
-          printer.item('Uninstall') do |printer|
+          if upgrade_all_exclude?(formula.name)
+            printer.item(
+              '✅ Upgrade All: Exclude',
+              terminal: false, refresh: true,
+              rpc: ['include_upgrade_all', formula.name]
+            )
+          else
+            printer.item(
+              '☑️ Upgrade All: Exclude ',
+              terminal: false, refresh: true,
+              rpc: ['exclude_upgrade_all', formula.name]
+            )
+          end
+          printer.item('🚫 Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: [brew_path, 'uninstall', formula.name]
+              shell: [
+                brew_path, 'uninstall', formula.name
+              ] + post_commands([formula.name])
             )
           end
         end
@@ -432,25 +527,44 @@ module Brew
       printer.sep
       printer.item("Casks (#{casks.size}):")
       casks.each do |cask|
-        printer.item(cask.name) do |printer|
+        name = cask.name
+        name += ' ⤫' if upgrade_all_exclude?(name)
+        printer.item(name) do |printer|
           printer.item(
-            'Upgrade',
-            alt: 'Upgrade '\
+            '⬆️ Upgrade',
+            alt: '⬆️ Upgrade '\
                  "(#{cask.current_version} → #{cask.latest_version})",
             terminal: true, refresh: true,
-            shell: [brew_path, 'upgrade', '--cask', cask.name]
+            shell: [
+              brew_path, 'upgrade', '--cask', cask.name
+            ] + post_commands([cask.name])
           )
           printer.sep
-          printer.item("Installed: #{cask.installed_version}")
-          printer.item("Latest: #{cask.latest_version}")
+          printer.item("→ Installed: #{cask.installed_version}")
+          printer.item("↑ Latest: #{cask.latest_version}")
           printer.sep
-          printer.item('Uninstall') do |printer|
+          if upgrade_all_exclude?(cask.name)
+            printer.item(
+              '✅ Upgrade All: Exclude',
+              terminal: false, refresh: true,
+              rpc: ['include_upgrade_all', cask.name]
+            )
+          else
+            printer.item(
+              '☑️ Upgrade All: Exclude',
+              terminal: false, refresh: true,
+              rpc: ['exclude_upgrade_all', cask.name]
+            )
+          end
+          printer.item('🚫 Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.sep
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: [brew_path, 'uninstall', '--cask', cask.name]
+              shell: [
+                brew_path, 'uninstall', '--cask', cask.name
+              ] + post_commands([cask.name])
             )
           end
         end
@@ -465,32 +579,42 @@ module Brew
       pinned.each do |formula|
         printer.item(formula.name) do |printer|
           printer.item(
-            'Upgrade',
-            alt: 'Upgrade ' \
+            '⬆ Upgrade',
+            alt: '⬆ Upgrade ' \
                  "(#{formula.current_version} → #{formula.latest_version})"
           )
           printer.sep
-          printer.item("Pinned: #{formula.pinned_version}")
+          printer.item("→ Pinned: #{formula.pinned_version}")
           if formula.installed_versions.size > 1
-            printer.item("Installed: #{formula.installed_versions.join(', ')}")
+            printer.item("→ Installed: #{formula.installed_versions.join(', ')}")
           end
-          printer.item("Latest: #{formula.latest_version}")
+          printer.item("↑ Latest: #{formula.latest_version}")
           printer.sep
           printer.item(
-            'Unpin',
+            '📌 Unpin',
             terminal: false, refresh: true,
             shell: [brew_path, 'unpin', formula.name]
           )
-          printer.item('Uninstall') do |printer|
+          printer.item('🚫 Uninstall') do |printer|
             printer.item('Are you sure?')
             printer.item(
               'Yes',
               terminal: true, refresh: true,
-              shell: [brew_path, 'uninstall', formula.name]
+              shell: [
+                brew_path, 'uninstall', formula.name
+              ] + post_commands([formula.name])
             )
           end
         end
       end
+    end
+
+    def post_commands(cleanup_names = [])
+      cmds = []
+      cmds += ['&&', brew_path, 'cleanup'] + cleanup_names if post_run_cleanup?
+      cmds += ['&&', brew_path, 'doctor'] if post_run_doctor?
+
+      cmds
     end
 
     def formulas
@@ -507,18 +631,6 @@ module Brew
 
     def casks
       @casks ||= outdated['casks'].map { |line| Cask.new(line) }
-    end
-
-    def greedy_types
-      @greedy_types ||= config.as_set('VAR_GREEDY')
-    end
-
-    def greedy_latest?
-      @greedy_latest ||= greedy_types.include?('latest')
-    end
-
-    def greedy_auto_updates?
-      @greedy_auto_updates ||= greedy_types.include?('auto_updates')
     end
 
     def greedy_args
