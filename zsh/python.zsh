@@ -28,7 +28,9 @@ install_python_global_packages() {
   )
 
   local pipcmd="pip"
-  if command-exists pip3; then pipcmd="pip3"; fi
+  if ! command-exists pip && command-exists pip3; then
+    pipcmd="pip3"
+  fi
 
   "$pipcmd" install --upgrade setuptools
   "$pipcmd" install --upgrade "${packages[@]}"
