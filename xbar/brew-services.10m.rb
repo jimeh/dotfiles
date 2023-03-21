@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v3.1.1</xbar.version>
+# <xbar.version>v3.1.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
@@ -29,6 +29,7 @@ require 'set'
 
 module Xbar
   class CommandError < StandardError; end
+  class RPCError < StandardError; end
 
   module Service
     private
@@ -63,7 +64,9 @@ module Xbar
 
     def run(argv = [])
       return service.run if argv.empty?
-      return unless service.respond_to?(argv[0])
+      unless service.respond_to?(argv[0])
+        raise RPCError, "Unknown RPC method: #{argv[0]}"
+      end
 
       service.public_send(*argv)
     end
@@ -230,7 +233,7 @@ module Brew
       printer ||= default_printer
       return if File.exist?(brew_path)
 
-      printer.item("#{prefix}↑:warning:", dropdown: false)
+      printer.item("#{prefix}↑⚠️:", dropdown: false)
       printer.sep
       printer.item('Homebrew not found', color: 'red')
       printer.item("Executable \"#{brew_path}\" does not exist.")
@@ -318,7 +321,7 @@ module Brew
   end
 
   class Services < Common
-    prefix ':bulb:'
+    prefix '💡'
 
     def run
       brew_check(printer)
@@ -328,31 +331,12 @@ module Brew
       printer.item("#{prefix}#{visible.started.size}", dropdown: false)
       printer.sep
       printer.item('Brew Services') do |printer|
-        printer.item('Settings')
-        printer.sep
-
-        if use_groups?
-          printer.item(
-            ':white_check_mark: Use groups',
-            rpc: ['disable_groups'],
-            refresh: true
-          )
-        else
-          printer.item(
-            ':ballot_box_with_check: Use groups',
-            rpc: ['enable_groups'],
-            refresh: true
-          )
-        end
+        print_settings(printer)
       end
 
       printer.item(status_label(visible)) do |printer|
         printer.sep
-        printer.item(
-          ':hourglass: Refresh',
-          alt: ':hourglass: Refresh (⌘R)',
-          refresh: true
-        )
+        printer.item('⏳ Refresh', alt: '⏳ Refresh (⌘R)', refresh: true)
 
         unless all_services.empty?
           printer.sep
@@ -401,13 +385,8 @@ module Brew
       end
     end
 
-    def enable_groups
-      config['VAR_GROUPS'] = true
-      config.save
-    end
-
-    def disable_groups
-      config['VAR_GROUPS'] = false
+    def use_groups(*args)
+      config['VAR_GROUPS'] = truthy?(args.first)
       config.save
     end
 
@@ -433,6 +412,14 @@ module Brew
       [true, 'true'].include?(config.fetch('VAR_GROUPS', 'true'))
     end
 
+    def hidden_services
+      @hidden_services ||= config.as_set('VAR_HIDDEN_SERVICES')
+    end
+
+    def truthy?(value)
+      %w[true yes 1 on y t].include?(value.to_s.downcase)
+    end
+
     def status_label(services)
       label = []
       if services.started.size.positive?
@@ -450,6 +437,25 @@ module Brew
 
       label = ['no services available'] if label.empty?
       label.join(', ')
+    end
+
+    def print_settings(printer)
+      printer.item('Settings')
+      printer.sep
+
+      print_rpc_toggle(printer, 'Use groups', 'use_groups', use_groups?)
+    end
+
+    def print_rpc_toggle(printer, name, rpc, current_value)
+      if current_value
+        icon = '✅'
+        value = 'false'
+      else
+        icon = '☑️'
+        value = 'true'
+      end
+
+      printer.item("#{icon} #{name}", rpc: [rpc, value], refresh: true)
     end
 
     def print_services(printer, services)
@@ -498,11 +504,11 @@ module Brew
       icon = if service.started?
                '🟢'
              elsif service.stopped?
-               ':red_circle:'
+               '🔴'
              elsif service.error?
-               ':warning:'
+               '⚠️'
              elsif service.unknown_status?
-               ':question:'
+               '❓'
              end
 
       printer.item("#{icon} #{service.name}") do |printer|
@@ -568,10 +574,6 @@ module Brew
           memo.push(Service.new(item))
         end
       )
-    end
-
-    def hidden_services
-      @hidden_services ||= config.as_set('VAR_HIDDEN_SERVICES')
     end
   end
 end
