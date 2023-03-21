@@ -199,7 +199,7 @@ if command-exists sccache; then
   export RUSTC_WRAPPER=sccache
 fi
 
-# RTX shim setup
+# rtx setup
 path_prepend "$HOME/.rtx/shims"
 
 # ==============================================================================
