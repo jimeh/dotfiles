@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.6.0</xbar.version>
+# <xbar.version>v2.6.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -302,16 +302,25 @@ module Brew
         printer.sep
         all_formulas = formulas.reject { |f| upgrade_all_exclude?(f.name) }
         all_casks = casks.reject { |c| upgrade_all_exclude?(c.name) }
-        excluded = ((formulas - all_formulas) + (casks - all_casks))
+        excluded = (formulas - all_formulas) + (casks - all_casks)
 
         if all_formulas.size.positive? && all_casks.size.positive?
-          names = all_formulas.map(&:name) + all_casks.map(&:name)
+          cmds = []
+          if all_formulas.size.positive?
+            cmds += [brew_path, 'upgrade', '--formula'] +
+                    all_formulas.map(&:name)
+          end
+
+          if all_casks.size.positive?
+            cmds << '&&' if cmds.size.positive?
+            cmds += [brew_path, 'upgrade', '--cask'] +
+                    all_casks.map(&:name)
+          end
+
           printer.item(
             "⬆️ Upgrade All (#{all_formulas.size + all_casks.size})",
             terminal: true, refresh: true,
-            shell: [
-              brew_path, 'upgrade'
-            ] + names + post_commands(names)
+            shell: (cmds + post_commands).flatten
           )
         end
         if all_formulas.size.positive?
@@ -321,7 +330,7 @@ module Brew
             terminal: true, refresh: true,
             shell: [
               brew_path, 'upgrade', '--formula'
-            ] + names + post_commands(names)
+            ] + names + post_commands
           )
         end
         if all_casks.size.positive?
@@ -331,14 +340,15 @@ module Brew
             terminal: true, refresh: true,
             shell: [
               brew_path, 'upgrade', '--cask'
-            ] + names + post_commands(names)
+            ] + names + post_commands
           )
         end
         if excluded.size.positive?
           printer.sep
           printer.item("Excluded (#{excluded.size}):")
-          excluded.sort_by(&:name).each do |item|
-            printer.item(item.name)
+          excluded.sort_by(&:brew_name).each do |item|
+            type = item.is_a?(Formula) ? 'Formula' : 'Cask'
+            printer.item("#{item.name} (#{type})")
           end
         end
       end
@@ -481,8 +491,8 @@ module Brew
                  "(#{formula.current_version} → #{formula.latest_version})",
             terminal: true, refresh: true,
             shell: [
-              brew_path, 'upgrade', formula.name
-            ] + post_commands([formula.name])
+              brew_path, 'upgrade', '--formula', formula.name
+            ] + post_commands
           )
           printer.sep
           printer.item("→ Installed: #{formula.installed_versions.join(', ')}")
@@ -513,8 +523,8 @@ module Brew
               'Yes',
               terminal: true, refresh: true,
               shell: [
-                brew_path, 'uninstall', formula.name
-              ] + post_commands([formula.name])
+                brew_path, 'uninstall', '--formula', formula.name
+              ] + post_commands
             )
           end
         end
@@ -537,7 +547,7 @@ module Brew
             terminal: true, refresh: true,
             shell: [
               brew_path, 'upgrade', '--cask', cask.name
-            ] + post_commands([cask.name])
+            ] + post_commands
           )
           printer.sep
           printer.item("→ Installed: #{cask.installed_version}")
@@ -564,7 +574,7 @@ module Brew
               terminal: true, refresh: true,
               shell: [
                 brew_path, 'uninstall', '--cask', cask.name
-              ] + post_commands([cask.name])
+              ] + post_commands
             )
           end
         end
@@ -601,17 +611,17 @@ module Brew
               'Yes',
               terminal: true, refresh: true,
               shell: [
-                brew_path, 'uninstall', formula.name
-              ] + post_commands([formula.name])
+                brew_path, 'uninstall', '--formula', formula.name
+              ] + post_commands
             )
           end
         end
       end
     end
 
-    def post_commands(cleanup_names = [])
+    def post_commands
       cmds = []
-      cmds += ['&&', brew_path, 'cleanup'] + cleanup_names if post_run_cleanup?
+      cmds += ['&&', brew_path, 'cleanup'] if post_run_cleanup?
       cmds += ['&&', brew_path, 'doctor'] if post_run_doctor?
 
       cmds
