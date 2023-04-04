@@ -91,9 +91,8 @@ if command-exists direnv; then
 fi
 
 zinit light-mode wait lucid from'gh-r' as'program' pick'rtx' mv'rtx* -> rtx' \
-  atclone'./rtx complete -s zsh > _rtx && chmod +x _rtx && ./rtx activate zsh > .rtx.zsh' \
-  atpull'%atclone' \
-  src='.rtx.zsh' \
+  atclone'./rtx completion zsh > _rtx && chmod +x _rtx && ./rtx activate zsh > .rtx.zsh && zinit creinstall jdxcode/rtx' \
+  atpull'%atclone' src='.rtx.zsh' \
   for @jdxcode/rtx
 
 # ==============================================================================
