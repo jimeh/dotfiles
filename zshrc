@@ -130,6 +130,7 @@ source "$DOTZSH/copilot.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/fzf.zsh"
 source "$DOTZSH/less.zsh"
+source "$DOTZSH/neovim.zsh"
 source "$DOTZSH/nix.zsh"
 source "$DOTZSH/tmux.zsh"
 
