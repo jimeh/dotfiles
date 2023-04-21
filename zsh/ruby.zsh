@@ -80,6 +80,8 @@ install_ruby_global_packages() {
     solargraph
     steep
     syntax_tree
+    syntax_tree-haml
+    syntax_tree-rbs
     yard
   )
 
