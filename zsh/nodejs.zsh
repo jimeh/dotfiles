@@ -10,6 +10,7 @@ install_node_global_packages() {
   local npm_packages=(
     @commitlint/cli
     @commitlint/config-conventional
+    @githubnext/github-copilot-cli
     @mermaid-js/mermaid-cli
     @prettier/plugin-php
     @prettier/plugin-ruby

@@ -126,6 +126,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
 source "$DOTZSH/1password.zsh"
+source "$DOTZSH/copilot.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/fzf.zsh"
 source "$DOTZSH/less.zsh"
