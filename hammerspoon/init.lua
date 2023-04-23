@@ -1,8 +1,8 @@
 -- luacheck: read_globals hs spoon
 
 -- Reload config hotkey
-hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'R', hs.reload)
-hs.hotkey.bind({'cmd', 'alt', 'ctrl'}, 'C', hs.toggleConsole)
+hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'R', hs.reload)
+hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'C', hs.toggleConsole)
 
 --------------------------------------------------------------------------------
 -- Set Hammerspoon options
