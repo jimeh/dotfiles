@@ -1,4 +1,4 @@
 [settings]
 experimental = true
 shims_dir = "~/.rtx/shims"
-legacy_version_file = false
+legacy_version_file = true
