@@ -200,7 +200,7 @@ if command-exists sccache; then
 fi
 
 # rtx setup
-path_prepend "$HOME/.rtx/shims"
+path_prepend "$HOME/.local/share/rtx/shims"
 
 # ==============================================================================
 # Path setup for select binaries installed with zinit
