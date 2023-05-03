@@ -2,25 +2,25 @@
   font-family: "Menlo Nerd Font Mono";
   font-style: normal;
   font-weight: 400;
-  src: url("Menlo Regular Nerd Font Complete Mono.ttf") format("truetype");
+  src: url("MenloNerdFontMono-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Menlo Nerd Font Mono";
   font-style: italic;
   font-weight: 400;
-  src: url("Menlo Italic Nerd Font Complete Mono.ttf") format("truetype");
+  src: url("MenloNerdFontMono-Italic.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Menlo Nerd Font Mono";
   font-weight: 700;
-  src: url("Menlo Bold Nerd Font Complete Mono.ttf") format("truetype");
+  src: url("MenloNerdFontMono-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Menlo Nerd Font Mono";
   font-style: italic;
   font-weight: 700;
-  src: url("Menlo Bold Italic Nerd Font Complete Mono.ttf") format("truetype");
+  src: url("MenloNerdFontMono-BoldItalic.ttf") format("truetype");
 }
