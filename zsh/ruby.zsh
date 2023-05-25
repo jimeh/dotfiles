@@ -3,24 +3,6 @@
 #
 
 # ==============================================================================
-# rbenv
-# ==============================================================================
-
-# Install rbenv
-zinit light-mode wait lucid as'program' pick'bin/rbenv' from'gh' \
-  atclone'src/configure && make -C src; libexec/rbenv init - > .rbenv.zsh' \
-  atpull'%atclone' src'.rbenv.zsh' nocompile'!' \
-  for @rbenv/rbenv
-
-# install ruby-build
-zinit light-mode wait lucid as'program' pick'bin/ruby-build' from'gh' \
-  for @rbenv/ruby-build
-
-# install rbenv-each plugin
-zinit light-mode wait lucid as'program' pick'bin/rbenv-each' from'gh' \
-  for @rbenv/rbenv-each
-
-# ==============================================================================
 # aliases
 # ==============================================================================
 
@@ -87,32 +69,4 @@ install_ruby_global_packages() {
 
   gem install --no-document rbenv-rehash
   gem install --no-document "${packages[@]}"
-}
-
-# ==============================================================================
-# bundler
-# ==============================================================================
-
-upgrade-bundler() {
-  rbenv each -v gem install --no-document 'bundler:~> 1.0' 'bundler:~> 2.0'
-}
-
-# ==============================================================================
-# solargraph
-# ==============================================================================
-
-solargraph-install() {
-  rbenv each -v gem install solargraph
-}
-
-solargraph-download-cores() {
-  rbenv each -v solargraph download-core
-}
-
-solargraph-list-versions() {
-  rbenv each -v gem list -q solargraph
-}
-
-rubygems-upgrade() {
-  rbenv each -v gem update --system
 }

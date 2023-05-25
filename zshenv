@@ -186,9 +186,6 @@ fi
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
-# Ruby setup for rbenv (./zsh/ruby.zsh)
-path_prepend "$HOME/.rbenv/shims"
-
 # Rust setup
 export RUSTUP_HOME="$HOME/.rustup"
 export CARGO_HOME="$HOME/.cargo"

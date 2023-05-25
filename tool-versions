@@ -18,6 +18,7 @@ neovim        latest
 nodejs        lts
 python        latest
 rclone        latest
+ruby          latest
 shellcheck    latest
 shfmt         latest
 starship      latest
