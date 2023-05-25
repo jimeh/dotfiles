@@ -19,7 +19,6 @@ SYMLINKS=(
   config/solargraph/config.yml
   config/starship.toml
   erlang
-  eslintrc.js
   gemrc
   gitconfig
   gitignore
