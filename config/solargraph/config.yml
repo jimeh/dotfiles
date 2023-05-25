@@ -1,4 +1,6 @@
 ---
+plugins:
+  - solargraph-rails
 exclude:
   - ".bundle/**/*"
   - "spec/**/*"

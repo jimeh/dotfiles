@@ -32,8 +32,6 @@ alias he="heroku"
 alias f="foreman"
 alias fs="foreman start"
 alias fr="foreman run"
-alias pe="procodile exec"
-alias sm="schmersion"
 
 # ==============================================================================
 # global ruby packages
@@ -48,18 +46,15 @@ install_ruby_global_packages() {
     debase
     dotenv
     foreman
-    hippo-cli
-    lunchy
     method_source
-    procodile
     pry-doc
     reek
     rubocop
     rubocop-daemon
     ruby-debug-ide
-    schmersion
     seeing_is_believing
     solargraph
+    solargraph-rails
     steep
     syntax_tree
     syntax_tree-haml
