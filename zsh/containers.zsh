@@ -2,12 +2,6 @@
 # Containers
 #
 
-# Docker
-if command-exists docker; then
-  zinit light-mode wait lucid from'gh-r' as'program' mv'ctop-* -> ctop' \
-    for @bcicen/ctop
-fi
-
 docker_remove_exited() {
   docker rm $(docker ps -f='status=exited' -q)
 }

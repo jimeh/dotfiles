@@ -136,8 +136,8 @@ source "$DOTZSH/tmux.zsh"
 
 # Development
 source "$DOTZSH/containers.zsh"
-source "$DOTZSH/golang.zsh"
 source "$DOTZSH/git.zsh"
+source "$DOTZSH/golang.zsh"
 source "$DOTZSH/google-cloud.zsh"
 source "$DOTZSH/kubernetes.zsh"
 source "$DOTZSH/nodejs.zsh"
