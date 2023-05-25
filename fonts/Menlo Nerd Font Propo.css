@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Menlo Nerd Font Propo";
+  font-style: normal;
+  font-weight: 400;
+  src: url("MenloNerdFontPropo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Menlo Nerd Font Propo";
+  font-style: italic;
+  font-weight: 400;
+  src: url("MenloNerdFontPropo-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Menlo Nerd Font Propo";
+  font-weight: 700;
+  src: url("MenloNerdFontPropo-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Menlo Nerd Font Propo";
+  font-style: italic;
+  font-weight: 700;
+  src: url("MenloNerdFontPropo-BoldItalic.ttf") format("truetype");
+}
