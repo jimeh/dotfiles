@@ -5,6 +5,8 @@
 alias kc="kubectl"
 alias hl="helm"
 alias mk="minikube"
+alias kctx="kubectx"
+alias kns="kubens"
 
 if command-exists kubectl; then
   # lazy-load kubectl completion
@@ -18,9 +20,6 @@ if command-exists kubectl; then
     source "$(brew --prefix switch)/switch.sh"
     switch "$@"
   }
-
-  zinit light-mode wait lucid as'program' from'gh-r' \
-    for @stackrox/kube-linter
 
   export KREW_ROOT="$HOME/.krew"
   path_append "${KREW_ROOT}/bin"
@@ -39,23 +38,33 @@ if command-exists kubectl; then
     export KREW_ROOT="$HOME/.krew"
     path_append "${KREW_ROOT}/bin"
   fi
+fi
 
-  zinit light-mode wait lucid as'program' from'gh-r' mv'kind-* -> kind' \
-    atclone'./kind completion zsh > _kind' atpull'%atclone' \
-    for @kubernetes-sigs/kind
+_setup-kubectx-completion() {
+  local cmd="$1"
+  local dir="$HOME/.local/share/rtx/installs/kubectx/latest/completion/"
 
-  zinit light-mode wait lucid as'program' from'gh-r' \
-    atclone'./flux completion zsh > _flux' atpull'%atclone' \
-    for @fluxcd/flux2
+  if [ -f "$ZSH_COMPLETIONS/_${cmd}" ] || [ !-d "$dir" ]; then
+    return
+  fi
 
-  zinit light-mode wait lucid as'program' from'gh-r' \
-    atclone'./kustomize completion zsh > _kustomize' atpull'%atclone' \
-    for @kubernetes-sigs/kustomize
+  echo "Setting up completion for $cmd -- $ZSH_COMPLETIONS/_${cmd}"
 
-  zinit light-mode wait lucid as'program' from'gh-r' pick'kubeseal' \
-    for @bitnami-labs/sealed-secrets
+  local script
+  if [ -f "${dir}/${cmd}.zsh" ]; then
+    script="$dir/${cmd}.zsh"
+  elif [ -f "${dir}/_${cmd}.zsh" ]; then
+    script="$dir/_${cmd}.zsh"
+  fi
 
-  zinit light-mode wait lucid as'program' from'gh-r' mv'argocd-* -> argocd' \
-    atclone'./argocd completion zsh > _argocd' atpull'%atclone' \
-    for @argoproj/argo-cd
+  mkdir -p "$ZSH_COMPLETIONS"
+  ln -s "$script" "$ZSH_COMPLETIONS/_${cmd}"
+}
+
+if command-exists kubectx && ! which _kubectx &> /dev/null; then
+  _setup-kubectx-completion kubectx
+fi
+
+if command-exists kubens && ! which _kubens &> /dev/null; then
+  _setup-kubectx-completion kubens
 fi

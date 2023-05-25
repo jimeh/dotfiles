@@ -66,6 +66,9 @@ zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:make:*:targets' call-command true
 zstyle ':completion:*:make:*' tag-order targets
 
+if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
+if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
+
 # ==============================================================================
 # Edit command line
 # ==============================================================================
@@ -165,10 +168,6 @@ unsetopt correctall
 
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"
-fi
-
-if [ -d "$DOTZSH/site-functions" ]; then
-  fpath=("$DOTZSH/site-functions" $fpath)
 fi
 
 autoload -U +X bashcompinit && bashcompinit

@@ -90,6 +90,9 @@ if [[ "$TMPDIR" == "/var/folders/"* ]] || [[ "$TMPDIR" == "" ]]; then
   mkdir -p "$TMPDIR"
 fi
 
+export DOTZSH_SITEFUNS="$DOTZSH/site-functions"
+export ZSH_COMPLETIONS="$HOME/.local/share/zsh/completions"
+
 # Ensure basic systems paths are in desired order
 path_prepend "/bin"
 path_prepend "/sbin"
