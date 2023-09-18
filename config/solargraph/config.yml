@@ -18,6 +18,6 @@ formatter:
       - Lint/Debugger
       - Lint/UnusedBlockArgument
       - Lint/UnusedMethodArgument
-      - Rails/Output
+      - Lint/UselessAssignment
       - Style/EmptyMethod
       - Style/Semicolon
