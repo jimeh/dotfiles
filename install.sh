@@ -18,6 +18,8 @@ SYMLINKS=(
   config/rtx/config.toml
   config/solargraph/config.yml
   config/starship.toml
+  default-gems
+  default-go-packages
   erlang
   gemrc
   gitconfig
