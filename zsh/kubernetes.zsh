@@ -42,13 +42,14 @@ fi
 
 _setup-kubectx-completion() {
   local cmd="$1"
-  local dir="$HOME/.local/share/rtx/installs/kubectx/latest/completion/"
+  local dir="$HOME/.local/share/rtx/installs/kubectx/latest/completion"
+  local target="$ZSH_COMPLETIONS/_${cmd}"
 
-  if [ -f "$ZSH_COMPLETIONS/_${cmd}" ] || [ !-d "$dir" ]; then
+  if [ -f "$target" ] || [ ! -d "$dir" ]; then
     return
   fi
 
-  echo "Setting up completion for $cmd -- $ZSH_COMPLETIONS/_${cmd}"
+  echo "Setting up completion for $cmd -- $target"
 
   local script
   if [ -f "${dir}/${cmd}.zsh" ]; then
@@ -57,8 +58,9 @@ _setup-kubectx-completion() {
     script="$dir/_${cmd}.zsh"
   fi
 
+  echo "  - Sym-linking from $script"
   mkdir -p "$ZSH_COMPLETIONS"
-  ln -s "$script" "$ZSH_COMPLETIONS/_${cmd}"
+  ln -s "$script" "$target"
 }
 
 if command-exists kubectx && ! which _kubectx &> /dev/null; then
