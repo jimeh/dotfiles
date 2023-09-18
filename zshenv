@@ -203,6 +203,12 @@ fi
 path_prepend "$HOME/.local/share/rtx/bin"
 path_prepend "$HOME/.local/share/rtx/shims"
 
+# orbstack setup
+if [ -f "$HOME/.orbstack/shell/init.zsh" ]; then
+  source "$HOME/.orbstack/shell/init.zsh"
+fi
+path_prepend "$HOME/.orbstack/bin"
+
 # ==============================================================================
 # Path setup for select binaries installed with zinit
 # ==============================================================================
