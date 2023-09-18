@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.2.2
+# Version: 0.2.3
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -192,6 +192,12 @@ style = 'bold dimmed red'
 disabled = false
 
 [status]
+symbol = ''
+success_symbol = ''
+not_executable_symbol = ''
+not_found_symbol = ''
+sigint_symbol = ''
+signal_symbol = '󱐋'
 format = '( [$symbol$status]($style))'
 style = 'bold red'
 disabled = false
@@ -263,7 +269,7 @@ disabled = true
 
 [crystal]
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [cobol]
 symbol = '漣 '
@@ -277,7 +283,7 @@ disabled = true
 [dart]
 symbol = ' '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [deno]
 format = '( [$symbol$version]($style))'
@@ -291,7 +297,7 @@ disabled = true
 [elixir]
 symbol = ' '
 format = '( [$symbol($version \(OTP $otp_version\))]($style))'
-disabled = true
+disabled = false
 
 [elm]
 symbol = ' '
@@ -318,7 +324,7 @@ disabled = true
 
 [haskell]
 format = '( [$symbol($version)]($style))'
-disabled = true
+disabled = false
 
 [haxe]
 format = '( [$symbol($version)]($style))'
@@ -341,7 +347,7 @@ disabled = true
 [lua]
 symbol = ' '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [nim]
 symbol = ' '
@@ -351,7 +357,7 @@ disabled = true
 [nodejs]
 symbol = ' '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [ocaml]
 format = '( [$symbol$version(\($switch_indicator$switch_name\))]($style))'
@@ -365,7 +371,7 @@ disabled = true
 [php]
 symbol = ' '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [purescript]
 format = '( [$symbol$version]($style))'
@@ -406,7 +412,7 @@ disabled = true
 [swift]
 symbol = 'ﯣ '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [vlang]
 format = '( [$symbol$version]($style))'
@@ -436,7 +442,7 @@ format = '( [$symbol$environment]($style))'
 
 [container]
 format = '( [$symbol \[$name\]]($style))'
-disabled = true
+disabled = false
 
 [docker_context]
 symbol = ' '
@@ -462,7 +468,7 @@ disabled = true
 
 [helm]
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [kubernetes]
 symbol = '☸ '
@@ -476,7 +482,7 @@ disabled = true
 [nix_shell]
 symbol = ' '
 format = '( [$symbol$state(\($name\))]($style))'
-disabled = true
+disabled = false
 
 [opa]
 format = '( [$symbol($version)]($style))'
@@ -514,7 +520,7 @@ disabled = false
 
 [vagrant]
 format = '( [$symbol($version)]($style))'
-disabled = true
+disabled = false
 
 [vcsh]
 format = '(vcsh [$symbol$repo]($style))'
