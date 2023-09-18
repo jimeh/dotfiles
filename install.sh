@@ -35,7 +35,6 @@ SYMLINKS=(
   rustfmt.toml
   tmux
   tmux.conf
-  tool-versions
   zshenv
   zshrc
 )
