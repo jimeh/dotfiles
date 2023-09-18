@@ -78,10 +78,11 @@ install_rust_global_packages() {
       cargo-audit \
       cargo-info
 
-    RUSTC_WRAPPER=sccache cargo binstall \
+    RUSTC_WRAPPER=sccache cargo binstall -y \
       cargo-update \
       cargo-edit \
       bacon \
-      dirstat-rs
+      dirstat-rs \
+      hexyl
   )
 }
