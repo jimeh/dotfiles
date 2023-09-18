@@ -93,10 +93,26 @@ if command-exists direnv; then
   eval "$(direnv hook zsh)"
 fi
 
-zinit light-mode wait lucid from'gh-r' as'program' pick'rtx' mv'rtx* -> rtx' \
-  atclone'./rtx completion zsh > _rtx && chmod +x _rtx && ./rtx activate zsh > .rtx.zsh && zinit creinstall jdxcode/rtx' \
-  atpull'%atclone' src='.rtx.zsh' \
-  for @jdxcode/rtx
+RTX_HOME="$HOME/.local/share/rtx"
+RTX_INIT="$RTX_HOME/shell/init.zsh"
+export RTX_INSTALL_PATH="$RTX_HOME/bin/rtx"
+
+if ! command-exists rtx; then
+  read -q 'REPLY?rtx is not installed, install with curl `https://rtx.pub/install.sh | sh`? [y/N]:' &&
+    echo && curl https://rtx.pub/install.sh | sh
+fi
+
+if [ -f "$HOME/.local/share/rtx/bin/rtx" ]; then
+  path_prepend "$RTX_HOME/bin"
+fi
+
+if command-exists rtx; then
+  if [ ! -f "$RTX_INIT" ] || [ "$RTX_INIT" -ot "$RTX_INSTALL_PATH" ]; then
+    mkdir -p "$(dirname "$RTX_INIT")"
+    rtx activate zsh > "$RTX_INIT"
+  fi
+  source "$RTX_INIT"
+fi
 
 # ==============================================================================
 # Prompt

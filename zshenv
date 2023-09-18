@@ -200,13 +200,13 @@ if command-exists sccache; then
 fi
 
 # rtx setup
+path_prepend "$HOME/.local/share/rtx/bin"
 path_prepend "$HOME/.local/share/rtx/shims"
 
 # ==============================================================================
 # Path setup for select binaries installed with zinit
 # ==============================================================================
 
-path_prepend "$HOME/.local/zsh/zinit/plugins/jdxcode---rtx"
 path_prepend "$HOME/.local/zsh/zinit/plugins/junegunn---fzf"
 path_prepend "$HOME/.local/zsh/zinit/plugins/rbenv---rbenv/bin"
 
