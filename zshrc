@@ -55,8 +55,6 @@ zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
 # Completion
 # ==============================================================================
 
-setopt completealiases
-
 # Group completions by type under group headings
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%B%d%b'
