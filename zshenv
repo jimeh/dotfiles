@@ -214,7 +214,6 @@ path_prepend "$HOME/.orbstack/bin"
 # ==============================================================================
 
 path_prepend "$HOME/.local/zsh/zinit/plugins/junegunn---fzf"
-path_prepend "$HOME/.local/zsh/zinit/plugins/rbenv---rbenv/bin"
 
 # ==============================================================================
 # Local Overrides
