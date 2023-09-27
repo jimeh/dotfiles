@@ -16,6 +16,7 @@ install_go_global_packages() {
   local packages=(
     github.com/akavel/up@latest
     github.com/asciimoo/wuzz@latest
+    github.com/bufbuild/buf-language-server/cmd/bufls@latest
     github.com/caddyserver/xcaddy/cmd/xcaddy@latest
     github.com/erning/gorun@latest
     github.com/go-delve/delve/cmd/dlv@latest
