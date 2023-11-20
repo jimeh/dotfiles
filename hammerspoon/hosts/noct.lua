@@ -10,13 +10,13 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'ChatGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'FastGPT' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '5', { 'Microsoft Edge' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C', { 'Calendar' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mimestream' }, { 'Mailplane' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mailplane' }, { 'Mimestream' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'Element Nightly' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'Element' }, { 'Element Nightly' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Microsoft Edge' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'S', { 'Music' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
@@ -43,8 +43,11 @@ local function init_url_handler()
   uh.default_handler   = uh.browsers.safari
   uh.url_patterns      = {
     {
-      { "%://github.com/krystal/", "%://%.github.com/krystal/" },
-      uh.browsers.edge, nil, { "Slack" }
+      {
+        "%://github.com/krystal/",
+        "%://%.github.com/krystal/"
+      },
+      uh.browsers.edge, nil, { "Slack", "Code", "Emacs" }
     },
     {
       { "%://meet.google.com/" },
