@@ -21,6 +21,7 @@ hs.console.behaviorAsLabels { 'moveToActiveSpace' }
 
 -- Draw pretty rounded corners on all screens.
 hs.loadSpoon('RoundedCorners')
+spoon.RoundedCorners.radius = 12
 spoon.RoundedCorners:start()
 
 -- Automatically pause music when headphones are unplugged.
