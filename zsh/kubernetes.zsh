@@ -3,17 +3,25 @@
 #
 
 alias kc="kubectl"
+alias kx="kubectx"
+alias kn="kubens"
 alias hl="helm"
 alias mk="minikube"
-alias kctx="kubectx"
-alias kns="kubens"
 
 if command-exists kubectl; then
-  # lazy-load kubectl completion
-  _kubectl() {
-    unset -f _kubectl
-    eval "$(command kubectl completion zsh)"
+  _setup-kubectl-completion() {
+    local target
+    target="$ZSH_COMPLETIONS/_kubectl"
+
+    if [ ! -f "$target" ] || [ "$target" -ot "$(command -v kubectl)" ]; then
+      echo "Setting up completion for kubectl -- $target"
+      mkdir -p "$ZSH_COMPLETIONS"
+      kubectl completion zsh > "$target"
+      chmod +x "$target"
+      autoload -U compinit && compinit
+    fi
   }
+  _setup-kubectl-completion
 
   switch() {
     unset -f switch
@@ -25,14 +33,14 @@ if command-exists kubectl; then
   path_append "${KREW_ROOT}/bin"
 
   if ! command-exists kubectl-krew; then
-    krew-bin() {
+    krew-bin-name() {
       echo "krew-$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed -e \
         's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' \
         -e 's/aarch64$/arm64/')"
     }
 
-    zinit light-mode wait lucid as'null' from'gh-r' bpick'krew.tar.gz' \
-      atclone'KREW='"'$(krew-bin)'"' && ./$KREW install krew' \
+    zinit light-mode wait lucid as'null' from'gh-r' bpick"$(krew-bin-name)*" \
+      atclone'KREW='"'$(krew-bin-name)'"' && ./$KREW install krew' \
       for @kubernetes-sigs/krew
 
     export KREW_ROOT="$HOME/.krew"
@@ -61,6 +69,7 @@ _setup-kubectx-completion() {
   echo "  - Sym-linking from $script"
   mkdir -p "$ZSH_COMPLETIONS"
   ln -s "$script" "$target"
+  autoload -U compinit && compinit
 }
 
 if command-exists kubectx && ! which _kubectx &> /dev/null; then
