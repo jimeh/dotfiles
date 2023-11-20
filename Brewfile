@@ -8,7 +8,6 @@ hostname = `hostname -s`.strip
 cask_args appdir: '/Applications'
 
 tap 'homebrew/cask'
-tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-versions'
 
 #
@@ -22,7 +21,6 @@ brew 'caddy'
 brew 'cmake'
 brew 'colordiff'
 brew 'coreutils'
-brew 'ctop'
 brew 'efm-langserver'
 brew 'fd'
 brew 'geckodriver'
@@ -37,6 +35,7 @@ brew 'httpie'
 brew 'jq'
 brew 'less'
 brew 'libvterm'
+brew 'libyaml'
 brew 'logrotate'
 brew 'lua'
 brew 'luarocks'
@@ -56,7 +55,6 @@ brew 'shfmt'
 brew 'source-highlight'
 brew 'svn'
 brew 'telnet'
-brew 'terraform'
 brew 'terraform-ls'
 brew 'tflint'
 brew 'tldr'
@@ -68,8 +66,8 @@ brew 'wget'
 brew 'yank'
 brew 'zsh'
 
-tap 'heroku/brew'
-brew 'heroku'
+tap 'MisterTea/et'
+brew 'MisterTea/et/et'
 
 #
 # Desktop Apps (Cask)
@@ -82,7 +80,6 @@ cask 'alfred'
 cask 'appcleaner'
 cask 'bartender'
 cask 'betterzip'
-cask 'bitbar'
 cask 'daisydisk'
 cask 'firefox'
 cask 'fluid'
@@ -90,19 +87,16 @@ cask 'google-chrome'
 cask 'gpg-suite'
 cask 'hammerspoon'
 cask 'iina'
-cask 'intel-power-gadget'
 cask 'istat-menus'
 cask 'iterm2'
 cask 'karabiner-elements'
-cask 'logitech-options'
 cask 'mplayerx'
 cask 'name-mangler'
-cask 'osxfuse'
 cask 'resolutionator'
 cask 'soulver2'
-cask 'stay'
 cask 'ubersicht'
 cask 'vlc'
+cask 'xbar'
 
 # Fonts
 tap 'homebrew/cask-fonts'
@@ -110,7 +104,6 @@ cask 'font-clear-sans'
 cask 'font-menlo-for-powerline'
 cask 'font-office-code-pro'
 cask 'font-open-sans'
-cask 'font-open-sans-condensed'
 cask 'font-terminus'
 cask 'font-ubuntu'
 cask 'font-xkcd'
@@ -119,24 +112,18 @@ cask 'font-xkcd'
 cask 'bbedit'
 cask 'chromedriver'
 cask 'cyberduck'
-cask 'dash'
-cask 'docker'
 cask 'drawio'
-cask 'fork'
 cask 'hex-fiend'
 cask 'insomnia'
-cask 'kaleidoscope'
 cask 'keycastr'
 cask 'licecap'
-cask 'paw'
-cask 'postico'
-cask 'robo-3t'
+cask 'orbstack'
+cask 'rapidapi'
+cask 'setapp'
 cask 'sequel-pro'
 cask 'slack'
 cask 'transmit'
-cask 'vagrant'
-cask 'virtualbox'
-cask 'visual-studio-code'
+cask 'visual-studio-code-insiders'
 
 # noct
 if hostname == 'noct'
@@ -156,11 +143,7 @@ if hostname == 'noct'
   ]
   brew 'get_iplayer'
 
-  cask 'basecamp'
-
-  brew 'go-jsonnet'
   brew 'influxdb'
-  brew 'jsonnet-bundler'
   brew 'mariadb'
   cask 'lens'
 
@@ -179,25 +162,31 @@ if hostname == 'noct'
   cask 'avidemux'
   cask 'balenaetcher'
   cask 'calibre'
-  cask 'deluge'
   cask 'discord-ptb'
   cask 'dropshare'
+  cask 'element'
   cask 'epic-games'
   cask 'evernote'
   cask 'get-iplayer-automator'
+  cask 'gitx'
   cask 'gog-galaxy'
   cask 'handbrake'
-  cask 'istumbler'
+  cask 'kaleidoscope2'
   cask 'kapitainsky-rclone-browser'
   cask 'keybase'
+  cask 'lastfm'
+  cask 'ledger-live'
   cask 'little-snitch'
+  cask 'lm-studio'
   cask 'mailplane'
   cask 'makemkv'
   cask 'messenger'
+  cask 'microsoft-edge'
   cask 'mkvtoolnix'
   cask 'monodraw'
   cask 'notion'
   cask 'openemu'
+  cask 'orion'
   cask 'paparazzi'
   cask 'parallels'
   cask 'plex'
@@ -218,9 +207,9 @@ if hostname == 'noct'
   cask 'spotify'
   cask 'steam'
   cask 'suspicious-package'
-  cask 'tableplus'
   cask 'teamspeak-client'
   cask 'transmission'
+  cask 'utm'
   cask 'virtualc64'
   cask 'viscosity'
   cask 'vmware-fusion'
@@ -235,26 +224,26 @@ if hostname == 'noct'
   mas 'Awaken', id: 404_221_531
   mas 'Bear', id: 1_091_189_122
   mas 'Blackmagic Disk Speed Test', id: 425_264_550
+  mas 'Calca', id: 635_758_264
+  mas 'ColorSlurp', id: 1_287_239_339
+  mas 'Flame', id: 325_206_381
   mas 'GoodNotes 5', id: 1_444_383_602
-  mas 'HTTP Client', id: 418_138_339
   mas 'HiddenMe', id: 467_040_476
-  mas 'Medis', id: 1_063_631_769
-  mas 'Microsoft Remote Desktop 10', id: 1_295_203_466
-  mas 'MindNode', id: 1_289_197_285
+  mas 'Keepa', id: 1_533_805_339
+  mas 'MeetingBar', id: 1_532_419_400
   mas 'Pocket', id: 568_494_494
   mas 'Reeder 3', id: 880_001_334
-  mas 'Spark', id: 1_176_895_641
+  mas 'Tailscale', id: 1_475_387_142
+  mas 'TestFlight', id: 899_247_664
   mas 'Textual 7', id: 1_262_957_439
   mas 'Things 3', id: 904_280_696
-  mas 'Twitter', id: 1_482_454_543
-  mas 'WireGuard', id: 1_451_685_025
   mas 'feedly', id: 865_500_966
 
   # Safari Extensions
-  mas 'AdGuard for Safari', id: 1_440_147_259
+  mas 'Adguard for Safari', id: 1_440_147_259
   mas 'Cascadea', id: 1_432_182_561
   mas 'Dark Reader for Safari', id: 1_438_243_180
-  mas 'Evernote Web Clipper', id: 1_481_669_779
-  mas 'Octotree Pro', id: 1_457_450_145
-  mas 'Save to Pocket', id: 1_477_385_213
+  mas 'Notion Web Clipper', id: 1_559_269_364
+  mas 'OctoLinkter', id: 1_549_308_269
+  mas 'xSearch for Safari', id: 1_579_902_068
 end
