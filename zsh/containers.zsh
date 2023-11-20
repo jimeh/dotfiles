@@ -30,12 +30,21 @@ if command-exists podman; then
   alias pc="podman-compose"
 fi
 
-if command-exists orbctl; then
-  alias oc="orbctl"
+if command-exists orb; then
+  alias oc="orb"
 
-  if [ ! -f "${DOTZSH_SITEFUNS}/_orbctl" ]; then
-    echo "Setting up completion for orbctl -- ${DOTZSH_SITEFUNS}/_orbctl"
-    orbctl completion zsh > "${DOTZSH_SITEFUNS}/_orbctl"
-    chmod +x "${DOTZSH_SITEFUNS}/_orbctl"
-  fi
+  _setup-orb-completion() {
+    local target
+    target="${ZSH_COMPLETIONS}/_orb"
+
+    if [ ! -f "$target" ] || [ "$target" -ot "$(command -v orb)" ]; then
+      echo "Setting up completion for orb -- $target"
+      mkdir -p "$(dirname "$target")"
+      orb completion zsh > "$target"
+      chmod +x "$target"
+      autoload -U compinit && compinit
+    fi
+  }
+
+  _setup-orb-completion
 fi
