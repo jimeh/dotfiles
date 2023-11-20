@@ -96,7 +96,7 @@ RTX_INIT="$RTX_HOME/shell/init.zsh"
 export RTX_INSTALL_PATH="$RTX_HOME/bin/rtx"
 
 if ! command-exists rtx; then
-  read -q 'REPLY?rtx is not installed, install with curl `https://rtx.pub/install.sh | sh`? [y/N]:' &&
+  read -q 'REPLY?rtx is not installed, install with `curl https://rtx.pub/install.sh | sh`? [y/N]:' &&
     echo && curl https://rtx.pub/install.sh | sh
 fi
 
