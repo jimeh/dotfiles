@@ -20,7 +20,7 @@
         domain: com.apple.dock
         key: largesize
         type: float
-        value: 70
+        value: 65
       notify: restart Dock
     - name: "Dock: Do not show recent apps"
       osx_defaults:
