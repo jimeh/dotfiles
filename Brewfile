@@ -151,6 +151,9 @@ if hostname == 'noct'
   brew 'node_exporter'
   brew 'prometheus'
 
+  tap 'jimeh/macos-battery-exporter'
+  brew 'macos-battery-exporter'
+
   cask '4k-video-downloader'
   cask 'adobe-creative-cloud'
   cask 'aegisub'
