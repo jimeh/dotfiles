@@ -213,6 +213,7 @@ dot_symlink() {
     done
   fi
 
+  mkdir -p "$(dirname "$target")"
   symlink "$source" "$target"
 }
 
@@ -249,6 +250,7 @@ display_help() {
   echo '      homebrew: Install Homebrew (Mac OS X only).'
   echo '         rbenv: Install rbenv, a Ruby version manager.'
   echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
+  echo '      terminfo: Install terminfo.'
   echo '          help: Display this message.'
 }
 
