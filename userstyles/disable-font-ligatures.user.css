@@ -1,0 +1,15 @@
+/* ==UserStyle==
+@name          Disable Font Ligatures
+@description   Disable font ligatures in all web pages
+@version       1.0.0
+@license       CC0-1.0
+@author        Jim Myhrberg (https://jimeh.me/)
+@namespace     jimeh.me
+@homepageURL   https://github.com/jimeh/dotfiles/blob/main/userstyles/disable-font-ligatures.user.css
+@updateURL     https://github.com/jimeh/dotfiles/raw/main/userstyles/disable-font-ligatures.user.css
+@preprocessor  default
+==/UserStyle== */
+
+body {
+  font-variant-ligatures: none;
+}
