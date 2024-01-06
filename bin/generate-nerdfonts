@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+set -e
+
+show-help() {
+  echo "Usage: $(basename "$0") [<options>] <font-patcher-script-path>" \
+    "<output-dir> [<font-sources>]"
+  echo ""
+  echo "Generates Nerd Fonts from source fonts."
+  echo ""
+  echo "By default generates Nerd Font, Nerd Font Mono and Nerd Font Propo"
+  echo "variants for all font files."
+  echo ""
+  echo "Arguments:"
+  echo "  <font-patcher-script-path>  Path to font-patcher script"
+  echo "  <output-dir>                Output directory for generated fonts"
+  echo "  <font-sources>              Optional one or more font sources." \
+    "Can be directories or files (default: current directory)"
+  echo ""
+  echo "Options:"
+  echo "  --normal, -n / --no-normal  Generate only/skip Nerd Font variant"
+  echo "  --mono, -m / --no-mono      Generate only/skip Nerd Font Mono variant"
+  echo "  --propo, -p / --no-prop     Generate only/skip Nerd Font Propo variant"
+  echo "  --help, -h                  Show this help message"
+}
+
+main() {
+  local args=()
+  local generate_normal="1"
+  local generate_mono="1"
+  local generate_propo="1"
+
+  # Parsing flags
+  while [[ "$#" -gt 0 ]]; do
+    case $1 in
+      --help | -h)
+        show-help
+        exit 0
+        ;;
+      --normal | -n)
+        generate_normal="1"
+        generate_mono=""
+        generate_propo=""
+        ;;
+      --no-normal) generate_normal="" ;;
+      --mono | -m)
+        generate_mono="1"
+        generate_normal=""
+        generate_propo=""
+        ;;
+      --no-mono) generate_mono="" ;;
+      --propo | -p)
+        generate_propo="1"
+        generate_normal=""
+        generate_mono=""
+        ;;
+      --no-propo) generate_propo="" ;;
+      --* | -?)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+      *)
+        args+=("$1")
+        ;;
+    esac
+    shift
+  done
+
+  local patcher="${args[0]}"
+  local outputDir="${args[1]}"
+  local sources=("${args[@]:2}")
+
+  if [[ -z "$patcher" || -z "$outputDir" ]]; then
+    show-help 1>&2
+    exit 1
+  fi
+
+  if [[ -z "$generate_normal" && -z "$generate_mono" && -z "$generate_propo" ]]; then
+    error "No Nerd Font variants selected."
+    show-help 1>&2
+    exit 1
+  fi
+
+  patcher="$(abs_path "$patcher")"
+  if [[ ! -f "$patcher" ]]; then
+    fatal "Font patcher script not found: $patcher" 1>&2
+  fi
+
+  if ! command -v fontforge > /dev/null; then
+    fatal "fontforge is not installed. Please install it first."
+  fi
+
+  if [[ ! -d "$outputDir" ]]; then
+    mkdir -p "$outputDir"
+  fi
+
+  if [[ $# -eq 0 ]]; then
+    while read -r line; do
+      sources+=("$line")
+    done < <(find-sources "$(abs_dirname "$(pwd)")")
+  fi
+
+  for item in "$@"; do
+    if [[ -d $item ]]; then
+      # If it's a directory, find sources and add to array
+      while read -r line; do
+        sources+=("$line")
+      done < <(find-sources "$item")
+    else
+      # If it's not a directory, process with abs_path and add to array
+      sources+=("$(abs_path "$item")")
+    fi
+  done
+
+  # abort if no sources found
+  if [[ ${#sources[@]} -eq 0 ]]; then
+    echo "No font files found" 1>&2
+    exit 1
+  fi
+
+  for src in "${sources[@]}"; do
+    echo "===> Processing $src"
+
+    # Nerd Font
+    if [[ -n "$generate_normal" ]]; then
+      echo "===> Generating Nerd Font for $src"
+      fontforge -lang=py -script "$patcher" --adjust-line-height --complete \
+        -out "$outputDir" "$src"
+    fi
+
+    # Nerd Font Mono
+    if [[ -n "$generate_mono" ]]; then
+      echo "===> Generating Nerd Font Mono for $src"
+      fontforge -lang=py -script "$patcher" --adjust-line-height --complete \
+        --mono \
+        -out "$outputDir" "$src"
+    fi
+
+    # Nerd Font Propo
+    if [[ -n "$generate_propo" ]]; then
+      echo "===> Generating Nerd Font Propo for $src"
+      fontforge -lang=py -script "$patcher" --adjust-line-height --complete \
+        --variable-width-glyphs \
+        -out "$outputDir" "$src"
+    fi
+  done
+}
+
+error() {
+  echo "ERROR: $1" 1>&2
+}
+
+fatal() {
+  error "$1"
+  exit 2
+}
+
+find-sources() {
+  local dir="$1"
+  find "$dir" -type f \( -iname '*.ttf' -o -iname '*.otf' -o -iname '*.ttc' \)
+}
+
+abs_dirname() {
+  local path="$1"
+  local cwd
+  cwd="$(pwd)"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}" 2> /dev/null
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+abs_path() {
+  local path="$1"
+  echo "$(cd "$(abs_dirname "$path")" && pwd)/$(basename "$path")"
+}
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+main "$@"
