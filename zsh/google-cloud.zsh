@@ -2,10 +2,6 @@
 # Google Cloud SDK setup.
 #
 
-if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-fi
-
 # Lazy load gcloud shell completion on first use.
 if command-exists gcloud; then
   _python_argcomplete() {
@@ -17,8 +13,8 @@ if command-exists gcloud; then
 
   load-gcloud-completion() {
     unset -f load-gcloud-completion _python_argcomplete
-    if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then
-      source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+    if [ -n "$HOMEBREW_PREFIX" ]; then
+      source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
     fi
   }
 fi

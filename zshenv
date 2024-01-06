@@ -68,6 +68,12 @@ command-exists() {
   return $?
 }
 
+source-if-exists() {
+  if [ -f "$1" ]; then
+    source "$1"
+  fi
+}
+
 # ==============================================================================
 # System Environment Setup
 # ==============================================================================
@@ -124,6 +130,26 @@ fi
 # Homebrew on Apple Silicon
 if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if command-exists brew; then
+  typeset -A _brew_prefix_cache
+
+  brew-prefix() {
+    local package="$1"
+
+    if [[ -z "$package" ]]; then
+      package="__none__"
+    fi
+
+    if [[ -n "${_brew_prefix_cache[$package]}" ]]; then
+      echo "${_brew_prefix_cache[$package]}"
+    else
+      local result=$(brew --prefix "$package")
+      _brew_prefix_cache[$package]=$result
+      echo $result
+    fi
+  }
 fi
 
 # Linuxbrew
@@ -209,10 +235,11 @@ path_prepend "$HOME/.local/share/rtx/bin"
 path_prepend "$HOME/.local/share/rtx/shims"
 
 # orbstack setup
-if [ -f "$HOME/.orbstack/shell/init.zsh" ]; then
-  source "$HOME/.orbstack/shell/init.zsh"
-fi
+source-if-exists "$HOME/.orbstack/shell/init.zsh"
 path_prepend "$HOME/.orbstack/bin"
+
+# Google Cloud SDK setup
+source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # ==============================================================================
 # Path setup for select binaries installed with zinit

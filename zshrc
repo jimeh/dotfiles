@@ -116,6 +116,11 @@ fi
 # Prompt
 # ==============================================================================
 
+if ! command-exists starship; then
+  read -q 'REPLY?starship is not installed, install with `rtx install starship`? [y/N]:' &&
+    echo && rtx install starship
+fi
+
 if command-exists starship; then
   eval "$(starship init zsh --print-full-init)"
 

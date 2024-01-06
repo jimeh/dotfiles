@@ -23,11 +23,13 @@ if command-exists kubectl; then
   }
   _setup-kubectl-completion
 
-  switch() {
-    unset -f switch
-    source "$(brew --prefix switch)/switch.sh"
-    switch "$@"
-  }
+  if command-exists brew-prefix; then
+    switch() {
+      unset -f switch
+      source "$(brew-prefix switch)/switch.sh"
+      switch "$@"
+    }
+  fi
 
   export KREW_ROOT="$HOME/.krew"
   path_append "${KREW_ROOT}/bin"
