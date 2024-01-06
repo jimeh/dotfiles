@@ -15,7 +15,7 @@ SYMLINKS=(
   bitbar
   coffeelint.json
   config/kitty/kitty.conf
-  config/rtx/config.toml
+  config/mise/config.toml
   config/solargraph/config.yml
   config/starship.toml
   default-gems

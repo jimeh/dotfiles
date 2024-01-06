@@ -230,9 +230,9 @@ if command-exists sccache; then
   export RUSTC_WRAPPER=sccache
 fi
 
-# rtx setup
-path_prepend "$HOME/.local/share/rtx/bin"
-path_prepend "$HOME/.local/share/rtx/shims"
+# mise setup
+path_prepend "$HOME/.local/share/mise/bin"
+path_prepend "$HOME/.local/share/mise/shims"
 
 # orbstack setup
 source-if-exists "$HOME/.orbstack/shell/init.zsh"

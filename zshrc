@@ -91,25 +91,31 @@ if command-exists direnv; then
   eval "$(direnv hook zsh)"
 fi
 
-RTX_HOME="$HOME/.local/share/rtx"
-RTX_INIT="$RTX_HOME/shell/init.zsh"
-export RTX_INSTALL_PATH="$RTX_HOME/bin/rtx"
+MISE_HOME="$HOME/.local/share/mise"
+MISE_INIT="$MISE_HOME/shell/init.zsh"
+MISE_COMPLETIONS_PATH="${ZSH_COMPLETIONS}/_mise"
+export MISE_INSTALL_PATH="$MISE_HOME/bin/mise"
 
-if ! command-exists rtx; then
-  read -q 'REPLY?rtx is not installed, install with `curl https://rtx.pub/install.sh | sh`? [y/N]:' &&
-    echo && curl https://rtx.pub/install.sh | sh
+if ! command-exists mise; then
+  read -q 'REPLY?mise is not installed, install with `curl https://mise.jdx.dev/install.sh | sh`? [y/N]:' &&
+    echo && curl https://mise.jdx.dev/install.sh | sh
 fi
 
-if [ -f "$HOME/.local/share/rtx/bin/rtx" ]; then
-  path_prepend "$RTX_HOME/bin"
-fi
+if command-exists mise; then
+  alias mi="mise"
 
-if command-exists rtx; then
-  if [ ! -f "$RTX_INIT" ] || [ "$RTX_INIT" -ot "$RTX_INSTALL_PATH" ]; then
-    mkdir -p "$(dirname "$RTX_INIT")"
-    rtx activate zsh > "$RTX_INIT"
+  if [ ! -f "$MISE_INIT" ] || [ "$MISE_INIT" -ot "$MISE_INSTALL_PATH" ]; then
+    mkdir -p "$(dirname "$MISE_INIT")"
+    mise activate zsh > "$MISE_INIT"
   fi
-  source "$RTX_INIT"
+  source "$MISE_INIT"
+
+  if [ ! -f "$MISE_COMPLETIONS_PATH" ] || [ "$MISE_COMPLETIONS_PATH" -ot "$MISE_INSTALL_PATH" ]; then
+    echo "Setting up completion for mise -- $MISE_COMPLETIONS_PATH"
+    mkdir -p "$(dirname "$MISE_COMPLETIONS_PATH")"
+    mise completions zsh > "$MISE_COMPLETIONS_PATH"
+    chmod +x "$MISE_COMPLETIONS_PATH"
+  fi
 fi
 
 # ==============================================================================
@@ -117,8 +123,8 @@ fi
 # ==============================================================================
 
 if ! command-exists starship; then
-  read -q 'REPLY?starship is not installed, install with `rtx install starship`? [y/N]:' &&
-    echo && rtx install starship
+  read -q 'REPLY?starship is not installed, install with `mise install starship`? [y/N]:' &&
+    echo && mise install starship
 fi
 
 if command-exists starship; then
@@ -131,7 +137,7 @@ if command-exists starship; then
   compctl -K _starship starship
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
-  echo "      install with: rtx install starship" >&2
+  echo "      install with: mise install starship" >&2
 
 fi
 

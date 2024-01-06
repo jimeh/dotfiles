@@ -52,7 +52,7 @@ fi
 
 _setup-kubectx-completion() {
   local cmd="$1"
-  local dir="$HOME/.local/share/rtx/installs/kubectx/latest/completion"
+  local dir="$HOME/.local/share/mise/installs/kubectx/latest/completion"
   local target="$ZSH_COMPLETIONS/_${cmd}"
 
   if [ -f "$target" ] || [ ! -d "$dir" ]; then
@@ -74,10 +74,10 @@ _setup-kubectx-completion() {
   autoload -U compinit && compinit
 }
 
-if command-exists kubectx && ! which _kubectx &> /dev/null; then
+if command-exists kubectx; then
   _setup-kubectx-completion kubectx
 fi
 
-if command-exists kubens && ! which _kubens &> /dev/null; then
+if command-exists kubens; then
   _setup-kubectx-completion kubens
 fi

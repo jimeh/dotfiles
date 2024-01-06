@@ -1,3 +1,3 @@
-# Default Gems installed by rtx when installing new Ruby versions.
+# Default Gems installed by mise when installing new Ruby versions.
 foreman
 rubocop
