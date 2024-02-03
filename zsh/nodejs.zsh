@@ -10,12 +10,11 @@ install_node_global_packages() {
   local npm_packages=(
     @commitlint/cli
     @commitlint/config-conventional
-    @githubnext/github-copilot-cli
     @mermaid-js/mermaid-cli
     @prettier/plugin-php
     @prettier/plugin-ruby
     @prettier/plugin-xml
-    appcenter-cli
+    dockerfile-language-server-nodejs
     eslint
     eslint-config-prettier
     eslint-plugin-prettier
@@ -38,8 +37,10 @@ install_node_global_packages() {
     vscode-css-languageserver-bin
     vscode-json-languageserver
     yaml-language-server
-    yarn
   )
 
   npm install -g "${npm_packages[@]}"
+
+  # Ensure yarn and pnpm are enabled.
+  corepack enable
 }
