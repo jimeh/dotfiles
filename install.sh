@@ -16,6 +16,7 @@ SYMLINKS=(
   coffeelint.json
   config/kitty/kitty.conf
   config/mise/config.toml
+  config/mise/settings.toml
   config/solargraph/config.yml
   config/starship.toml
   default-gems

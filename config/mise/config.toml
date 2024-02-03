@@ -1,7 +1,3 @@
-[settings]
-legacy_version_file = true
-experimental = true
-
 [tools]
 actionlint = "latest"
 buf = "latest"
