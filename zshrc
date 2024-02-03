@@ -87,12 +87,13 @@ fi
 # Environment and Tool Managers
 # ==============================================================================
 
+# If available, make sure to load direnv shell hook before mise.
 if command-exists direnv; then
   eval "$(direnv hook zsh)"
 fi
 
 MISE_HOME="$HOME/.local/share/mise"
-MISE_INIT="$MISE_HOME/shell/init.zsh"
+MISE_ZSH_INIT="$MISE_HOME/shell/init.zsh"
 MISE_COMPLETIONS_PATH="${ZSH_COMPLETIONS}/_mise"
 export MISE_INSTALL_PATH="$MISE_HOME/bin/mise"
 
@@ -104,11 +105,11 @@ fi
 if command-exists mise; then
   alias mi="mise"
 
-  if [ ! -f "$MISE_INIT" ] || [ "$MISE_INIT" -ot "$MISE_INSTALL_PATH" ]; then
-    mkdir -p "$(dirname "$MISE_INIT")"
-    mise activate zsh > "$MISE_INIT"
+  if [ ! -f "$MISE_ZSH_INIT" ] || [ "$MISE_ZSH_INIT" -ot "$MISE_INSTALL_PATH" ]; then
+    mkdir -p "$(dirname "$MISE_ZSH_INIT")"
+    mise activate zsh > "$MISE_ZSH_INIT"
   fi
-  source "$MISE_INIT"
+  source "$MISE_ZSH_INIT"
 
   if [ ! -f "$MISE_COMPLETIONS_PATH" ] || [ "$MISE_COMPLETIONS_PATH" -ot "$MISE_INSTALL_PATH" ]; then
     echo "Setting up completion for mise -- $MISE_COMPLETIONS_PATH"
