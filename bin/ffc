@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+# ffc - Files for ChatGPT
+
+# Check if any arguments are provided
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <file1> <file2> ... <fileN>" >&2
+  exit 1
+fi
+
+shopt -s globstar nullglob
+
+# Iterate over provided arguments
+for file_pattern in "$@"; do
+  # Use shell expansion to find matching files
+  for file in ./$file_pattern; do
+    if [ -f "$file" ]; then
+      rel_file="${file#./}"
+      echo '`'"$rel_file"'`:'
+      echo '```'
+      cat "$file"
+      echo '```'
+      echo
+    fi
+  done
+done
