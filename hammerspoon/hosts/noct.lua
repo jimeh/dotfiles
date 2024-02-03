@@ -16,7 +16,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mailplane' }, { 'Mimestream' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'Element' }, { 'Element Nightly' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Microsoft Edge' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Google Chrome' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'S', { 'Music' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
@@ -48,11 +48,13 @@ local function init_url_handler()
         ".-://.-.github.com/krystal/",
         ".-://.-.gitbase..-.k.io/"
       },
-      uh.browsers.edge, nil, { "Slack", "Code", "Emacs" }
+      chromeProfiles.default, nil, { "Slack", "Code", "Emacs" }
     },
     {
-      { "%://meet.google.com/" },
-      chromeProfiles.work, nil, { "Slack", "Calendar", "Google Calendar" }
+      { "%://meet.google.com/" }, chromeProfiles.work, nil,
+      {
+        "Slack", "Calendar", "Google Calendar", "Notion Calendar"
+      }
     }
   }
   -- uh.url_redir_decoders = {
