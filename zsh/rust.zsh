@@ -86,6 +86,7 @@ install_rust_global_packages() {
       difftastic \
       dirstat-rs \
       exa \
-      hexyl
+      hexyl \
+      jwt-cli
   )
 }
