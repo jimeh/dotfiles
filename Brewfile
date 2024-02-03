@@ -64,6 +64,7 @@ brew 'tree'
 brew 'watch'
 brew 'wget'
 brew 'yank'
+brew 'yj'
 brew 'zsh'
 
 tap 'MisterTea/et'
