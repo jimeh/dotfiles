@@ -12,7 +12,6 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'FastGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'C', { 'Calendar' }, { 'Google Calendar' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mailplane' }, { 'Mimestream' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'Element' }, { 'Element Nightly' })
@@ -21,6 +20,12 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
+
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
+    { 'Calendar' },
+    { 'Google Calendar' },
+    { 'Notion Calendar' }
+  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
