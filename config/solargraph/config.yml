@@ -1,6 +1,6 @@
 ---
-plugins:
-  - solargraph-rails
+# plugins:
+#   - solargraph-rails
 exclude:
   - ".bundle/**/*"
   - "spec/**/*"
@@ -19,5 +19,6 @@ formatter:
       - Lint/UnusedBlockArgument
       - Lint/UnusedMethodArgument
       - Lint/UselessAssignment
+      # - Rails/Output
       - Style/EmptyMethod
       - Style/Semicolon
