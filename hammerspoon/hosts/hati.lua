@@ -35,21 +35,10 @@ end
 local uh = require('url_handler')
 
 local function init_url_handler()
-  uh.default_handler = uh.browsers.safari
+  uh.default_handler = uh.browsers.firefox
   uh.url_patterns    = {
     {
-      {
-        ".-://github.com/krystal/",
-        ".-://.-.github.com/krystal/",
-        ".-://.-.gitbase..-.k.io/"
-      },
-      uh.browsers.chrome, nil, { "Slack", "Code", "Emacs" }
-    },
-    {
       { "%://meet.google.com/" }, uh.browsers.chrome, nil,
-      {
-        "Slack", "Calendar", "Google Calendar", "Notion Calendar"
-      }
     }
   }
 
