@@ -19,6 +19,7 @@ SYMLINKS=(
   config/mise/settings.toml
   config/solargraph/config.yml
   config/starship.toml
+  config/xkeysnail/config.py
   default-gems
   default-go-packages
   erlang
