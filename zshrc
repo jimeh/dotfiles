@@ -162,6 +162,7 @@ source "$DOTZSH/less.zsh"
 source "$DOTZSH/neovim.zsh"
 source "$DOTZSH/nix.zsh"
 source "$DOTZSH/tmux.zsh"
+source "$DOTZSH/zoxide.zsh"
 
 # Development
 source "$DOTZSH/containers.zsh"
