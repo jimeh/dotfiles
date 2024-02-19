@@ -11,13 +11,13 @@ define_modmap({
 })
 
 define_keymap(lambda wm_class: wm_class in ("Gnome-terminal", "Guake"), {
-    K("Super-c"): K("C-Shift-c"),
-    K("Super-v"): K("C-Shift-v"),
 }, "Terminal keys")
 
-define_keymap(lambda wm_class: wm_class in ("firefox"), {
+define_keymap(lambda wm_class: wm_class in ("firefox", "Google-chrome"), {
     K("Super-Shift-Left_Brace"): K("C-Shift-tab"),
     K("Super-Shift-Right_Brace"): K("C-tab"),
+    K("Super-Left_Brace"): K("M-left"),
+    K("Super-Right_Brace"): K("M-right"),
 }, "Browser keys")
 
 # Emacs-like keybindings in non-Emacs applications
@@ -29,6 +29,9 @@ define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt", "Gnome-termina
     K("Super-a"): K("C-a"),
     K("Super-l"): K("C-l"),
     K("Super-t"): K("C-t"),
+    K("Super-r"): K("C-r"),
+    K("Super-z"): K("C-z"),
+    K("Super-Shift-z"): K("C-Shift-z"),
 
     # Cursor
     K("C-b"): with_mark(K("left")),
