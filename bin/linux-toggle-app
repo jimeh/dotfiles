@@ -13,9 +13,13 @@ show-help() {
   echo "Options:"
   echo "   -p   (Required) process name given to pgrep to narrow list of"
   echo "        possible target windows."
+  echo "   -f   Search full process name instead of just the first word."
   echo "   -e   Executable name or path used to launch process when it is not"
   echo "        running. If not specified, will attempt to use process name"
   echo "        instead."
+  echo "   -c   Command used to launch process when it is not running. Can used"
+  echo "        instead of -e if the launch command is more complex than a"
+  echo "        single executable."
   echo "   -w   Title/name of window which belongs to process to focus on."
   echo "        Allows regular expression matching. If not specified, the first"
   echo "        window found belonging to process will be used."
@@ -38,19 +42,27 @@ error-help() {
 }
 
 OPT_PROC=""
+OPT_FULL=""
 OPT_BIN=""
+OPT_CMD=""
 OPT_WIN=""
 OPT_BRING=""
 OPT_ALL=""
 
 parse-arguments() {
-  while getopts ":p:e:w:bah" opt; do
+  while getopts ":p:e:c:w:fbah" opt; do
     case ${opt} in
       p)
         OPT_PROC="$OPTARG"
         ;;
+      f)
+        OPT_FULL="1"
+        ;;
       e)
         OPT_BIN="$OPTARG"
+        ;;
+      c)
+        OPT_CMD="$OPTARG"
         ;;
       w)
         OPT_WIN="$OPTARG"
@@ -63,6 +75,7 @@ parse-arguments() {
         ;;
       h)
         show-help
+        exit 0
         ;;
       \?)
         error-help "Invalid option: -${OPTARG}\n" 1>&2
@@ -81,7 +94,7 @@ parse-arguments() {
     OPT_BIN="$OPT_PROC"
   fi
 
-  if ! command -v "$OPT_BIN" &> /dev/null; then
+  if [ -z "$OPT_CMD" ] && ! command -v "$OPT_BIN" &> /dev/null; then
     error "\"${OPT_BIN}\" does not seem to be a valid executable."
     exit 2
   fi
@@ -100,8 +113,13 @@ main() {
   win_id="${target[1]}"
 
   if [ -z "$pid" ]; then
-    echo "$OPT_PROC not running, launching with: \"$OPT_BIN\""
-    "$OPT_BIN"
+    if [ -n "$OPT_CMD" ]; then
+      echo "$OPT_PROC not running, launching with: \"$OPT_CMD\""
+      exec $OPT_CMD
+    else
+      echo "$OPT_PROC not running, launching with: \"$OPT_BIN\""
+      exec "$OPT_BIN"
+    fi
   else
     echo "$OPT_PROC instance found"
     focused_id="$(xdotool getactivewindow)"
@@ -130,14 +148,20 @@ find-window() {
   local pid
   local win_id
   local opts
+  local pgrep_opts
 
+  pgrep_opts=()
   opts=(--all --onlyvisible)
 
   if [ -n "$OPT_WIN" ]; then
     opts+=(--name "$OPT_WIN")
   fi
 
-  for pid in $(pgrep "$OPT_PROC"); do
+  if [ -n "$OPT_FULL" ]; then
+    pgrep_opts+=(-f)
+  fi
+
+  for pid in $(pgrep "${pgrep_opts[@]}" "$OPT_PROC"); do
     win_id="$(xdotool search --pid "$pid" "${opts[@]}")"
     if [ -n "$win_id" ]; then
       echo -e "$pid\n$win_id"
