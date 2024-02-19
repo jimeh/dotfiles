@@ -27,6 +27,7 @@ install_node_global_packages() {
     markdown-it
     prettier
     prettier-plugin-toml
+    prettier-pnp
     standard-version
     stylelint
     tslint
