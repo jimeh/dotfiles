@@ -67,6 +67,42 @@ zstyle ':completion:*:make:*' tag-order targets
 if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
 if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
 
+# setup-completions is a helper function to setup completions for a given
+# command. It takes the command name, the source of the completion, and the
+# command to run to generate the completions.
+#
+# Source should be a file that the completions are generated from. For example,
+# for rustup, the source is the rustup binary. If completions file has already
+# been generated, the source file is used to determine if the completions need
+# to be re-generated.
+#
+# The command to run to generate the completions should be a command that
+# generates zsh completions. For example, for rustup, the command is:
+#
+#     rustup completions zsh
+#
+# Example usage:
+#
+#     setup-completions rustup "$(command -v rustup)" rustup completions zsh
+#
+# This will generate the completions for rustup and place them in the
+# ZSH_COMPLETIONS directory.
+setup-completions() {
+  local cmd="$1"
+  local source="$2"
+  shift 2
+  local target
+  target="${ZSH_COMPLETIONS}/_${cmd}"
+
+  if [ ! -f "$target" ] || [ "$target" -ot "$source" ]; then
+    echo "Setting up completion for $cmd -- $target"
+    mkdir -p "$(dirname "$target")"
+    "$@" > "$target"
+    chmod +x "$target"
+    autoload -U compinit && compinit
+  fi
+}
+
 # ==============================================================================
 # Edit command line
 # ==============================================================================
@@ -94,7 +130,6 @@ fi
 
 MISE_HOME="$HOME/.local/share/mise"
 MISE_ZSH_INIT="$MISE_HOME/shell/init.zsh"
-MISE_COMPLETIONS_PATH="${ZSH_COMPLETIONS}/_mise"
 export MISE_INSTALL_PATH="$MISE_HOME/bin/mise"
 
 if ! command-exists mise; then
@@ -111,12 +146,7 @@ if command-exists mise; then
   fi
   source "$MISE_ZSH_INIT"
 
-  if [ ! -f "$MISE_COMPLETIONS_PATH" ] || [ "$MISE_COMPLETIONS_PATH" -ot "$MISE_INSTALL_PATH" ]; then
-    echo "Setting up completion for mise -- $MISE_COMPLETIONS_PATH"
-    mkdir -p "$(dirname "$MISE_COMPLETIONS_PATH")"
-    mise completions zsh > "$MISE_COMPLETIONS_PATH"
-    chmod +x "$MISE_COMPLETIONS_PATH"
-  fi
+  setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
 fi
 
 # ==============================================================================

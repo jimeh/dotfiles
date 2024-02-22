@@ -9,19 +9,7 @@ alias hl="helm"
 alias mk="minikube"
 
 if command-exists kubectl; then
-  _setup-kubectl-completion() {
-    local target
-    target="$ZSH_COMPLETIONS/_kubectl"
-
-    if [ ! -f "$target" ] || [ "$target" -ot "$(command -v kubectl)" ]; then
-      echo "Setting up completion for kubectl -- $target"
-      mkdir -p "$ZSH_COMPLETIONS"
-      kubectl completion zsh > "$target"
-      chmod +x "$target"
-      autoload -U compinit && compinit
-    fi
-  }
-  _setup-kubectl-completion
+  setup-completions kubectl "$(command -v kubectl)" kubectl completion zsh
 
   if command-exists brew-prefix; then
     switch() {

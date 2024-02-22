@@ -22,18 +22,10 @@ fi
 # ==============================================================================
 
 if command-exists rustup; then
-  _rustup() {
-    unset -f _rustup
-    eval "$(rustup completions zsh)"
-  }
-  compctl -K _rustup rustup
+  setup-completions rustup "$(command -v rustup)" rustup completions zsh
 
   if command-exists cargo; then
-    _cargo() {
-      unset -f _cargo
-      eval "$(rustup completions zsh cargo)"
-    }
-    compctl -K _cargo cargo
+    setup-completions cargo "$(command -v cargo)" rustup completions zsh cargo
   fi
 fi
 

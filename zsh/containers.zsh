@@ -32,19 +32,5 @@ fi
 
 if command-exists orb; then
   alias oc="orb"
-
-  _setup-orb-completion() {
-    local target
-    target="${ZSH_COMPLETIONS}/_orb"
-
-    if [ ! -f "$target" ] || [ "$target" -ot "$(command -v orb)" ]; then
-      echo "Setting up completion for orb -- $target"
-      mkdir -p "$(dirname "$target")"
-      orb completion zsh > "$target"
-      chmod +x "$target"
-      autoload -U compinit && compinit
-    fi
-  }
-
-  _setup-orb-completion
+  setup-completions orb "$(command -v orb)" orb completion zsh
 fi
