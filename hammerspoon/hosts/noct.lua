@@ -11,7 +11,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'ChatGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'FastGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'Lens' }, { 'Sequel Pro' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mailplane' }, { 'Mimestream' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'Element' }, { 'Element Nightly' })
@@ -40,26 +40,10 @@ end
 local uh = require('url_handler')
 
 local function init_url_handler()
-  local chromeProfiles = {
-    default = uh.chromeProfile("Default"),
-    work    = uh.chromeProfile("Profile 1"),
-  }
-
-  uh.default_handler   = uh.browsers.safari
-  uh.url_patterns      = {
+  uh.default_handler = uh.browsers.safari
+  uh.url_patterns    = {
     {
-      {
-        ".-://github.com/krystal/",
-        ".-://.-.github.com/krystal/",
-        ".-://.-.gitbase..-.k.io/"
-      },
-      chromeProfiles.default, nil, { "Slack", "Code", "Emacs" }
-    },
-    {
-      { "%://meet.google.com/" }, chromeProfiles.work, nil,
-      {
-        "Slack", "Calendar", "Google Calendar", "Notion Calendar"
-      }
+      { "%://meet.google.com/" }, uh.browsers.chrome, nil,
     }
   }
   -- uh.url_redir_decoders = {
