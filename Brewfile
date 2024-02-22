@@ -22,6 +22,7 @@ brew 'colordiff'
 brew 'coreutils'
 brew 'efm-langserver'
 brew 'fd'
+brew 'ffmpeg'
 brew 'geckodriver'
 brew 'git'
 brew 'git-crypt'
@@ -84,6 +85,7 @@ cask 'handbrake'
 cask 'iina'
 cask 'iterm2'
 cask 'karabiner-elements'
+cask 'microsoft-edge'
 cask 'orion'
 cask 'suspicious-package'
 cask 'transmission'
@@ -111,7 +113,6 @@ cask 'hex-fiend'
 cask 'insomnia'
 cask 'keycastr'
 cask 'licecap'
-cask 'microsoft-edge'
 cask 'orbstack'
 cask 'rapidapi'
 cask 'sequel-pro'
@@ -122,22 +123,6 @@ cask 'zoom'
 
 # noct
 if hostname == 'noct'
-  brew 'ffmpeg', args: %w[
-    with-fdk-aac
-    with-libass
-    with-librsvg
-    with-libsoxr
-    with-libssh
-    with-libvidstab
-    with-openh264
-    with-openssl
-    with-rubberband
-    with-srt
-    with-tesseract
-    with-webp
-  ]
-  brew 'get_iplayer'
-
   brew 'mariadb'
   cask 'lens'
 
