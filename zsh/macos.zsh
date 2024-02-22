@@ -36,40 +36,40 @@ alias osx-enable-lowpri-throttle='sudo sysctl debug.lowpri_throttle_enabled=1'
 alias devmode-on='sudo /usr/sbin/DevToolsSecurity -enable'
 alias devmode-off='sudo /usr/sbin/DevToolsSecurity -disable'
 
-#
-# Power management
-#
+# #
+# # Power management
+# #
 
-# Set all relevant power management settings to force the machine to save a
-# sleep image and immediately enter "standby" along with FileVault destroying
-# disk decryption keys.
-pm-hibernate() {
-  sudo pmset -a hibernatemode 25
-  sudo pmset -a standby 1
-  sudo pmset -a standbydelayhigh 0
-  sudo pmset -a standbydelaylow 0
-  sudo pmset -a autopoweroffdelay 0
-  sudo pmset -a destroyfvkeyonstandby 1
-}
+# # Set all relevant power management settings to force the machine to save a
+# # sleep image and immediately enter "standby" along with FileVault destroying
+# # disk decryption keys.
+# pm-hibernate() {
+#   sudo pmset -a hibernatemode 25
+#   sudo pmset -a standby 1
+#   sudo pmset -a standbydelayhigh 0
+#   sudo pmset -a standbydelaylow 0
+#   sudo pmset -a autopoweroffdelay 0
+#   sudo pmset -a destroyfvkeyonstandby 1
+# }
 
-# Restore all settings modified by pm-hibernate to their defaults, effectively
-# restoring default sleep behavior for macOS laptops.
-pm-safesleep() {
-  sudo pmset -a hibernatemode 3
-  sudo pmset -a standbydelayhigh 86400
-  sudo pmset -a standbydelaylow 0
-  sudo pmset -a autopoweroffdelay 28800
-  sudo pmset -a destroyfvkeyonstandby 0
-}
+# # Restore all settings modified by pm-hibernate to their defaults, effectively
+# # restoring default sleep behavior for macOS laptops.
+# pm-safesleep() {
+#   sudo pmset -a hibernatemode 3
+#   sudo pmset -a standbydelayhigh 86400
+#   sudo pmset -a standbydelaylow 0
+#   sudo pmset -a autopoweroffdelay 28800
+#   sudo pmset -a destroyfvkeyonstandby 0
+# }
 
-# Trigger hibernation now.
-hibernate() {
-  pm-hibernate
-  sudo pmset sleepnow
-}
+# # Trigger hibernation now.
+# hibernate() {
+#   pm-hibernate
+#   sudo pmset sleepnow
+# }
 
-# Trigger a safe-sleep now.
-safesleep() {
-  pm-safesleep
-  sudo pmset sleepnow
-}
+# # Trigger a safe-sleep now.
+# safesleep() {
+#   pm-safesleep
+#   sudo pmset sleepnow
+# }
