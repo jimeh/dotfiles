@@ -142,7 +142,7 @@ if command-exists mise; then
 
   if [ ! -f "$MISE_ZSH_INIT" ] || [ "$MISE_ZSH_INIT" -ot "$MISE_INSTALL_PATH" ]; then
     mkdir -p "$(dirname "$MISE_ZSH_INIT")"
-    mise activate zsh > "$MISE_ZSH_INIT"
+    "$MISE_INSTALL_PATH" activate zsh > "$MISE_ZSH_INIT"
   fi
   source "$MISE_ZSH_INIT"
 
@@ -153,9 +153,9 @@ fi
 # Prompt
 # ==============================================================================
 
-if ! command-exists starship; then
+if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
   read -q 'REPLY?starship is not installed, install with `mise install starship`? [y/N]:' &&
-    echo && mise install starship
+    echo && "$MISE_INSTALL_PATH" install starship
 fi
 
 if command-exists starship; then
