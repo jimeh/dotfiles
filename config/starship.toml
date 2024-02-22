@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.2.4
+# Version: 0.2.5
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -473,7 +473,7 @@ disabled = false
 [kubernetes]
 symbol = '☸ '
 format = '( [$symbol$context(\($namespace\))]($style))'
-disabled = true
+disabled = false
 
 [meson]
 format = '( [$symbol$project]($style))'
