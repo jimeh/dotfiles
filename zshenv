@@ -137,19 +137,23 @@ if command-exists brew; then
 
   brew-prefix() {
     local package="$1"
+    local cachekey
 
+    cachekey="$package"
     if [[ -z "$package" ]]; then
-      package="__none__"
+      cachekey="__none__"
     fi
 
-    if [[ -n "${_brew_prefix_cache[$package]}" ]]; then
-      echo "${_brew_prefix_cache[$package]}"
+    if [[ -n "${_brew_prefix_cache[$cachekey]}" ]]; then
+      echo "${_brew_prefix_cache[$cachekey]}"
     else
       local result=$(brew --prefix "$package")
-      _brew_prefix_cache[$package]=$result
-      echo $result
+      _brew_prefix_cache["$cachekey"]="$result"
+      echo "$result"
     fi
   }
+
+  export BREW_SITEFUNS="$(brew-prefix)/share/zsh/site-functions"
 fi
 
 # Linuxbrew

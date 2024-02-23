@@ -66,6 +66,10 @@ zstyle ':completion:*:make:*' tag-order targets
 
 if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
 if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
+if [ -d "$BREW_SITEFUNS" ]; then fpath=("$BREW_SITEFUNS" $fpath); fi
+
+autoload -Uz compinit
+compinit
 
 # setup-completions is a helper function to setup completions for a given
 # command. It takes the command name, the source of the completion, and the
