@@ -16,7 +16,7 @@ local wm = {
 }
 
 -- initialize and register keybindings
-function wm:init ()
+function wm:init()
   -- setup
   local bind = require('hs.hotkey').bind
   local bindAndRepeat = self.bindAndRepeat
@@ -31,7 +31,7 @@ function wm:init ()
   --
 
   -- show interactive grid menu
-  bind({'cmd', 'ctrl'}, '1',
+  bind({ 'cmd', 'ctrl' }, '1',
     function()
       grid.setGrid(self.gridSizes.interactive)
       grid.show(
@@ -43,69 +43,69 @@ function wm:init ()
   )
 
   -- left half
-  bind({'cmd', 'ctrl'}, 'J', self.adjustWindow(0, 0, 15, 20))
+  bind({ 'cmd', 'ctrl' }, 'J', self.adjustWindow(0, 0, 15, 20))
   -- right half
-  bind({'cmd', 'ctrl'}, 'L', self.adjustWindow(15, 0, 15, 20))
+  bind({ 'cmd', 'ctrl' }, 'L', self.adjustWindow(15, 0, 15, 20))
   -- top half
-  bind({'cmd', 'ctrl'}, 'I', self.adjustWindow(0, 0, 30, 10))
+  bind({ 'cmd', 'ctrl' }, 'I', self.adjustWindow(0, 0, 30, 10))
   -- bottom half
-  bind({'cmd', 'ctrl'}, 'K', self.adjustWindow(0, 10, 30, 10))
+  bind({ 'cmd', 'ctrl' }, 'K', self.adjustWindow(0, 10, 30, 10))
 
   -- left narrow
-  bind({'ctrl', 'alt'}, 'U', self.adjustWindow(0, 0, 12, 20))
+  bind({ 'ctrl', 'alt' }, 'U', self.adjustWindow(0, 0, 12, 20))
   -- right narrow
-  bind({'ctrl', 'alt'}, 'O', self.adjustWindow(18, 0, 12, 20))
+  bind({ 'ctrl', 'alt' }, 'O', self.adjustWindow(18, 0, 12, 20))
 
   -- left wide
-  bind({'cmd', 'ctrl'}, 'U', self.adjustWindow(0, 0, 18, 20))
+  bind({ 'cmd', 'ctrl' }, 'U', self.adjustWindow(0, 0, 18, 20))
   -- right wide
-  bind({'cmd', 'ctrl'}, 'O', self.adjustWindow(12, 0, 18, 20))
+  bind({ 'cmd', 'ctrl' }, 'O', self.adjustWindow(12, 0, 18, 20))
 
   -- center super narrow
-  bind({'cmd', 'ctrl', 'alt'}, '\\', self.adjustWindow(10, 0, 10, 20))
+  bind({ 'cmd', 'ctrl', 'alt' }, '\\', self.adjustWindow(10, 0, 10, 20))
   -- center narrow small
-  bind({'ctrl', 'alt'}, '\\', self.adjustWindow(9, 0, 12, 20))
+  bind({ 'ctrl', 'alt' }, '\\', self.adjustWindow(9, 0, 12, 20))
   -- center narrow
-  bind({'cmd', 'ctrl'}, '\\', self.adjustWindow(7, 0, 16, 20))
+  bind({ 'cmd', 'ctrl' }, '\\', self.adjustWindow(7, 0, 16, 20))
 
   -- center medium small
-  bind({'ctrl', 'alt'}, '\'', self.adjustWindow(6, 0, 18, 20))
+  bind({ 'ctrl', 'alt' }, '\'', self.adjustWindow(6, 0, 18, 20))
   -- center medium
-  bind({'cmd', 'ctrl'}, '\'', self.adjustWindow(5, 0, 20, 20))
+  bind({ 'cmd', 'ctrl' }, '\'', self.adjustWindow(5, 0, 20, 20))
 
   -- center wide small
-  bind({'ctrl', 'alt'}, ';', self.adjustWindow(4, 0, 22, 20))
+  bind({ 'ctrl', 'alt' }, ';', self.adjustWindow(4, 0, 22, 20))
   -- center wide
-  bind({'cmd', 'ctrl'}, ';', self.adjustWindow(3, 0, 24, 20))
+  bind({ 'cmd', 'ctrl' }, ';', self.adjustWindow(3, 0, 24, 20))
 
   -- maximized
-  bind({'cmd', 'ctrl'}, 'H', grid.maximizeWindow)
+  bind({ 'cmd', 'ctrl' }, 'H', grid.maximizeWindow)
 
 
   --
   -- move and resize windows
   --
 
-  bind({'cmd', 'ctrl', 'alt'}, 'F', self.resizeWindow(770, 634))
-  bind({'cmd', 'ctrl', 'alt'}, 'X', self.adjustWindow(0, 3, 10, 14))
+  bind({ 'cmd', 'ctrl', 'alt' }, 'F', self.resizeWindow(770, 634))
+  bind({ 'cmd', 'ctrl', 'alt' }, 'X', self.adjustWindow(0, 3, 10, 14))
 
   -- resize windows
-  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'J', self.resizeWindowOnGrid(-1, 0))
-  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'L', self.resizeWindowOnGrid(1, 0))
-  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'I', self.resizeWindowOnGrid(0, -1))
-  bindAndRepeat({'cmd', 'ctrl', 'alt'}, 'K', self.resizeWindowOnGrid(0, 1))
+  bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'J', self.resizeWindowOnGrid(-1, 0))
+  bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'L', self.resizeWindowOnGrid(1, 0))
+  bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'I', self.resizeWindowOnGrid(0, -1))
+  bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'K', self.resizeWindowOnGrid(0, 1))
 
   -- move window relative
-  bindAndRepeat({'ctrl', 'alt'}, 'J', self.moveWindowOnGrid(-1, 0))
-  bindAndRepeat({'ctrl', 'alt'}, 'L', self.moveWindowOnGrid(1, 0))
-  bindAndRepeat({'ctrl', 'alt'}, 'I', self.moveWindowOnGrid(0, -1))
-  bindAndRepeat({'ctrl', 'alt'}, 'K', self.moveWindowOnGrid(0, 1))
+  bindAndRepeat({ 'ctrl', 'alt' }, 'J', self.moveWindowOnGrid(-1, 0))
+  bindAndRepeat({ 'ctrl', 'alt' }, 'L', self.moveWindowOnGrid(1, 0))
+  bindAndRepeat({ 'ctrl', 'alt' }, 'I', self.moveWindowOnGrid(0, -1))
+  bindAndRepeat({ 'ctrl', 'alt' }, 'K', self.moveWindowOnGrid(0, 1))
 
   -- enlarge horizontally
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, '\\',
+  bindAndRepeat({ 'cmd', 'ctrl', 'shift' }, '\\',
     self.resizeWindowOnGridSymmetrically(1, 0))
   -- shrink horizontally
-  bindAndRepeat({'cmd', 'ctrl', 'shift'}, '\'',
+  bindAndRepeat({ 'cmd', 'ctrl', 'shift' }, '\'',
     self.resizeWindowOnGridSymmetrically(-1, 0))
 
 
@@ -113,18 +113,18 @@ function wm:init ()
   -- move windows between spaces
   --
 
-  bind({'ctrl', 'alt'}, 'left', self.moveWindowToSpace('left'))
-  bind({'ctrl', 'alt'}, 'right', self.moveWindowToSpace('right'))
-  bind({'ctrl', 'alt'}, '1', self.moveWindowToSpace('1'))
-  bind({'ctrl', 'alt'}, '2', self.moveWindowToSpace('2'))
-  bind({'ctrl', 'alt'}, '3', self.moveWindowToSpace('3'))
-  bind({'ctrl', 'alt'}, '4', self.moveWindowToSpace('4'))
-  bind({'ctrl', 'alt'}, '5', self.moveWindowToSpace('5'))
-  bind({'ctrl', 'alt'}, '6', self.moveWindowToSpace('6'))
-  bind({'ctrl', 'alt'}, '7', self.moveWindowToSpace('7'))
-  bind({'ctrl', 'alt'}, '8', self.moveWindowToSpace('8'))
-  bind({'ctrl', 'alt'}, '9', self.moveWindowToSpace('9'))
-  bind({'ctrl', 'alt'}, '0', self.moveWindowToSpace('0'))
+  bind({ 'ctrl', 'alt' }, 'left', self.moveWindowToSpace('left'))
+  bind({ 'ctrl', 'alt' }, 'right', self.moveWindowToSpace('right'))
+  bind({ 'ctrl', 'alt' }, '1', self.moveWindowToSpace('1'))
+  bind({ 'ctrl', 'alt' }, '2', self.moveWindowToSpace('2'))
+  bind({ 'ctrl', 'alt' }, '3', self.moveWindowToSpace('3'))
+  bind({ 'ctrl', 'alt' }, '4', self.moveWindowToSpace('4'))
+  bind({ 'ctrl', 'alt' }, '5', self.moveWindowToSpace('5'))
+  bind({ 'ctrl', 'alt' }, '6', self.moveWindowToSpace('6'))
+  bind({ 'ctrl', 'alt' }, '7', self.moveWindowToSpace('7'))
+  bind({ 'ctrl', 'alt' }, '8', self.moveWindowToSpace('8'))
+  bind({ 'ctrl', 'alt' }, '9', self.moveWindowToSpace('9'))
+  bind({ 'ctrl', 'alt' }, '0', self.moveWindowToSpace('0'))
 
 
   --
@@ -132,8 +132,8 @@ function wm:init ()
   --
 
   -- move to screen to the left
-  bind({'cmd', 'ctrl'}, ',',
-    function ()
+  bind({ 'cmd', 'ctrl' }, ',',
+    function()
       local win = window.focusedWindow()
       win:moveOneScreenWest()
       grid.snap(win)
@@ -141,8 +141,8 @@ function wm:init ()
   )
 
   -- move to screen to the right
-  bind({'cmd', 'ctrl'}, '.',
-    function ()
+  bind({ 'cmd', 'ctrl' }, '.',
+    function()
       local win = window.focusedWindow()
       win:moveOneScreenEast()
       grid.snap(win)
@@ -150,8 +150,8 @@ function wm:init ()
   )
 
   -- move to screen above
-  bind({'cmd', 'ctrl', 'alt'}, '.',
-    function ()
+  bind({ 'cmd', 'ctrl', 'alt' }, '.',
+    function()
       local win = window.focusedWindow()
       win:moveOneScreenNorth()
       grid.snap(win)
@@ -159,8 +159,8 @@ function wm:init ()
   )
 
   -- move to screen bellow
-  bind({'cmd', 'ctrl', 'alt'}, ',',
-    function ()
+  bind({ 'cmd', 'ctrl', 'alt' }, ',',
+    function()
       local win = window.focusedWindow()
       win:moveOneScreenSouth()
       grid.snap(win)
@@ -168,19 +168,18 @@ function wm:init ()
   )
 end
 
-
 --
 -- private methods
 --
 
-wm.bindAndRepeat = function (mod, key, fn)
+wm.bindAndRepeat = function(mod, key, fn)
   hotkey.bind(mod, key, fn, nil, fn)
 end
 
-wm.adjustWindow = function (x, y, w, h)
-  return function ()
+wm.adjustWindow = function(x, y, w, h)
+  return function()
     grid.adjustWindow(
-      function (cell)
+      function(cell)
         cell.x = x
         cell.y = y
         cell.w = w
@@ -190,8 +189,8 @@ wm.adjustWindow = function (x, y, w, h)
   end
 end
 
-wm.resizeWindow = function (w, h)
-  return function ()
+wm.resizeWindow = function(w, h)
+  return function()
     local win = window.focusedWindow()
     local f = win:frame()
 
@@ -202,7 +201,7 @@ wm.resizeWindow = function (w, h)
 end
 
 wm.moveWindow = function(x, y)
-  return function ()
+  return function()
     local win = window.focusedWindow()
     local f = win:frame()
 
@@ -212,8 +211,8 @@ wm.moveWindow = function(x, y)
   end
 end
 
-wm.moveWindowRelative = function (x, y)
-  return function ()
+wm.moveWindowRelative = function(x, y)
+  return function()
     local win = window.focusedWindow()
     local f = win:frame()
 
@@ -223,10 +222,10 @@ wm.moveWindowRelative = function (x, y)
   end
 end
 
-wm.moveWindowOnGrid = function (x, y)
-  return function ()
+wm.moveWindowOnGrid = function(x, y)
+  return function()
     grid.adjustWindow(
-      function (cell)
+      function(cell)
         local max = grid.getGrid()
 
         if ((cell.x + x) + cell.w) <= max.w then
@@ -241,10 +240,10 @@ wm.moveWindowOnGrid = function (x, y)
   end
 end
 
-wm.resizeWindowOnGrid = function (w, h)
-  return function ()
+wm.resizeWindowOnGrid = function(w, h)
+  return function()
     grid.adjustWindow(
-      function (cell)
+      function(cell)
         local max = grid.getGrid()
 
         if cell.x == 0 and cell.w == max.w then
@@ -285,10 +284,10 @@ wm.resizeWindowOnGrid = function (w, h)
   end
 end
 
-wm.resizeWindowOnGridSymmetrically = function (w, h)
-  return function ()
+wm.resizeWindowOnGridSymmetrically = function(w, h)
+  return function()
     grid.adjustWindow(
-      function (cell)
+      function(cell)
         local max = grid.getGrid()
 
         if w ~= 0 and cell.w + (w * 2) >= 2 then
@@ -320,7 +319,7 @@ end
 -- Requires ctrl+<left>/<right> and ctrl+<num> system keybindings, originally
 -- from:
 -- https://github.com/Hammerspoon/hammerspoon/issues/235#issuecomment-101069303
-wm.moveWindowToSpace = function (direction)
+wm.moveWindowToSpace = function(direction)
   return function()
     local mouseOrigin = mouse.absolutePosition()
     local win = window.focusedWindow()
@@ -337,13 +336,13 @@ wm.moveWindowToSpace = function (direction)
     timer.usleep(150000)
 
     local nextSpaceDownEvent = eventtap.event.newKeyEvent(
-      {"ctrl"}, direction, true
+      { "ctrl" }, direction, true
     )
     nextSpaceDownEvent:post()
     timer.usleep(150000)
 
     local nextSpaceUpEvent = eventtap.event.newKeyEvent(
-      {"ctrl"}, direction, false
+      { "ctrl" }, direction, false
     )
     nextSpaceUpEvent:post()
     timer.usleep(150000)
