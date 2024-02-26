@@ -53,8 +53,12 @@ function wm:init()
 
   -- left narrow
   bind({ 'ctrl', 'alt' }, 'U', self.adjustWindow(0, 0, 12, 20))
+  -- left super narrow
+  bind({ 'cmd', 'ctrl', 'alt' }, 'U', self.adjustWindow(0, 0, 9, 20))
   -- right narrow
   bind({ 'ctrl', 'alt' }, 'O', self.adjustWindow(18, 0, 12, 20))
+  -- right super narrow
+  bind({ 'cmd', 'ctrl', 'alt' }, 'O', self.adjustWindow(21, 0, 9, 20))
 
   -- left wide
   bind({ 'cmd', 'ctrl' }, 'U', self.adjustWindow(0, 0, 18, 20))
