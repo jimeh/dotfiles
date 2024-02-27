@@ -240,6 +240,9 @@ if hostname == 'hati'
   brew 'node_exporter'
   brew 'prometheus'
 
+  tap 'int128/kubelogin'
+  brew 'kubelogin'
+
   tap 'jimeh/macos-battery-exporter'
   brew 'macos-battery-exporter'
 
