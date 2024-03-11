@@ -8,6 +8,7 @@ local apptoggle = require('app_toggle')
 
 local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'ArgoCD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
@@ -22,7 +23,9 @@ local function init_hotkeys()
   )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
-    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
+    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
+  )
+  apptoggle:bind({ 'cmd', 'ctrl' }, '2',
     { 'Code', '/Applications/Visual Studio Code.app' }
   )
 end
