@@ -1,0 +1,13 @@
+[Unit]
+Description=xkeysnail
+
+[Service]
+Type=simple
+KillMode=process
+ExecStart=%h/.local/share/mise/shims/xkeysnail --watch --quiet %h/.config/xkeysnail/config.py
+Restart=on-failure
+RestartSec=3
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target
