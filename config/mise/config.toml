@@ -1,4 +1,5 @@
 [tools]
+1password-cli = "latest"
 actionlint = "latest"
 bat = "latest"
 buf = "latest"
