@@ -1,9 +1,11 @@
 [tools]
 actionlint = "latest"
+bat = "latest"
 buf = "latest"
 ctop = "latest"
 direnv = "latest"
 dust = "latest"
+exa = "latest"
 go = "latest"
 golangci-lint = "latest"
 goreleaser = "latest"

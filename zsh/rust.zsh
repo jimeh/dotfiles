@@ -72,12 +72,10 @@ install_rust_global_packages() {
 
     RUSTC_WRAPPER=sccache cargo binstall -y \
       bacon \
-      bat \
       cargo-edit \
       cargo-update \
       difftastic \
       dirstat-rs \
-      exa \
       hexyl \
       jwt-cli
   )
