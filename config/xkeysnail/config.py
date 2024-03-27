@@ -100,6 +100,8 @@ define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt", "Gnome-termina
 
     # Cancel
     K("C-g"): [K("esc"), set_mark(False)],
+    K("Super-g"): K("C-g"),
+    K("Super-Shift-g"): K("C-Shift-g"),
 
     # Escape
     K("C-q"): escape_next_key,
