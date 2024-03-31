@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.2.7
+# Version: 0.3.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -54,6 +54,7 @@ $gradle\
 $lua\
 $nim\
 $nodejs\
+$bun\
 $ocaml\
 $opa\
 $perl\
@@ -88,6 +89,7 @@ $custom\
 $cmd_duration\
 $status\
 $line_break\
+$direnv
 $jobs\
 $shell\
 $sudo\
@@ -257,6 +259,10 @@ disabled = false
 [buf]
 symbol = ' '
 format = '( [$symbol($version)]($style))'
+disabled = false
+
+[bun]
+format = '( [$symbol$version]($style))'
 disabled = false
 
 [c]
@@ -443,6 +449,17 @@ format = '( [$symbol$environment]($style))'
 [container]
 format = '( [$symbol \[$name\]]($style))'
 disabled = false
+
+[direnv]
+symbol = ' '
+format = '( [$symbol]($style)[($loaded(/$allowed))](red))'
+allowed_msg = ''
+denied_msg = 'denied'
+loaded_msg = ''
+not_allowed_msg = 'not allowed'
+unloaded_msg = 'not loaded'
+disabled = false
+style = 'bold green'
 
 [docker_context]
 symbol = ' '
