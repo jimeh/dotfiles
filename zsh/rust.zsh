@@ -64,7 +64,9 @@ install_rust_global_packages() {
       RUSTC_WRAPPER="" cargo binstall sccache
     fi
 
-    RUSTC_WRAPPER=sccache cargo binstall cargo-quickinstall
+    if ! command-exists cargo-quickinstall; then
+      RUSTC_WRAPPER=sccache cargo binstall cargo-quickinstall
+    fi
 
     RUSTC_WRAPPER=sccache cargo quickinstall \
       cargo-audit \
@@ -76,6 +78,7 @@ install_rust_global_packages() {
       cargo-update \
       difftastic \
       dirstat-rs \
+      gitu \
       hexyl \
       jwt-cli
   )
