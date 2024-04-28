@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v0.0.1</xbar.version>
+# <xbar.version>v0.0.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
@@ -748,9 +748,9 @@ module Mise
 
     def outdated_list
       @outdated_list ||= envs.each_with_object({}) do |env, memo|
-        memo[env.path] = JSON.parse(
-          cmd(mise_path, 'outdated', '--json', dir: env.path)
-        )
+        out = cmd(mise_path, 'outdated', '--json', dir: env.path)
+        out = '{}' if out.empty?
+        memo[env.path] = JSON.parse(out)
       end
     end
   end
