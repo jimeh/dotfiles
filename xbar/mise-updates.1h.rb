@@ -380,6 +380,10 @@ module Mise
       source_version(env).version if missing?(env)
     end
 
+    def requested_version(env)
+      source_version(env)&.requested_version
+    end
+
     def source_version(env)
       versions(env)&.find { |v| !v.source.nil? }
     end
@@ -656,8 +660,13 @@ module Mise
           unless tool.missing?(env)
             printer.item("→ Active: #{tool.active_version(env)}")
           end
-          if tool.latest_version(env)
-            printer.item("↑ Required: #{tool.latest_version(env)}")
+          latest_version = tool.latest_version(env)
+          if latest_version
+            printer.item("↑ Latest: #{latest_version}")
+          end
+          requested_version = tool.requested_version(env)
+          if requested_version
+            printer.item("→ Requested: #{requested_version}")
           end
           printer.sep
           printer.item('Installed:')
