@@ -8,6 +8,7 @@ local apptoggle = require('app_toggle')
 
 local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'HuggingChat' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'ArgoCD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail' })
