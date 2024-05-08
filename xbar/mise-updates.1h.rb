@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v0.0.2</xbar.version>
+# <xbar.version>v0.1.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
@@ -12,7 +12,7 @@
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
 # <xbar.var>string(VAR_MISE_PATH=""): Path to "mise" executable.</xbar.var>
-# <xbar.var>string(VAR_EXTRA_ROOTS=""): Comma-separated list of extra paths to process in addition to globals.</xbar.var>
+# <xbar.var>string(VAR_ENVIRONMENT_ROOTS=""): Comma-separated list of extra paths to process in addition to $HOME.</xbar.var>
 # <xbar.var>string(VAR_UPGRADE_ALL_EXCLUDE=""): Comma-separated list formulas/casks to exclude from upgrade all operations.</xbar.var>
 
 # rubocop:enable Layout/LineLength
@@ -329,7 +329,7 @@ module Mise
 
     def full_name
       if global?
-        'Global'
+        '~ (Global)'
       else
         relative_path(path)
       end
@@ -362,7 +362,8 @@ module Mise
       if missing?(env)
         :install
       elsif outdated?(env)
-        if !active_in_other?(env, active_version(env))
+        active = active_version(env)
+        if !active.nil? && !desired_in_other?(env, active)
           :upgrade
         else
           :install
@@ -401,7 +402,20 @@ module Mise
     end
 
     def active(env)
-      @active ||= versions(env).find(&:active)
+      versions(env).find(&:active)
+    end
+
+    def desired_in_other?(env, version)
+      @versions.any? do |env_path, vers|
+        next if env_path == env.path
+
+        outdated = @outdated&.dig(env_path)
+        if outdated
+          outdated.requested == version
+        else
+          vers.any? { |v| v.active && v.version == version }
+        end
+      end
     end
 
     def active_in_other?(env, version)
@@ -564,14 +578,11 @@ module Mise
       printer.item('Settings')
       printer.sep
 
-      printer.item('Extra Root Paths:')
-      extra_roots = config.as_set('VAR_EXTRA_ROOTS')
-      if extra_roots.empty?
-        printer.item('<None>')
-      else
-        extra_roots.each do |root|
-          printer.item(root)
-        end
+      extra_roots = config.as_set('VAR_ENVIRONMENT_ROOTS')
+      printer.item('Environment Root Paths:')
+      printer.item('~ (Home Directory / Global)')
+      extra_roots.each do |root|
+        printer.item("  #{root}")
       end
     end
 
@@ -588,9 +599,9 @@ module Mise
       return unless env_tools.size.positive?
 
       printer.sep
-      printer.item(env.name, alt: env.full_name)
+      printer.item(env.full_name)
 
-      all_tools = env_tools.reject { |f| upgrade_all_exclude?(f.name) }
+      all_tools = env_tools.reject { |tool| upgrade_all_exclude?(tool.name) }
       excluded = (env_tools - all_tools)
       printer.item("Upgrade All (#{all_tools.size})") do |printer|
         to_install = []
@@ -619,13 +630,13 @@ module Mise
         end
 
         if all_tools.size.positive?
-
           printer.item(
-            '⬆️ Upgrade',
+            "⬆️ Upgrade (#{all_tools.size})",
             terminal: true, refresh: true,
             shell: cmds
           )
         end
+
         if excluded.size.positive?
           printer.sep
           printer.item("Excluded (#{excluded.size}):")
@@ -642,47 +653,98 @@ module Mise
         name = tool.name
         name += ' ⤫' if upgrade_all_exclude?(name)
         printer.item(name) do |printer|
-          if tool.missing?(env)
-            text = "➡️ Install (#{tool.latest_version(env)})"
+          mise_operation = tool.upgrade_operation(env)
+
+          if mise_operation == :install
+            text = "➡️ Install (→ #{tool.latest_version(env)})"
           else
-            text = '⬆️ Upgrade'
-            alt_text = "#{text} " \
-                       "(#{tool.active_version(env)} → #{tool.latest_version(env)})"
+            text = "⬆️ Upgrade (↑ #{tool.latest_version(env)})"
+            alt_text = '⬆️ Upgrade ' \
+                       "(#{tool.active_version(env)} → " \
+                       "#{tool.latest_version(env)})"
           end
 
           printer.item(
             text,
             alt: alt_text || text,
             terminal: true, refresh: true,
-            shell: [mise_path, tool.upgrade_operation(env).to_s, tool.name]
+            shell: [mise_path, mise_operation.to_s, tool.install_name(env)]
           )
           printer.sep
-          unless tool.missing?(env)
-            printer.item("→ Active: #{tool.active_version(env)}")
-          end
+
           latest_version = tool.latest_version(env)
           if latest_version
             printer.item("↑ Latest: #{latest_version}")
           end
+
+          active_version = tool.active_version(env)
+          printer.item("→ Active: #{active_version || '<Missing>'}")
+
           requested_version = tool.requested_version(env)
           if requested_version
             printer.item("→ Requested: #{requested_version}")
           end
+
+          other_envs = envs.select { |e| env != e && tool.for_env?(e) }
+          if other_envs.size.positive?
+            printer.sep
+            printer.item('Other Environments') do |printer|
+              other_envs.each_with_index do |other_env, index|
+                printer.item(other_env.full_name)
+                latest_version = tool.latest_version(other_env)
+                if latest_version
+                  printer.item("↑ Latest: #{latest_version}")
+                end
+
+                active_version = tool.active_version(other_env)
+                printer.item("→ Active: #{active_version || '<Missing>'}")
+
+                requested_version = tool.requested_version(other_env)
+                if requested_version
+                  printer.item("→ Requested: #{requested_version}")
+                end
+
+                printer.sep if index < other_envs.size - 1
+              end
+            end
+          end
+
           printer.sep
           printer.item('Installed:')
           tool.versions(env).each do |v|
             next unless v.installed
 
-            icon = v.active ? '✔️' : '➖'
+            icon = if v.active
+                     '✔️'
+                   elsif tool.active_in_other?(env, v.version)
+                     '➕'
+                   else
+                     '➖'
+                   end
+
             printer.item("#{icon} #{v.version}") do |printer|
               printer.item("Active: #{v.active ? 'Yes' : 'No'}")
+              if v.requested_version
+                printer.item("Requested: #{v.requested_version}")
+              end
               if v.source&.path
                 printer.item("Set by: #{relative_path(v.source.path)}")
               end
-              if v.active
-                printer.item("Requested: #{v.requested_version}")
-              end
               printer.item("Path: #{v.install_path}")
+
+              active_envs = envs.select do |e|
+                active_version = tool.active_version(e)
+                !active_version.nil? && active_version == v.version
+              end
+
+              printer.sep
+              text = ['Active in Environments:']
+              text << '<None>' if active_envs.empty?
+              printer.item(text.join(' '))
+              active_envs.each do |e|
+                printer.item(e.full_name)
+              end
+
               printer.sep
               printer.item('🚫 Uninstall') do |printer|
                 printer.item('Are you sure?')
@@ -715,7 +777,7 @@ module Mise
     end
 
     def envs
-      @envs ||= ([ENV['HOME']] + config.as_set('VAR_EXTRA_ROOTS').to_a)
+      @envs ||= ([ENV['HOME']] + config.as_set('VAR_ENVIRONMENT_ROOTS').to_a)
                 .uniq.map { |p| Env.new(p) }
     end
 
