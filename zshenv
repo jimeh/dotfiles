@@ -224,6 +224,8 @@ path_prepend "$CARGO_HOME/bin"
 export RUST_BACKTRACE=1
 if command-exists sccache; then
   export RUSTC_WRAPPER=sccache
+else
+  export RUSTC_WRAPPER=""
 fi
 
 # mise setup

@@ -8,8 +8,8 @@
 
 alias c="cargo"
 
-if command-exists exa; then
-  alias ll="exa -lagHS --color-scale --icons --git"
+if command-exists eza; then
+  alias ll="eza -lagHS --icons --git"
   alias llt="ll --tree"
 fi
 
@@ -53,35 +53,5 @@ install_rust_global_packages() {
       rust-analyzer \
       rust-src \
       rustfmt
-
-    # Install or update cargo-binstall
-    if ! command-exists cargo-binstall; then
-      RUSTC_WRAPPER="${commands[sccache]}" cargo install cargo-binstall
-    fi
-
-    # Install sccache before the rest of the packages.
-    if ! command-exists sccache; then
-      RUSTC_WRAPPER="" cargo binstall sccache
-    fi
-
-    if ! command-exists cargo-quickinstall; then
-      RUSTC_WRAPPER=sccache cargo binstall cargo-quickinstall
-    fi
-
-    RUSTC_WRAPPER=sccache cargo quickinstall \
-      cargo-audit \
-      cargo-info
-
-    RUSTC_WRAPPER=sccache cargo binstall -y \
-      bacon \
-      bat \
-      cargo-edit \
-      cargo-update \
-      difftastic \
-      dirstat-rs \
-      exa \
-      gitu \
-      hexyl \
-      jwt-cli
   )
 }
