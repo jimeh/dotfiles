@@ -138,5 +138,16 @@ function obj:toggle(apps)
   return mostRecentApp:activate()
 end
 
+--- app_toggle:showAppInfo()
+--- Method
+--- Shows an alert with information about the frontmost application.
+function obj:showAppInfo()
+  local app = hs.application.frontmostApplication()
+
+  hs.alert.show(app:name() .. " (" .. app:bundleID() .. ")")
+  hs.alert.show(app:path())
+  hs.alert.show("PID: " .. app:pid())
+end
+
 -- the end
 return obj
