@@ -60,7 +60,6 @@
 "npm:yaml-language-server" = "latest"
 1password-cli = "latest"
 actionlint = "latest"
-awscli = "latest"
 buf = "latest"
 ctop = "latest"
 direnv = "latest"
