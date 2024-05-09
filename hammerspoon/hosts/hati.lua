@@ -7,6 +7,8 @@ local obj = {}
 local apptoggle = require('app_toggle')
 
 local function init_hotkeys()
+  hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
+
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'HuggingChat' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'ArgoCD' })
@@ -38,7 +40,7 @@ end
 local uh = require('url_handler')
 
 local function init_url_handler()
-  uh.default_handler = uh.browsers.firefox
+  uh.default_handler = uh.browsers.arc
   uh.url_patterns    = {
     {
       { "%://meet.google.com/" }, uh.browsers.chrome, nil,
@@ -54,7 +56,7 @@ end
 
 function obj.init()
   init_hotkeys()
-  -- init_url_handler()
+  init_url_handler()
 end
 
 return obj

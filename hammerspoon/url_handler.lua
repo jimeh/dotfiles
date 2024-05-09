@@ -43,7 +43,7 @@ obj.url_redir_decoders = nil
 --- A table of browser names and corresponding bundle IDs that can be used in
 --- the url_patterns table.
 obj.browsers = {
-  arc       = 'com.arc.arc',
+  arc       = 'company.thebrowser.Browser',
   brave     = 'com.brave.Browser',
   camino    = 'org.mozilla.camino',
   chrome    = 'com.google.Chrome',
@@ -59,6 +59,7 @@ obj.browsers = {
   palemoon  = 'com.palemoon.palemoon',
   safari    = 'com.apple.Safari',
   seamonkey = 'org.mozilla.seamonkey',
+  sigmaos   = 'com.sigmaos.sigmaos.macos',
   tor       = 'org.mozilla.tor browser',
   vivaldi   = 'com.vivaldi.Vivaldi',
   waterfox  = 'net.waterfox.waterfox',
