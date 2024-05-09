@@ -52,6 +52,7 @@ install_ruby_global_packages() {
     rubocop
     rubocop-daemon
     ruby-debug-ide
+    ruby-lsp
     seeing_is_believing
     solargraph
     solargraph-rails
