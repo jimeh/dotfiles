@@ -5,6 +5,8 @@
 .bundle
 .byebug_history
 .dir-locals.el
+.mise.*.local.toml
+.mise.local.toml
 .projectile
 .stfolder
 .stignore
