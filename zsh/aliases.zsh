@@ -101,3 +101,13 @@ extract() {
   fi
 }
 alias ext=extract
+
+root-ca() {
+  local hostname="$1"
+  local port="${2:-443}"
+  echo |
+    openssl s_client \
+      -servername "$hostname" \
+      -connect "${hostname}:${port}" 2> /dev/null |
+    openssl x509 -noout -text
+}
