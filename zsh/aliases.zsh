@@ -46,6 +46,11 @@ if command-exists flutter; then
   alias fl="flutter"
 fi
 
+# hwatch
+if command-exists hwatch; then
+  alias wa="hwatch"
+fi
+
 # Misc.
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
