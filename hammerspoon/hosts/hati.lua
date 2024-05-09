@@ -54,7 +54,7 @@ end
 
 function obj.init()
   init_hotkeys()
-  init_url_handler()
+  -- init_url_handler()
 end
 
 return obj
