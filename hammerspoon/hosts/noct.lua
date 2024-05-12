@@ -37,31 +37,31 @@ end
 -- URL Handling
 --------------------------------------------------------------------------------
 
-local uh = require('url_handler')
+-- local uh = require('url_handler')
 
-local function init_url_handler()
-  uh.default_handler = uh.browsers.safari
-  uh.url_patterns    = {
-    {
-      { "%://meet.google.com/" }, uh.browsers.chrome, nil,
-    }
-  }
-  -- uh.url_redir_decoders = {
-  --   {
-  --     "MS Teams links",
-  --     function(_, _, params, fullUrl)
-  --       if params.url then
-  --         return params.url
-  --       else
-  --         return fullUrl
-  --       end
-  --     end,
-  --     nil, true, "Microsoft Teams"
-  --   },
-  -- }
+-- local function init_url_handler()
+--   uh.default_handler = uh.browsers.arc
+--   uh.url_patterns    = {
+--     {
+--       { "%://meet.google.com/" }, uh.browsers.chrome, nil,
+--     }
+--   }
+--   -- uh.url_redir_decoders = {
+--   --   {
+--   --     "MS Teams links",
+--   --     function(_, _, params, fullUrl)
+--   --       if params.url then
+--   --         return params.url
+--   --       else
+--   --         return fullUrl
+--   --       end
+--   --     end,
+--   --     nil, true, "Microsoft Teams"
+--   --   },
+--   -- }
 
-  uh:init()
-end
+--   uh:init()
+-- end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -69,7 +69,7 @@ end
 
 function obj.init()
   init_hotkeys()
-  init_url_handler()
+  -- init_url_handler()
 end
 
 return obj
