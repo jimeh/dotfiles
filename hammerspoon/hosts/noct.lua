@@ -7,6 +7,8 @@ local obj = {}
 local apptoggle = require('app_toggle')
 
 local function init_hotkeys()
+  hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
+
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'ChatGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'HuggingChat' })
