@@ -1,8 +1,0 @@
-cargo_binstall = true
-experimental = true
-legacy_version_file = true
-
-[status]
-missing_tools = "never"
-show_env = true
-show_tools = false
