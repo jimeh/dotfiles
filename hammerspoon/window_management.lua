@@ -330,7 +330,7 @@ wm.moveWindowToSpace = function(direction)
     local clickPoint = win:zoomButtonRect()
 
     -- click and hold next to the zoom button close to the top of the window
-    clickPoint.x = clickPoint.x + clickPoint.w + 10
+    clickPoint.x = clickPoint.x + clickPoint.w + 2
     clickPoint.y = win:frame().y + 7
 
     local mouseClickEvent = eventtap.event.newMouseEvent(
