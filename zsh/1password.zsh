@@ -80,6 +80,8 @@ setup_op_shell_plugins_using_functions() {
     echo -e "unalias ${alias_name}"
     echo -e "${alias_name}() {\n  ${command} \"\$@\"\n}"
   done <<< "$aliases" > "$cache_file"
+
+  source "$cache_file"
 }
 
 # Setup 1Password CLI shell plugin integration with custom function that makes
