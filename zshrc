@@ -32,44 +32,155 @@ fi
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
-# Enable interactive selection of completions.
-zinit for @OMZ::lib/completion.zsh
+# ==============================================================================
+# History
+# ==============================================================================
 
 # Set various sane defaults for ZSH history management.
 zinit for @OMZ::lib/history.zsh
 
-# Enable Ruby Bundler plugin from oh-my-zsh.
-zinit for @OMZ::plugins/bundler
+# Map history search to ctrl-p and ctrl-n.
+# bindkey '^p' history-beginning-search-backward
+# bindkey '^n' history-beginning-search-forward
 
-zinit light-mode wait lucid \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-  for @zdharma-continuum/fast-syntax-highlighting
+## History file configuration
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=50000
 
-zinit light-mode wait lucid blockf \
-  for @zsh-users/zsh-completions
-
-zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
-  for @zsh-users/zsh-autosuggestions
+## History command configuration
+setopt append_history          # append history to HISTFILE
+setopt extended_history        # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first  # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_find_no_dups       # do not display a duplicate history entry
+setopt hist_ignore_dups        # ignore duplicated commands history list
+setopt hist_ignore_space       # ignore commands that start with space
+setopt hist_reduce_blanks      # remove superfluous blanks before adding to history
+setopt hist_verify             # show command with history expansion to user before running it
+setopt inc_append_history_time # add timestamp to HISTFILE in order of execution
+setopt share_history           # share command history data
 
 # ==============================================================================
 # Completion
 # ==============================================================================
 
-# Group completions by type under group headings
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '%B%d%b'
-
-# Improve selection of Makefile completions - from:
-# https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
-zstyle ':completion:*:make:*:targets' call-command true
-zstyle ':completion:*:make:*' tag-order targets
-
 if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
 if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
 if [ -d "$BREW_SITEFUNS" ]; then fpath=("$BREW_SITEFUNS" $fpath); fi
 
+# Enable interactive selection of completions.
+zinit for @OMZ::lib/completion.zsh
+
+# Add generic cross platform  clipcopy and clippaste commands to copy and paste
+# from the system clipboard.
+zinit for @OMZ::lib/clipboard.zsh
+
+# Install fzf-tab if fzf is available.
+if command-exists fzf; then
+  zinit light-mode wait lucid for @Aloxaf/fzf-tab
+  zinit light-mode wait lucid for @Freed-Wu/fzf-tab-source
+fi
+
+zinit light-mode wait lucid blockf for @zsh-users/zsh-completions
+
+zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
+  for @zsh-users/zsh-autosuggestions
+
+# Map ctrl+x h to show completion context info.
+bindkey '^Xh' _complete_help
+
+# Group completions by type under group headings
+zstyle ':completion:*' format '%B[%d]%b'
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-grouped true
+zstyle ':autocomplete:*' groups 'always'
+
+# Case-insensitive completion.
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:]_-}' 'r:|=*' 'l:|=* r:|=*'
+
+# git
+zstyle ':completion:*:*:git:*:branches' group-name 'local branches'
+zstyle ':completion:*:*:git:*:remote-branches' group-name 'remote branches'
+zstyle ':completion:*:*:git:*:tags' group-name 'tags'
+zstyle ':completion:*:git-checkout:*' sort false
+
+# Improve selection of Makefile completions - from:
+# https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
+zstyle ':completion:*:make:*' tag-order targets
+zstyle ':completion:*:make:*:targets' call-command true
+
 autoload -Uz compinit
 compinit
+
+# Setup fzf related stuff if it is available.
+if command-exists fzf; then
+  export FZF_DEFAULT_OPTS="
+         --bind=ctrl-k:kill-line
+         --bind=ctrl-v:half-page-down
+         --bind=alt-v:half-page-up
+         --tabstop=4
+         --highlight-line"
+
+  export FZF_CTRL_T_OPTS="
+         --walker-skip .git,node_modules,target
+         --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+  # TODO: replace pbcopy with something that's cross-platform.
+  export FZF_CTRL_R_OPTS="
+         --border=none
+         --preview 'echo {}' --preview-window up:3:hidden:wrap
+         --bind 'ctrl-/:toggle-preview'
+         --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+
+  export FZF_ALT_C_OPTS="
+         --walker-skip .git,node_modules,target
+         --preview 'tree -C {}'"
+
+  export FZF_TMUX=0
+  export FZF_TMUX_HEIGHT="100%"
+
+  cached-eval "$(command -v fzf)" fzf --zsh
+
+  zstyle ':completion:*' menu no
+  zstyle ':completion:*' special-dirs true
+
+  zstyle ':fzf-tab:*' fzf-bindings 'ctrl-v:half-page-down' 'alt-v:half-page-up'
+  zstyle ':fzf-tab:*' fzf-flags '--highlight-line' '--tabstop=4'
+  zstyle ':fzf-tab:*' switch-group '<' '>'
+
+  # Use fzf-tab's tmux popup for tab completion.
+  zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+  zstyle ':fzf-tab:*' popup-min-size 80 10
+  zstyle ':fzf-tab:*' popup-pad 0 0
+
+  if command-exists eza; then
+    fzf_dir_preview='eza -1 --color=always --icons $realpath'
+    zstyle ':fzf-tab:complete:eza:*' fzf-preview "$fzf_dir_preview"
+  else
+    fzf_dir_preview='ls -1 --color=always $realpath'
+  fi
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview "$fzf_dir_preview"
+  zstyle ':fzf-tab:complete:ls:*' fzf-preview "$fzf_dir_preview"
+
+  if command-exists bat; then
+    fzf_bat_preview='bat --color=always -n -r :500'
+    FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS --preview '$fzf_bat_preview {}'"
+    zstyle ':fzf-tab:complete:bat:*' fzf-preview "$fzf_bat_preview \$realpath"
+    zstyle ':fzf-tab:complete:cat:*' fzf-preview "$fzf_bat_preview \$realpath"
+  else
+    FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS --preview 'less {}'"
+  fi
+fi
+
+# ==============================================================================
+# Visuals
+# ==============================================================================
+
+zinit light-mode wait lucid \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+  for @zdharma-continuum/fast-syntax-highlighting
 
 # ==============================================================================
 # Edit command line
@@ -80,10 +191,10 @@ zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
 # ==============================================================================
-# Helpers
+# Helper Functions
 # ==============================================================================
 
-source "$DOTZSH/util-funcs-interactive.zsh"
+source "$DOTZSH/zshrc.funcs.zsh"
 
 # ==============================================================================
 # Private Dotfiles
@@ -151,7 +262,6 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 source "$DOTZSH/1password.zsh"
 source "$DOTZSH/copilot.zsh"
 source "$DOTZSH/emacs.zsh"
-source "$DOTZSH/fzf.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/mise.zsh"
 source "$DOTZSH/neovim.zsh"

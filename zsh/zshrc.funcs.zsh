@@ -1,5 +1,5 @@
 #
-# Interactive Utility Functions
+# zshrc helper functions
 #
 # Helpers designed for use during setup of interactive shell environments
 # (~/.zshrc ).
@@ -36,32 +36,32 @@
 setup-completions() {
   local cmd="$1"
   local source="$2"
-  local setup_cmd="$3"
-  shift 3
+  shift 2
+  local script="$@"
 
   local target_dir="${ZSH_COMPLETIONS:-$HOME/.zsh/completions}"
   local target_file="${target_dir}/_${cmd}"
+
+  if [[ -z "$cmd" || -z "$source" || -z "$script" ]]; then
+    echo "setup-completions: Missing required arguments." >&2
+    return 1
+  fi
 
   if [[ -z "$(command -v "$cmd")" ]]; then
     echo "setup-completions: Command not found: $cmd" >&2
     return 1
   fi
 
-  if [[ -z "$(command -v "$setup_cmd")" ]]; then
-    echo "setup-completions: Command not found: $setup_cmd" >&2
-    return 1
-  fi
-
-  if [[ -z "$cmd" || -z "$source" || -z "$setup_cmd" ]]; then
-    echo "setup-completions: Missing required arguments." >&2
+  if [[ -z "$source" ]]; then
+    echo "setup-completions: Source file not found: $source" >&2
     return 1
   fi
 
   # Check if the target completion file needs to be updated
   if [[ ! -f "$target_file" || "$source" -nt "$target_file" ]]; then
-    echo "setup-completions: Setting up completion for $cmd --> $target_file" >&2
+    echo "setup-completions: Setting up completion for $cmd: $script" >&2
     mkdir -p "$target_dir"
-    "$setup_cmd" "$@" >| "$target_file"
+    eval "$script" >| "$target_file"
     chmod +x "$target_file"
 
     # Only run compinit if not already loaded
