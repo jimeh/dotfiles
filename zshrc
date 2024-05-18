@@ -52,58 +52,72 @@ zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
   for @zsh-users/zsh-autosuggestions
 
 # ==============================================================================
-# Completion
+# Helpers
 # ==============================================================================
 
-# Group completions by type under group headings
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '%B%d%b'
-
-# Improve selection of Makefile completions - from:
-# https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
-zstyle ':completion:*:make:*:targets' call-command true
-zstyle ':completion:*:make:*' tag-order targets
-
-if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
-if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
-if [ -d "$BREW_SITEFUNS" ]; then fpath=("$BREW_SITEFUNS" $fpath); fi
-
-autoload -Uz compinit
-compinit
-
-# setup-completions is a helper function to setup completions for a given
-# command. It takes the command name, the source of the completion, and the
-# command to run to generate the completions.
+# setup-completions is a helper function to set up shell completions for a given
+# command. It generates Zsh completion scripts and places them in the specified
+# completions directory. If the completion file already exists, it checks if the
+# source file has been updated and regenerates the completions if necessary.
 #
-# Source should be a file that the completions are generated from. For example,
-# for rustup, the source is the rustup binary. If completions file has already
-# been generated, the source file is used to determine if the completions need
-# to be re-generated.
+# Arguments:
 #
-# The command to run to generate the completions should be a command that
-# generates zsh completions. For example, for rustup, the command is:
-#
-#     rustup completions zsh
+#   $1 - cmd:         The name of the command for which completions are being
+#                     set up.
+#   $2 - source:      The source file used to determine if completions need to
+#                     be re-generated. For example, the binary file of the
+#                     command (e.g., rustup).
+#   $@ - args:        The command to run to generate the completions. This
+#                     should produce Zsh completion scripts.
 #
 # Example usage:
 #
 #     setup-completions rustup "$(command -v rustup)" rustup completions zsh
 #
-# This will generate the completions for rustup and place them in the
-# ZSH_COMPLETIONS directory.
+# This example sets up completions for the 'rustup' command by running
+# 'rustup completions zsh', and places the generated completion script in the
+# appropriate completions directory. If the source file is newer than the target
+# completion file, the command is re-executed and the completion script is
+# updated.
+#
+# The completions are placed in the directory specified by the ZSH_COMPLETIONS
+# environment variable. If ZSH_COMPLETIONS is not set, the completions are
+# placed in $HOME/.zsh/completions by default.
 setup-completions() {
   local cmd="$1"
   local source="$2"
-  shift 2
-  local target
-  target="${ZSH_COMPLETIONS}/_${cmd}"
+  local setup_cmd="$3"
+  shift 3
 
-  if [ ! -f "$target" ] || [ "$target" -ot "$source" ]; then
-    echo "Setting up completion for $cmd -- $target"
-    mkdir -p "$(dirname "$target")"
-    "$@" > "$target"
-    chmod +x "$target"
-    autoload -U compinit && compinit
+  local target_dir="${ZSH_COMPLETIONS:-$HOME/.zsh/completions}"
+  local target_file="${target_dir}/_${cmd}"
+
+  if [[ -z "$(command -v "$cmd")" ]]; then
+    echo "setup-completions: Command not found: $cmd" >&2
+    return 1
+  fi
+
+  if [[ -z "$(command -v "$setup_cmd")" ]]; then
+    echo "setup-completions: Command not found: $setup_cmd" >&2
+    return 1
+  fi
+
+  if [[ -z "$cmd" || -z "$source" || -z "$setup_cmd" ]]; then
+    echo "setup-completions: Missing required arguments." >&2
+    return 1
+  fi
+
+  # Check if the target completion file needs to be updated
+  if [[ ! -f "$target_file" || "$source" -nt "$target_file" ]]; then
+    echo "setup-completions: Setting up completion for $cmd --> $target_file" >&2
+    mkdir -p "$target_dir"
+    "$setup_cmd" "$@" >| "$target_file"
+    chmod +x "$target_file"
+
+    # Only run compinit if not already loaded
+    if ! (whence -w compinit &> /dev/null); then
+      autoload -U compinit && compinit
+    fi
   fi
 }
 
@@ -176,6 +190,26 @@ convert-alias-to-function() {
 }
 
 # ==============================================================================
+# Completion
+# ==============================================================================
+
+# Group completions by type under group headings
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Improve selection of Makefile completions - from:
+# https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:make:*' tag-order targets
+
+if [ -d "$ZSH_COMPLETIONS" ]; then fpath=("$ZSH_COMPLETIONS" $fpath); fi
+if [ -d "$DOTZSH_SITEFUNS" ]; then fpath=("$DOTZSH_SITEFUNS" $fpath); fi
+if [ -d "$BREW_SITEFUNS" ]; then fpath=("$BREW_SITEFUNS" $fpath); fi
+
+autoload -Uz compinit
+compinit
+
+# ==============================================================================
 # Edit command line
 # ==============================================================================
 
@@ -197,7 +231,7 @@ fi
 
 # If available, make sure to load direnv shell hook before mise.
 if command-exists direnv; then
-  eval "$(direnv hook zsh)"
+  cached-eval "$(command -v direnv)" direnv hook zsh
 fi
 
 MISE_HOME="$HOME/.local/share/mise"
@@ -205,19 +239,14 @@ MISE_ZSH_INIT="$MISE_HOME/shell/init.zsh"
 export MISE_INSTALL_PATH="$MISE_HOME/bin/mise"
 
 if ! command-exists mise; then
-  read -q 'REPLY?mise is not installed, install with `curl https://mise.jdx.dev/install.sh | sh`? [y/N]:' &&
-    echo && curl https://mise.jdx.dev/install.sh | sh
+  read -q 'REPLY?mise is not installed, install with `curl https://mise.run | sh`? [y/N]:' &&
+    echo && curl https://mise.run | sh
 fi
 
 if command-exists mise; then
   alias mi="mise"
 
-  if [ ! -f "$MISE_ZSH_INIT" ] || [ "$MISE_ZSH_INIT" -ot "$MISE_INSTALL_PATH" ]; then
-    mkdir -p "$(dirname "$MISE_ZSH_INIT")"
-    "$MISE_INSTALL_PATH" activate zsh > "$MISE_ZSH_INIT"
-  fi
-  source "$MISE_ZSH_INIT"
-
+  cached-eval "$MISE_INSTALL_PATH" mise activate zsh
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
 fi
 
@@ -231,13 +260,8 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  eval "$(starship init zsh --print-full-init)"
-
-  _starship() {
-    unset -f _starship
-    eval "$(starship completions zsh)"
-  }
-  compctl -K _starship starship
+  cached-eval "$(command -v starship)" starship init zsh --print-full-init
+  setup-completions starship "$(command -v starship)" starship completions zsh
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise install starship" >&2
