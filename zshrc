@@ -114,8 +114,8 @@ fi
 if command-exists mise; then
   alias mi="mise"
 
-  cached-eval "$MISE_INSTALL_PATH" mise activate zsh
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
+  cached-eval "$MISE_INSTALL_PATH" mise activate zsh
 fi
 
 # ==============================================================================
@@ -128,8 +128,8 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  cached-eval "$(command -v starship)" starship init zsh --print-full-init
   setup-completions starship "$(command -v starship)" starship completions zsh
+  cached-eval "$(command -v starship)" starship init zsh --print-full-init
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise install starship" >&2
