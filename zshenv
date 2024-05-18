@@ -105,8 +105,8 @@ cached-eval() {
   local cache_dir="${ZSH_CACHED_EVAL_DIR:-$HOME/.local/share/zsh/cached-eval}"
 
   if [[ -z "$(command -v "$cmd")" ]]; then
-     echo "cached-eval: Command not found: $cmd" >&2
-     return 1
+    echo "cached-eval: Command not found: $cmd" >&2
+    return 1
   fi
 
   local cache_hash="$(echo -n "$full_cmd" | md5sum | awk '{print $1}')"

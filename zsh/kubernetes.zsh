@@ -35,7 +35,7 @@ _setup-kubectx-completion() {
   local dir="$HOME/.local/share/mise/installs/kubectx/latest/completion"
   local target="$ZSH_COMPLETIONS/_${cmd}"
 
-  if [ -f "$target" || ! -d "$dir" ]; then
+  if [[ -f "$target" || ! -d "$dir" ]]; then
     return
   fi
 
