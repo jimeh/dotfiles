@@ -11,14 +11,6 @@ alias mk="minikube"
 if command-exists kubectl; then
   setup-completions kubectl "$(command -v kubectl)" kubectl completion zsh
 
-  if command-exists brew-prefix; then
-    switch() {
-      unset -f switch
-      source "$(brew-prefix switch)/switch.sh"
-      switch "$@"
-    }
-  fi
-
   export KREW_ROOT="$HOME/.krew"
   path_append "${KREW_ROOT}/bin"
 
@@ -43,7 +35,7 @@ _setup-kubectx-completion() {
   local dir="$HOME/.local/share/mise/installs/kubectx/latest/completion"
   local target="$ZSH_COMPLETIONS/_${cmd}"
 
-  if [ -f "$target" ] || [ ! -d "$dir" ]; then
+  if [ -f "$target" || ! -d "$dir" ]; then
     return
   fi
 
@@ -59,7 +51,10 @@ _setup-kubectx-completion() {
   echo "  - Sym-linking from $script"
   mkdir -p "$ZSH_COMPLETIONS"
   ln -s "$script" "$target"
-  autoload -U compinit && compinit
+
+  if ! (whence -w compinit &> /dev/null); then
+    autoload -U compinit && compinit
+  fi
 }
 
 if command-exists kubectx; then
