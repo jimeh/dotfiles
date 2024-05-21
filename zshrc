@@ -82,6 +82,7 @@ if command-exists fzf; then
   zinit light-mode wait lucid atclone'git checkout fit-preview' \
     for @jimeh/fzf-tab
 
+  zstyle ':fzf-tab:sources' config-directory "$DOTZSH/fzf-tab/sources"
   zinit light-mode lucid for @Freed-Wu/fzf-tab-source
   # Disable some overly aggressive completions from fzf-tab-source.
   zstyle -d ':fzf-tab:complete:*' fzf-preview
@@ -96,9 +97,9 @@ zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
 bindkey '^Xh' _complete_help
 
 # Group completions by type under group headings
-zstyle ':completion:*' format '[%d]'
+zstyle ':completion:*' format '%d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:descriptions' format '%d'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-grouped true
 zstyle ':autocomplete:*' groups 'always'
