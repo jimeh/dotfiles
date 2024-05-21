@@ -156,8 +156,8 @@ if command-exists fzf; then
     'ctrl-v:half-page-down' \
     'alt-v:half-page-up' \
     'ctrl-k:kill-line'
-  zstyle ':fzf-tab:*' fzf-flags '\
-    --highlight-line' \
+  zstyle ':fzf-tab:*' fzf-flags \
+    '--highlight-line' \
     '--tabstop=4'
   zstyle ':fzf-tab:*' prefix ''
   zstyle ':fzf-tab:*' switch-group '<' '>'
