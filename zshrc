@@ -32,6 +32,10 @@ fi
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
+# Add generic cross platform  clipcopy and clippaste commands to copy and paste
+# from the system clipboard.
+zinit for @OMZ::lib/clipboard.zsh
+
 # ==============================================================================
 # History
 # ==============================================================================
@@ -71,14 +75,16 @@ if [ -d "$BREW_SITEFUNS" ]; then fpath=("$BREW_SITEFUNS" $fpath); fi
 # Enable interactive selection of completions.
 zinit for @OMZ::lib/completion.zsh
 
-# Add generic cross platform  clipcopy and clippaste commands to copy and paste
-# from the system clipboard.
-zinit for @OMZ::lib/clipboard.zsh
-
 # Install fzf-tab if fzf is available.
 if command-exists fzf; then
-  zinit light-mode wait lucid for @Aloxaf/fzf-tab
-  zinit light-mode wait lucid for @Freed-Wu/fzf-tab-source
+  # TODO: Switch back to upstream Aloxaf/fzf-tab when this PR is merged:
+  # - https://github.com/Aloxaf/fzf-tab/pull/445
+  zinit light-mode wait lucid atclone'git checkout fit-preview' \
+    for @jimeh/fzf-tab
+
+  zinit light-mode lucid for @Freed-Wu/fzf-tab-source
+  # Disable some overly aggressive completions from fzf-tab-source.
+  zstyle -d ':fzf-tab:complete:*' fzf-preview
 fi
 
 zinit light-mode wait lucid blockf for @zsh-users/zsh-completions
@@ -90,9 +96,9 @@ zinit light-mode wait lucid atload"!_zsh_autosuggest_start" \
 bindkey '^Xh' _complete_help
 
 # Group completions by type under group headings
-zstyle ':completion:*' format '%B[%d]%b'
-zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' format '[%d]'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-grouped true
 zstyle ':autocomplete:*' groups 'always'
@@ -108,7 +114,6 @@ zstyle ':completion:*:git-checkout:*' sort false
 
 # Improve selection of Makefile completions - from:
 # https://github.com/zsh-users/zsh-completions/issues/541#issuecomment-384223016
-zstyle ':completion:*:make:*' tag-order targets
 zstyle ':completion:*:make:*:targets' call-command true
 
 autoload -Uz compinit
@@ -124,36 +129,44 @@ if command-exists fzf; then
          --highlight-line"
 
   export FZF_CTRL_T_OPTS="
-         --walker-skip .git,node_modules,target
+         --walker-skip .git,node_modules,.terraform,target
          --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
   # TODO: replace pbcopy with something that's cross-platform.
   export FZF_CTRL_R_OPTS="
-         --border=none
+         --border=rounded
          --preview 'echo {}' --preview-window up:3:hidden:wrap
          --bind 'ctrl-/:toggle-preview'
          --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
 
   export FZF_ALT_C_OPTS="
-         --walker-skip .git,node_modules,target
+         --walker-skip .git,node_modules,.terraform,target
          --preview 'tree -C {}'"
 
-  export FZF_TMUX=0
-  export FZF_TMUX_HEIGHT="100%"
+  export FZF_TMUX=1
+  export FZF_TMUX_OPTS="-p 75%"
+  export FZF_TMUX_HEIGHT=""
 
   cached-eval "$(command -v fzf)" fzf --zsh
 
   zstyle ':completion:*' menu no
   zstyle ':completion:*' special-dirs true
 
-  zstyle ':fzf-tab:*' fzf-bindings 'ctrl-v:half-page-down' 'alt-v:half-page-up'
-  zstyle ':fzf-tab:*' fzf-flags '--highlight-line' '--tabstop=4'
+  zstyle ':fzf-tab:*' fzf-bindings \
+    'ctrl-v:half-page-down' \
+    'alt-v:half-page-up' \
+    'ctrl-k:kill-line'
+  zstyle ':fzf-tab:*' fzf-flags '\
+    --highlight-line' \
+    '--tabstop=4'
+  zstyle ':fzf-tab:*' prefix ''
   zstyle ':fzf-tab:*' switch-group '<' '>'
 
   # Use fzf-tab's tmux popup for tab completion.
   zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-  zstyle ':fzf-tab:*' popup-min-size 80 10
+  zstyle ':fzf-tab:*' popup-min-size 30 10
   zstyle ':fzf-tab:*' popup-pad 0 0
+  zstyle ':fzf-tab:*' popup-fit-preview yes
 
   if command-exists eza; then
     fzf_dir_preview='eza -1 --color=always --icons $realpath'
