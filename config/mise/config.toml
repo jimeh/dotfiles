@@ -30,6 +30,7 @@ show_tools = false
 "cargo:tlrc" = "latest"
 "cargo:ubi" = "latest"
 "cargo:watchexec-cli" = "latest"
+"go:github.com/DarthSim/hivemind" = "latest"
 "go:github.com/bufbuild/buf-language-server/cmd/bufls" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"
 "go:github.com/golang/mock/mockgen" = "latest"
