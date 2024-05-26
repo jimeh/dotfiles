@@ -293,12 +293,6 @@ path_prepend "$HOME/.orbstack/bin"
 source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # ==============================================================================
-# Path setup for select binaries installed with zinit
-# ==============================================================================
-
-path_prepend "$HOME/.local/zsh/zinit/plugins/junegunn---fzf"
-
-# ==============================================================================
 # Local Overrides
 # ==============================================================================
 
