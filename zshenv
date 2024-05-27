@@ -108,7 +108,7 @@ cached-eval() {
   fi
 
   local md5_cmd="$(command -v md5 || command -v md5sum)"
-  local cache_hash="$(echo -n "$script" | "$md5_cmd" | awk '{print $1}')"
+  local cache_hash="$(echo -n "${source_file}:${script}" | "$md5_cmd" | awk '{print $1}')"
   local cache_file="${cache_dir}/${cache_hash}.cache.zsh"
 
   if [ -z "$cache_hash" ]; then
