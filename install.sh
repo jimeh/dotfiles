@@ -31,6 +31,7 @@ SYMLINKS=(
   hgrc
   hyper.js
   irbrc
+  logrotate.d
   peco
   powconfig
   pryrc

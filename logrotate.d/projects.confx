@@ -1,0 +1,9 @@
+$(find ~/Projects -name '*.log' -path '*/log/*' ! -path '*/vendor/bundle/ruby/*' ! -path '*/node_modules/*' -exec echo '"{}"' \;) {
+  daily
+  size 5115k
+  missingok
+  rotate 7
+  compress
+  copytruncate
+  notifempty
+}
