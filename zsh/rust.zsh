@@ -22,10 +22,10 @@ fi
 # ==============================================================================
 
 if command-exists rustup; then
-  setup-completions rustup "$(command -v rustup)" rustup completions zsh
+  setup-completions rustup "$(command-path rustup)" rustup completions zsh
 
   if command-exists cargo; then
-    setup-completions cargo "$(command -v cargo)" rustup completions zsh cargo
+    setup-completions cargo "$(command-path cargo)" rustup completions zsh cargo
   fi
 fi
 

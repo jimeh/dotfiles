@@ -9,7 +9,7 @@ alias hl="helm"
 alias mk="minikube"
 
 if command-exists kubectl; then
-  setup-completions kubectl "$(command -v kubectl)" kubectl completion zsh
+  setup-completions kubectl "$(command-path kubectl)" kubectl completion zsh
 
   export KREW_ROOT="$HOME/.krew"
   path_append "${KREW_ROOT}/bin"

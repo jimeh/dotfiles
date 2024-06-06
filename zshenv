@@ -68,6 +68,10 @@ command-exists() {
   return $?
 }
 
+command-path() {
+  echo "${commands[$1]}"
+}
+
 source-if-exists() {
   if [ -f "$1" ]; then
     source "$1"
@@ -107,7 +111,7 @@ cached-eval() {
     return 1
   fi
 
-  local md5_cmd="$(command -v md5 || command -v md5sum)"
+  local md5_cmd="$(command-path md5 || command-path md5sum)"
   local cache_hash="$(echo -n "${source_file}:${script}" | "$md5_cmd" | awk '{print $1}')"
   local cache_file="${cache_dir}/${cache_hash}.cache.zsh"
 

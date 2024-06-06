@@ -32,5 +32,5 @@ fi
 
 if command-exists orb; then
   alias oc="orb"
-  setup-completions orb "$(command -v orb)" orb completion zsh
+  setup-completions orb "$(command-path orb)" orb completion zsh
 fi

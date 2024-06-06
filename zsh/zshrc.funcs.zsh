@@ -47,7 +47,7 @@ setup-completions() {
     return 1
   fi
 
-  if [[ -z "$(command -v "$cmd")" ]]; then
+  if [[ -z "$(command-path "$cmd")" ]]; then
     echo "setup-completions: Command not found: $cmd" >&2
     return 1
   fi

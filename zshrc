@@ -148,7 +148,7 @@ if command-exists fzf; then
   export FZF_TMUX_OPTS="-p 75%"
   export FZF_TMUX_HEIGHT=""
 
-  cached-eval "$(command -v fzf)" fzf --zsh
+  cached-eval "$(command-path fzf)" fzf --zsh
 
   zstyle ':completion:*' menu no
   zstyle ':completion:*' special-dirs true
@@ -224,7 +224,7 @@ fi
 
 # If available, make sure to load direnv shell hook before mise.
 if command-exists direnv; then
-  cached-eval "$(command -v direnv)" direnv hook zsh
+  cached-eval "$(command-path direnv)" direnv hook zsh
 fi
 
 MISE_HOME="$HOME/.local/share/mise"
@@ -253,8 +253,8 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  setup-completions starship "$(command -v starship)" starship completions zsh
-  cached-eval "$(command -v starship)" starship init zsh --print-full-init
+  setup-completions starship "$(command-path starship)" starship completions zsh
+  cached-eval "$(command-path starship)" starship init zsh --print-full-init
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise install starship" >&2
