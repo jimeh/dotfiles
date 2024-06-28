@@ -371,8 +371,16 @@ module Mise
       end
     end
 
-    def install_name(env)
+    # Install arg is the name of the tool followed by the exact version,
+    # separated by @.
+    def install_arg(env)
       [name, latest_version(env)].compact.join('@')
+    end
+
+    # Upgrade arg is just the name of the tool. If a specific version is given,
+    # mise skips removing old versions.
+    def upgrade_arg(_env)
+      name
     end
 
     def latest_version(env)
@@ -619,13 +627,13 @@ module Mise
         cmds = []
         if to_install.size.positive?
           cmds += [mise_path, 'install'] + to_install.map do |t|
-            t.install_name(env)
+            t.install_arg(env)
           end
         end
         if to_upgrade.size.positive?
           cmds << '&&' if cmds.size.positive?
           cmds += [mise_path, 'upgrade'] + to_upgrade.map do |t|
-            t.install_name(env)
+            t.upgrade_arg(env)
           end
         end
 
@@ -656,8 +664,10 @@ module Mise
           mise_operation = tool.upgrade_operation(env)
 
           if mise_operation == :install
+            tool_arg = tool.install_arg(env)
             text = "➡️ Install (→ #{tool.latest_version(env)})"
           else
+            tool_arg = tool.upgrade_arg(env)
             text = "⬆️ Upgrade (↑ #{tool.latest_version(env)})"
             alt_text = '⬆️ Upgrade ' \
                        "(#{tool.active_version(env)} → " \
@@ -668,7 +678,7 @@ module Mise
             text,
             alt: alt_text || text,
             terminal: true, refresh: true,
-            shell: [mise_path, mise_operation.to_s, tool.install_name(env)]
+            shell: [mise_path, mise_operation.to_s, tool_arg]
           )
           printer.sep
 
