@@ -11,7 +11,7 @@ PRIVATE_PATH="private"
 SYMLINKS=(
   Brewfile
   ackrc
-  alacritty.yml
+  alacritty.toml
   bitbar
   coffeelint.json
   config/kitty/kitty.conf
