@@ -69,6 +69,10 @@ command-exists() {
 }
 
 command-path() {
+  if ! command-exists "$1"; then
+    return 1
+  fi
+
   echo "${commands[$1]}"
 }
 
