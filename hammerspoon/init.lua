@@ -48,7 +48,7 @@ wm:init()
 --------------------------------------------------------------------------------
 
 local kd = require('kill_dock')
-hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'K', kd.killDock)
+hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'D', kd.killDock)
 
 --------------------------------------------------------------------------------
 -- The End
