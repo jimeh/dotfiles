@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v0.1.0</xbar.version>
+# <xbar.version>v0.1.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
@@ -606,6 +606,9 @@ module Mise
       end
       return unless env_tools.size.positive?
 
+      mise_cmd_args = [mise_path]
+      mise_cmd_args += ['--cd', env.path] unless env.global?
+
       printer.sep
       printer.item(env.full_name)
 
@@ -626,13 +629,13 @@ module Mise
 
         cmds = []
         if to_install.size.positive?
-          cmds += [mise_path, 'install'] + to_install.map do |t|
+          cmds += mise_cmd_args + ['install'] + to_install.map do |t|
             t.install_arg(env)
           end
         end
         if to_upgrade.size.positive?
           cmds << '&&' if cmds.size.positive?
-          cmds += [mise_path, 'upgrade'] + to_upgrade.map do |t|
+          cmds += mise_cmd_args + ['upgrade'] + to_upgrade.map do |t|
             t.upgrade_arg(env)
           end
         end
@@ -678,7 +681,7 @@ module Mise
             text,
             alt: alt_text || text,
             terminal: true, refresh: true,
-            shell: [mise_path, mise_operation.to_s, tool_arg]
+            shell: mise_cmd_args + [mise_operation.to_s, tool_arg]
           )
           printer.sep
 
@@ -761,8 +764,8 @@ module Mise
                 printer.item(
                   'Yes',
                   terminal: true, refresh: true,
-                  shell: [
-                    mise_path, 'uninstall', "#{tool.name}@#{v.version}"
+                  shell: mise_cmd_args + [
+                    'uninstall', "#{tool.name}@#{v.version}"
                   ]
                 )
               end
