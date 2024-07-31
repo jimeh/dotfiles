@@ -67,7 +67,8 @@ main() {
 
   local patcher="${args[0]}"
   local outputDir="${args[1]}"
-  local sources=("${args[@]:2}")
+  local input_sources=("${args[@]:2}")
+  local sources=()
 
   if [[ -z "$patcher" || -z "$outputDir" ]]; then
     show-help 1>&2
@@ -93,16 +94,23 @@ main() {
     mkdir -p "$outputDir"
   fi
 
-  if [[ $# -eq 0 ]]; then
+  if [[ ${#input_sources[@]} -eq 0 ]]; then
+    echo "===> No sources specified, searching for font files in current directory"
     while read -r line; do
       sources+=("$line")
-    done < <(find-sources "$(abs_dirname "$(pwd)")")
+    done < <(find-sources "$(abs_path "$(pwd)")")
+    echo "===> Found ${#sources[@]} font files:"
+    for src in "${sources[@]}"; do
+      echo "--->   - $src"
+    done
   fi
 
-  for item in "$@"; do
+  for item in "${input_sources[@]}"; do
     if [[ -d $item ]]; then
+      echo "===> Finding for font files in ${item}:"
       # If it's a directory, find sources and add to array
       while read -r line; do
+        echo "--->   - $line"
         sources+=("$line")
       done < <(find-sources "$item")
     else
@@ -113,7 +121,7 @@ main() {
 
   # abort if no sources found
   if [[ ${#sources[@]} -eq 0 ]]; then
-    echo "No font files found" 1>&2
+    error "No font files found"
     exit 1
   fi
 
