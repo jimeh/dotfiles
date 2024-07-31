@@ -1,14 +1,14 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.3.1
+# Version: 0.4.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
 # features shifted to the right prompt, and disabled, allowing for easy cherry
 # picking of specific features to enable.
 # ------------------------------------------------------------------------------
-#
+
 add_newline = false
 format = """
 $username\
@@ -43,6 +43,7 @@ $elixir\
 $elm\
 $erlang\
 $fennel\
+$gleam\
 $golang\
 $guix_shell\
 $haskell\
@@ -102,7 +103,7 @@ $time"""
 # ------------------------------------------------------------------------------
 # Main left prompt components
 # ------------------------------------------------------------------------------
-#
+
 [username]
 show_always = true
 format = '[$user]($style)'
@@ -319,6 +320,10 @@ disabled = true
 format = '( [$symbol($version)]($style))'
 disabled = true
 
+[gleam]
+format = '( [$symbol($version)]($style))'
+disabled = false
+
 [golang]
 symbol = ' '
 format = '( [$symbol$version]($style))'
@@ -418,7 +423,7 @@ disabled = true
 [swift]
 symbol = ' '
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [vlang]
 format = '( [$symbol$version]($style))'
@@ -426,7 +431,7 @@ disabled = true
 
 [zig]
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 # ------------------------------------------------------------------------------
 # Tools
