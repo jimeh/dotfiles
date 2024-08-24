@@ -21,6 +21,10 @@ define_keymap(lambda wm_class: wm_class in ("firefox", "Google-chrome"), {
     K("Super-Shift-t"): K("C-Shift-t"),
 }, "Browser keys")
 
+define_keymap(lambda wm_class: wm_class in ("1Password"), {
+    K("Super-comma"): K("C-comma"),
+}, "1Password specific keys")
+
 # Emacs-like keybindings in non-Emacs applications
 define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt", "Gnome-terminal", "Guake"), {
     K("Super-x"): K("C-x"),
