@@ -1,7 +1,7 @@
 # jimeh's xkeysnail setup
 
-The goal here is to use [xkeysnail][] Linux keyboard shortcuts mostly behave the
-same as on macOS.
+The goal here is to use [xkeysnail][] to make Linux keyboard shortcuts mostly
+behave the same as on macOS.
 
 [xkeysnail]: https://github.com/mooz/xkeysnail
 

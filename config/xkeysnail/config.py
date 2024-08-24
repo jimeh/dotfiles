@@ -18,6 +18,7 @@ define_keymap(lambda wm_class: wm_class in ("firefox", "Google-chrome"), {
     K("Super-Shift-Right_Brace"): K("C-tab"),
     K("Super-Left_Brace"): K("M-left"),
     K("Super-Right_Brace"): K("M-right"),
+    K("Super-Shift-t"): K("C-Shift-t"),
 }, "Browser keys")
 
 # Emacs-like keybindings in non-Emacs applications
