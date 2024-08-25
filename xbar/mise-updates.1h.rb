@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v0.1.1</xbar.version>
+# <xbar.version>v0.2.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
@@ -536,6 +536,8 @@ module Mise
       printer.sep
       printer.item('Mise Updates️') do |printer|
         printer.item('⏳ Refresh', alt: '⏳ Refresh (⌘R)', refresh: true)
+        printer.item('⬆️ Self-Update (mise)', terminal: true, refresh: true,
+                                              shell: [mise_path, 'self-update'])
         printer.sep
         print_settings(printer)
       end
