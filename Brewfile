@@ -40,6 +40,7 @@ brew 'mosh', args: ['HEAD']
 brew 'node'
 brew 'pandoc'
 brew 'pgformatter'
+brew 'pv'
 brew 'readline'
 brew 'redis'
 brew 'source-highlight'
