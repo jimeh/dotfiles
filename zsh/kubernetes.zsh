@@ -33,28 +33,11 @@ fi
 _setup-kubectx-completion() {
   local cmd="$1"
   local dir="$HOME/.local/share/mise/installs/kubectx/latest/completion"
-  local target="$ZSH_COMPLETIONS/_${cmd}"
+  local src="${dir}/_${cmd}.zsh"
 
-  if [[ -f "$target" || ! -d "$dir" ]]; then
-    return
-  fi
+  if [[ ! -f "$src" ]]; then return; fi
 
-  echo "Setting up completion for $cmd -- $target"
-
-  local script
-  if [ -f "${dir}/${cmd}.zsh" ]; then
-    script="$dir/${cmd}.zsh"
-  elif [ -f "${dir}/_${cmd}.zsh" ]; then
-    script="$dir/_${cmd}.zsh"
-  fi
-
-  echo "  - Sym-linking from $script"
-  mkdir -p "$ZSH_COMPLETIONS"
-  ln -s "$script" "$target"
-
-  if ! (whence -w compinit &> /dev/null); then
-    autoload -U compinit && compinit
-  fi
+  setup-completions "$cmd" "$src" cat "$src"
 }
 
 if command-exists kubectx; then
