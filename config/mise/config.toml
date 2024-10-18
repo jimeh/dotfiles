@@ -79,7 +79,6 @@ show_tools = false
 "ubi:jdx/usage" = "latest"                                        # usage
 "ubi:jwt-rs/jwt-ui" = { version = "latest", exe = "jwtui" }       # jwtui
 "ubi:koalaman/shellcheck" = "latest"                              # shellcheck
-"ubi:kubernetes-sigs/kustomize" = "latest"                        # kustomize
 "ubi:mike-engel/jwt-cli" = { version = "latest", exe = "jwt" }    # jwt
 "ubi:mikefarah/yq" = "latest"                                     # yq
 "ubi:mozilla/sccache" = "latest"                                  # sccache
@@ -105,6 +104,7 @@ helm = "latest"
 jq = "latest"
 kubectl = "latest"
 kubectx = "latest"
+kustomize = "latest"
 lua = "latest"
 node = "lts"
 python = "latest"
