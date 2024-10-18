@@ -31,7 +31,7 @@ function wm:init()
   --
 
   -- show interactive grid menu
-  bind({ 'cmd', 'ctrl' }, '1',
+  bind({ 'cmd', 'ctrl' }, '§',
     function()
       grid.setGrid(self.gridSizes.interactive)
       grid.show(

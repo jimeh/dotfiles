@@ -10,11 +10,13 @@ local function init_hotkeys()
   hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
 
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'HuggingChat' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Open WebUI' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'Claude' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'ArgoCD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Emacs', '/Applications/Emacs.app' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'TeamSpeak 3', '/Applications/TeamSpeak 3 Client.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Obsidian' }, { 'Notion' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
 
@@ -27,7 +29,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
-  apptoggle:bind({ 'cmd', 'ctrl' }, '2',
+  apptoggle:bind({ 'cmd', 'ctrl' }, '1',
     { 'Code', '/Applications/Visual Studio Code.app' }
   )
 end
