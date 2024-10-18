@@ -47,3 +47,11 @@ fi
 if command-exists kubens; then
   _setup-kubectx-completion kubens
 fi
+
+if command-exists helm; then
+  setup-completions helm "$(command-path helm)" helm completion zsh
+fi
+
+if command-exists helmfile; then
+  setup-completions helmfile "$(command-path helmfile)" helmfile completion zsh
+fi
