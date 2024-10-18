@@ -20,6 +20,7 @@ install_python_global_packages() {
     'fonttools'
     'molecule[docker]'
     'passlib'
+    'pipx'
     'yamllint'
   )
 
