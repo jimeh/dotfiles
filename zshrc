@@ -146,7 +146,7 @@ if command-exists fzf; then
 
   export FZF_TMUX=1
   export FZF_TMUX_OPTS="-p 75%"
-  export FZF_TMUX_HEIGHT=""
+  export FZF_TMUX_HEIGHT="100%"
 
   cached-eval "$(command-path fzf)" fzf --zsh
 
