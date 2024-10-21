@@ -52,6 +52,7 @@ install_ruby_global_packages() {
     bundler-audit
     debase
     dotenv
+    erb_lint
     foreman
     method_source
     pry-doc
