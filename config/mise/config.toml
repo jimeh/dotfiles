@@ -83,7 +83,6 @@ show_tools = false
 "ubi:mikefarah/yq" = "latest"                                     # yq
 "ubi:mozilla/sccache" = "latest"                                  # sccache
 "ubi:mvdan/gofumpt" = "latest"                                    # gofumpt
-"ubi:mvdan/sh" = { version = "latest", exe = "shfmt" }            # shfmt
 "ubi:nametake/golangci-lint-langserver" = "latest"                # golangci-lint-langserver
 "ubi:opentofu/opentofu" = { version = "latest", exe = "tofu" }    # tofu
 "ubi:rclone/rclone" = "latest"                                    # rclone
@@ -109,4 +108,5 @@ lua = "latest"
 node = "lts"
 python = "latest"
 ruby = "latest"
+shfmt = "latest"
 terraform = "latest"
