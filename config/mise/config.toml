@@ -91,6 +91,7 @@ show_tools = false
 "ubi:segmentio/golines" = "latest"                                # golines
 "ubi:siderolabs/talos" = { version = "latest", exe = "talosctl" } # talosctl
 "ubi:starship/starship" = "latest"                                # starship
+"ubi:tamasfe/taplo" = { version = "latest", matching = "full" }   # taplo
 "ubi:terraform-linters/tflint" = "latest"                         # tflint
 "ubi:watchexec/watchexec" = "latest"                              # watchexec
 "ubi:wilfred/difftastic" = { version = "latest", exe = "difft" }  # difftastic
