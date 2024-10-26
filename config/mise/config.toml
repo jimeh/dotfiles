@@ -17,7 +17,6 @@ show_tools = false
 "cargo:cargo-info" = "latest"
 "cargo:cargo-update" = "latest"
 "cargo:dirstat-rs" = "latest"
-"cargo:gitu" = "latest"
 "cargo:hexyl" = "latest"
 "cargo:kubectl-watch" = "latest"
 "cargo:paper-terminal" = "latest"
@@ -61,6 +60,7 @@ show_tools = false
 "ubi:BurntSushi/ripgrep" = { version = "latest", exe = "rg" }     # ripgrep
 "ubi:DarthSim/hivemind" = "latest"                                # hivemind
 "ubi:ajeetdsouza/zoxide" = "latest"                               # zoxide
+"ubi:altsem/gitu" = "latest"                                      # gitu
 "ubi:argoproj/argo-cd" = { version = "latest", exe = "argocd" }   # Argo CD
 "ubi:bcicen/ctop" = "latest"                                      # ctop
 "ubi:blacknon/hwatch" = "latest"                                  # hwatch
