@@ -11,7 +11,6 @@ show_tools = false
 
 [tools]
 "cargo:bacon" = "latest"
-"cargo:bat" = "latest"
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-edit" = "latest"
 "cargo:cargo-info" = "latest"
@@ -81,6 +80,7 @@ show_tools = false
 "ubi:rclone/rclone" = "latest"                                    # rclone
 "ubi:sclevine/yj" = "latest"                                      # yj
 "ubi:segmentio/golines" = "latest"                                # golines
+"ubi:sharkdp/bat" = "latest"                                      # bat
 "ubi:siderolabs/talos" = { version = "latest", exe = "talosctl" } # talosctl
 "ubi:starship/starship" = "latest"                                # starship
 "ubi:tamasfe/taplo" = { version = "latest", matching = "full" }   # taplo
