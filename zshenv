@@ -289,6 +289,9 @@ else
   export RUSTC_WRAPPER=""
 fi
 
+# pipx setup
+path_prepend "$HOME/.local/bin"
+
 # mise setup
 path_prepend "$HOME/.local/share/mise/bin"
 path_prepend "$HOME/.local/share/mise/shims"
