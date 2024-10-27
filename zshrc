@@ -123,6 +123,7 @@ compinit
 # Setup fzf related stuff if it is available.
 if command-exists fzf; then
   export FZF_DEFAULT_OPTS="
+         --tmux 75%
          --bind=ctrl-k:kill-line
          --bind=ctrl-v:half-page-down
          --bind=alt-v:half-page-up
@@ -143,10 +144,6 @@ if command-exists fzf; then
   export FZF_ALT_C_OPTS="
          --walker-skip .git,node_modules,.terraform,target
          --preview 'tree -C {}'"
-
-  export FZF_TMUX=1
-  export FZF_TMUX_OPTS="-p 75%"
-  export FZF_TMUX_HEIGHT="100%"
 
   cached-eval "$(command-path fzf)" fzf --zsh
 
