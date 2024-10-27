@@ -70,6 +70,7 @@ show_tools = false
 "ubi:getsops/sops" = "latest"                                     # sops
 "ubi:golangci/golangci-lint" = "latest"                           # golangci-lint
 "ubi:goreleaser/goreleaser" = "latest"                            # goreleaser
+"ubi:junegunn/fzf" = "latest"                                     # fzf
 "ubi:jwt-rs/jwt-ui" = { version = "latest", exe = "jwtui" }       # jwtui
 "ubi:mike-engel/jwt-cli" = { version = "latest", exe = "jwt" }    # jwt
 "ubi:mozilla/sccache" = "latest"                                  # sccache
@@ -91,7 +92,6 @@ cargo-binstall = "latest"
 ctop = "latest"
 direnv = "latest"
 eza = "latest"
-fzf = "latest"
 gh = "latest"
 go = "latest"
 hadolint = "latest"
