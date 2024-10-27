@@ -20,6 +20,7 @@ show_tools = false
 "cargo:hexyl" = "latest"
 "cargo:kubectl-watch" = "latest"
 "cargo:paper-terminal" = "latest"
+"cargo:sccache" = "latest"
 "cargo:tlrc" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"
 "go:github.com/hashicorp/terraform-ls" = "latest"
@@ -73,7 +74,6 @@ show_tools = false
 "ubi:junegunn/fzf" = "latest"                                     # fzf
 "ubi:jwt-rs/jwt-ui" = { version = "latest", exe = "jwtui" }       # jwtui
 "ubi:mike-engel/jwt-cli" = { version = "latest", exe = "jwt" }    # jwt
-"ubi:mozilla/sccache" = "latest"                                  # sccache
 "ubi:mvdan/gofumpt" = "latest"                                    # gofumpt
 "ubi:nametake/golangci-lint-langserver" = "latest"                # golangci-lint-langserver
 "ubi:opentofu/opentofu" = { version = "latest", exe = "tofu" }    # tofu
