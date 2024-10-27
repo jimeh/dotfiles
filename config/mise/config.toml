@@ -14,6 +14,7 @@ show_tools = false
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-edit" = "latest"
 "cargo:cargo-info" = "latest"
+"cargo:cargo-show" = "latest"
 "cargo:cargo-update" = "latest"
 "cargo:dirstat-rs" = "latest"
 "cargo:eza" = "latest"
