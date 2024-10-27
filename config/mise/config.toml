@@ -59,57 +59,57 @@ show_tools = false
 "npm:vscode-css-languageserver-bin" = "latest"
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
-"ubi:BurntSushi/ripgrep" = { version = "latest", exe = "rg" }     # ripgrep
-"ubi:DarthSim/hivemind" = "latest"                                # hivemind
-"ubi:ajeetdsouza/zoxide" = "latest"                               # zoxide
-"ubi:altsem/gitu" = "latest"                                      # gitu
-"ubi:argoproj/argo-cd" = { version = "latest", exe = "argocd" }   # Argo CD
-"ubi:blacknon/hwatch" = "latest"                                  # hwatch
-"ubi:bootandy/dust" = "latest"                                    # dust
-"ubi:bufbuild/buf" = "latest"                                     # buf
-"ubi:danielgtaylor/restish" = "latest"                            # restish
-"ubi:derailed/k9s" = "latest"                                     # k9s
-"ubi:getsops/sops" = "latest"                                     # sops
-"ubi:golangci/golangci-lint" = "latest"                           # golangci-lint
-"ubi:goreleaser/goreleaser" = "latest"                            # goreleaser
-"ubi:junegunn/fzf" = "latest"                                     # fzf
-"ubi:jwt-rs/jwt-ui" = { version = "latest", exe = "jwtui" }       # jwtui
-"ubi:mike-engel/jwt-cli" = { version = "latest", exe = "jwt" }    # jwt
-"ubi:mvdan/gofumpt" = "latest"                                    # gofumpt
-"ubi:nametake/golangci-lint-langserver" = "latest"                # golangci-lint-langserver
-"ubi:opentofu/opentofu" = { version = "latest", exe = "tofu" }    # tofu
-"ubi:rclone/rclone" = "latest"                                    # rclone
-"ubi:sclevine/yj" = "latest"                                      # yj
-"ubi:segmentio/golines" = "latest"                                # golines
-"ubi:sharkdp/bat" = "latest"                                      # bat
-"ubi:siderolabs/talos" = { version = "latest", exe = "talosctl" } # talosctl
-"ubi:starship/starship" = "latest"                                # starship
-"ubi:tamasfe/taplo" = { version = "latest", matching = "full" }   # taplo
-"ubi:terraform-linters/tflint" = "latest"                         # tflint
-"ubi:watchexec/watchexec" = "latest"                              # watchexec
-"ubi:wilfred/difftastic" = { version = "latest", exe = "difft" }  # difftastic
+"ubi:junegunn/fzf" = "latest"                                 # fzf
+"ubi:watchexec/watchexec" = "latest"                          # watchexec
 1password-cli = "latest"
 actionlint = "latest"
+argocd = "latest"
+bat = "latest"
+buf = "latest"
 cargo-binstall = "latest"
 ctop = "latest"
+difftastic = "latest"
 direnv = "latest"
+dust = "latest"
 gh = "latest"
+gitu = "latest"
 go = "latest"
+gofumpt = "latest"
+golangci-lint = "latest"
+golangci-lint-langserver = "latest"
+golines = "latest"
+goreleaser = "latest"
 hadolint = "latest"
 helm = "latest"
 helmfile = "latest"
+hivemind = "latest"
+hwatch = "latest"
 jq = "latest"
+jwt = "latest"
+jwtui = "latest"
+k9s = "latest"
 kubectl = "latest"
 kubectx = "latest"
 kustomize = "latest"
 lua = "latest"
 node = "lts"
+opentofu = "latest"
 python = "latest"
+rclone = "latest"
+restish = "latest"
+ripgrep = "latest"
 ruby = "latest"
 rust = "latest"
 shellcheck = "latest"
 shfmt = "latest"
+sops = "latest"
+starship = "latest"
+talosctl = "latest"
+taplo = "latest"
 terraform = "latest"
+tflint = "latest"
 ubi = "latest"
 usage = "latest"
+yj = "latest"
 yq = "latest"
+zoxide = "latest"
