@@ -21,8 +21,6 @@ SYMLINKS=(
   config/starship.toml
   config/tlrc/config.toml
   config/xkeysnail/config.py
-  default-gems
-  default-go-packages
   erlang
   gemrc
   gitconfig

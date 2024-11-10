@@ -1,4 +1,0 @@
-# Default Go packages installed by mise when installing new Go versions.
-# github.com/nametake/golangci-lint-langserver@latest
-# golang.org/x/tools/cmd/goimports@latest
-# golang.org/x/tools/gopls@latest
