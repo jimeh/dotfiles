@@ -48,9 +48,7 @@ install_ruby_global_packages() {
   local packages=(
     'bundler:~> 1.0'
     'bundler:~> 2.0'
-    brakeman
     bundler-audit
-    debase
     dotenv
     erb_lint
     foreman
@@ -59,9 +57,7 @@ install_ruby_global_packages() {
     reek
     rubocop
     rubocop-daemon
-    ruby-debug-ide
     ruby-lsp
-    seeing_is_believing
     solargraph
     solargraph-rails
     steep
