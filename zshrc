@@ -123,7 +123,6 @@ compinit
 # Setup fzf related stuff if it is available.
 if command-exists fzf; then
   export FZF_DEFAULT_OPTS="
-         --tmux 75%
          --bind=ctrl-k:kill-line
          --bind=ctrl-v:half-page-down
          --bind=alt-v:half-page-up
@@ -131,17 +130,20 @@ if command-exists fzf; then
          --highlight-line"
 
   export FZF_CTRL_T_OPTS="
+         --tmux 75%
          --walker-skip .git,node_modules,.terraform,target
          --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
   # TODO: replace pbcopy with something that's cross-platform.
   export FZF_CTRL_R_OPTS="
+         --tmux 75%
          --border=rounded
          --preview 'echo {}' --preview-window up:3:hidden:wrap
          --bind 'ctrl-/:toggle-preview'
          --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
 
   export FZF_ALT_C_OPTS="
+         --tmux 75%
          --walker-skip .git,node_modules,.terraform,target
          --preview 'tree -C {}'"
 
