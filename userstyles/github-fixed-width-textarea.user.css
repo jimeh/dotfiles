@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name          GitHub Fixed-Width Textarea
 @description   Enforce fixed-width font and font-size in GitHub textareas
-@version       1.0.0
+@version       1.0.1
 @license       CC0-1.0
 @author        Jim Myhrberg (https://jimeh.me/)
 @namespace     jimeh.me
@@ -9,12 +9,12 @@
 @updateURL     https://github.com/jimeh/dotfiles/raw/main/userstyles/github-fixed-width-textarea.user.css
 @preprocessor  stylus
 
-@var text ghfwt-font-size "Font Size" 12px
+@var text ghfwt-font-size "Font Size" 14px
 ==/UserStyle== */
 @-moz-document domain("github.com") {
   textarea {
-    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier,
-      monospace !important;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace !important;
     font-size: ghfwt-font-size !important;
   }
 }
