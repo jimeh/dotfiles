@@ -17,6 +17,7 @@ SYMLINKS=(
   config/kitty/kitty.conf
   config/mise/config.toml
   config/mise/settings.toml
+  config/nix/nix.conf
   config/solargraph/config.yml
   config/starship.toml
   config/tlrc/config.toml
