@@ -238,8 +238,12 @@ fi
 if command-exists mise; then
   alias mi="mise"
 
+  # Ensure shims directory is in PATH so that install tools are immediately
+  # available for use within shell initialization. We activate mise normally
+  # right at end which replaces the shims in PATH with a shell hook that updates
+  # PATH as needed.
+  path_prepend "$MISE_HOME/shims"
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
-  cached-eval "$MISE_INSTALL_PATH" mise activate zsh
 fi
 
 # ==============================================================================
@@ -252,12 +256,11 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  setup-completions starship "$(command-path starship)" starship completions zsh
   cached-eval "$(command-path starship)" starship init zsh --print-full-init
+  setup-completions starship "$(command-path starship)" starship completions zsh
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise install starship" >&2
-
 fi
 
 # ==============================================================================
@@ -318,3 +321,10 @@ if [ -f "$HOME/.zshrc.local" ]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
+
+# ==============================================================================
+# Prepare interactive environment
+# ==============================================================================
+
+# Activate mise properly for interactive use not using shims.
+eval "$("$MISE_INSTALL_PATH" activate zsh)"

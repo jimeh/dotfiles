@@ -5,7 +5,7 @@
 .bundle
 .byebug_history
 .dir-locals.el
-.mise.*.local.toml
+.mise.*local.toml
 .mise.local.toml
 .projectile
 .stfolder
@@ -15,6 +15,7 @@
 .zinitrc.zsh
 log/*.bz2
 log/*.gz
+mise.*local.toml
 routes.txt
 test/dummy/log/*.bz2
 test/dummy/log/*.gz

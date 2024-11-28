@@ -5,7 +5,6 @@ legacy_version_file = true
 not_found_auto_install = false
 
 [settings.status]
-missing_tools = "never"
 show_env = true
 show_tools = false
 
