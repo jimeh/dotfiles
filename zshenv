@@ -264,6 +264,7 @@ path_prepend "$HOME/.evm/shims"
 # Set Emacs-related environment variables
 export EMACS="emacs"
 export EMACSCLIENT="emacsclient"
+export LSP_USE_PLISTS="true" # Improve lsp-mode performance.
 
 # On macOS we want to use the Emacs.app application bundle
 if [[ "$OSTYPE" == "darwin"* ]]; then
