@@ -49,6 +49,7 @@ fi
 # hwatch
 if command-exists hwatch; then
   alias wa="hwatch"
+  alias watch="hwatch"
 fi
 
 # Misc.
