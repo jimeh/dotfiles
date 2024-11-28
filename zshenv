@@ -190,7 +190,7 @@ fi
 
 # Homebrew on Apple Silicon
 if [ -f "/opt/homebrew/bin/brew" ]; then
-  cached-eval "/opt/homebrew/bin/brew" /opt/homebrew/bin/brew shellenv
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 if command-exists brew; then
