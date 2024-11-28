@@ -294,6 +294,7 @@ fi
 path_prepend "$HOME/.local/bin"
 
 # mise setup
+export MISE_LIST_ALL_VERSIONS=1
 path_prepend "$HOME/.local/share/mise/bin"
 path_prepend "$HOME/.local/share/mise/shims"
 
