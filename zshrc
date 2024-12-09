@@ -10,6 +10,12 @@ if [[ "$OSTYPE" == "darwin"* ]] && [ -f "/etc/zshrc" ]; then
 fi
 
 # ==============================================================================
+# Helper Functions
+# ==============================================================================
+
+source "$DOTZSH/zshrc.funcs.zsh"
+
+# ==============================================================================
 # Zinit
 # ==============================================================================
 
@@ -35,6 +41,21 @@ source "${ZINIT[BIN_DIR]}/zinit.zsh"
 # Add generic cross platform  clipcopy and clippaste commands to copy and paste
 # from the system clipboard.
 zinit for @OMZ::lib/clipboard.zsh
+
+# ==============================================================================
+# Environment
+# ==============================================================================
+
+# Ensure mise shims directory is in PATH so that installed tools are immediately
+# available for use within shell initialization. We activate mise normally right
+# at end which replaces the shims in PATH with a shell hook that updates PATH as
+# needed.
+path_prepend "$MISE_HOME/shims"
+
+# If available, make sure to load direnv shell hook before mise.
+if command-exists direnv; then
+  cached-eval "$(command-path direnv)" direnv hook zsh
+fi
 
 # ==============================================================================
 # History
@@ -204,27 +225,8 @@ zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
 # ==============================================================================
-# Helper Functions
-# ==============================================================================
-
-source "$DOTZSH/zshrc.funcs.zsh"
-
-# ==============================================================================
-# Private Dotfiles
-# ==============================================================================
-
-if [ -f "$DOTPFILES/zshrc" ]; then
-  source "$DOTPFILES/zshrc"
-fi
-
-# ==============================================================================
 # Environment and Tool Managers
 # ==============================================================================
-
-# If available, make sure to load direnv shell hook before mise.
-if command-exists direnv; then
-  cached-eval "$(command-path direnv)" direnv hook zsh
-fi
 
 MISE_HOME="$HOME/.local/share/mise"
 MISE_ZSH_INIT="$MISE_HOME/shell/init.zsh"
@@ -237,12 +239,6 @@ fi
 
 if command-exists mise; then
   alias mi="mise"
-
-  # Ensure shims directory is in PATH so that install tools are immediately
-  # available for use within shell initialization. We activate mise normally
-  # right at end which replaces the shims in PATH with a shell hook that updates
-  # PATH as needed.
-  path_prepend "$MISE_HOME/shims"
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
 fi
 
@@ -261,6 +257,14 @@ if command-exists starship; then
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise install starship" >&2
+fi
+
+# ==============================================================================
+# Private Dotfiles
+# ==============================================================================
+
+if [ -f "$DOTPFILES/zshrc" ]; then
+  source "$DOTPFILES/zshrc"
 fi
 
 # ==============================================================================
@@ -313,6 +317,13 @@ unsetopt share_history
 unsetopt correctall
 
 # ==============================================================================
+# Prepare interactive environment
+# ==============================================================================
+
+# Activate mise properly for interactive use not using shims.
+eval "$("$MISE_INSTALL_PATH" activate zsh)"
+
+# ==============================================================================
 # Local Overrides
 # ==============================================================================
 
@@ -321,10 +332,3 @@ if [ -f "$HOME/.zshrc.local" ]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
-
-# ==============================================================================
-# Prepare interactive environment
-# ==============================================================================
-
-# Activate mise properly for interactive use not using shims.
-eval "$("$MISE_INSTALL_PATH" activate zsh)"
