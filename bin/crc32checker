@@ -1,14 +1,15 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 
 ARGV.each do |path|
   print "Checking \"#{path}\"... "
 
-  if !File.exists?(path)
-    puts "FILE NOT FOUND"
+  unless File.exist?(path)
+    puts 'FILE NOT FOUND'
     next
   end
 
-  checksum = `crc32 "#{path}"`.strip.upcase
+  checksum = `crc32 "#{path}"`.strip.split(' ', 2).first.upcase
   if File.basename(path).upcase.include?(checksum)
     puts "MATCH (#{checksum})"
   else
