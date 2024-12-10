@@ -36,7 +36,7 @@ brew 'libyaml'
 brew 'logrotate'
 brew 'make'
 brew 'mas'
-brew 'mosh', args: ['HEAD']
+brew 'mosh'
 brew 'node'
 brew 'pandoc'
 brew 'pgformatter'
