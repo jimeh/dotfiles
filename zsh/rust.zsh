@@ -49,9 +49,7 @@ install_rust_global_packages() {
     fi
 
     rustup component add \
-      clippy \
       rust-analyzer \
-      rust-src \
-      rustfmt
+      rust-src
   )
 }
