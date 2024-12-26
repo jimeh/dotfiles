@@ -8,6 +8,10 @@ not_found_auto_install = false
 show_env = true
 show_tools = false
 
+[settings.pipx]
+# Allow mise to install pipx packages without manual installation of pipx.
+uvx = true
+
 [tools]
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
 "aqua:sharkdp/hexyl" = "latest"
@@ -54,6 +58,10 @@ show_tools = false
 "npm:vscode-css-languageserver-bin" = "latest"
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
+"pipx:ansible-core" = "latest"
+"pipx:fonttools" = "latest"
+"pipx:pipx" = "latest"
+"pipx:yamllint" = "latest"
 1password-cli = "latest"
 actionlint = "latest"
 argocd = "latest"
@@ -107,6 +115,7 @@ terraform-ls = "latest"
 tflint = "latest"
 ubi = "latest"
 usage = "latest"
+uv = "latest"
 watchexec = "latest"
 yj = "latest"
 yq = "latest"

@@ -16,12 +16,7 @@ alias mo="env OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES molecule"
 
 install_python_global_packages() {
   local packages=(
-    'ansible'
-    'fonttools'
-    'molecule[docker]'
     'passlib'
-    'pipx'
-    'yamllint'
   )
 
   local pipcmd="pip"
