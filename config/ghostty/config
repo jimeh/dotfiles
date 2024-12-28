@@ -1,0 +1,68 @@
+# ------------------------------------------------------------------------------
+# Theme settings
+# ------------------------------------------------------------------------------
+
+theme = tango-with-monokai
+window-theme = dark
+
+background-opacity = 0.8
+background-blur-radius = 20
+
+# ------------------------------------------------------------------------------
+# Font settings
+# ------------------------------------------------------------------------------
+
+font-size = 12
+
+font-family             = Menlo Nerd Font
+font-family-bold        = Menlo Nerd Font Bold
+font-family-italic      = Menlo Nerd Font Italic
+font-family-bold-italic = Menlo Nerd Font Bold Italic
+
+# Match font rendering of iTerm and Terminal.app.
+adjust-cell-width = -1
+font-thicken = true
+
+# Disable ligatures
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
+
+# ------------------------------------------------------------------------------
+# macOS settings
+# ------------------------------------------------------------------------------
+
+macos-non-native-fullscreen = true
+macos-option-as-alt = true
+
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = transparent
+
+macos-secure-input-indication = true
+macos-auto-secure-input = true
+
+# notch padding: 14-inch@2704x1756
+# window-padding-y = 60,0
+
+# ------------------------------------------------------------------------------
+# Cursor settings
+# ------------------------------------------------------------------------------
+
+mouse-hide-while-typing = true
+
+# ------------------------------------------------------------------------------
+# Window settings
+# ------------------------------------------------------------------------------
+
+window-padding-balance = true
+
+# ------------------------------------------------------------------------------
+# Keybindings
+# ------------------------------------------------------------------------------
+
+# Clipboard (ensure super/cmd+c/v are always available, including on Linux)
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+
+# Quick Terminal (alt+`)
+keybind = global:alt+grave_accent=toggle_quick_terminal
