@@ -24,7 +24,7 @@ ZINIT[HOME_DIR]="$HOME/.local/zsh/zinit"
 ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 
 # Load zinit module if it exists. For more info, run: zinit module help
-if [ -d "${ZINIT[HOME_DIR]}/module/Src/zdharma_continuum" ]; then
+if [ -f "${ZINIT[HOME_DIR]}/module/Src/zdharma_continuum/zinit.so" ]; then
   module_path+=("${ZINIT[HOME_DIR]}/module/Src")
   zmodload zdharma_continuum/zinit
 fi
