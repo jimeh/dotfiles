@@ -52,6 +52,11 @@ if command-exists hwatch; then
   alias watch="hwatch"
 fi
 
+# JSON to YAML and pretty print
+if command-exists yj && command-exists yq; then
+  alias jy="yj -jy | yq"
+fi
+
 # Misc.
 alias weechat="TERM=screen-256color weechat-curses"
 alias slashdot="ab -kc 50 -t 300"
