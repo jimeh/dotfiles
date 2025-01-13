@@ -14,9 +14,8 @@ SYMLINKS=(
   alacritty.toml
   bitbar
   coffeelint.json
-  config/ghostty/config
-  config/ghostty/themes
-  config/kitty/kitty.conf
+  config/ghostty
+  config/kitty
   config/mise/config.toml
   config/mise/settings.toml
   config/nix/nix.conf
