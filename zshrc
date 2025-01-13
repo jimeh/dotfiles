@@ -238,8 +238,12 @@ if ! command-exists mise; then
 fi
 
 if command-exists mise; then
-  alias mi="mise"
+  # Activate mise. We cannot use cached-eval here as the activation script
+  # dynamically adjusts how it modifies PATH on each invocation.
+  eval "$("$MISE_INSTALL_PATH" activate zsh)"
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
+
+  alias mi="mise"
 fi
 
 # ==============================================================================
@@ -315,13 +319,6 @@ unsetopt share_history
 
 # Disable attempted correction of commands (is wrong 98% of the time).
 unsetopt correctall
-
-# ==============================================================================
-# Prepare interactive environment
-# ==============================================================================
-
-# Activate mise properly for interactive use not using shims.
-eval "$("$MISE_INSTALL_PATH" activate zsh)"
 
 # ==============================================================================
 # Local Overrides
