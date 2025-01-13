@@ -1,4 +1,10 @@
 # ------------------------------------------------------------------------------
+# General settings
+# ------------------------------------------------------------------------------
+
+auto-update-channel = tip
+
+# ------------------------------------------------------------------------------
 # Theme settings
 # ------------------------------------------------------------------------------
 
@@ -41,12 +47,12 @@ macos-titlebar-style = transparent
 macos-secure-input-indication = true
 macos-auto-secure-input = true
 
-# notch padding: 14-inch@2704x1756
-# window-padding-y = 60,0
-
 # ------------------------------------------------------------------------------
 # Cursor settings
 # ------------------------------------------------------------------------------
+
+cursor-style = block
+shell-integration-features = no-cursor
 
 mouse-hide-while-typing = true
 
@@ -55,6 +61,11 @@ mouse-hide-while-typing = true
 # ------------------------------------------------------------------------------
 
 window-padding-balance = true
+window-step-resize = true
+
+# macOS notch padding: 14-inch@2704x1756
+# window-padding-y = 60,20
+
 
 # ------------------------------------------------------------------------------
 # Keybindings
