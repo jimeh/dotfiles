@@ -1,40 +1,40 @@
+[colors.normal]
+black = "#000000"
+red = "#cf5041"
+green = "#8bba48"
+yellow = "#c3a643"
+blue = "#37689f"
+magenta = "#9b589d"
+cyan = "#69b8cb"
+white = "#cccccc"
+
 [colors.bright]
 black = "#686a66"
-blue = "#5696d5"
-cyan = "#75cee3"
-green = "#96cf4d"
-magenta = "#9d6aa5"
 red = "#ed3a2c"
-white = "#f5f5f5"
+green = "#96cf4d"
 yellow = "#fdeb61"
+blue = "#5696d5"
+magenta = "#9d6aa5"
+cyan = "#75cee3"
+white = "#f5f5f5"
 
 [colors.dim]
 black = "#333333"
-blue = "#6699cc"
-cyan = "#66cccc"
-green = "#99cc99"
-magenta = "#cc99cc"
 red = "#f2777a"
-white = "#dddddd"
+green = "#99cc99"
 yellow = "#ffcc66"
-
-[colors.normal]
-black = "#000000"
-blue = "#37689f"
-cyan = "#69b8cb"
-green = "#8bba48"
-magenta = "#9b589d"
-red = "#cf5041"
-white = "#cccccc"
-yellow = "#c3a643"
+blue = "#6699cc"
+magenta = "#cc99cc"
+cyan = "#66cccc"
+white = "#dddddd"
 
 [colors.primary]
 background = "#000000"
-foreground = "#ffffff"
+foreground = "#D0D0D0"
 
 [colors.selection]
-background = "#000000"
-text = "#c1ddff"
+background = "#7499c7"
+text = "#000000"
 
 [env]
 TERM = "xterm-256color"
@@ -47,7 +47,7 @@ x = 0
 y = 0
 
 [font.normal]
-family = "Menlo Nerd Font Mono"
+family = "Menlo Nerd Font"
 
 [font.offset]
 x = 0
@@ -254,7 +254,7 @@ multiplier = 3
 
 [window]
 decorations = "full"
-dynamic_padding = false
+dynamic_padding = true
 
 [window.dimensions]
 columns = 80
