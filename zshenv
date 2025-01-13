@@ -298,6 +298,9 @@ export MISE_LIST_ALL_VERSIONS=1
 path_prepend "$HOME/.local/share/mise/bin"
 path_prepend "$HOME/.local/share/mise/shims"
 
+# aqua setup
+path_prepend "$HOME/.local/share/aquaproj-aqua/bin"
+
 # orbstack setup
 source-if-exists "$HOME/.orbstack/shell/init.zsh"
 path_prepend "$HOME/.orbstack/bin"
