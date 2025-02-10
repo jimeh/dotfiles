@@ -17,6 +17,7 @@
   ],
   "editor.semanticHighlighting.enabled": true,
   "editor.accessibilitySupport": "off",
+  "editor.minimap.enabled": true,
   //
   // Files
   //
@@ -128,10 +129,14 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.insertSpaces": true,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   //
   // YAML (by RedHat)
   //
   "redhat.telemetry.enabled": false,
+  //
+  // Makefile
+  //
+  "makefile.configureOnOpen": true
 }

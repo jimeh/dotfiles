@@ -26,7 +26,7 @@
     "command": "workbench.action.files.save"
   },
   //
-  // File Open
+  // File open
   //
   {
     "key": "ctrl+x ctrl+f",
@@ -36,6 +36,26 @@
   {
     "key": "ctrl+x ctrl+;",
     "command": "workbench.action.quickOpen"
+  },
+  //
+  // File rename
+  //
+  {
+    "key": "ctrl+c r",
+    "command": "file-browser.rename"
+  },
+  //
+  // Switch and close editor
+  //
+  {
+    "key": "ctrl+x ctrl+b",
+    "command": "workbench.action.showAllEditorsByMostRecentlyUsed",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x ctrl+k",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "!terminalFocus"
   },
   //
   // Fullscreen
@@ -68,30 +88,70 @@
     "command": "workbench.action.focusPreviousGroup",
     "when": "!terminalFocus"
   },
+  //
   // Pane navigation
+  //
   {
     "key": "alt+i",
-    "command": "workbench.action.navigateUp",
+    "command": "workbench.action.navigateUp"
   },
   // Workaround for alt+i not working in VSCode.
   {
     "key": "cmd+alt+up",
-    "command": "workbench.action.navigateUp",
+    "command": "workbench.action.navigateUp"
   },
   {
     "key": "alt+l",
-    "command": "workbench.action.navigateRight",
+    "command": "workbench.action.navigateRight"
   },
   {
     "key": "alt+j",
-    "command": "workbench.action.navigateLeft",
+    "command": "workbench.action.navigateLeft"
   },
   {
     "key": "alt+k",
-    "command": "workbench.action.navigateDown",
+    "command": "workbench.action.navigateDown"
   },
   //
-  // Undo/Redo
+  // Move active editor group
+  //
+  {
+    "key": "shift+alt+k",
+    "command": "workbench.action.moveActiveEditorGroupDown"
+  },
+  {
+    "key": "shift+alt+j",
+    "command": "workbench.action.moveActiveEditorGroupLeft"
+  },
+  {
+    "key": "shift+alt+cmd+up",
+    "command": "workbench.action.moveActiveEditorGroupUp"
+  },
+  {
+    "key": "shift+alt+l",
+    "command": "workbench.action.moveActiveEditorGroupRight"
+  },
+  //
+  // Move active editor into group
+  //
+  {
+    "key": "ctrl+shift+i",
+    "command": "workbench.action.moveEditorToAboveGroup"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.moveEditorToBelowGroup"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.moveEditorToLeftGroup"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.moveEditorToRightGroup"
+  },
+  //
+  // Undo/redo
   //
   {
     "key": "alt+-",
@@ -104,18 +164,8 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   //
-  // Text Navigation
+  // Text navigation
   //
-  {
-    "key": "alt+f",
-    "command": "cursorWordPartRight",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+b",
-    "command": "cursorWordPartLeft",
-    "when": "editorTextFocus"
-  },
   {
     "key": "ctrl+t",
     "command": "workbench.action.gotoSymbol",
@@ -135,18 +185,8 @@
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
   //
-  // Text Manipulation
+  // Text manipulation
   //
-  {
-    "key": "alt+d",
-    "command": "deleteWordPartRight",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+backspace",
-    "command": "deleteWordPartLeft",
-    "when": "editorTextFocus && !editorReadonly"
-  },
   {
     "key": "ctrl+c ctrl+/",
     "command": "editor.action.commentLine",
@@ -191,7 +231,7 @@
   },
   {
     "key": "ctrl+x ctrl+d",
-    "command": "editor.action.duplicateSelection",
+    "command": "editor.action.duplicateSelection"
   },
   {
     "key": "ctrl+c ctrl+.",
@@ -204,6 +244,29 @@
   {
     "key": "alt+shift+f",
     "command": "editor.action.inlineSuggest.acceptNextWord"
+  },
+  //
+  // Multi-cusor
+  //
+  {
+    "key": "alt+m",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+cmd+up",
+    "command": "-editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+/",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+cmd+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
   },
   //
   // edamagit
@@ -265,29 +328,13 @@
   //
   {
     "key": "alt+r",
-    "command": "swiper.swiper-word-at-cursor",
+    "command": "swiper.swiper-word-at-cursor"
   },
   //
-  // Multi-Cusor
+  // Makefile task runner
   //
   {
-    "key": "alt+m",
-    "command": "editor.action.insertCursorAbove",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+cmd+up",
-    "command": "-editor.action.insertCursorAbove",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+/",
-    "command": "editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+cmd+down",
-    "command": "-editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
-  },
+    "key": "ctrl+c enter",
+    "command": "make-task-provider.runTarget"
+  }
 ]
