@@ -16,6 +16,7 @@
     120
   ],
   "editor.semanticHighlighting.enabled": true,
+  "editor.accessibilitySupport": "off",
   //
   // Files
   //
@@ -133,9 +134,4 @@
   // YAML (by RedHat)
   //
   "redhat.telemetry.enabled": false,
-  //
-  // Settings Sync
-  //
-  "sync.gist": "f69653abef0a95b41ab928e868551d87",
-  "sync.autoUpload": false,
 }
