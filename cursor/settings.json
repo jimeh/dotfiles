@@ -1,134 +1,141 @@
 {
-    //
-    // Theme
-    //
-    "workbench.colorTheme": "One Dark Pro",
-    //
-    // Editor
-    //
-    "editor.fontFamily": "'Menlo Nerd Font Mono', 'Menlo Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-    "editor.renderWhitespace": "trailing",
+  //
+  // Theme
+  //
+  "workbench.colorTheme": "One Dark Pro",
+  //
+  // Editor
+  //
+  "editor.fontFamily": "'Menlo Nerd Font Mono', 'Menlo Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.renderWhitespace": "trailing",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.rulers": [
+    80,
+    100,
+    120
+  ],
+  "editor.semanticHighlighting.enabled": true,
+  //
+  // Files
+  //
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  //
+  // Cursor
+  //
+  "cursor.aipreview.enabled": true,
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.diffs.useCharacterLevelDiffs": true,
+  "cursor.terminal.usePreviewBox": true,
+  "cursor.general.enableShadowWorkspace": true,
+  //
+  // Window
+  //
+  "window.nativeFullScreen": false,
+  "window.commandCenter": true,
+  //
+  // Terminal
+  //
+  "terminal.integrated.persistentSessionScrollback": 1000,
+  "terminal.integrated.scrollback": 10000,
+  //
+  // Awesome Emacs Keybindings
+  //
+  "emacs-mcx.emacsLikeTab": true,
+  "emacs-mcx.killRingMax": 120,
+  "emacs-mcx.markRingMax": 32,
+  //
+  // File Browser
+  //
+  "file-browser.hideDotfiles": false,
+  "file-browser.labelIgnoredFiles": true,
+  //
+  // Project Manager
+  //
+  "projectManager.git.baseFolders": [
+    "~/Projects",
+    "~/.dotfiles",
+    "~/.config"
+  ],
+  "projectManager.git.ignoredFolders": [
+    "node_modules",
+    "out",
+    "typings",
+    "test",
+    ".haxelib",
+    "tmp",
+    "vendor",
+    "straight",
+    "elpaca"
+  ],
+  "projectManager.any.ignoredFolders": [
+    "node_modules",
+    "out",
+    "typings",
+    "test",
+    "tmp",
+    "vendor",
+    "straight",
+    "elpaca"
+  ],
+  "projectManager.hg.ignoredFolders": [
+    "node_modules",
+    "out",
+    "typings",
+    "test",
+    ".haxelib",
+    "straight",
+    "elpaca"
+  ],
+  "projectManager.svn.ignoredFolders": [
+    "node_modules",
+    "out",
+    "typings",
+    "test",
+    "straight",
+    "elpaca"
+  ],
+  "projectManager.vscode.ignoredFolders": [
+    "node_modules",
+    "out",
+    "typings",
+    "test",
+    "straight",
+    "elpaca"
+  ],
+  //
+  // Go
+  //
+  "go.formatTool": "gofumpt",
+  "go.inlayHints.constantValues": true,
+  "go.lintTool": "golangci-lint",
+  "go-lines.lineLength": 120,
+  //
+  // JSON
+  //
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  //
+  // Ruby
+  //
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": false,
-    "editor.rulers": [
-        80,
-        100,
-        120
-    ],
-    "editor.semanticHighlighting.enabled": true,
-    //
-    // Files
-    //
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    //
-    // Cursor
-    //
-    "cursor.aipreview.enabled": true,
-    "cursor.cpp.enablePartialAccepts": true,
-    "cursor.diffs.useCharacterLevelDiffs": true,
-    "cursor.terminal.usePreviewBox": true,
-    "cursor.general.enableShadowWorkspace": true,
-    //
-    // Window
-    //
-    "window.nativeFullScreen": false,
-    "window.commandCenter": true,
-    //
-    // Terminal
-    //
-    "terminal.integrated.persistentSessionScrollback": 1000,
-    "terminal.integrated.scrollback": 10000,
-    //
-    // Awesome Emacs Keybindings
-    //
-    "emacs-mcx.emacsLikeTab": true,
-    "emacs-mcx.killRingMax": 120,
-    "emacs-mcx.markRingMax": 32,
-    //
-    // File Browser
-    //
-    "file-browser.hideDotfiles": false,
-    "file-browser.labelIgnoredFiles": true,
-    //
-    // Project Manager
-    //
-    "projectManager.git.baseFolders": [
-        "~/Projects",
-        "~/.dotfiles",
-        "~/.config"
-    ],
-    "projectManager.git.ignoredFolders": [
-        "node_modules",
-        "out",
-        "typings",
-        "test",
-        ".haxelib",
-        "tmp",
-        "vendor",
-        "straight",
-        "elpaca"
-    ],
-    "projectManager.any.ignoredFolders": [
-        "node_modules",
-        "out",
-        "typings",
-        "test",
-        "tmp",
-        "vendor",
-        "straight",
-        "elpaca"
-    ],
-    "projectManager.hg.ignoredFolders": [
-        "node_modules",
-        "out",
-        "typings",
-        "test",
-        ".haxelib",
-        "straight",
-        "elpaca"
-    ],
-    "projectManager.svn.ignoredFolders": [
-        "node_modules",
-        "out",
-        "typings",
-        "test",
-        "straight",
-        "elpaca"
-    ],
-    "projectManager.vscode.ignoredFolders": [
-        "node_modules",
-        "out",
-        "typings",
-        "test",
-        "straight",
-        "elpaca"
-    ],
-    //
-    // Go
-    //
-    "go.formatTool": "gofumpt",
-    "go.inlayHints.constantValues": true,
-    "go.lintTool": "golangci-lint",
-    "go-lines.lineLength": 120,
-    //
-    // Ruby
-    //
-    "[ruby]": {
-        "editor.defaultFormatter": "Shopify.ruby-lsp",
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-    },
-    //
-    // YAML (by RedHat)
-    //
-    "redhat.telemetry.enabled": false,
-    //
-    // Settings Sync
-    //
-    "sync.gist": "f69653abef0a95b41ab928e868551d87",
-    "sync.autoUpload": true,
+    "editor.formatOnType": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+  },
+  //
+  // YAML (by RedHat)
+  //
+  "redhat.telemetry.enabled": false,
+  //
+  // Settings Sync
+  //
+  "sync.gist": "f69653abef0a95b41ab928e868551d87",
+  "sync.autoUpload": false,
 }
