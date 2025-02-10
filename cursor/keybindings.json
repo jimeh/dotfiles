@@ -1,0 +1,294 @@
+// Place your key bindings in this file to override the defaults
+[
+    //
+    // Command Palette
+    //
+    {
+        "key": "ctrl+x m",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+x ctrl+m",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+x enter",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "alt+x",
+        "command": "workbench.action.showCommands"
+    },
+    //
+    // Save
+    //
+    {
+        "key": "ctrl+x ctrl+s",
+        "command": "workbench.action.files.save"
+    },
+    //
+    // File Open
+    //
+    {
+        "key": "ctrl+x ctrl+;",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+x ctrl+f",
+        "command": "file-browser.open",
+        "when": "editorTextFocus"
+    },
+    //
+    // Fullscreen
+    //
+    {
+        "key": "ctrl+cmd+enter",
+        "command": "workbench.action.toggleFullScreen",
+        "when": "!isIOS"
+    },
+    {
+        "key": "cmd+enter",
+        "command": "workbench.action.toggleFullScreen",
+        "when": "!isIOS"
+    },
+    {
+        "key": "ctrl+cmd+f",
+        "command": "-workbench.action.toggleFullScreen",
+        "when": "!isIOS"
+    },
+    //
+    // Navigation
+    //
+    {
+        "key": "ctrl+x ctrl+o",
+        "command": "workbench.action.focusNextGroup",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+x ctrl+i",
+        "command": "workbench.action.focusPreviousGroup",
+        "when": "!terminalFocus"
+    },
+    // Pane navigation
+    {
+        "key": "alt+i",
+        "command": "workbench.action.navigateUp",
+    },
+    // Workaround for alt+i not working in VSCode.
+    {
+        "key": "cmd+alt+up",
+        "command": "workbench.action.navigateUp",
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.navigateRight",
+    },
+    {
+        "key": "alt+j",
+        "command": "workbench.action.navigateLeft",
+    },
+    {
+        "key": "alt+k",
+        "command": "workbench.action.navigateDown",
+    },
+    //
+    // Undo/Redo
+    //
+    {
+        "key": "alt+-",
+        "command": "undo",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+-",
+        "command": "redo",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    //
+    // Text Navigation
+    //
+    {
+        "key": "alt+f",
+        "command": "cursorWordPartRight",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+b",
+        "command": "cursorWordPartLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.gotoSymbol",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+c ctrl+j",
+        "command": "editor.action.revealDefinition"
+    },
+    {
+        "key": "alt+g b",
+        "command": "workbench.action.navigateBack"
+    },
+    {
+        "key": "alt+shift+/",
+        "command": "editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    //
+    // Text Manipulation
+    //
+    {
+        "key": "alt+d",
+        "command": "deleteWordPartRight",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+backspace",
+        "command": "deleteWordPartLeft",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+c ctrl+/",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+p",
+        "command": "notebook.cell.moveUp",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "alt+n",
+        "command": "notebook.cell.moveDown",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+c ctrl+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    // Workaround for alt+n not working in VSCode.
+    {
+        "key": "alt+cmd+down",
+        "command": "notebook.cell.moveDown",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "alt+p",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+n",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    // Workaround for alt+n not working in VSCode.
+    {
+        "key": "alt+cmd+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+x ctrl+d",
+        "command": "editor.action.duplicateSelection",
+    },
+    {
+        "key": "ctrl+c ctrl+.",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    //
+    // Completion
+    //
+    {
+        "key": "alt+shift+f",
+        "command": "editor.action.inlineSuggest.acceptNextWord"
+    },
+    //
+    // edamagit
+    //
+    {
+        "key": "ctrl+x g",
+        "command": "magit.status"
+    },
+    {
+        "key": "alt+x g",
+        "command": "-magit.status"
+    },
+    //
+    // Project Manager
+    //
+    {
+        "key": "ctrl+z ctrl+s",
+        "command": "projectManager.listProjects"
+    },
+    {
+        "key": "alt+cmd+p",
+        "command": "-projectManager.listProjects"
+    },
+    //
+    // dired
+    //
+    {
+        "key": "ctrl+x ctrl+j",
+        "command": "extension.dired.open",
+        "when": "editorTextFocus && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+x f",
+        "command": "-extension.dired.open",
+        "when": "editorTextFocus && !inDebugRepl"
+    },
+    {
+        "key": "c",
+        "command": "extension.dired.createDir",
+        "when": "dired.open && !findWidgetVisible && !inQuickOpen"
+    },
+    {
+        "key": "shift+=",
+        "command": "-extension.dired.createDir",
+        "when": "dired.open && !findWidgetVisible && !inQuickOpen"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "extension.dired.goUpDir",
+        "when": "dired.open && !findWidgetVisible && !inQuickOpen"
+    },
+    {
+        "key": "shift+b",
+        "command": "-extension.dired.goUpDir",
+        "when": "dired.open && !findWidgetVisible && !inQuickOpen"
+    },
+    //
+    // swiper
+    //
+    {
+        "key": "alt+r",
+        "command": "swiper.swiper-word-at-cursor",
+    },
+    //
+    // Multi-Cusor
+    //
+    {
+        "key": "alt+m",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+up",
+        "command": "-editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+/",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+down",
+        "command": "-editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+]
