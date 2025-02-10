@@ -23,6 +23,7 @@ SYMLINKS=(
   config/starship.toml
   config/tlrc/config.toml
   config/xkeysnail/config.py
+  config/k9s
   erlang
   gemrc
   gitconfig

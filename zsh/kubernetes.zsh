@@ -30,14 +30,35 @@ if command-exists kubectl; then
   fi
 fi
 
+# Download completion scripts for kubectx and kubens from their git repo at
+# their respective versions. This is required as neither command has an option
+# to output their completion scripts, unlike most tools.
 _setup-kubectx-completion() {
   local cmd="$1"
-  local dir="$HOME/.local/share/mise/installs/kubectx/latest/completion"
-  local src="${dir}/_${cmd}.zsh"
+  local version
+  local src_url
+  local tmpfile
 
-  if [[ ! -f "$src" ]]; then return; fi
+  # If the command already has completions, don't do anything.
+  if whence -w "_${cmd}" > /dev/null; then return; fi
 
-  setup-completions "$cmd" "$src" cat "$src"
+  tmpfile="$(mktemp -d)/_${cmd}.zsh"
+  version="$(printf '%s' "$(command "$cmd" --version 2> /dev/null)")"
+  version="${version#v}"
+  src_url="https://github.com/ahmetb/kubectx/raw/refs/tags/v${version}/completion/_${cmd}.zsh"
+
+  echo "Completion script for ${cmd} (v#{version}) not found. Download and install?"
+  echo
+  echo "  Download from: ${src_url}"
+  echo "        Save to: ${tmpfile}"
+  echo
+  read -q "REPLY?Continue? [y/N]:" || return
+  echo
+  echo
+
+  curl -L "$src_url" -o "${tmpfile}" &&
+    echo &&
+    setup-completions "$cmd" "$(command-path "$cmd")" cat "$tmpfile"
 }
 
 if command-exists kubectx; then

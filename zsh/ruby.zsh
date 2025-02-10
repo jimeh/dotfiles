@@ -67,6 +67,5 @@ install_ruby_global_packages() {
     yard
   )
 
-  gem install --no-document rbenv-rehash
   gem install --no-document "${packages[@]}"
 }
