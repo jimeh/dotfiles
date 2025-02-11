@@ -47,7 +47,7 @@ _setup-kubectx-completion() {
   version="${version#v}"
   src_url="https://github.com/ahmetb/kubectx/raw/refs/tags/v${version}/completion/_${cmd}.zsh"
 
-  echo "Completion script for ${cmd} (v#{version}) not found. Download and install?"
+  echo "Completion script for ${cmd} (v${version}) not found. Download and install?"
   echo
   echo "  Download from: ${src_url}"
   echo "        Save to: ${tmpfile}"
