@@ -1,12 +1,19 @@
 {
   //
+  // ===========================================================================
   // Theme
+  // ===========================================================================
   //
   "workbench.colorTheme": "One Dark Pro",
   //
+  // ===========================================================================
   // Editor
+  // ===========================================================================
   //
   "editor.fontFamily": "'Menlo Nerd Font Mono', 'Menlo Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": false,
+  "editor.fontWeight": "normal",
+  "editor.fontSize": 12,
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
@@ -19,13 +26,17 @@
   "editor.accessibilitySupport": "off",
   "editor.minimap.enabled": true,
   //
+  // ===========================================================================
   // Files
+  // ===========================================================================
   //
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   //
+  // ===========================================================================
   // Cursor
+  // ===========================================================================
   //
   "cursor.aipreview.enabled": true,
   "cursor.cpp.enablePartialAccepts": true,
@@ -33,28 +44,38 @@
   "cursor.terminal.usePreviewBox": true,
   "cursor.general.enableShadowWorkspace": true,
   //
+  // ===========================================================================
   // Window
+  // ===========================================================================
   //
   "window.nativeFullScreen": false,
   "window.commandCenter": true,
   //
+  // ===========================================================================
   // Terminal
+  // ===========================================================================
   //
   "terminal.integrated.persistentSessionScrollback": 1000,
   "terminal.integrated.scrollback": 10000,
   //
+  // ===========================================================================
   // Awesome Emacs Keybindings
+  // ===========================================================================
   //
   "emacs-mcx.emacsLikeTab": true,
   "emacs-mcx.killRingMax": 120,
   "emacs-mcx.markRingMax": 32,
   //
+  // ===========================================================================
   // File Browser
+  // ===========================================================================
   //
   "file-browser.hideDotfiles": false,
   "file-browser.labelIgnoredFiles": true,
   //
+  // ===========================================================================
   // Project Manager
+  // ===========================================================================
   //
   "projectManager.git.baseFolders": [
     "~/Projects",
@@ -108,21 +129,27 @@
     "elpaca"
   ],
   //
+  // ===========================================================================
   // Go
+  // ===========================================================================
   //
   "go.formatTool": "gofumpt",
   "go.inlayHints.constantValues": true,
   "go.lintTool": "golangci-lint",
   "go-lines.lineLength": 120,
   //
+  // ===========================================================================
   // JSON
+  // ===========================================================================
   //
   "[json]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
   //
+  // ===========================================================================
   // Ruby
+  // ===========================================================================
   //
   "[ruby]": {
     "editor.defaultFormatter": "Shopify.ruby-lsp",
@@ -132,11 +159,15 @@
     "editor.tabSize": 2
   },
   //
+  // ===========================================================================
   // YAML (by RedHat)
+  // ===========================================================================
   //
   "redhat.telemetry.enabled": false,
   //
+  // ===========================================================================
   // Makefile
+  // ===========================================================================
   //
   "makefile.configureOnOpen": true
 }

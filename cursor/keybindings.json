@@ -1,339 +1,427 @@
 [
   //
+  // ===========================================================================
   // Command Palette
+  // ===========================================================================
   //
-  {
+  { // Show commands.
     "key": "ctrl+x m",
     "command": "workbench.action.showCommands"
   },
-  {
+  { // Show commands.
     "key": "ctrl+x ctrl+m",
     "command": "workbench.action.showCommands"
   },
-  {
+  { // Show commands.
     "key": "ctrl+x enter",
     "command": "workbench.action.showCommands"
   },
-  {
+  { // Show commands.
     "key": "alt+x",
     "command": "workbench.action.showCommands"
   },
   //
+  // ===========================================================================
   // Save
+  // ===========================================================================
   //
-  {
+  { // Save file.
     "key": "ctrl+x ctrl+s",
     "command": "workbench.action.files.save"
   },
   //
+  // ===========================================================================
   // File open
+  // ===========================================================================
   //
-  {
+  { // Open file via file browser extension.
     "key": "ctrl+x ctrl+f",
     "command": "file-browser.open",
     "when": "editorTextFocus"
   },
-  {
+  { // Open quick open.
     "key": "ctrl+x ctrl+;",
     "command": "workbench.action.quickOpen"
   },
   //
+  // ===========================================================================
   // File rename
+  // ===========================================================================
   //
-  {
+  { // Rename file via file browser extension.
     "key": "ctrl+c r",
     "command": "file-browser.rename"
   },
   //
+  // ===========================================================================
   // Switch and close editor
+  // ===========================================================================
   //
-  {
+  { // Show all editors by most recently used.
     "key": "ctrl+x ctrl+b",
     "command": "workbench.action.showAllEditorsByMostRecentlyUsed",
     "when": "!terminalFocus"
   },
-  {
+  { // Close active editor.
     "key": "ctrl+x ctrl+k",
     "command": "workbench.action.closeActiveEditor",
     "when": "!terminalFocus"
   },
   //
+  // ===========================================================================
   // Fullscreen
+  // ===========================================================================
   //
-  {
+  { // Toggle fullscreen.
     "key": "ctrl+cmd+enter",
     "command": "workbench.action.toggleFullScreen",
     "when": "!isIOS"
   },
-  {
+  { // Toggle fullscreen.
     "key": "cmd+enter",
     "command": "workbench.action.toggleFullScreen",
     "when": "!isIOS"
   },
-  {
+  { // Disable default toggle fullscreen keybinding.
     "key": "ctrl+cmd+f",
     "command": "-workbench.action.toggleFullScreen",
     "when": "!isIOS"
   },
   //
+  // ===========================================================================
   // Navigation
+  // ===========================================================================
   //
-  {
+  { // Focus next editor group.
     "key": "ctrl+x ctrl+o",
     "command": "workbench.action.focusNextGroup",
     "when": "!terminalFocus"
   },
-  {
+  { // Focus previous editor group.
     "key": "ctrl+x ctrl+i",
     "command": "workbench.action.focusPreviousGroup",
     "when": "!terminalFocus"
   },
   //
+  // ===========================================================================
   // Pane navigation
+  // ===========================================================================
   //
-  {
+  { // Navigate up.
     "key": "alt+i",
     "command": "workbench.action.navigateUp"
   },
-  // Workaround for alt+i not working in VSCode.
-  {
+  { // Navigate up.
+    // Workaround for alt+i not working in VSCode. Relies on
+    // Karabiner-Elements to remap alt+i to cmd+alt+up.
     "key": "cmd+alt+up",
     "command": "workbench.action.navigateUp"
   },
-  {
+  { // Navigate right.
     "key": "alt+l",
     "command": "workbench.action.navigateRight"
   },
-  {
+  { // Navigate left.
     "key": "alt+j",
     "command": "workbench.action.navigateLeft"
   },
-  {
+  { // Navigate down.
     "key": "alt+k",
     "command": "workbench.action.navigateDown"
   },
   //
+  // ===========================================================================
   // Move active editor group
+  // ===========================================================================
   //
-  {
-    "key": "shift+alt+k",
-    "command": "workbench.action.moveActiveEditorGroupDown"
-  },
-  {
-    "key": "shift+alt+j",
-    "command": "workbench.action.moveActiveEditorGroupLeft"
-  },
-  {
-    "key": "shift+alt+cmd+up",
+  { // Move active editor group up.
+    "key": "ctrl+shift+i",
     "command": "workbench.action.moveActiveEditorGroupUp"
   },
-  {
-    "key": "shift+alt+l",
+  { // Move active editor group down.
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.moveActiveEditorGroupDown"
+  },
+  { // Move active editor group left.
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.moveActiveEditorGroupLeft"
+  },
+  { // Move active editor group right.
+    "key": "ctrl+shift+l",
     "command": "workbench.action.moveActiveEditorGroupRight"
   },
   //
+  // ===========================================================================
   // Move active editor into group
+  // ===========================================================================
   //
-  {
-    "key": "ctrl+shift+i",
+  { // Move active editor into group above.
+    "key": "alt+shift+i",
     "command": "workbench.action.moveEditorToAboveGroup"
   },
-  {
-    "key": "ctrl+shift+k",
+  { // Move active editor into group above.
+    // Workaround for alt+i not working in VSCode. Relies on
+    // Karabiner-Elements to remap alt+i to cmd+alt+up.
+    "key": "cmd+alt+shift+up",
+    "command": "workbench.action.moveEditorToAboveGroup"
+  },
+  { // Move active editor into group below.
+    "key": "alt+shift+k",
     "command": "workbench.action.moveEditorToBelowGroup"
   },
-  {
-    "key": "ctrl+shift+j",
+  { // Move active editor into group left.
+    "key": "alt+shift+j",
     "command": "workbench.action.moveEditorToLeftGroup"
   },
-  {
-    "key": "ctrl+shift+l",
+  { // Move active editor into group right.
+    "key": "alt+shift+l",
     "command": "workbench.action.moveEditorToRightGroup"
   },
   //
+  // ===========================================================================
   // Undo/redo
+  // ===========================================================================
   //
-  {
+  { // Undo.
     "key": "alt+-",
     "command": "undo",
     "when": "editorTextFocus && !editorReadonly"
   },
-  {
+  { // Redo.
     "key": "shift+alt+-",
     "command": "redo",
     "when": "editorTextFocus && !editorReadonly"
   },
   //
+  // ===========================================================================
   // Text navigation
+  // ===========================================================================
   //
-  {
+  { // Go to symbol definition.
     "key": "ctrl+t",
     "command": "workbench.action.gotoSymbol",
     "when": "editorTextFocus"
   },
-  {
+  { // Jump to definition.
     "key": "ctrl+c ctrl+j",
     "command": "editor.action.revealDefinition"
   },
-  {
+  { // Navigate back.
     "key": "alt+g b",
     "command": "workbench.action.navigateBack"
   },
-  {
+  { // Navigate back.
+    "key": "alt+g alt+b",
+    "command": "workbench.action.navigateBack"
+  },
+  { // Peek symbol references.
     "key": "alt+shift+/",
     "command": "editor.action.referenceSearch.trigger",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
   //
+  // ===========================================================================
   // Text manipulation
+  // ===========================================================================
   //
-  {
+  { // Comment line.
+    "key": "ctrl+c /",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Comment line.
     "key": "ctrl+c ctrl+/",
     "command": "editor.action.commentLine",
     "when": "editorTextFocus && !editorReadonly"
   },
-  {
-    "key": "alt+p",
-    "command": "notebook.cell.moveUp",
-    "when": "notebookEditorFocused && !inputFocus"
-  },
-  {
-    "key": "alt+n",
-    "command": "notebook.cell.moveDown",
-    "when": "notebookEditorFocused && !inputFocus"
-  },
-  {
+  { // Format document.
     "key": "ctrl+c ctrl+f",
     "command": "editor.action.formatDocument",
     "when": "editorTextFocus && !editorReadonly"
   },
-  // Workaround for alt+n not working in VSCode.
-  {
-    "key": "alt+cmd+down",
-    "command": "notebook.cell.moveDown",
-    "when": "notebookEditorFocused && !inputFocus"
-  },
-  {
-    "key": "alt+p",
-    "command": "editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+n",
-    "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  // Workaround for alt+n not working in VSCode.
-  {
-    "key": "alt+cmd+down",
-    "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
+  { // Duplicate selection.
     "key": "ctrl+x ctrl+d",
     "command": "editor.action.duplicateSelection"
   },
-  {
+  { // Rename thing at point.
     "key": "ctrl+c ctrl+.",
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
+  { // Move lines up in editor.
+    "key": "alt+p",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Move lines down in editor.
+    "key": "alt+n",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Move lines down in editor.
+    // This is a workaround for alt+n not working in VSCode. Relies on
+    // Karabiner-Elements to remap alt+n to cmd+alt+down.
+    "key": "cmd+alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Move cell up in notebook editor.
+    "key": "alt+p",
+    "command": "notebook.cell.moveUp",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  { // Move cell down in notebook editor.
+    "key": "alt+n",
+    "command": "notebook.cell.moveDown",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  { // Move cell down in notebook editor.
+    // This is a workaround for alt+n not working in VSCode. Relies on
+    // Karabiner-Elements to remap alt+n to cmd+alt+down.
+    "key": "cmd+alt+down",
+    "command": "notebook.cell.moveDown",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
   //
+  // ===========================================================================
   // Completion
+  // ===========================================================================
   //
   {
     "key": "alt+shift+f",
     "command": "editor.action.inlineSuggest.acceptNextWord"
   },
   //
-  // Multi-cusor
+  // ===========================================================================
+  // Text selection
+  // ===========================================================================
   //
-  {
-    "key": "alt+m",
-    "command": "editor.action.insertCursorAbove",
+  { // Expand selection.
+    "key": "alt+.",
+    "command": "editor.action.smartSelect.expand",
     "when": "editorTextFocus"
   },
-  {
+  { // Shrink/contract selection.
+    "key": "alt+,",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  //
+  // ===========================================================================
+  // Multi-cusor
+  // ===========================================================================
+  //
+  { // Select all highlights.
+    "key": "shift+cmd+a",
+    "command": "editor.action.selectHighlights",
+    "when": "editorFocus"
+  },
+  { // Disable default insert cursor above keybinding.
     "key": "alt+cmd+up",
     "command": "-editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   },
-  {
-    "key": "alt+/",
-    "command": "editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
+  { // Insert cursor above.
+    "key": "alt+m",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus && !editorHasSelection"
   },
-  {
+  { // Add selection to previous find match when editor has selection.
+    "key": "alt+m",
+    "command": "emacs-mcx.addSelectionToPreviousFindMatch",
+    "when": "editorTextFocus && editorHasSelection"
+  },
+  { // Disable default insert cursor below keybinding.
     "key": "alt+cmd+down",
     "command": "-editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
+  { // Insert cursor below when editor has no selection.
+    "key": "alt+/",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus && !editorHasSelection"
+  },
+  { // Add selection to next find match when editor has selection.
+    "key": "alt+/",
+    "command": "emacs-mcx.addSelectionToNextFindMatch",
+    "when": "editorTextFocus && editorHasSelection"
+  },
   //
+  // ===========================================================================
   // edamagit
+  // ===========================================================================
   //
-  {
+  { // Open magit status.
     "key": "ctrl+x g",
     "command": "magit.status"
   },
-  {
+  { // Disable default open magit status keybinding.
     "key": "alt+x g",
     "command": "-magit.status"
   },
   //
+  // ===========================================================================
   // Project Manager
+  // ===========================================================================
   //
-  {
+  { // List projects.
     "key": "ctrl+z ctrl+s",
     "command": "projectManager.listProjects"
   },
-  {
+  { // Disable default list projects keybinding.
     "key": "alt+cmd+p",
     "command": "-projectManager.listProjects"
   },
   //
+  // ===========================================================================
   // dired
+  // ===========================================================================
   //
-  {
+  { // Open dired.
     "key": "ctrl+x ctrl+j",
     "command": "extension.dired.open",
     "when": "editorTextFocus && !inDebugRepl"
   },
-  {
+  { // Disable default open dired keybinding.
     "key": "ctrl+x f",
     "command": "-extension.dired.open",
     "when": "editorTextFocus && !inDebugRepl"
   },
-  {
+  { // Create directory.
     "key": "c",
     "command": "extension.dired.createDir",
     "when": "dired.open && !findWidgetVisible && !inQuickOpen"
   },
-  {
+  { // Disable default create directory keybinding.
     "key": "shift+=",
     "command": "-extension.dired.createDir",
     "when": "dired.open && !findWidgetVisible && !inQuickOpen"
   },
-  {
+  { // Go up directory.
     "key": "ctrl+l",
     "command": "extension.dired.goUpDir",
     "when": "dired.open && !findWidgetVisible && !inQuickOpen"
   },
-  {
+  { // Disable default go up directory keybinding.
     "key": "shift+b",
     "command": "-extension.dired.goUpDir",
     "when": "dired.open && !findWidgetVisible && !inQuickOpen"
   },
   //
+  // ===========================================================================
   // swiper
+  // ===========================================================================
   //
-  {
+  { // Swiper word at cursor.
     "key": "alt+r",
     "command": "swiper.swiper-word-at-cursor"
   },
   //
+  // ===========================================================================
   // Makefile task runner
+  // ===========================================================================
   //
-  {
+  { // Run target.
     "key": "ctrl+c enter",
     "command": "make-task-provider.runTarget"
   }
