@@ -32,6 +32,7 @@ install_go_global_packages() {
     golang.org/x/vuln/cmd/govulncheck@latest
     google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
     google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    mvdan.cc/gofumpt@latest
   )
 
   for package in "${packages[@]}"; do
