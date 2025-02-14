@@ -373,7 +373,7 @@
   // edamagit
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=kahole.magit
+  // - https://marketplace.visualstudio.com/items?itemName=kahole.magit
   //
   { // Open magit status.
     "key": "ctrl+x g",
@@ -388,7 +388,7 @@
   // Project Manager
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=alefragnani.project-manager
+  // - https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
   //
   { // List projects.
     "key": "ctrl+z ctrl+s",
@@ -403,7 +403,7 @@
   // dired
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=rrudi.vscode-dired
+  // - https://marketplace.visualstudio.com/items?itemName=rrudi.vscode-dired
   //
   { // Open dired.
     "key": "ctrl+x ctrl+j",
@@ -440,7 +440,7 @@
   // swiper
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=wenhoujx.swiper
+  // - https://marketplace.visualstudio.com/items?itemName=wenhoujx.swiper
   //
   { // Swiper word at cursor.
     "key": "alt+r",
@@ -451,7 +451,7 @@
   // Makefile task runner
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=carlos-algms.make-task-provider
+  // - https://marketplace.visualstudio.com/items?itemName=carlos-algms.make-task-provider
   //
   { // Run target.
     "key": "ctrl+c enter",

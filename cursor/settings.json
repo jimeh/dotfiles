@@ -68,7 +68,7 @@
   // Awesome Emacs Keybindings
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=tuttieee.emacs-mcx
+  // - https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
   //
   "emacs-mcx.emacsLikeTab": true,
   "emacs-mcx.killRingMax": 120,
@@ -78,7 +78,7 @@
   // File Browser
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=bodil.file-browser
+  // - https://marketplace.visualstudio.com/items?itemName=bodil.file-browser
   //
   "file-browser.hideDotfiles": false,
   "file-browser.labelIgnoredFiles": true,
@@ -87,7 +87,7 @@
   // Project Manager
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=alefragnani.project-manager
+  // - https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
   //
   "projectManager.git.baseFolders": [
     "~/Projects",
@@ -145,8 +145,8 @@
   // Go
   // ===========================================================================
   // Extensions:
-  // - https://marketplace.cursorapi.com/items?itemName=golang.go
-  // - https://marketplace.cursorapi.com/items?itemName=gofenix.go-lines
+  // - https://marketplace.visualstudio.com/items?itemName=golang.go
+  // - https://marketplace.visualstudio.com/items?itemName=gofenix.go-lines
   //
   "go-lines.lineLength": 120,
   "go.formatTool": "gofumpt",
@@ -158,7 +158,7 @@
     "ui.diagnostic.analyses": {
       "shadow": true
     },
-    "ui.diagnostic.staticcheck": true,
+    "ui.diagnostic.staticcheck": true
   },
   //
   // ===========================================================================
@@ -171,11 +171,25 @@
   },
   //
   // ===========================================================================
-  // Ruby
+  // Lua
   // ===========================================================================
   // Extensions:
-  // - https://marketplace.cursorapi.com/items?itemName=Shopify.ruby-extensions-pack
-  // - https://marketplace.cursorapi.com/items?itemName=connorshea.vscode-ruby-test-adapter
+  // - https://marketplace.visualstudio.com/items?itemName=sumneko.lua
+  //
+  "Lua.codeLens.enable": true,
+  "Lua.diagnostics.globals": [
+    // Hammerspoon
+    "hs",
+    "spoon"
+  ],
+  "Lua.diagnostics.workspaceEvent": "OnChange",
+  "Lua.hint.enable": true,
+  //
+  // ===========================================================================
+  // Ruby
+  // ===========================================================================
+  // - https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack
+  // - https://marketplace.visualstudio.com/items?itemName=connorshea.vscode-ruby-test-adapter
   //
   "[ruby]": {
     "editor.defaultFormatter": "Shopify.ruby-lsp",
@@ -189,8 +203,8 @@
   // YAML
   // ===========================================================================
   // Extensions:
-  // - https://marketplace.cursorapi.com/items?itemName=redhat.vscode-yaml
-  // - https://marketplace.cursorapi.com/items?itemName=arahata.linter-actionlint
+  // - https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
+  // - https://marketplace.visualstudio.com/items?itemName=arahata.linter-actionlint
   //
   "redhat.telemetry.enabled": false,
   //
@@ -204,7 +218,7 @@
   // vscode-color-picker
   // ===========================================================================
   // Extension URL:
-  // - https://marketplace.cursorapi.com/items?itemName=AntiAntiSepticeye.vscode-color-picker
+  // - https://marketplace.visualstudio.com/items?itemName=AntiAntiSepticeye.vscode-color-picker
   //
   "vscode-color-picker.languages": [
     "css",
@@ -221,5 +235,5 @@
     "svg",
     "typescript",
     "xml"
-  ],
+  ]
 }
