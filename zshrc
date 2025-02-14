@@ -284,6 +284,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
 # Utils
 source "$DOTZSH/1password.zsh"
+source "$DOTZSH/ansi.zsh"
 source "$DOTZSH/copilot.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/less.zsh"
