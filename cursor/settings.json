@@ -16,7 +16,7 @@
   "editor.fontSize": 12,
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": false,
+  "editor.formatOnPaste": true,
   "editor.rulers": [
     80,
     100,
@@ -25,6 +25,12 @@
   "editor.semanticHighlighting.enabled": true,
   "editor.accessibilitySupport": "off",
   "editor.minimap.enabled": true,
+  //
+  // ===========================================================================
+  // Git
+  // ===========================================================================
+  //
+  "git.blame.editorDecoration.enabled": true,
   //
   // ===========================================================================
   // Files
@@ -61,6 +67,8 @@
   // ===========================================================================
   // Awesome Emacs Keybindings
   // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.cursorapi.com/items?itemName=tuttieee.emacs-mcx
   //
   "emacs-mcx.emacsLikeTab": true,
   "emacs-mcx.killRingMax": 120,
@@ -69,6 +77,8 @@
   // ===========================================================================
   // File Browser
   // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.cursorapi.com/items?itemName=bodil.file-browser
   //
   "file-browser.hideDotfiles": false,
   "file-browser.labelIgnoredFiles": true,
@@ -76,6 +86,8 @@
   // ===========================================================================
   // Project Manager
   // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.cursorapi.com/items?itemName=alefragnani.project-manager
   //
   "projectManager.git.baseFolders": [
     "~/Projects",
@@ -132,11 +144,22 @@
   // ===========================================================================
   // Go
   // ===========================================================================
+  // Extensions:
+  // - https://marketplace.cursorapi.com/items?itemName=golang.go
+  // - https://marketplace.cursorapi.com/items?itemName=gofenix.go-lines
   //
-  "go.formatTool": "gofumpt",
-  "go.inlayHints.constantValues": true,
-  "go.lintTool": "golangci-lint",
   "go-lines.lineLength": 120,
+  "go.formatTool": "gofumpt",
+  "go.lintOnSave": "workspace",
+  "go.lintTool": "golangci-lint",
+  "go.useLanguageServer": true,
+  "go.inlayHints.constantValues": true,
+  "gopls": {
+    "ui.diagnostic.analyses": {
+      "shadow": true
+    },
+    "ui.diagnostic.staticcheck": true,
+  },
   //
   // ===========================================================================
   // JSON
@@ -150,6 +173,9 @@
   // ===========================================================================
   // Ruby
   // ===========================================================================
+  // Extensions:
+  // - https://marketplace.cursorapi.com/items?itemName=Shopify.ruby-extensions-pack
+  // - https://marketplace.cursorapi.com/items?itemName=connorshea.vscode-ruby-test-adapter
   //
   "[ruby]": {
     "editor.defaultFormatter": "Shopify.ruby-lsp",
@@ -160,8 +186,11 @@
   },
   //
   // ===========================================================================
-  // YAML (by RedHat)
+  // YAML
   // ===========================================================================
+  // Extensions:
+  // - https://marketplace.cursorapi.com/items?itemName=redhat.vscode-yaml
+  // - https://marketplace.cursorapi.com/items?itemName=arahata.linter-actionlint
   //
   "redhat.telemetry.enabled": false,
   //
@@ -169,5 +198,28 @@
   // Makefile
   // ===========================================================================
   //
-  "makefile.configureOnOpen": true
+  "makefile.configureOnOpen": false,
+  //
+  // ===========================================================================
+  // vscode-color-picker
+  // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.cursorapi.com/items?itemName=AntiAntiSepticeye.vscode-color-picker
+  //
+  "vscode-color-picker.languages": [
+    "css",
+    "go",
+    "javascript",
+    "less",
+    "postcss",
+    "python",
+    "ruby",
+    "sass",
+    "scss",
+    "sss",
+    "stylus",
+    "svg",
+    "typescript",
+    "xml"
+  ],
 }
