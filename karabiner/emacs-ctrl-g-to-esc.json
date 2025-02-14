@@ -48,8 +48,7 @@
             "^org\\.macosforge\\.xquartz\\.X11$",
             "^org\\.macports\\.X11$",
             "^com\\.sublimetext\\.",
-            "^com\\.microsoft\\.VSCode$",
-            "^com\\.todesktop\\."
+            "^com\\.microsoft\\.VSCode$"
           ],
           "type": "frontmost_application_unless"
         }
