@@ -58,6 +58,12 @@
   "window.commandCenter": true,
   //
   // ===========================================================================
+  // Testing
+  // ===========================================================================
+  //
+  "testing.automaticallyOpenTestResults": "neverOpen",
+  //
+  // ===========================================================================
   // Terminal
   // ===========================================================================
   //
@@ -235,5 +241,135 @@
     "svg",
     "typescript",
     "xml"
-  ]
+  ],
+  //
+  // ===========================================================================
+  // Macros
+  // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.visualstudio.com/items?itemName=ctf0.macros
+  //
+  "macros.list": {
+    //
+    // Run test macros which re-focus back into the editor after being
+    // triggered. The test commands changes focus to the Test Results panel, and
+    // no settings I found avoids this. Hence these macros trigger relevant test
+    // running commands and then switches focus back to the editor.
+    //
+    // The 1 ms delay between the running tests and switch focus back allows for
+    // the Test Results panel to appear and steal focus before we try and focus
+    // back into the editor. Without the delay the focus commands runs before
+    // Test Results appear and steal focus.
+    //
+    "runTestCurrentFile": [
+      "testing.runCurrentFile",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestCoverageCurrentFile": [
+      "testing.coverageCurrentFile",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestAtCursor": [
+      "testing.runAtCursor",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestCoverageAtCursor": [
+      "testing.coverageAtCursor",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestAll": [
+      "testing.runAll",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestCoverageAll": [
+      "testing.coverageAll",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestReRunLastRun": [
+      "testing.reRunLastRun",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestCoverageLastRun": [
+      "testing.coverageLastRun",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestReRunFailTests": [
+      "testing.reRunFailTests",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestDebugFailTests": [
+      "testing.debugFailTests",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ],
+    "runTestDebugLastRun": [
+      "testing.debugLastRun",
+      {
+        "command": "$delay",
+        "args": {
+          "delay": 1
+        }
+      },
+      "workbench.action.focusActiveEditorGroup"
+    ]
+  }
 }

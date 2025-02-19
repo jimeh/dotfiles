@@ -357,6 +357,67 @@
   },
   //
   // ===========================================================================
+  // Testing
+  // ===========================================================================
+  //
+  { // Run current file.
+    "key": "ctrl+c , v",
+    // "command": "testing.runCurrentFile",
+    "command": "macros.runTestCurrentFile",
+    "when": "editorTextFocus"
+  },
+  { // Run with coverage for current file.
+    "key": "ctrl+c , ctrl+v",
+    "command": "macros.runTestCoverageCurrentFile",
+    "when": "editorTextFocus"
+  },
+  { // Run at cursor.
+    "key": "ctrl+c , s",
+    "command": "macros.runTestAtCursor",
+    "when": "editorTextFocus"
+  },
+  { // Run with coverage at cursor.
+    "key": "ctrl+c , ctrl+s",
+    "command": "macros.runTestCoverageAtCursor",
+    "when": "editorTextFocus"
+  },
+  { // Run all tests.
+    "key": "ctrl+c , a",
+    "command": "macros.runTestAll",
+    "when": "editorTextFocus"
+  },
+  { // Run with coverage for all tests.
+    "key": "ctrl+c , ctrl+a",
+    "command": "macros.runTestCoverageAll",
+    "when": "editorTextFocus"
+  },
+  { // Re-run last run.
+    "key": "ctrl+c , l",
+    "command": "macros.runTestReRunLastRun",
+    "when": "editorTextFocus"
+  },
+  { // Re-run with coverage for last run.
+    "key": "ctrl+c , ctrl+l",
+    "command": "macros.runTestCoverageLastRun",
+    "when": "editorTextFocus"
+  },
+  { // Re-run failed tests.
+    "key": "ctrl+c , f",
+    "command": "macros.runTestReRunFailTests",
+    "when": "editorTextFocus"
+  },
+  { // Debug failed tests.
+    "key": "ctrl+c , ctrl+f",
+    "command": "macros.runTestDebugFailTests",
+    "when": "editorTextFocus"
+  },
+  { // Debug last run.
+    "key": "ctrl+c , d",
+    "command": "macros.runTestDebugLastRun",
+    "when": "editorTextFocus"
+  },
+  //
+  // ===========================================================================
   // Documentation
   // ===========================================================================
   //
