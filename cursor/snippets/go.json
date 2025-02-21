@@ -1,78 +1,78 @@
 {
-	"println": {
-		"prefix": "pd",
-		"body": [
-			"fmt.Println($0)",
-		],
-		"description": "fmt.Println(...)"
-	},
-	"debug print": {
-		"prefix": "ppd",
-		"body": [
-			"fmt.Printf(\"$1: %#v\\n\", $1)$0",
-		],
-		"description": "fmt.Printf(\"...: %+v\\n\", ...)"
-	},
-	"printf": {
-		"prefix": "pf",
-		"body": [
-			"fmt.Printf(${1:format}, ${2:a ...any})$0",
-		],
-		"description": "fmt.Printf(..., ...)"
-	},
-	"sprintf": {
-		"prefix": "spf",
-		"body": [
-			"fmt.Sprintf(${1:format}, ${2:a ...any})$0",
-		],
-		"description": "fmt.Sprintf(..., ...)"
-	},
-	"test func": {
-		"prefix": "tf",
-		"body": [
-			"func Test${1:Name}(t *testing.T) {",
-			"\ttests := []struct {",
-			"\t\tname string",
-			"\t\t$0",
-			"\t}{",
-			"\t\t{",
-			"\t\t\tname: \"\",",
-			"\t\t},",
-			"\t}",
-			"\tfor _, tt := range tests {",
-			"\t\tt.Run(tt.name, func(t *testing.T) {",
-			"\t\t\t",
-			"\t\t})",
-			"\t}",
-			"}"
-		],
-		"description": "func Test...(t *testing.T) { ... }"
-	},
-	"test table": {
-		"prefix": "tt",
-		"body": [
-			"tests := []struct {",
-			"\tname string",
-			"\t$0",
-			"}{",
-			"\t{",
-			"\t\tname: \"\",",
-			"\t},",
-			"}"
-		],
-		"description": "tests := []struct { ... }"
-	},
-	"benchmark func": {
-		"prefix": "bf",
-		"body": [
-			"func Benchmark${1:Name}(b *testing.B) {",
-			"\t$0",
-			"",
-			"\tfor n := 0; n < b.N; n++ {",
-			"\t\t",
-			"\t}",
-			"}"
-		],
-		"description": "func Benchmark...(b *testing.B) { ... }"
-	}
+  "println": {
+    "prefix": "pd",
+    "body": [
+      "fmt.Println($0)",
+    ],
+    "description": "fmt.Println(...)"
+  },
+  "debug print": {
+    "prefix": "ppd",
+    "body": [
+      "fmt.Printf(\"$1: %#v\\n\", $1)$0",
+    ],
+    "description": "fmt.Printf(\"...: %+v\\n\", ...)"
+  },
+  "printf": {
+    "prefix": "pf",
+    "body": [
+      "fmt.Printf(${1:format}, ${2:a ...any})$0",
+    ],
+    "description": "fmt.Printf(..., ...)"
+  },
+  "sprintf": {
+    "prefix": "spf",
+    "body": [
+      "fmt.Sprintf(${1:format}, ${2:a ...any})$0",
+    ],
+    "description": "fmt.Sprintf(..., ...)"
+  },
+  "test func": {
+    "prefix": "tf",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\ttests := []struct {",
+      "\t\tname string",
+      "\t\t$0",
+      "\t}{",
+      "\t\t{",
+      "\t\t\tname: \"\",",
+      "\t\t},",
+      "\t}",
+      "\tfor _, tt := range tests {",
+      "\t\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t\t",
+      "\t\t})",
+      "\t}",
+      "}"
+    ],
+    "description": "func Test...(t *testing.T) { ... }"
+  },
+  "test table": {
+    "prefix": "tt",
+    "body": [
+      "tests := []struct {",
+      "\tname string",
+      "\t$0",
+      "}{",
+      "\t{",
+      "\t\tname: \"\",",
+      "\t},",
+      "}"
+    ],
+    "description": "tests := []struct { ... }"
+  },
+  "benchmark func": {
+    "prefix": "bf",
+    "body": [
+      "func Benchmark${1:Name}(b *testing.B) {",
+      "\t$0",
+      "",
+      "\tfor n := 0; n < b.N; n++ {",
+      "\t\t",
+      "\t}",
+      "}"
+    ],
+    "description": "func Benchmark...(b *testing.B) { ... }"
+  }
 }

@@ -5,6 +5,7 @@
   // ===========================================================================
   //
   "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
   //
   // ===========================================================================
   // Editor
@@ -14,7 +15,7 @@
   "editor.fontLigatures": false,
   "editor.fontWeight": "normal",
   "editor.fontSize": 12,
-  "editor.renderWhitespace": "trailing",
+  "editor.renderWhitespace": "boundary",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.rulers": [
@@ -155,11 +156,18 @@
   // - https://marketplace.visualstudio.com/items?itemName=gofenix.go-lines
   //
   "go-lines.lineLength": 120,
+  "go.coverOnSingleTest": true,
+  "go.coverShowCounts": true,
   "go.formatTool": "gofumpt",
+  "go.inlayHints.constantValues": true,
   "go.lintOnSave": "workspace",
   "go.lintTool": "golangci-lint",
+  "go.testExplorer.packageDisplayMode": "nested",
+  "go.testExplorer.showDynamicSubtestsInEditor": true,
+  "go.testFlags": [
+    "-count=1"
+  ],
   "go.useLanguageServer": true,
-  "go.inlayHints.constantValues": true,
   "gopls": {
     "ui.diagnostic.analyses": {
       "shadow": true
