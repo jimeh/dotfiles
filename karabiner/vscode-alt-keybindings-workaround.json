@@ -1,71 +1,104 @@
 {
-    "description": "VSCode alt keybindings workaround",
-    "manipulators": [
+  "description": "VSCode alt keybindings workaround",
+  "manipulators": [
+    {
+      "conditions": [
         {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.microsoft\\.VSCode",
-                        "^com\\.todesktop\\."
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "from": {
-                "key_code": "i",
-                "modifiers": {
-                    "mandatory": [
-                        "option"
-                    ],
-                    "optional": [
-                        "caps_lock",
-                        "shift"
-                    ]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "up_arrow",
-                    "modifiers": [
-                        "left_option",
-                        "left_command"
-                    ]
-                }
-            ],
-            "type": "basic"
-        },
-        {
-            "conditions": [
-                {
-                    "bundle_identifiers": [
-                        "^com\\.microsoft\\.VSCode",
-                        "^com\\.todesktop\\."
-                    ],
-                    "type": "frontmost_application_if"
-                }
-            ],
-            "from": {
-                "key_code": "n",
-                "modifiers": {
-                    "mandatory": [
-                        "option"
-                    ],
-                    "optional": [
-                        "caps_lock",
-                        "shift"
-                    ]
-                }
-            },
-            "to": [
-                {
-                    "key_code": "down_arrow",
-                    "modifiers": [
-                        "left_option",
-                        "left_command"
-                    ]
-                }
-            ],
-            "type": "basic"
+          "bundle_identifiers": [
+            "^com\\.microsoft\\.VSCode",
+            "^com\\.todesktop\\."
+          ],
+          "type": "frontmost_application_if"
         }
-    ]
+      ],
+      "from": {
+        "key_code": "i",
+        "modifiers": {
+          "mandatory": [
+            "option"
+          ],
+          "optional": [
+            "caps_lock",
+            "shift"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "up_arrow",
+          "modifiers": [
+            "left_option",
+            "left_command"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": [
+            "^com\\.microsoft\\.VSCode",
+            "^com\\.todesktop\\."
+          ],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "n",
+        "modifiers": {
+          "mandatory": [
+            "option"
+          ],
+          "optional": [
+            "caps_lock",
+            "shift"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "down_arrow",
+          "modifiers": [
+            "left_option",
+            "left_command"
+          ]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": [
+            "^com\\.microsoft\\.VSCode",
+            "^com\\.todesktop\\."
+          ],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "e",
+        "modifiers": {
+          "mandatory": [
+            "option"
+          ],
+          "optional": [
+            "caps_lock",
+            "shift"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "right_arrow",
+          "modifiers": [
+            "left_option",
+            "left_command"
+          ]
+        }
+      ],
+      "type": "basic"
+    }
+  ]
 }

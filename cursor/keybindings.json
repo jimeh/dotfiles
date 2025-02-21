@@ -216,6 +216,23 @@
   // Text navigation
   // ===========================================================================
   //
+  { // Forward paragraph.
+    "key": "alt+e",
+    "command": "emacs-mcx.forwardParagraph",
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  { // Forward paragraph.
+    // This is a workaround for alt+e not working in VSCode. Relies on
+    // Karabiner-Elements to remap alt+e to cmd+alt+right.
+    "key": "cmd+alt+right",
+    "command": "emacs-mcx.forwardParagraph",
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  { // Backward paragraph.
+    "key": "alt+a",
+    "command": "emacs-mcx.backwardParagraph",
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
   { // Go to symbol definition.
     "key": "ctrl+t",
     "command": "workbench.action.gotoSymbol",
