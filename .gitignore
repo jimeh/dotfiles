@@ -8,3 +8,4 @@ Icon*
 bin/boot2docker.iso
 private/*
 tmux/plugins/*
+cursor/cache/*
