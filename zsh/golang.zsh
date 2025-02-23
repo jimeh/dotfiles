@@ -19,21 +19,7 @@ list_go_global_packages() {
 }
 
 install_go_global_packages() {
-  local packages=(
-    github.com/fatih/gomodifytags@latest
-    github.com/go-delve/delve/cmd/dlv@latest
-    github.com/josharian/impl@latest
-    github.com/rakyll/hey@latest
-    github.com/rogpeppe/godef@latest
-    go.uber.org/mock/mockgen@latest
-    golang.org/x/tools/cmd/godoc@latest
-    golang.org/x/tools/cmd/goimports@latest
-    golang.org/x/tools/gopls@latest
-    golang.org/x/vuln/cmd/govulncheck@latest
-    google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-    google.golang.org/protobuf/cmd/protoc-gen-go@latest
-    mvdan.cc/gofumpt@latest
-  )
+  local packages=()
 
   for package in "${packages[@]}"; do
     echo "installing/updating \"$package\""
