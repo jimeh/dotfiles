@@ -77,7 +77,7 @@
   // Extension URL:
   // - https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
   //
-  "emacs-mcx.emacsLikeTab": true,
+  "emacs-mcx.emacsLikeTab": false,
   "emacs-mcx.killRingMax": 120,
   "emacs-mcx.markRingMax": 32,
   //

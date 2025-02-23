@@ -260,6 +260,13 @@
   // Text manipulation
   // ===========================================================================
   //
+  { // Set indentation to correct level.
+    // This was borrowed from the awesome-emacs-keymap extension and modifed to
+    // add the `!cpp.shouldAcceptTab` condition for the sake of Cursor.
+    "key": "tab",
+    "command": "emacs-mcx.tabToTabStop",
+    "when": "editorTextFocus && !editorReadonly && !inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible && !inSnippetMode && !editorTabCompletion && !editorParameterHintsVisible && !cursorAtInlineEdit && !cpp.shouldAcceptTab"
+  },
   { // Comment line.
     "key": "ctrl+c /",
     "command": "editor.action.commentLine",
