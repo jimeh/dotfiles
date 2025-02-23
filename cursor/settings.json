@@ -55,8 +55,10 @@
   // Window
   // ===========================================================================
   //
-  "window.nativeFullScreen": false,
   "window.commandCenter": true,
+  "window.customTitleBarVisibility": "auto",
+  "window.nativeFullScreen": false,
+  "workbench.activityBar.location": "top",
   //
   // ===========================================================================
   // Testing
