@@ -8,6 +8,9 @@ not_found_auto_install = false
 show_env = true
 show_tools = false
 
+[settings.npm]
+bun = true
+
 [settings.pipx]
 # Allow mise to install pipx packages without manual installation of pipx.
 uvx = true
@@ -70,6 +73,7 @@ argocd = "latest"
 aws-cli = "2.17"
 bat = "latest"
 buf = "latest"
+bun = "latest"
 cargo-binstall = "latest"
 crane = "latest"
 ctop = "latest"
