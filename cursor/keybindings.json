@@ -291,6 +291,16 @@
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
+  { // Indent line
+    "key": "ctrl+c ]",
+    "command": "editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Outdent line
+    "key": "ctrl+c [",
+    "command": "editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
   { // Move lines up in editor.
     "key": "alt+p",
     "command": "editor.action.moveLinesUpAction",
