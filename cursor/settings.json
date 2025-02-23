@@ -68,8 +68,11 @@
   // Terminal
   // ===========================================================================
   //
+  "terminal.integrated.allowChords": false,
+  "terminal.integrated.macOptionIsMeta": true,
   "terminal.integrated.persistentSessionScrollback": 1000,
   "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.sendKeybindingsToShell": true,
   //
   // ===========================================================================
   // Awesome Emacs Keybindings
