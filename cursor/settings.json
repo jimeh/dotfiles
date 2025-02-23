@@ -154,6 +154,14 @@
   ],
   //
   // ===========================================================================
+  // GitHub
+  // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
+  // - https://marketplace.visualstudio.com/items?itemName=GitHub.remotehub
+  "githubRepositories.autoFetch.enabled": false,
+  //
+  // ===========================================================================
   // Go
   // ===========================================================================
   // Extensions:
