@@ -33,12 +33,12 @@ Usage: $(basename "$0") EDITOR COMMAND
 Editors:
   cursor                  Cursor editor
   vscode                  Visual Studio Code
-  vscode-insiders        Visual Studio Code Insiders
+  vscode-insiders         Visual Studio Code Insiders
 
 Commands:
   config, conf           Create symlinks for editor config files
   dump-extensions, dump  Export installed editor extensions to extensions.txt
-  extensions, ext       Install editor extensions from extensions.txt
+  extensions, ext        Install editor extensions from extensions.txt
 
 Description:
   This script manages editor configuration files and extensions.
