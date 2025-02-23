@@ -202,6 +202,7 @@
   // ===========================================================================
   // Ruby
   // ===========================================================================
+  // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack
   // - https://marketplace.visualstudio.com/items?itemName=connorshea.vscode-ruby-test-adapter
   //
@@ -266,6 +267,21 @@
     "typescript",
     "xml"
   ],
+  //
+  // ===========================================================================
+  // Run on Save callbacks
+  // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
+  //
+  "emeraldwalk.runonsave": {
+    "commands": [
+      { // Automatically chmod +x script files (first two bytes are `#!`).
+        "match": ".*",
+        "cmd": "if [ ! -x \"${file}\" ] && head -n 1 \"${file}\" | grep -q '^#!'; then echo \"Marking ${relativeFile} as executable...\" && chmod +x \"${file}\"; fi"
+      }
+    ]
+  },
   //
   // ===========================================================================
   // Macros

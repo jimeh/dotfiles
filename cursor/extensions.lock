@@ -1,5 +1,5 @@
 # Cursor Extensions
-# Generated on Fri Feb 21 23:10:20 GMT 2025
+# Generated on Sun Feb 23 16:35:53 GMT 2025
 
 alefragnani.project-manager@12.8.0
 antiantisepticeye.vscode-color-picker@0.0.4
@@ -13,6 +13,7 @@ christian-kohler.path-intellisense@2.10.0
 connorshea.vscode-ruby-test-adapter@0.9.2
 ctf0.macros@1.1.1
 dnut.rewrap-revived@1.16.3
+emeraldwalk.runonsave@0.2.7
 exiasr.hadolint@1.1.2
 fnando.linter@0.0.19
 foxundermoon.shell-format@7.2.5
