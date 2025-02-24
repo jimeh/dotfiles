@@ -63,6 +63,7 @@ uvx = true
 "npm:vscode-css-languageserver-bin" = "latest"
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
+"npm:yarn" = "latest"
 "pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible" }
 "pipx:ansible-lint" = "latest"
 "pipx:fonttools" = "latest"
