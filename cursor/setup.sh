@@ -193,7 +193,7 @@ do_dump_extensions() {
   extensions_lock="$(get_extensions_lock)"
 
   {
-    echo "# ${SETUP_EDITOR^} Extensions"
+    echo "# ${SETUP_EDITOR} Extensions"
     echo "# Generated on ${current_date}"
     echo
     "${editor_cmd}" --list-extensions --show-versions
