@@ -251,8 +251,8 @@ fi
 # ==============================================================================
 
 if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
-  read -q 'REPLY?starship is not installed, install with `mise install starship`? [y/N]:' &&
-    echo && "$MISE_INSTALL_PATH" install starship
+  read -q 'REPLY?starship is not installed, install with `mise use -g starship`? [y/N]:' &&
+    echo && "$MISE_INSTALL_PATH" use -g starship
 fi
 
 if command-exists starship; then
@@ -260,7 +260,8 @@ if command-exists starship; then
   setup-completions starship "$(command-path starship)" starship completions zsh
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
-  echo "      install with: mise install starship" >&2
+  echo "      install with: mise use -g starship" >&2
+  echo "" >&2
 fi
 
 # ==============================================================================
