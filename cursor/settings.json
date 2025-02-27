@@ -28,10 +28,16 @@
   "editor.minimap.enabled": true,
   //
   // ===========================================================================
+  // Diffs
+  // ===========================================================================
+  //
+  "diffEditor.ignoreTrimWhitespace": false,
+  //
+  // ===========================================================================
   // Git
   // ===========================================================================
   //
-  "git.blame.editorDecoration.enabled": true,
+  "git.blame.editorDecoration.enabled": false,
   //
   // ===========================================================================
   // Files
@@ -153,6 +159,7 @@
   // Extension URL:
   // - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
   // - https://marketplace.visualstudio.com/items?itemName=GitHub.remotehub
+  //
   "githubRepositories.autoFetch.enabled": false,
   //
   // ===========================================================================
@@ -220,6 +227,12 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
+  // Ruby Test Explorer
+  "rubyTestExplorer.logpanel": false,
+  // Use mise to execute ruby test explorer bundler commands to ensure correct
+  // version of Ruby is used.
+  "rubyTestExplorer.minitestCommand": "mise x -- bundle exec rake",
+  "rubyTestExplorer.rspecCommand": "mise x -- bundle exec rspec",
   //
   // ===========================================================================
   // Shellscript
@@ -308,6 +321,18 @@
     // back into the editor. Without the delay the focus commands runs before
     // Test Results appear and steal focus.
     //
+    "cycleSpacing": [
+      // This is a basic emulation Emacs' built-in cycle-spacing command. It
+      // doesn't actually cycle spacing, but it performs the first step which is
+      // to replace all spacing surrounding the cursor with a single space.
+      "emacs-mcx.deleteHorizontalSpace",
+      {
+        "command": "type",
+        "args": {
+          "text": " "
+        }
+      }
+    ],
     "runTestCurrentFile": [
       "testing.runCurrentFile",
       {

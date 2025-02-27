@@ -257,6 +257,21 @@
   },
   //
   // ===========================================================================
+  // Text selection
+  // ===========================================================================
+  //
+  { // Expand selection.
+    "key": "alt+.",
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  { // Shrink/contract selection.
+    "key": "alt+,",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  //
+  // ===========================================================================
   // Text manipulation
   // ===========================================================================
   //
@@ -266,6 +281,14 @@
     "key": "tab",
     "command": "emacs-mcx.tabToTabStop",
     "when": "editorTextFocus && !editorReadonly && !inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible && !inSnippetMode && !editorTabCompletion && !editorParameterHintsVisible && !cursorAtInlineEdit && !cpp.shouldAcceptTab"
+  },
+  { // Cycle spacing.
+    // This is a basic emulation Emacs' built-in cycle-spacing command. It
+    // doesn't actually cycle spacing, but it performs the first step which is
+    // to replace all spacing surrounding the cursor with a single space.
+    "key": "alt+space",
+    "command": "macros.cycleSpacing",
+    "when": "editorTextFocus && !editorReadonly"
   },
   { // Comment line.
     "key": "ctrl+c /",
@@ -334,21 +357,6 @@
     "key": "cmd+alt+down",
     "command": "notebook.cell.moveDown",
     "when": "notebookEditorFocused && !inputFocus"
-  },
-  //
-  // ===========================================================================
-  // Text selection
-  // ===========================================================================
-  //
-  { // Expand selection.
-    "key": "alt+.",
-    "command": "editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  { // Shrink/contract selection.
-    "key": "alt+,",
-    "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
   },
   //
   // ===========================================================================
