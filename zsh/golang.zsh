@@ -19,7 +19,16 @@ list_go_global_packages() {
 }
 
 install_go_global_packages() {
-  local packages=()
+  local packages=(
+    "github.com/fatih/gomodifytags@latest"
+    "github.com/go-delve/delve/cmd/dlv@latest"
+    "github.com/josharian/impl@latest"
+    "github.com/rogpeppe/godef@latest"
+    "golang.org/x/tools/cmd/godoc@latest"
+    "golang.org/x/tools/cmd/goimports@latest"
+    "golang.org/x/tools/gopls@latest"
+    "golang.org/x/vuln/cmd/govulncheck@latest"
+  )
 
   for package in "${packages[@]}"; do
     echo "installing/updating \"$package\""
