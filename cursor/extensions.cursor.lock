@@ -1,5 +1,5 @@
 # cursor Extensions
-# Generated on Thu Feb 27 22:00:25 GMT 2025
+# Generated on Fri Feb 28 09:03:41 GMT 2025
 
 alefragnani.project-manager@12.8.0
 antiantisepticeye.vscode-color-picker@0.0.4
@@ -21,12 +21,13 @@ github.remotehub@0.64.0
 github.vscode-github-actions@0.27.1
 github.vscode-pull-request-github@0.102.0
 gofenix.go-lines@0.0.10
-golang.go@0.44.0
+golang.go@0.46.0
 gruntfuggly.todo-tree@0.0.226
 hashicorp.terraform@2.34.3
 hbenl.vscode-test-explorer@2.22.1
 humao.rest-client@0.25.1
-joshbolduc.commitlint@2.6.1
+hverlin.mise-vscode@0.47.7
+joshbolduc.commitlint@2.6.2
 kahole.magit@0.6.66
 karunamurti.haml@1.4.1
 m4ns0ur.base64@1.0.0

@@ -82,7 +82,7 @@
   // Extension URL:
   // - https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
   //
-  "emacs-mcx.emacsLikeTab": false,
+  "emacs-mcx.emacsLikeTab": false, // Done via custom keybinding instead.
   "emacs-mcx.killRingMax": 120,
   "emacs-mcx.markRingMax": 32,
   //
@@ -156,11 +156,19 @@
   // ===========================================================================
   // GitHub
   // ===========================================================================
-  // Extension URL:
+  // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
   // - https://marketplace.visualstudio.com/items?itemName=GitHub.remotehub
   //
   "githubRepositories.autoFetch.enabled": false,
+  //
+  // ===========================================================================
+  // Mise (https://mise.jdx.dev/)
+  // ===========================================================================
+  // Extension URL:
+  // - https://marketplace.visualstudio.com/items?itemName=hverlin.mise-vscode
+  //
+  "mise.updateOpenTerminalsEnvAutomatically": true,
   //
   // ===========================================================================
   // Go
