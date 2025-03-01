@@ -148,6 +148,16 @@
     "command": "workbench.action.evenEditorWidths",
     "when": "!terminalFocus"
   },
+  {
+    "key": "ctrl+z ctrl+enter",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
+  {
+    "key": "ctrl+z enter",
+    "command": "workbench.action.minimizeOtherEditors",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
   //
   // ===========================================================================
   // Move active editor group
