@@ -26,12 +26,25 @@
   "editor.semanticHighlighting.enabled": true,
   "editor.minimap.enabled": true,
   "editor.minimap.showSlider": "always",
+  "workbench.editor.highlightModifiedTabs": true,
   //
   // ===========================================================================
-  // Diffs
+  // Explorer
   // ===========================================================================
   //
-  "diffEditor.ignoreTrimWhitespace": false,
+  "explorer.sortOrder": "mixed",
+  //
+  // ===========================================================================
+  // Files
+  // ===========================================================================
+  //
+  "files.associations": {
+    "gitconfig": "gitconfig",
+    "gitignore": "gitignore"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
   //
   // ===========================================================================
   // Git
@@ -40,12 +53,10 @@
   "git.blame.editorDecoration.enabled": false,
   //
   // ===========================================================================
-  // Files
+  // Diffs
   // ===========================================================================
   //
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   //
   // ===========================================================================
   // Cursor
@@ -79,7 +90,7 @@
   // ===========================================================================
   // Awesome Emacs Keybindings
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
   //
   "emacs-mcx.emacsLikeTab": false, // Done via custom keybinding instead.
@@ -89,7 +100,7 @@
   // ===========================================================================
   // File Browser
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=bodil.file-browser
   //
   "file-browser.hideDotfiles": false,
@@ -98,7 +109,7 @@
   // ===========================================================================
   // Project Manager
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
   //
   "projectManager.git.baseFolders": [
@@ -165,10 +176,18 @@
   // ===========================================================================
   // Mise (https://mise.jdx.dev/)
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=hverlin.mise-vscode
   //
   "mise.updateOpenTerminalsEnvAutomatically": true,
+  //
+  // ===========================================================================
+  // Hex editor
+  // ===========================================================================
+  // Extension:
+  // - https://marketplace.visualstudio.com/items?itemName=ms-vscode.hexeditor
+  //
+  "workbench.editor.defaultBinaryEditor": "hexEditor.hexedit",
   //
   // ===========================================================================
   // Go
@@ -245,6 +264,8 @@
   // ===========================================================================
   // Shellscript
   // ===========================================================================
+  // Extensions:
+  // - https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format
   //
   "[shellscript]": {
     "editor.tabSize": 2,
@@ -258,6 +279,8 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
+  "shellformat.useEditorConfig": true,
+  "shellformat.flag": "-i 2 -ci -sr",
   // ===========================================================================
   // YAML
   // ===========================================================================
@@ -270,13 +293,16 @@
   // ===========================================================================
   // Makefile
   // ===========================================================================
+  // Extensions:
+  // - https://marketplace.visualstudio.com/items?itemName=carlos-algms.make-task-provider
   //
   "makefile.configureOnOpen": false,
+  "make-task-provider.telemetry": false,
   //
   // ===========================================================================
   // vscode-color-picker
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=AntiAntiSepticeye.vscode-color-picker
   //
   "vscode-color-picker.languages": [
@@ -299,7 +325,7 @@
   // ===========================================================================
   // Run on Save callbacks
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
   //
   "emeraldwalk.runonsave": {
@@ -314,10 +340,24 @@
   // ===========================================================================
   // Macros
   // ===========================================================================
-  // Extension URL:
+  // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=ctf0.macros
   //
   "macros.list": {
+    //
+    // cycleSpacing is a basic emulation Emacs' built-in cycle-spacing command.
+    // It doesn't actually cycle spacing, but it performs the first step which
+    // is to replace all spacing surrounding the cursor with a single space.
+    //
+    "cycleSpacing": [
+      "emacs-mcx.deleteHorizontalSpace",
+      {
+        "command": "type",
+        "args": {
+          "text": " "
+        }
+      }
+    ],
     //
     // Run test macros which re-focus back into the editor after being
     // triggered. The test commands changes focus to the Test Results panel, and
@@ -329,18 +369,6 @@
     // back into the editor. Without the delay the focus commands runs before
     // Test Results appear and steal focus.
     //
-    "cycleSpacing": [
-      // This is a basic emulation Emacs' built-in cycle-spacing command. It
-      // doesn't actually cycle spacing, but it performs the first step which is
-      // to replace all spacing surrounding the cursor with a single space.
-      "emacs-mcx.deleteHorizontalSpace",
-      {
-        "command": "type",
-        "args": {
-          "text": " "
-        }
-      }
-    ],
     "runTestCurrentFile": [
       "testing.runCurrentFile",
       {
