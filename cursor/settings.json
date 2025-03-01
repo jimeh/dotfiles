@@ -24,8 +24,8 @@
     120
   ],
   "editor.semanticHighlighting.enabled": true,
-  "editor.accessibilitySupport": "off",
   "editor.minimap.enabled": true,
+  "editor.minimap.showSlider": "always",
   //
   // ===========================================================================
   // Diffs
