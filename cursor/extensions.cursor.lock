@@ -1,5 +1,5 @@
 # cursor Extensions
-# Generated on Fri Feb 28 09:04:09 GMT 2025
+# Generated on Sun Mar  2 16:32:35 GMT 2025
 
 alefragnani.project-manager@12.8.0
 antiantisepticeye.vscode-color-picker@0.0.4
@@ -49,13 +49,14 @@ ms-vscode.test-adapter-converter@0.2.1
 ms-vscode.vscode-speech@0.12.1
 ms-vsliveshare.vsliveshare@1.0.5948
 pflannery.vscode-versionlens@1.16.2
-pkief.material-icon-theme@5.19.0
+pkief.material-icon-theme@5.20.0
 redhat.vscode-xml@0.27.2
 redhat.vscode-yaml@1.16.0
 rrudi.vscode-dired@0.0.9
 rust-lang.rust-analyzer@0.3.2319
 shopify.ruby-extensions-pack@0.1.13
 shopify.ruby-lsp@0.9.7
+sidneys1.gitconfig@2.0.1
 sorbet.sorbet-vscode-extension@0.3.39
 sumneko.lua@3.13.6
 swellaby.vscode-rust-test-adapter@0.11.0
