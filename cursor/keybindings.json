@@ -223,6 +223,43 @@
   },
   //
   // ===========================================================================
+  // Scrolling
+  // ===========================================================================
+  //
+  { // Scroll half page down.
+    "key": "ctrl+v",
+    "command": "editorScroll",
+    "args": {
+      "to": "down",
+      "by": "halfPage",
+      "revealCursor": true,
+      "value": 1
+    },
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  { // Scroll half page up.
+    "key": "alt+v",
+    "command": "editorScroll",
+    "args": {
+      "to": "up",
+      "by": "halfPage",
+      "revealCursor": true,
+      "value": 1,
+    },
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  { // Disable awesome-emacs-keymap scroll down keybinding.
+    "key": "ctrl+v",
+    "command": "-emacs-mcx.scrollUpCommand",
+    "when": "editorTextFocus && !suggestWidgetVisible"
+  },
+  { // Disable awesome-emacs-keymap scroll up keybinding.
+    "key": "alt+v",
+    "command": "-emacs-mcx.scrollDownCommand",
+    "when": "editorTextFocus && !config.emacs-mcx.useMetaPrefixMacCmd && !suggestWidgetVisible"
+  },
+  //
+  // ===========================================================================
   // Text navigation
   // ===========================================================================
   //
