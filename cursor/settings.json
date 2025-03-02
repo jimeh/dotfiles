@@ -1,32 +1,87 @@
 {
   //
   // ===========================================================================
-  // Theme
+  // Appearance
   // ===========================================================================
   //
+  // Dark/Light mode detection
+  "window.autoDetectColorScheme": true,
+  "window.systemColorTheme": "auto",
+  //
+  // Theme
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.preferredDarkColorTheme": "One Dark Pro",
+  "workbench.preferredLightColorTheme": "Solarized Light",
+  //
+  // ===========================================================================
+  // Window
+  // ===========================================================================
+  //
+  "window.commandCenter": true,
+  "window.customTitleBarVisibility": "auto",
+  "window.nativeFullScreen": false,
+  "workbench.activityBar.location": "top",
   //
   // ===========================================================================
   // Editor
   // ===========================================================================
   //
+  // Font
   "editor.fontFamily": "'Menlo Nerd Font Mono', 'Menlo Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontWeight": "normal",
   "editor.fontSize": 12,
+  //
+  // Cursor
+  "editor.cursorSurroundingLines": 5,
+  //
+  // Whitespace
   "editor.renderWhitespace": "boundary",
+  //
+  // Formatting
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
+  "editor.formatOnSaveMode": "file",
+  //
+  // Rulers
   "editor.rulers": [
     80,
     100,
     120
   ],
+  //
+  // Semantic Highlighting
   "editor.semanticHighlighting.enabled": true,
+  //
+  // Minimap
   "editor.minimap.enabled": true,
   "editor.minimap.showSlider": "always",
+  //
+  // Modified Tabs
   "workbench.editor.highlightModifiedTabs": true,
+  //
+  // ===========================================================================
+  // Workbench
+  // ===========================================================================
+  //
+  // Activity Bar
+  "workbench.activityBar.orientation": "horizontal",
+  //
+  // Command Palette
+  "workbench.commandPalette.history": 250,
+  "workbench.commandPalette.preserveInput": true,
+  //
+  // Hover
+  "workbench.hover.delay": 200,
+  //
+  // Local History
+  "workbench.localHistory.maxFileEntries": 250,
+  "workbench.localHistory.maxFileSize": 512,
+  //
+  // Tree
+  "workbench.tree.indent": 18,
+  "workbench.tree.renderIndentGuides": "always",
   //
   // ===========================================================================
   // Explorer
@@ -38,13 +93,22 @@
   // Files
   // ===========================================================================
   //
+  // Associations
   "files.associations": {
     "gitconfig": "gitconfig",
     "gitignore": "gitignore"
   },
+  //
+  // Encoding
+  "files.autoGuessEncoding": true,
+  //
+  // Formatting
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  //
+  // Read-only
+  "files.readonlyFromPermissions": true,
   //
   // ===========================================================================
   // Git
@@ -69,22 +133,13 @@
   "cursor.general.enableShadowWorkspace": true,
   //
   // ===========================================================================
-  // Window
-  // ===========================================================================
-  //
-  "window.commandCenter": true,
-  "window.customTitleBarVisibility": "auto",
-  "window.nativeFullScreen": false,
-  "workbench.activityBar.location": "top",
-  //
-  // ===========================================================================
   // Terminal
   // ===========================================================================
   //
   "terminal.integrated.allowChords": false,
   "terminal.integrated.macOptionIsMeta": true,
   "terminal.integrated.persistentSessionScrollback": 1000,
-  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.scrollback": 50000,
   "terminal.integrated.sendKeybindingsToShell": true,
   //
   // ===========================================================================
