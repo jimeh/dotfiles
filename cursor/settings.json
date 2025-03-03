@@ -14,6 +14,9 @@
   "workbench.preferredDarkColorTheme": "One Dark Pro",
   "workbench.preferredLightColorTheme": "Solarized Light",
   //
+  // One Dark Pro theme settings
+  "oneDarkPro.vivid": true,
+  //
   // ===========================================================================
   // Window
   // ===========================================================================
