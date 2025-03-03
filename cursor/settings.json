@@ -1,7 +1,7 @@
 {
   //
   // ===========================================================================
-  // Appearance
+  // MARK: Appearance
   // ===========================================================================
   //
   // Dark/Light mode detection
@@ -18,7 +18,7 @@
   "oneDarkPro.vivid": true,
   //
   // ===========================================================================
-  // Window
+  // MARK: Window
   // ===========================================================================
   //
   "window.commandCenter": true,
@@ -27,7 +27,7 @@
   "workbench.activityBar.location": "top",
   //
   // ===========================================================================
-  // Editor
+  // MARK: Editor
   // ===========================================================================
   //
   // Font
@@ -65,7 +65,7 @@
   "workbench.editor.highlightModifiedTabs": true,
   //
   // ===========================================================================
-  // Workbench
+  // MARK: Workbench
   // ===========================================================================
   //
   // Activity Bar
@@ -87,13 +87,13 @@
   "workbench.tree.renderIndentGuides": "always",
   //
   // ===========================================================================
-  // Explorer
+  // MARK: Explorer
   // ===========================================================================
   //
   "explorer.sortOrder": "mixed",
   //
   // ===========================================================================
-  // Files
+  // MARK: Files
   // ===========================================================================
   //
   // Associations
@@ -114,19 +114,20 @@
   "files.readonlyFromPermissions": true,
   //
   // ===========================================================================
-  // Git
+  // MARK: Git
   // ===========================================================================
   //
   "git.blame.editorDecoration.enabled": false,
+  "scm.defaultViewMode": "tree",
   //
   // ===========================================================================
-  // Diffs
+  // MARK: Diffs
   // ===========================================================================
   //
   "diffEditor.ignoreTrimWhitespace": false,
   //
   // ===========================================================================
-  // Cursor
+  // MARK: Cursor
   // ===========================================================================
   //
   "cursor.aipreview.enabled": true,
@@ -136,7 +137,7 @@
   "cursor.general.enableShadowWorkspace": true,
   //
   // ===========================================================================
-  // Terminal
+  // MARK: Terminal
   // ===========================================================================
   //
   "terminal.integrated.allowChords": false,
@@ -146,7 +147,7 @@
   "terminal.integrated.sendKeybindingsToShell": true,
   //
   // ===========================================================================
-  // Awesome Emacs Keybindings
+  // MARK: Awesome Emacs Keybindings
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
@@ -156,7 +157,7 @@
   "emacs-mcx.markRingMax": 32,
   //
   // ===========================================================================
-  // File Browser
+  // MARK: File Browser
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=bodil.file-browser
@@ -165,7 +166,7 @@
   "file-browser.labelIgnoredFiles": true,
   //
   // ===========================================================================
-  // Project Manager
+  // MARK: Project Manager
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager
@@ -223,7 +224,7 @@
   ],
   //
   // ===========================================================================
-  // GitHub
+  // MARK: GitHub
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
@@ -232,7 +233,7 @@
   "githubRepositories.autoFetch.enabled": false,
   //
   // ===========================================================================
-  // Mise (https://mise.jdx.dev/)
+  // MARK: Mise (https://mise.jdx.dev/)
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=hverlin.mise-vscode
@@ -240,7 +241,7 @@
   "mise.updateOpenTerminalsEnvAutomatically": true,
   //
   // ===========================================================================
-  // Hex editor
+  // MARK: Hex editor
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=ms-vscode.hexeditor
@@ -248,7 +249,7 @@
   "workbench.editor.defaultBinaryEditor": "hexEditor.hexedit",
   //
   // ===========================================================================
-  // Go
+  // MARK: Go
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=golang.go
@@ -275,7 +276,7 @@
   },
   //
   // ===========================================================================
-  // JSON
+  // MARK: JSON
   // ===========================================================================
   //
   "[json]": {
@@ -284,7 +285,7 @@
   },
   //
   // ===========================================================================
-  // Lua
+  // MARK: Lua
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=sumneko.lua
@@ -299,7 +300,7 @@
   "Lua.hint.enable": true,
   //
   // ===========================================================================
-  // Ruby
+  // MARK: Ruby
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack
@@ -320,7 +321,7 @@
   "rubyTestExplorer.rspecCommand": "mise x -- bundle exec rspec",
   //
   // ===========================================================================
-  // Shellscript
+  // MARK: Shellscript
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format
@@ -339,8 +340,9 @@
   },
   "shellformat.useEditorConfig": true,
   "shellformat.flag": "-i 2 -ci -sr",
+  //
   // ===========================================================================
-  // YAML
+  // MARK: YAML
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
@@ -349,7 +351,7 @@
   "redhat.telemetry.enabled": false,
   //
   // ===========================================================================
-  // Makefile
+  // MARK: Makefile
   // ===========================================================================
   // Extensions:
   // - https://marketplace.visualstudio.com/items?itemName=carlos-algms.make-task-provider
@@ -358,7 +360,7 @@
   "make-task-provider.telemetry": false,
   //
   // ===========================================================================
-  // vscode-color-picker
+  // MARK: vscode-color-picker
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=AntiAntiSepticeye.vscode-color-picker
@@ -381,7 +383,7 @@
   ],
   //
   // ===========================================================================
-  // Run on Save callbacks
+  // MARK: Run on Save callbacks
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
@@ -396,7 +398,7 @@
   },
   //
   // ===========================================================================
-  // Macros
+  // MARK: Macros
   // ===========================================================================
   // Extension:
   // - https://marketplace.visualstudio.com/items?itemName=ctf0.macros
