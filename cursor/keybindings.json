@@ -545,6 +545,20 @@
   },
   //
   // ===========================================================================
+  // MARK: GitHub
+  // ===========================================================================
+  // Extensions:
+  // - https://marketplace.visualstudio.com/items?itemName=GitHub.remotehub
+  // - https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions
+  // - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
+  // - https://marketplace.visualstudio.com/items?itemName=ziyasal.vscode-open-in-github
+  //
+  {
+    "key": "ctrl+c g",
+    "command": "extension.openInGitHub"
+  },
+  //
+  // ===========================================================================
   // MARK: Project Manager
   // ===========================================================================
   // Extension URL:
