@@ -91,6 +91,7 @@
   // ===========================================================================
   //
   "explorer.sortOrder": "mixed",
+  "explorer.sortOrderLexicographicOptions": "unicode",
   //
   // ===========================================================================
   // MARK: Files
@@ -358,6 +359,15 @@
   //
   "makefile.configureOnOpen": false,
   "make-task-provider.telemetry": false,
+  //
+  // ===========================================================================
+  // MARK: Sort Lines
+  // ===========================================================================
+  // Extensions:
+  // - https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines
+  //
+  "sortLines.filterBlankLines": true,
+  "sortLines.ignoreUnselectedLastLine": true,
   //
   // ===========================================================================
   // MARK: vscode-color-picker
