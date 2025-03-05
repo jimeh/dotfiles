@@ -31,6 +31,35 @@
   },
   //
   // ===========================================================================
+  // MARK: Window tabs
+  // ===========================================================================
+  //
+  {
+    "key": "ctrl+z ctrl+n",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  {
+    "key": "ctrl+z ctrl+p",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  {
+    "key": "ctrl+z ctrl+c",
+    "command": "workbench.action.newWindowTab"
+  },
+  {
+    "key": "ctrl+z ctrl+j",
+    "command": "workbench.action.mergeAllWindowTabs"
+  },
+  {
+    "key": "ctrl+z ctrl+t",
+    "command": "workbench.action.moveWindowTabToNewWindow"
+  },
+  {
+    "key": "ctrl+z ctrl+z",
+    "command": "workbench.action.toggleWindowTabsBar"
+  },
+  //
+  // ===========================================================================
   // MARK: Save
   // ===========================================================================
   //

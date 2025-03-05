@@ -23,7 +23,8 @@
   //
   "window.commandCenter": true,
   "window.customTitleBarVisibility": "auto",
-  "window.nativeFullScreen": false,
+  "window.nativeFullScreen": false, // Does not work when nativeTabs are enabled.
+  "window.nativeTabs": true,
   "workbench.activityBar.location": "top",
   //
   // ===========================================================================
