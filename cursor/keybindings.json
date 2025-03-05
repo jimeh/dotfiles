@@ -39,6 +39,14 @@
     "command": "workbench.action.showNextWindowTab"
   },
   { // Go to next window tab.
+    //
+    // This is a workaround for ctrl+n not working globally as down arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+n to
+    // down arrow.
+    "key": "ctrl+z down",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  { // Go to next window tab.
     "key": "shift+cmd+]",
     "command": "workbench.action.showNextWindowTab"
   },
@@ -183,8 +191,8 @@
   },
   { // Navigate up.
     //
-    // Workaround for alt+i not working in VSCode. Relies on
-    // Karabiner-Elements to remap alt+i to cmd+alt+up.
+    // Workaround for alt+i not working in VSCode. Relies on Karabiner-Elements
+    // to remap alt+i to cmd+alt+up.
     "key": "cmd+alt+up",
     "command": "workbench.action.navigateUp"
   },
@@ -251,8 +259,9 @@
     "command": "workbench.action.moveEditorToAboveGroup"
   },
   { // Move active editor into group above.
-    // Workaround for alt+i not working in VSCode. Relies on
-    // Karabiner-Elements to remap alt+i to cmd+alt+up.
+    //
+    // Workaround for alt+i not working in VSCode. Relies on Karabiner-Elements
+    // to remap alt+i to cmd+alt+up.
     "key": "cmd+alt+shift+up",
     "command": "workbench.action.moveEditorToAboveGroup"
   },
@@ -275,13 +284,11 @@
   //
   { // Undo.
     "key": "alt+-",
-    "command": "undo",
-    "when": "editorTextFocus && !editorReadonly"
+    "command": "undo"
   },
   { // Redo.
-    "key": "shift+alt+-",
-    "command": "redo",
-    "when": "editorTextFocus && !editorReadonly"
+    "key": "alt+shift+-",
+    "command": "redo"
   },
   //
   // ===========================================================================
@@ -428,6 +435,14 @@
   },
   { // Duplicate selection.
     "key": "ctrl+x ctrl+d",
+    "command": "editor.action.duplicateSelection"
+  },
+  { // Duplicate selection.
+    //
+    // This is a workaround for ctrl+d not working globally as forward delete in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+d to
+    // forward delete.
+    "key": "ctrl+x delete",
     "command": "editor.action.duplicateSelection"
   },
   { // Rename thing at point.
@@ -628,6 +643,14 @@
   },
   { // Show documentation for symbol at cursor.
     "key": "ctrl+c ctrl+d",
+    "command": "editor.action.triggerParameterHints"
+  },
+  { // Show documentation for symbol at cursor.
+    //
+    // This is a workaround for ctrl+d not working globally as forward delete in
+    // all input fields. Hence we rebind ctrl+d to forward delete, meaning any
+    // keybindings that use ctrl+d need to be updated to use delete aswell.
+    "key": "ctrl+c delete",
     "command": "editor.action.triggerParameterHints"
   },
   //
