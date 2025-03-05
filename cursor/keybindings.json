@@ -121,6 +121,7 @@
     "command": "workbench.action.navigateUp"
   },
   { // Navigate up.
+    //
     // Workaround for alt+i not working in VSCode. Relies on
     // Karabiner-Elements to remap alt+i to cmd+alt+up.
     "key": "cmd+alt+up",
@@ -260,7 +261,22 @@
   },
   //
   // ===========================================================================
-  // Text navigation
+  // MARK: Suggestions
+  // ===========================================================================
+  //
+  { // Trigger suggestions.
+    "key": "ctrl+/",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorTextFocus"
+  },
+  { // Toggle suggestion details.
+    "key": "ctrl+/",
+    "command": "toggleSuggestionDetails",
+    "when": "editorTextFocus && suggestWidgetVisible"
+  },
+  //
+  // ===========================================================================
+  // MARK: Text navigation
   // ===========================================================================
   //
   { // Forward paragraph.
@@ -269,6 +285,7 @@
     "when": "editorTextFocus && !suggestWidgetVisible"
   },
   { // Forward paragraph.
+    //
     // This is a workaround for alt+e not working in VSCode. Relies on
     // Karabiner-Elements to remap alt+e to cmd+alt+right.
     "key": "cmd+alt+right",
@@ -304,37 +321,34 @@
   },
   //
   // ===========================================================================
-  // MARK: Text selection
-  // ===========================================================================
-  //
-  { // Expand selection.
-    "key": "alt+.",
-    "command": "editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  { // Shrink/contract selection.
-    "key": "alt+,",
-    "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  //
-  // ===========================================================================
   // MARK: Text manipulation
   // ===========================================================================
   //
   { // Set indentation to correct level.
+    //
     // This was borrowed from the awesome-emacs-keymap extension and modifed to
     // add the `!cpp.shouldAcceptTab` condition for the sake of Cursor.
+    //
+    // Extension: https://marketplace.visualstudio.com/items?itemName=tuttieee.emacs-mcx
     "key": "tab",
     "command": "emacs-mcx.tabToTabStop",
     "when": "editorTextFocus && !editorReadonly && !inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible && !inSnippetMode && !editorTabCompletion && !editorParameterHintsVisible && !cursorAtInlineEdit && !cpp.shouldAcceptTab"
   },
   { // Cycle spacing.
+    //
     // This is a basic emulation Emacs' built-in cycle-spacing command. It
     // doesn't actually cycle spacing, but it performs the first step which is
     // to replace all spacing surrounding the cursor with a single space.
     "key": "alt+space",
     "command": "macros.cycleSpacing",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    // Toggle quotes.
+    //
+    // Extension: https://marketplace.visualstudio.com/items?itemName=BriteSnow.vscode-toggle-quotes
+    "key": "ctrl+'",
+    "command": "editor.togglequotes",
     "when": "editorTextFocus && !editorReadonly"
   },
   { // Comment line.
@@ -382,6 +396,7 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   { // Move lines down in editor.
+    //
     // This is a workaround for alt+n not working in VSCode. Relies on
     // Karabiner-Elements to remap alt+n to cmd+alt+down.
     "key": "cmd+alt+down",
@@ -399,11 +414,29 @@
     "when": "notebookEditorFocused && !inputFocus"
   },
   { // Move cell down in notebook editor.
+    //
     // This is a workaround for alt+n not working in VSCode. Relies on
     // Karabiner-Elements to remap alt+n to cmd+alt+down.
     "key": "cmd+alt+down",
     "command": "notebook.cell.moveDown",
     "when": "notebookEditorFocused && !inputFocus"
+  },
+  //
+  // ===========================================================================
+  // MARK: Expand region
+  // ===========================================================================
+  // Extension:
+  // - https://marketplace.visualstudio.com/items?itemName=letrieu.expand-region
+  //
+  { // Expand selection.
+    "key": "alt+.",
+    "command": "expand_region",
+    "when": "editorTextFocus"
+  },
+  { // Shrink/contract selection.
+    "key": "alt+,",
+    "command": "undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
   },
   //
   // ===========================================================================
