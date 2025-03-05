@@ -25,38 +25,50 @@
   // MARK: Window
   // ===========================================================================
   //
-  {
+  { // Reset zoom.
     "key": "cmd+0",
     "command": "workbench.action.zoomReset"
   },
   //
   // ===========================================================================
-  // MARK: Window tabs
+  // MARK: Window Tabs
   // ===========================================================================
   //
-  {
+  { // Go to next window tab.
     "key": "ctrl+z ctrl+n",
     "command": "workbench.action.showNextWindowTab"
   },
-  {
+  { // Go to next window tab.
+    "key": "shift+cmd+]",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  { // Go to previous window tab.
     "key": "ctrl+z ctrl+p",
     "command": "workbench.action.showPreviousWindowTab"
   },
-  {
+  { // Go to previous window tab.
+    "key": "shift+cmd+[",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  { // Create new window tab.
     "key": "ctrl+z ctrl+c",
     "command": "workbench.action.newWindowTab"
   },
-  {
+  { // Merge all window tabs.
     "key": "ctrl+z ctrl+j",
     "command": "workbench.action.mergeAllWindowTabs"
   },
-  {
+  { // Move window tab to new window.
     "key": "ctrl+z ctrl+t",
     "command": "workbench.action.moveWindowTabToNewWindow"
   },
-  {
+  { // Toggle window tabs bar.
     "key": "ctrl+z ctrl+z",
     "command": "workbench.action.toggleWindowTabsBar"
+  },
+  {
+    "key": "ctrl+z ctrl+k",
+    "command": "workbench.action.closeWindow"
   },
   //
   // ===========================================================================
@@ -127,7 +139,32 @@
   },
   //
   // ===========================================================================
-  // MARK: Navigation
+  // MARK: Editor Navigation
+  // ===========================================================================
+  //
+  { // Go to next editor.
+    "key": "cmd+]",
+    "command": "workbench.action.nextEditor",
+    "when": "!(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus)"
+  },
+  { // Go to previous editor.
+    "key": "cmd+[",
+    "command": "workbench.action.previousEditor",
+    "when": "!(terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus)"
+  },
+  { // Focus next terminal.
+    "key": "cmd+]",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+  },
+  { // Focus previous terminal.
+    "key": "cmd+[",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+  },
+  //
+  // ===========================================================================
+  // MARK: Editor Group Navigation
   // ===========================================================================
   //
   { // Focus next editor group.
@@ -140,11 +177,6 @@
     "command": "workbench.action.focusPreviousGroup",
     "when": "!terminalFocus"
   },
-  //
-  // ===========================================================================
-  // MARK: Pane navigation
-  // ===========================================================================
-  //
   { // Navigate up.
     "key": "alt+i",
     "command": "workbench.action.navigateUp"
@@ -372,8 +404,7 @@
     "command": "macros.cycleSpacing",
     "when": "editorTextFocus && !editorReadonly"
   },
-  {
-    // Toggle quotes.
+  { // Toggle quotes.
     //
     // Extension: https://marketplace.visualstudio.com/items?itemName=BriteSnow.vscode-toggle-quotes
     "key": "ctrl+'",
@@ -409,8 +440,18 @@
     "command": "editor.action.indentLines",
     "when": "editorTextFocus && !editorReadonly"
   },
+  { // Indent line
+    "key": "alt+]",
+    "command": "editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
   { // Outdent line
     "key": "ctrl+c [",
+    "command": "editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { // Outdent line
+    "key": "alt+[",
     "command": "editor.action.outdentLines",
     "when": "editorTextFocus && !editorReadonly"
   },
@@ -523,7 +564,6 @@
   //
   { // Run current file.
     "key": "ctrl+c , v",
-    // "command": "testing.runCurrentFile",
     "command": "macros.runTestCurrentFile",
     "when": "editorTextFocus"
   },
@@ -633,6 +673,10 @@
   { // Disable default list projects keybinding.
     "key": "alt+cmd+p",
     "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+z ctrl+;",
+    "command": "projectManager.listProjectsNewWindow",
   },
   //
   // ===========================================================================
