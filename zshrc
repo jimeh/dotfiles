@@ -217,12 +217,15 @@ zinit light-mode wait lucid \
   for @zdharma-continuum/fast-syntax-highlighting
 
 # ==============================================================================
-# Edit command line
+# Command line keybindings
 # ==============================================================================
 
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+
+# Support for alt+<forward-delete> in some terminals.
+bindkey "\e[3;3~" kill-word
 
 # ==============================================================================
 # Environment and Tool Managers
