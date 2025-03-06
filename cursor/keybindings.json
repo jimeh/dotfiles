@@ -372,6 +372,18 @@
     "command": "toggleSuggestionDetails",
     "when": "editorTextFocus && suggestWidgetVisible"
   },
+  { // Accept next word.
+    "key": "shift+alt+f",
+    "command": "editor.action.inlineSuggest.acceptNextWord"
+  },
+  { // Accept next word.
+    //
+    // This is a workaround for alt+f not working globally to move to next word
+    // in all input fields. This relies on Karabiner-Elements to remap alt+f to
+    // alt+right arrow.
+    "key": "shift+alt+right",
+    "command": "editor.action.inlineSuggest.acceptNextWord"
+  },
   //
   // ===========================================================================
   // MARK: Text navigation
