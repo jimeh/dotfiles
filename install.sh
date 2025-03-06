@@ -42,6 +42,7 @@ SYMLINKS=(
   rustfmt.toml
   tmux
   tmux.conf
+  warp
   zshenv
   zshrc
 )

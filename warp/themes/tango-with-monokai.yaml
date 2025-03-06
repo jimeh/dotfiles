@@ -1,0 +1,25 @@
+name: Tango with Monokai
+accent: "#5696d5" # Using bright blue as accent color
+cursor: "#D0D0D0" # Using the cursor-color from Ghostty
+background: "#000000"
+foreground: "#ffffff"
+details: darker # This is a dark theme
+terminal_colors:
+  normal:
+    black: "#000000" # palette 0
+    red: "#cf5041" # palette 1
+    green: "#8bba48" # palette 2
+    yellow: "#c3a643" # palette 3
+    blue: "#37689f" # palette 4
+    magenta: "#9b589d" # palette 5
+    cyan: "#69b8cb" # palette 6
+    white: "#cccccc" # palette 7
+  bright:
+    black: "#686a66" # palette 8
+    red: "#ed3a2c" # palette 9
+    green: "#96cf4d" # palette 10
+    yellow: "#fdeb61" # palette 11
+    blue: "#5696d5" # palette 12
+    magenta: "#9d6aa5" # palette 13
+    cyan: "#75cee3" # palette 14
+    white: "#f5f5f5" # palette 15

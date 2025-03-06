@@ -1,0 +1,9 @@
+---
+"pane_group:navigate_right": alt-l
+"pane_group:navigate_up": alt-i
+"pane_group:navigate_down": alt-k
+"terminal:executing_command_move_cursor_word_right": alt-f
+"editor_view:move_forward_one_word": alt-f
+"terminal:executing_command_move_cursor_word_left": alt-b
+"pane_group:navigate_left": alt-j
+"editor_view:move_backward_one_word": alt-b
