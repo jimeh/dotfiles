@@ -29,6 +29,10 @@
     "key": "cmd+0",
     "command": "workbench.action.zoomReset"
   },
+  { // Toggle sidebar visibility.
+    "key": "ctrl+s",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
   //
   // ===========================================================================
   // MARK: Window Tabs
@@ -52,6 +56,14 @@
   },
   { // Go to previous window tab.
     "key": "ctrl+z ctrl+p",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  { // Go to previous window tab.
+    //
+    // This is a workaround for ctrl+p not working globally as up arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+p to
+    // up arrow.
+    "key": "ctrl+z up",
     "command": "workbench.action.showPreviousWindowTab"
   },
   { // Go to previous window tab.
@@ -97,6 +109,15 @@
     "command": "file-browser.open",
     "when": "editorTextFocus"
   },
+  { // Open file via file browser extension.
+    //
+    // This is a workaround for ctrl+f not working globally as right arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+f to
+    // right arrow.
+    "key": "ctrl+x right",
+    "command": "file-browser.open",
+    "when": "editorTextFocus"
+  },
   { // Open quick open.
     "key": "ctrl+x ctrl+;",
     "command": "workbench.action.quickOpen"
@@ -117,6 +138,15 @@
   //
   { // Show all editors by most recently used.
     "key": "ctrl+x ctrl+b",
+    "command": "workbench.action.showAllEditorsByMostRecentlyUsed",
+    "when": "!terminalFocus"
+  },
+  { // Show all editors by most recently used.
+    //
+    // This is a workaround for ctrl+b not working globally as left arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+b to
+    // left arrow.
+    "key": "ctrl+x left",
     "command": "workbench.action.showAllEditorsByMostRecentlyUsed",
     "when": "!terminalFocus"
   },
@@ -433,6 +463,15 @@
     "command": "editor.action.formatDocument",
     "when": "editorTextFocus && !editorReadonly"
   },
+  { // Format document.
+    //
+    // This is a workaround for ctrl+f not working globally as right arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+f to
+    // right arrow.
+    "key": "ctrl+c right",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus && !editorReadonly"
+  },
   { // Duplicate selection.
     "key": "ctrl+x ctrl+d",
     "command": "editor.action.duplicateSelection"
@@ -624,6 +663,15 @@
   },
   { // Debug failed tests.
     "key": "ctrl+c , ctrl+f",
+    "command": "macros.runTestDebugFailTests",
+    "when": "editorTextFocus"
+  },
+  { // Debug failed tests.
+    //
+    // This is a workaround for ctrl+f not working globally as right arrow in
+    // all input fields. This relies on Karabiner-Elements to remap ctrl+f to
+    // right arrow.
+    "key": "ctrl+c right",
     "command": "macros.runTestDebugFailTests",
     "when": "editorTextFocus"
   },

@@ -66,6 +66,9 @@
   // Modified Tabs
   "workbench.editor.highlightModifiedTabs": true,
   //
+  // Accessibility
+  "editor.accessibilitySupport": "off",
+  //
   // ===========================================================================
   // MARK: Workbench
   // ===========================================================================
