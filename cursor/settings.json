@@ -26,7 +26,6 @@
   "window.nativeFullScreen": false, // Does not work with nativeTabs enabled.
   "window.nativeTabs": true,
   "window.title": "${rootName}${separator}${profileName}",
-  "workbench.activityBar.location": "top",
   //
   // ===========================================================================
   // MARK: Editor
@@ -74,6 +73,7 @@
   // ===========================================================================
   //
   // Activity Bar
+  "workbench.activityBar.location": "top",
   "workbench.activityBar.orientation": "horizontal",
   //
   // Command Palette
