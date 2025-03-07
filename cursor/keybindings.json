@@ -759,7 +759,7 @@
   },
   {
     "key": "ctrl+z ctrl+;",
-    "command": "projectManager.listProjectsNewWindow",
+    "command": "projectManager.listProjectsNewWindow"
   },
   //
   // ===========================================================================
