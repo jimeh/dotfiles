@@ -27,13 +27,13 @@ get_extensions_lock() {
 # ==============================================================================
 
 show_help() {
-  cat <<EOF
+  cat << EOF
 Usage: $(basename "$0") EDITOR COMMAND
 
 Editors:
   cursor                  Cursor editor
-  vscode                  Visual Studio Code
-  vscode-insiders         Visual Studio Code Insiders
+  vscode, vsc             Visual Studio Code
+  vscode-insiders, vsci   Visual Studio Code Insiders
 
 Commands:
   config, conf           Create symlinks for editor config files
@@ -54,44 +54,44 @@ EOF
 # Determine editor config directory
 editor_config_dir() {
   case "$(uname -s)" in
-  "Darwin")
-    case "${SETUP_EDITOR}" in
-    "cursor")
-      echo "${HOME}/Library/Application Support/Cursor/User"
+    "Darwin")
+      case "${SETUP_EDITOR}" in
+        "cursor")
+          echo "${HOME}/Library/Application Support/Cursor/User"
+          ;;
+        "vscode")
+          echo "${HOME}/Library/Application Support/Code/User"
+          ;;
+        "vscode-insiders")
+          echo "${HOME}/Library/Application Support/Code - Insiders/User"
+          ;;
+        *)
+          echo "Error: Invalid editor '${SETUP_EDITOR}' for macOS"
+          exit 1
+          ;;
+      esac
       ;;
-    "vscode")
-      echo "${HOME}/Library/Application Support/Code/User"
-      ;;
-    "vscode-insiders")
-      echo "${HOME}/Library/Application Support/Code - Insiders/User"
+    "Linux")
+      case "${SETUP_EDITOR}" in
+        "cursor")
+          echo "${HOME}/.config/Cursor/User"
+          ;;
+        "vscode")
+          echo "${HOME}/.config/Code/User"
+          ;;
+        "vscode-insiders")
+          echo "${HOME}/.config/Code - Insiders/User"
+          ;;
+        *)
+          echo "Error: Invalid editor '${SETUP_EDITOR}' for Linux"
+          exit 1
+          ;;
+      esac
       ;;
     *)
-      echo "Error: Invalid editor '${SETUP_EDITOR}' for macOS"
+      echo "Error: Unsupported operating system"
       exit 1
       ;;
-    esac
-    ;;
-  "Linux")
-    case "${SETUP_EDITOR}" in
-    "cursor")
-      echo "${HOME}/.config/Cursor/User"
-      ;;
-    "vscode")
-      echo "${HOME}/.config/Code/User"
-      ;;
-    "vscode-insiders")
-      echo "${HOME}/.config/Code - Insiders/User"
-      ;;
-    *)
-      echo "Error: Invalid editor '${SETUP_EDITOR}' for Linux"
-      exit 1
-      ;;
-    esac
-    ;;
-  *)
-    echo "Error: Unsupported operating system"
-    exit 1
-    ;;
   esac
 }
 
@@ -142,37 +142,37 @@ find_editor_cmd() {
   local editor_cmd=""
 
   case "${SETUP_EDITOR}" in
-  "cursor")
-    # Check for cursor CLI in multiple possible locations
-    for cmd in "cursor" "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "${HOME}/Applications/Cursor.app/Contents/Resources/app/bin/cursor"; do
-      if command -v "${cmd}" >/dev/null 2>&1; then
-        editor_cmd="${cmd}"
-        break
-      fi
-    done
-    ;;
-  "vscode")
-    # Check for VSCode CLI in multiple possible locations
-    for cmd in "code" "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "${HOME}/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"; do
-      if command -v "${cmd}" >/dev/null 2>&1; then
-        editor_cmd="${cmd}"
-        break
-      fi
-    done
-    ;;
-  "vscode-insiders")
-    # Check for VSCode Insiders CLI in multiple possible locations
-    for cmd in "code-insiders" "/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code" "${HOME}/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code"; do
-      if command -v "${cmd}" >/dev/null 2>&1; then
-        editor_cmd="${cmd}"
-        break
-      fi
-    done
-    ;;
-  *)
-    echo "Error: Invalid editor '${SETUP_EDITOR}'"
-    exit 1
-    ;;
+    "cursor")
+      # Check for cursor CLI in multiple possible locations
+      for cmd in "cursor" "/Applications/Cursor.app/Contents/Resources/app/bin/cursor" "${HOME}/Applications/Cursor.app/Contents/Resources/app/bin/cursor"; do
+        if command -v "${cmd}" > /dev/null 2>&1; then
+          editor_cmd="${cmd}"
+          break
+        fi
+      done
+      ;;
+    "vscode")
+      # Check for VSCode CLI in multiple possible locations
+      for cmd in "code" "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "${HOME}/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"; do
+        if command -v "${cmd}" > /dev/null 2>&1; then
+          editor_cmd="${cmd}"
+          break
+        fi
+      done
+      ;;
+    "vscode-insiders")
+      # Check for VSCode Insiders CLI in multiple possible locations
+      for cmd in "code-insiders" "/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code" "${HOME}/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code"; do
+        if command -v "${cmd}" > /dev/null 2>&1; then
+          editor_cmd="${cmd}"
+          break
+        fi
+      done
+      ;;
+    *)
+      echo "Error: Invalid editor '${SETUP_EDITOR}'"
+      exit 1
+      ;;
   esac
 
   if [[ -z "${editor_cmd}" ]]; then
@@ -197,7 +197,7 @@ do_dump_extensions() {
     echo "# Generated on ${current_date}"
     echo
     "${editor_cmd}" --list-extensions --show-versions
-  } >"${extensions_lock}"
+  } > "${extensions_lock}"
 
   echo "Extensions list dumped to ${extensions_lock}"
 }
@@ -282,10 +282,10 @@ do_install_extensions() {
       # Clean up the .vsix file after installation attempt
       rm "${vsix_path}"
     fi
-  done <"${extensions_lock}"
+  done < "${extensions_lock}"
 
   # Clean up extensions directory if empty
-  rmdir "${extensions_cache_dir}" 2>/dev/null || true
+  rmdir "${extensions_cache_dir}" 2> /dev/null || true
   echo "Extensions installation complete!"
 }
 
@@ -309,20 +309,20 @@ main() {
   # Set editor from first argument
   editor="$(echo "${1}" | tr '[:upper:]' '[:lower:]')"
   case "${editor}" in
-  "vscode" | "code")
-    SETUP_EDITOR="vscode"
-    ;;
-  "vscode-insiders" | "code-insiders" | "insiders")
-    SETUP_EDITOR="vscode-insiders"
-    ;;
-  "cursor")
-    SETUP_EDITOR="cursor"
-    ;;
-  *)
-    echo "Error: Unsupported editor '${editor}'"
-    echo "Supported editors: cursor, vscode, vscode-insiders"
-    exit 1
-    ;;
+    "vscode" | "code" | "vsc" | "v")
+      SETUP_EDITOR="vscode"
+      ;;
+    "vscode-insiders" | "code-insiders" | "insiders" | "vsci" | "i")
+      SETUP_EDITOR="vscode-insiders"
+      ;;
+    "cursor" | "c")
+      SETUP_EDITOR="cursor"
+      ;;
+    *)
+      echo "Error: Unsupported editor '${editor}'"
+      echo "Supported editors: cursor, vscode (vsc), vscode-insiders (vsci)"
+      exit 1
+      ;;
   esac
 
   # Get command from second argument
@@ -330,25 +330,25 @@ main() {
 
   # Handle commands
   case "${command}" in
-  "config" | "conf")
-    do_symlink
-    ;;
-  "dump-extensions" | "dump")
-    do_dump_extensions
-    ;;
-  "extensions" | "ext")
-    do_install_extensions
-    ;;
-  "")
-    echo "Error: No command provided"
-    show_help
-    exit 1
-    ;;
-  *)
-    echo "Error: Unknown command '${command}'"
-    show_help
-    exit 1
-    ;;
+    "config" | "conf")
+      do_symlink
+      ;;
+    "dump-extensions" | "dump")
+      do_dump_extensions
+      ;;
+    "extensions" | "ext")
+      do_install_extensions
+      ;;
+    "")
+      echo "Error: No command provided"
+      show_help
+      exit 1
+      ;;
+    *)
+      echo "Error: Unknown command '${command}'"
+      show_help
+      exit 1
+      ;;
   esac
 }
 
