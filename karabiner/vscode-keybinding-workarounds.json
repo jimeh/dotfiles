@@ -5,6 +5,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -38,6 +39,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -71,6 +73,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -104,6 +107,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -136,6 +140,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -168,6 +173,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -200,6 +206,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -232,6 +239,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -265,6 +273,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -294,6 +303,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -323,6 +333,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -352,6 +363,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -381,6 +393,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -410,6 +423,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
@@ -442,6 +456,7 @@
       "conditions": [
         {
           "bundle_identifiers": [
+            "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
             "^com\\.todesktop\\."
           ],
