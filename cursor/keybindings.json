@@ -217,26 +217,41 @@
   },
   { // Navigate up.
     "key": "alt+i",
-    "command": "workbench.action.navigateUp"
+    "command": "workbench.action.navigateUp",
+    "when": "!terminalFocus"
   },
   { // Navigate up.
     //
     // Workaround for alt+i not working in VSCode. Relies on Karabiner-Elements
     // to remap alt+i to cmd+alt+up.
     "key": "cmd+alt+up",
-    "command": "workbench.action.navigateUp"
+    "command": "workbench.action.navigateUp",
+    "when": "!terminalFocus"
   },
   { // Navigate right.
     "key": "alt+l",
-    "command": "workbench.action.navigateRight"
+    "command": "workbench.action.navigateRight",
   },
   { // Navigate left.
     "key": "alt+j",
-    "command": "workbench.action.navigateLeft"
+    "command": "workbench.action.navigateLeft",
   },
   { // Navigate down.
     "key": "alt+k",
-    "command": "workbench.action.navigateDown"
+    "command": "workbench.action.navigateDown",
+  },
+  { // Navigate up back to editor from terminal.
+    "key": "alt+i",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  { // Navigate up back to editor from terminal.
+    //
+    // Workaround for alt+i not working in VSCode. Relies on Karabiner-Elements
+    // to remap alt+i to cmd+alt+up.
+    "key": "cmd+alt+up",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
   },
   //
   // ===========================================================================
@@ -683,7 +698,7 @@
     // This is a workaround for ctrl+f not working globally as right arrow in
     // all input fields. This relies on Karabiner-Elements to remap ctrl+f to
     // right arrow.
-    "key": "ctrl+c right",
+    "key": "ctrl+c , right",
     "command": "macros.runTestDebugFailTests",
     "when": "editorTextFocus"
   },

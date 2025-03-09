@@ -28,6 +28,22 @@
   "window.title": "${rootName}${separator}${profileName}",
   //
   // ===========================================================================
+  // MARK: Cursor (Text Editor)
+  // ===========================================================================
+  //
+  "cursor.aipreview.enabled": true,
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.diffs.useCharacterLevelDiffs": true,
+  "cursor.terminal.usePreviewBox": true,
+  "cursor.general.enableShadowWorkspace": true,
+  //
+  // ===========================================================================
+  // MARK: Windsurf (Text Editor)
+  // ===========================================================================
+  //
+  "windsurf.autocompleteSpeed": "fast",
+  //
+  // ===========================================================================
   // MARK: Editor
   // ===========================================================================
   //
@@ -131,16 +147,6 @@
   // ===========================================================================
   //
   "diffEditor.ignoreTrimWhitespace": false,
-  //
-  // ===========================================================================
-  // MARK: Cursor
-  // ===========================================================================
-  //
-  "cursor.aipreview.enabled": true,
-  "cursor.cpp.enablePartialAccepts": true,
-  "cursor.diffs.useCharacterLevelDiffs": true,
-  "cursor.terminal.usePreviewBox": true,
-  "cursor.general.enableShadowWorkspace": true,
   //
   // ===========================================================================
   // MARK: Terminal
