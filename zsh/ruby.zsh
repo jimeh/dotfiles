@@ -56,7 +56,6 @@ install_ruby_global_packages() {
     pry-doc
     reek
     rubocop
-    rubocop-daemon
     ruby-lsp
     solargraph
     solargraph-rails
