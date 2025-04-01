@@ -76,3 +76,8 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !op plugin run -- gh auth git-credential
+[gitbutler]
+	aiModelProvider = anthropic
+	aiAnthropicKeyOption = bringYourOwn
+	aiAnthropicModelName = claude-3-7-sonnet-latest
+	signCommits = true
