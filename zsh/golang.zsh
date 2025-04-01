@@ -24,6 +24,7 @@ install_go_global_packages() {
     "github.com/go-delve/delve/cmd/dlv@latest"
     "github.com/josharian/impl@latest"
     "github.com/rogpeppe/godef@latest"
+    "go.uber.org/mock/mockgen@latest"
     "golang.org/x/tools/cmd/godoc@latest"
     "golang.org/x/tools/cmd/goimports@latest"
     "golang.org/x/tools/gopls@latest"
