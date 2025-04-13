@@ -82,11 +82,40 @@ source-if-exists() {
   fi
 }
 
+# mtime returns the modification time of a file in seconds since epoch.
+#
+# Supports macOS and Linux.
+#
+# Arguments:
+#
+#   $1 - file: The path to the file to get the modification time of.
+#
+# Returns:
+#   The modification time of the file in seconds since epoch.
+mtime() {
+  local file="$1"
+
+  if [ -f "$file" ]; then
+    case "$(uname)" in
+      Darwin)
+        stat -f "%m" "$file"
+        ;;
+      Linux)
+        stat -c "%Y" "$file"
+        ;;
+    esac
+  fi
+}
+
 # cached-eval executes a command with arguments and caches the output. On
 # subsequent calls, if the source file has not changed, the output is sourced
 # from the cache instead of re-executing the command. This optimizes performance
 # for commands that are costly to execute but result in the same output unless
 # their source files change.
+#
+# The cache key is calculated from the source file path, its modification time,
+# and the command to execute. If any of those change, the command is re-executed
+# and the cache is updated to a new cache file.
 #
 # Arguments:
 #
@@ -108,15 +137,17 @@ cached-eval() {
   shift 1
   local script="$@"
 
-  local cache_dir="${ZSH_CACHED_EVAL_DIR:-$HOME/.local/share/zsh/cached-eval}"
 
   if [[ ! -f "$source_file" ]]; then
     echo "cached-eval: Source file not found: $source_file" >&2
     return 1
   fi
 
-  local md5_cmd="$(command-path md5 || command-path md5sum)"
-  local cache_hash="$(echo -n "${source_file}:${script}" | "$md5_cmd" | awk '{print $1}')"
+  local cache_dir="${ZSH_CACHED_EVAL_DIR:-$HOME/.local/share/zsh/cached-eval}"
+  local hash_cmd="$(command-path shasum || command-path sha1sum)"
+  local mtime="$(mtime "$source_file")"
+  local cache_hash="$(echo -n "${source_file}:${mtime}:${script}" | \
+    "$hash_cmd" | awk '{print $1}')"
   local cache_file="${cache_dir}/${cache_hash}.cache.zsh"
 
   if [ -z "$cache_hash" ]; then
@@ -132,6 +163,26 @@ cached-eval() {
   fi
 
   source "$cache_file"
+}
+
+flush-cached-eval() {
+  local cache_dir="${ZSH_CACHED_EVAL_DIR:-$HOME/.local/share/zsh/cached-eval}"
+
+  if [[ ! -d "$cache_dir" ]]; then
+    echo "cached-eval: Cache directory not found: $cache_dir" >&2
+    return 1
+  fi
+
+  local cache_files=("$cache_dir"/*.cache.zsh)
+  if [[ "${#cache_files[@]}" -eq 0 ]]; then
+    echo "cached-eval: No cache files found in: $cache_dir" >&2
+    return 1
+  fi
+
+  for cache_file in "${cache_files[@]}"; do
+    echo "cached-eval: Flushing cache file: $cache_file" >&2
+    rm -f "$cache_file"
+  done
 }
 
 # ==============================================================================
