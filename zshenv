@@ -341,7 +341,7 @@ else
   export RUSTC_WRAPPER=""
 fi
 
-# pipx setup
+# ~/.local/bin used by some tools (pipx, lunar, toml-sort, etc.)
 path_prepend "$HOME/.local/bin"
 
 # mise setup
