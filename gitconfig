@@ -42,7 +42,7 @@
 [pull]
 	rebase = true
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = false
 [diff]
@@ -76,6 +76,13 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !op plugin run -- gh auth git-credential
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
 [gitbutler]
 	aiModelProvider = anthropic
 	aiAnthropicKeyOption = bringYourOwn
