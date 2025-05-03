@@ -76,3 +76,11 @@ fi
 if command-exists helmfile; then
   setup-completions helmfile "$(command-path helmfile)" helmfile completion zsh
 fi
+
+if command-exists stern; then
+  setup-completions stern "$(command-path stern)" stern --completion zsh
+fi
+
+if command-exists kubetail; then
+  setup-completions kubetail "$(command-path kubetail)" kubetail completion zsh
+fi
