@@ -22,7 +22,6 @@ ruby_install = true
 
 [tools]
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
-"aqua:sharkdp/hexyl" = "latest"
 "aqua:tldr-pages/tlrc" = "latest"
 "cargo:bacon" = "latest"
 "cargo:cargo-audit" = "latest"
@@ -95,6 +94,7 @@ grpcurl = "latest"
 hadolint = "latest"
 helm = "latest"
 helmfile = "latest"
+hexyl = "latest"
 hivemind = "latest"
 hugo-extended = "latest"
 hwatch = "latest"
