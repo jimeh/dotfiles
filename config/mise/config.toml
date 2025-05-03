@@ -17,6 +17,9 @@ bun = false
 # Allow mise to install pipx packages without manual installation of pipx.
 uvx = true
 
+[settings.ruby]
+ruby_install = true
+
 [tools]
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
 "aqua:sharkdp/hexyl" = "latest"
