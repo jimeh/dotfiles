@@ -9,7 +9,9 @@ show_env = true
 show_tools = false
 
 [settings.npm]
-bun = true
+# TODO: Re-enable bun when freezing issue is resolved:
+# https://github.com/jdx/mise/discussions/4995
+bun = false
 
 [settings.pipx]
 # Allow mise to install pipx packages without manual installation of pipx.
@@ -70,7 +72,6 @@ argocd = "latest"
 aws-cli = "latest"
 bat = "latest"
 buf = "latest"
-bun = "latest"
 cargo-binstall = "latest"
 crane = "latest"
 ctop = "latest"
