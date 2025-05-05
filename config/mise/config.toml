@@ -3,6 +3,14 @@ cargo_binstall = true
 experimental = true
 legacy_version_file = true
 not_found_auto_install = false
+idiomatic_version_file_enable_tools = [
+    "ruby",
+    "python",
+    "node",
+    "go",
+    "terraform",
+    "yarn",
+]
 
 [settings.status]
 show_env = true
