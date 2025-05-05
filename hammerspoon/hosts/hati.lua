@@ -5,6 +5,7 @@ local obj = {}
 --------------------------------------------------------------------------------
 
 local apptoggle = require('app_toggle')
+local apphider = require('app_hider')
 
 local function init_hotkeys()
   hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
@@ -34,6 +35,10 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, '1',
     { 'Code', '/Applications/Visual Studio Code.app' }
   )
+
+  -- Use Warp as my primary terminal application.
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
+  apphider:autoHide('Warp') -- auto-hide Warp when it loses focus
 end
 
 --------------------------------------------------------------------------------

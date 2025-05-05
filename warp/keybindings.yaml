@@ -1,4 +1,5 @@
 ---
+"editor_view:insert_nonexpanding_space": none
 "editor_view:move_backward_one_word": alt-b
 "editor_view:move_forward_one_word": alt-f
 "pane_group:navigate_down": alt-k
@@ -7,3 +8,4 @@
 "pane_group:navigate_up": alt-i
 "terminal:executing_command_move_cursor_word_left": alt-b
 "terminal:executing_command_move_cursor_word_right": alt-f
+"workspace:toggle_ai_assistant": none
