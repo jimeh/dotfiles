@@ -6,7 +6,7 @@
 # aliases. This is necessary for shell completion to work correctly with aliases
 # to commands which have 1Password integration enabled.
 #
-# This function a hacky-ish workaround to the issue described here:
+# This function is a hacky-ish workaround to the issue described here:
 # https://github.com/1Password/shell-plugins/issues/433
 #
 # It loads the 1Password CLI plugin script file, then finds all aliases that are
