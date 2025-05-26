@@ -30,8 +30,8 @@ local function init_hotkeys()
   )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
-    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
-    { 'Code', '/Applications/Visual Studio Code.app' }
+    { 'Code', '/Applications/Visual Studio Code.app' },
+    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
 
   -- Use Ghostty as my primary terminal application.
