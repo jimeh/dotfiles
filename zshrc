@@ -232,8 +232,7 @@ bindkey "\e[3;3~" kill-word
 # ==============================================================================
 
 MISE_HOME="$HOME/.local/share/mise"
-MISE_ZSH_INIT="$MISE_HOME/shell/init.zsh"
-export MISE_INSTALL_PATH="$MISE_HOME/bin/mise"
+export MISE_INSTALL_PATH="$HOME/.local/bin/mise"
 
 if ! command-exists mise; then
   read -q 'REPLY?mise is not installed, install with `curl https://mise.run | sh`? [y/N]:' &&
