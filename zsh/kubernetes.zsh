@@ -2,11 +2,12 @@
 # Kubernetes Related
 #
 
-alias kc="kubectl"
-alias kx="kubectx"
-alias kn="kubens"
 alias hl="helm"
+alias kc="kubectl"
+alias kn="kubens"
+alias kx="kubectx"
 alias mk="minikube"
+alias st="stern"
 
 if command-exists kubectl; then
   setup-completions kubectl "$(command-path kubectl)" kubectl completion zsh
