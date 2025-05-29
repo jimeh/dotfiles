@@ -58,6 +58,7 @@ install_ruby_global_packages() {
     rubocop
     ruby-lsp
     ruby-lsp-rails
+    ruby-lsp-rspec
     solargraph
     solargraph-rails
     steep
