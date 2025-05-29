@@ -30,10 +30,8 @@ local function init_hotkeys()
   )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
+    { 'Code', '/Applications/Visual Studio Code.app' },
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
-  )
-  apptoggle:bind({ 'cmd', 'ctrl' }, '1',
-    { 'Code', '/Applications/Visual Studio Code.app' }
   )
 
   -- Use Warp as my primary terminal application.
