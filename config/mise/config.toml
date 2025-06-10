@@ -49,6 +49,7 @@ ruby_install = true
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:@prettier/plugin-php" = "latest"
+"npm:@upstash/context7-mcp" = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:eslint" = "latest"
 "npm:eslint-config-prettier" = "latest"
