@@ -78,6 +78,7 @@ ruby_install = true
 "pipx:pipx" = "latest"
 "pipx:yamllint" = "latest"
 "ubi:kubetail-org/kubetail" = { version = "cli/v0.4.4", tag_regex = "^cli\\/v\\d+" }
+"ubi:rails/rails-new" = "latest"
 1password-cli = "latest"
 actionlint = "latest"
 argo-rollouts = "latest"
