@@ -11,7 +11,7 @@
 .stfolder
 .stignore
 .vagrant
-.vscode
+.vscode/settings.json
 .zinitrc.zsh
 log/*.bz2
 log/*.gz
