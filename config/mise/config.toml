@@ -125,7 +125,7 @@ node = "lts"
 opentofu = "latest"
 python = "latest"
 rclone = "latest"
-restish = "latest"
+restish = "0.20.0"
 ripgrep = "latest"
 ruby = "latest"
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
