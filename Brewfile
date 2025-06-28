@@ -13,6 +13,7 @@ tap 'homebrew/cask-versions'
 # Command-Line Tools (Brew)
 #
 
+brew '1password-cli'
 brew 'ack'
 brew 'aspell'
 brew 'bash'
