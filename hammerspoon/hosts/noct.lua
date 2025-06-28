@@ -34,6 +34,10 @@ local function init_hotkeys()
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
 
+  -- -- Use Warp as my primary terminal application.
+  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
+  -- apphider:autoHide('Warp') -- auto-hide Warp when it loses focus
+
   -- Use Ghostty as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
   -- apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
