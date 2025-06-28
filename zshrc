@@ -1,6 +1,13 @@
 #
-# Z-Shell Init
+# ZSH Interactive Shell Setup
 #
+
+# If we are in VSCode's environment resolution process, we should behave as if
+# this is a non-interactive shell by bailing before we load any of our
+# interactive shell setup.
+if [[ -n $VSCODE_RESOLVING_ENVIRONMENT ]]; then
+  return
+fi
 
 # In our zshenv file we have on macOS disabled loading ZSH startup files from
 # /etc to avoid /etc/zprofile messing up our carefully constructed PATH. So we

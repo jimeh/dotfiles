@@ -43,6 +43,7 @@ SYMLINKS=(
   tmux
   tmux.conf
   warp
+  zprofile
   zshenv
   zshrc
 )
