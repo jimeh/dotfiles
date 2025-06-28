@@ -33,6 +33,7 @@ SYMLINKS=(
   hyper.js
   irbrc
   logrotate.d
+  markdownlint.yaml
   peco
   powconfig
   pryrc

@@ -1,0 +1,10 @@
+---
+no-hard-tabs: # MD010
+  # Allow hard-tabs in code blocks in the below languages.
+  ignore_code_languages:
+    - go
+    - makefile
+
+blanks-around-fences: # MD031
+  # Don't force blank lines around code blocks in lists.
+  list_items: false
