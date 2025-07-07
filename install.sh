@@ -26,6 +26,7 @@ SYMLINKS=(
   config/k9s
   erlang
   gemrc
+  gitattributes
   gitconfig
   gitignore
   hammerspoon

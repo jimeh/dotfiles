@@ -7,6 +7,7 @@
 [tag]
 	gpgsign = true
 [core]
+	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
 [color]
 	status = auto
@@ -76,13 +77,12 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !op plugin run -- gh auth git-credential
-[merge]
-	tool = Kaleidoscope
+[merge "mergiraf"]
+	name = mergiraf
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
-[mergetool]
-	prompt = false
 [gitbutler]
 	aiModelProvider = anthropic
 	aiAnthropicKeyOption = bringYourOwn
