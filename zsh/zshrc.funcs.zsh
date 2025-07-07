@@ -1,14 +1,14 @@
 #
 # zshrc helper functions
 #
-# Helpers designed for use during setup of interactive shell environments
-# (~/.zshrc ).
+# Helpers designed for use during setup of interactive shell environments in
+# `~/.zshrc`.
 #
 
-# setup-completions is a helper function to set up shell completions for a given
-# command. It generates Zsh completion scripts and places them in the specified
-# completions directory. If the completion file already exists, it checks if the
-# source file has been updated and regenerates the completions if necessary.
+# Helper function to set up shell completions for a given command. It generates
+# Zsh completion scripts and places them in the specified completions directory.
+# If the completion file already exists, it checks if the source file has been
+# updated and regenerates the completions if necessary.
 #
 # Arguments:
 #
@@ -32,7 +32,7 @@
 #
 # The completions are placed in the directory specified by the ZSH_COMPLETIONS
 # environment variable. If ZSH_COMPLETIONS is not set, the completions are
-# placed in $HOME/.zsh/completions by default.
+# placed in `$HOME/.zsh/completions` by default.
 setup-completions() {
   local cmd="$1"
   local source="$2"
@@ -71,22 +71,26 @@ setup-completions() {
   fi
 }
 
-# Convert a bash/zsh alias to a function. It prints the unalias command and the
+# Convert a bash/zsh alias to a function. It prints the `unalias` command and the
 # function definition, meaning the output needs to be evaluated to take effect.
 #
 # Arguments:
+
 #   $1: The alias to convert. Should be a single line like "alias ll='ls -alF'"
 #       or "ll='ls -alF'".
 #
 # Example:
-#   alias brew="op plugin run -- brew"
-#   convert_alias_to_function "$(alias brew)"
+#
+#     alias brew="op plugin run -- brew"
+#     convert_alias_to_function "$(alias brew)"
 #
 # This will print:
-#   unalias brew
-#   brew() {
-#     op plugin run -- brew "$@"
-#   }
+#
+#     unalias brew
+#     brew() {
+#       op plugin run -- brew "$@"
+#     }
+#
 convert-alias-source-to-function-source() {
   local line="$1"
 
@@ -108,7 +112,7 @@ convert-alias-source-to-function-source() {
     return 1
   fi
 
-  # Print the unalias command and the function definition.
+  # Print the `unalias` command and the function definition.
   echo -e "unalias ${alias_name}"
   echo -e "${alias_name}() {\n  ${command} \"\$@\"\n}"
 }
@@ -120,8 +124,9 @@ convert-alias-source-to-function-source() {
 #   $1: The alias to convert. Should be the name of the alias.
 #
 # Example:
-#   alias brew="op plugin run -- brew"
-#   convert-alias-to-function brew
+#
+#     alias brew="op plugin run -- brew"
+#     convert-alias-to-function brew
 #
 # This will replace the alias "brew" with a function that has the same behavior.
 convert-alias-to-function() {
