@@ -61,7 +61,13 @@ path_prepend "$MISE_HOME/shims"
 
 # If available, make sure to load direnv shell hook before mise.
 if command-exists direnv; then
-  cached-eval "$(command-path direnv)" direnv hook zsh
+  if command-exists mise; then
+    # If mise is available, use it to find the absolute path to direnv.
+    cached-eval "$(mise which direnv)" direnv hook zsh
+  else
+    # Otherwise, find it via PATH, which is likely to be mise's shim.
+    cached-eval "$(command-path direnv)" direnv hook zsh
+  fi
 fi
 
 # ==============================================================================
