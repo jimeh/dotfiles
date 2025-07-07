@@ -76,6 +76,20 @@ command-path() {
   echo "${commands[$1]}"
 }
 
+# mise-which is a wrapper around the `mise which` command. If mise is not
+# available, or `mise which` fails to find the command, it falls back to the
+# `command-path` function.
+#
+# Primarily used before mise is initialized in an interactive shell, where
+# regular path lookup would return the shimmed version of the command, but you
+# actually need the absolute path to the command.
+#
+# Arguments:
+#   $1 - cmd: The command to find the path to.
+mise-which() {
+  command-exists mise && mise which "$1" 2>/dev/null || command-path "$1"
+}
+
 source-if-exists() {
   if [ -f "$1" ]; then
     source "$1"
@@ -137,6 +151,17 @@ cached-eval() {
   shift 1
   local script="$@"
 
+  # If given source file is empty, silently return 0. This allows us to call
+  # cached-eval with dynamic command path lookup, without having to wrap it in a
+  # if statement that checks if the command exists.
+  if [[ -z "$source_file" ]]; then
+    return 0
+  fi
+
+  if [[ -z "$script" ]]; then
+    echo "cached-eval: No script provided for: $source_file" >&2
+    return 1
+  fi
 
   if [[ ! -f "$source_file" ]]; then
     echo "cached-eval: Source file not found: $source_file" >&2

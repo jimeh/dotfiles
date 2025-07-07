@@ -61,13 +61,7 @@ path_prepend "$MISE_HOME/shims"
 
 # If available, make sure to load direnv shell hook before mise.
 if command-exists direnv; then
-  if command-exists mise; then
-    # If mise is available, use it to find the absolute path to direnv.
-    cached-eval "$(mise which direnv)" direnv hook zsh
-  else
-    # Otherwise, find it via PATH, which is likely to be mise's shim.
-    cached-eval "$(command-path direnv)" direnv hook zsh
-  fi
+  cached-eval "$(mise-which direnv)" direnv hook zsh
 fi
 
 # ==============================================================================
@@ -181,7 +175,7 @@ if command-exists fzf; then
          --walker-skip .git,node_modules,.terraform,target
          --preview 'tree -C {}'"
 
-  cached-eval "$(command-path fzf)" fzf --zsh
+  cached-eval "$(mise-which fzf)" fzf --zsh
 
   zstyle ':completion:*' menu no
   zstyle ':completion:*' special-dirs true
@@ -271,8 +265,8 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  cached-eval "$(command-path starship)" starship init zsh --print-full-init
-  setup-completions starship "$(command-path starship)" starship completions zsh
+  cached-eval "$(mise-which starship)" starship init zsh --print-full-init
+  setup-completions starship "$(mise-which starship)" starship completions zsh
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise use -g starship" >&2
