@@ -131,7 +131,12 @@ function obj:toggle(apps)
     return
   end
 
-  if mostRecentApp == hs.application.frontmostApplication() then
+  if not mostRecentApp then
+    mostRecentApp = runningApps[1]
+  end
+
+  local frontMostApp = hs.application.frontmostApplication()
+  if frontMostApp and mostRecentApp == frontMostApp then
     return mostRecentApp:hide()
   end
 
