@@ -7,29 +7,29 @@ if [[ -n "$ZPROF" ]]; then
   zmodload zsh/zprof
 fi
 
-# Ensure compinit is NOT loaded before Zinit loads in ~/zshrc.
+# Ensure compinit is NOT loaded before Zinit loads in `~/zshrc`.
 skip_global_compinit=1
 
 # ==============================================================================
 # PATH Setup
 # ==============================================================================
 
-# Ensure values in path variable are unique
+# Ensure values in `path` variable are unique.
 typeset -U path
 
-# Prevent loading ZSH startup from files /etc on macOS. The /etc/zprofile file
-# screws around with PATH, so we want to avoid it, and instead manually load the
-# files we care about.
+# Prevent loading ZSH start-up from files `/etc` on macOS. The `/etc/zprofile`
+# file screws around with `PATH`, so we want to avoid it, and instead manually
+# load the files we care about.
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Disable loading startup files from /etc
+  # Disable loading start-up files from `/etc`.
   unsetopt GLOBAL_RCS
 
-  # Setup default PATH just like /etc/zprofile does
+  # Setup default `PATH` just like `/etc/zprofile` does.
   if [ -x "/usr/libexec/path_helper" ]; then
     eval $(/usr/libexec/path_helper -s)
   fi
 
-  # Load /etc/zshenv if it exists
+  # Load `/etc/zshenv` if it exists.
   if [ -f "/etc/zshenv" ]; then
     source "/etc/zshenv"
   fi
@@ -262,7 +262,7 @@ fi
 
 # Linuxbrew
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-  # Inline linux-brew setup to improve shell startup speed by around 200ms.
+  # Inline linux-brew setup to improve shell startup speed by around 200 ms.
   export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
   export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
   export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
@@ -287,14 +287,14 @@ if [ -d "$HOME/Library/Android/sdk" ]; then
   path_append "$ANDROID_HOME/platform-tools"
 fi
 
-# Flutter environment setup
+# Flutter environment setup.
 path_append "/opt/flutter/bin"
 path_append "/opt/flutter/bin/cache/dart-sdk/bin"
 
-# Use gnu-getop if available
+# Use gnu-getop if available.
 path_prepend "/usr/local/opt/gnu-getopt/bin"
 
-# Homebrew setup
+# Homebrew setup.
 export HOMEBREW_NO_ANALYTICS=1
 
 # Kubernetes setup
@@ -304,7 +304,7 @@ if [ -d "$HOME/.krew" ]; then
   path_append "$HOME/.krew/bin"
 fi
 
-# Use custom emacs install if available
+# Use custom Emacs installation if available.
 path_prepend "/opt/emacs/bin"
 
 # evm setup.
@@ -341,7 +341,7 @@ else
   export RUSTC_WRAPPER=""
 fi
 
-# ~/.local/bin used by some tools (mise, pipx, lunar, toml-sort, etc.)
+# `~/.local/bin` used by some tools (mise, pipx, lunar, toml-sort, etc.)
 path_prepend "$HOME/.local/bin"
 
 # mise setup

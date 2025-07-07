@@ -9,9 +9,9 @@ if [[ -n $VSCODE_RESOLVING_ENVIRONMENT ]]; then
   return
 fi
 
-# In our zshenv file we have on macOS disabled loading ZSH startup files from
-# /etc to avoid /etc/zprofile messing up our carefully constructed PATH. So we
-# need to manually load the other files we care about.
+# In our `zshenv` file we have on macOS disabled loading ZSH start-up files from
+# `/etc` to avoid `/etc/zprofile` messing up our carefully constructed `PATH`.
+# So we need to manually load the other files we care about.
 if [[ "$OSTYPE" == "darwin"* ]] && [ -f "/etc/zshrc" ]; then
   source "/etc/zshrc"
 fi
@@ -45,8 +45,8 @@ fi
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
-# Add generic cross platform  clipcopy and clippaste commands to copy and paste
-# from the system clipboard.
+# Add generic cross platform `clipcopy` and `clippaste` commands to copy and
+# paste from the system clipboard.
 zinit for @OMZ::lib/clipboard.zsh
 
 # ==============================================================================
@@ -77,7 +77,7 @@ fi
 # Set various sane defaults for ZSH history management.
 zinit for @OMZ::lib/history.zsh
 
-# Map history search to ctrl-p and ctrl-n.
+# Map history search to <ctrl-p> and <ctrl-n>.
 # bindkey '^p' history-beginning-search-backward
 # bindkey '^n' history-beginning-search-forward
 
@@ -87,16 +87,16 @@ HISTSIZE=100000
 SAVEHIST=50000
 
 ## History command configuration
-setopt append_history          # append history to HISTFILE
-setopt extended_history        # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first  # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_find_no_dups       # do not display a duplicate history entry
-setopt hist_ignore_dups        # ignore duplicated commands history list
-setopt hist_ignore_space       # ignore commands that start with space
-setopt hist_reduce_blanks      # remove superfluous blanks before adding to history
-setopt hist_verify             # show command with history expansion to user before running it
-setopt inc_append_history_time # add timestamp to HISTFILE in order of execution
-setopt share_history           # share command history data
+setopt append_history          # Append history to `HISTFILE`.
+setopt extended_history        # Record timestamp of command in `HISTFILE`.
+setopt hist_expire_dups_first  # Delete duplicates first when `HISTFILE` size exceeds `HISTSIZE`.
+setopt hist_find_no_dups       # Do not display a duplicate history entry.
+setopt hist_ignore_dups        # Ignore duplicated commands history list.
+setopt hist_ignore_space       # Ignore commands that start with space.
+setopt hist_reduce_blanks      # Remove superfluous blanks before adding to history.
+setopt hist_verify             # Show command with history expansion to user before running it.
+setopt inc_append_history_time # Add timestamp to `HISTFILE` in order of execution.
+setopt share_history           # Share command history data.
 
 # ==============================================================================
 # Completion
@@ -196,7 +196,7 @@ if command-exists fzf; then
   zstyle ':fzf-tab:*' prefix ''
   zstyle ':fzf-tab:*' switch-group '<' '>'
 
-  # Use fzf-tab's tmux popup for tab completion.
+  # Use fzf-tab's tmux pop-up for tab completion.
   zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
   zstyle ':fzf-tab:*' popup-min-size 30 10
   zstyle ':fzf-tab:*' popup-pad 0 0
