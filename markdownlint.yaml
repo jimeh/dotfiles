@@ -3,6 +3,7 @@
 no-hard-tabs: # MD010
   # Allow hard-tabs in code blocks in the below languages.
   ignore_code_languages:
+    - caddyfile
     - go
     - makefile
 
