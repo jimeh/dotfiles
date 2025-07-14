@@ -17,6 +17,10 @@
 	whitespace = nowarn
 [push]
 	default = simple
+[pull]
+	rebase = true
+[rerere]
+	enabled = true
 [alias]
 	a = add
 	ai = add -i
@@ -40,8 +44,6 @@
 	pgp-on = config commit.gpgsign true
 	pgp-off = config commit.gpgsign false
 	tree = log --all --graph --decorate --oneline --simplify-by-decoration
-[pull]
-	rebase = true
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
@@ -72,10 +74,8 @@
 [gitlab]
 	user = jimeh
 [credential "https://github.com"]
-	helper =
 	helper = !op plugin run -- gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
 	helper = !op plugin run -- gh auth git-credential
 [merge "mergiraf"]
 	name = mergiraf
