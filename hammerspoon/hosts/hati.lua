@@ -24,9 +24,9 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
+    { 'Notion Calendar' },
     { 'Calendar' },
-    { 'Google Calendar' },
-    { 'Notion Calendar' }
+    { 'Google Calendar' }
   )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
