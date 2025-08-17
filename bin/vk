@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+export BACKEND_PORT=34802
+
+if command -v vibe-kanban >/dev/null 2>&1; then
+  exec vibe-kanban "$@"
+elif command -v npx >/dev/null 2>&1; then
+  exec npx vibe-kanban "$@"
+else
+  echo "Neither vibe-kanban nor npx is installed"
+  exit 1
+fi

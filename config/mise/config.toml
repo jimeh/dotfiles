@@ -70,6 +70,7 @@ ruby_install = true
 "npm:typescript" = "latest"
 "npm:typescript-formatter" = "latest"
 "npm:typescript-language-server" = "latest"
+"npm:vibe-kanban" = "latest"
 "npm:vscode-css-languageserver-bin" = "latest"
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
