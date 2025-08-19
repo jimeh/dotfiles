@@ -10,8 +10,20 @@ local obj = {}
 
 local function findRunningApp(name, path)
   for _, app in ipairs(hs.application.runningApplications()) do
-    if app:name() == name and (path == nil or path == app:path()) then
-      return app
+    local appName = app:name()
+
+    -- Skip "* Web Content" apps as calling `app:path()` on them often returns
+    -- an error.
+    if appName and not appName:match(" Web Content$") then
+      local appPath = app:path()
+
+      -- Skip apps that don't have a path or that don't end with ".app". If the
+      -- path doesn't end with ".app", it's not likely to be a GUI app.
+      if appPath and appPath:match("%.app$") then
+        if appName == name and (path == nil or path == appPath) then
+          return app
+        end
+      end
     end
   end
 end
