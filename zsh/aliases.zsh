@@ -67,6 +67,10 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 alias fku="fuck you"
 alias fucking="sudo"
 
+if command-exists batman; then
+  alias man="batman"
+fi
+
 # Improved myip alias. Echoed to avoid strange character at end in ZSH.
 myip() {
   echo "$(curl -s whatismyip.akamai.com)"
