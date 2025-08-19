@@ -386,6 +386,9 @@ source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-clo
 # Windsurf setup
 path_prepend "$HOME/.codeium/windsurf/bin"
 
+# LM Studio setup
+path_prepend "$HOME/.cache/lm-studio/bin"
+
 # ==============================================================================
 # Local Overrides
 # ==============================================================================
