@@ -536,10 +536,17 @@ module Mise
       printer.sep
       printer.item('Mise Updates️') do |printer|
         printer.item('⏳ Refresh', alt: '⏳ Refresh (⌘R)', refresh: true)
-        printer.item('⬆️ Self-Update (mise)', terminal: true, refresh: true,
-                                              shell: [mise_path, 'self-update'])
         printer.sep
         print_settings(printer)
+      end
+
+      # Show mise version status and, if outdated, a self-update action.
+      if mise_outdated?
+        printer.item(
+          "⬆️ Update mise (#{mise_current_version} → #{mise_latest_version})",
+          terminal: true, refresh: true,
+          shell: [mise_path, 'self-update', '--yes']
+        )
       end
 
       print_tools(printer)
@@ -565,7 +572,11 @@ module Mise
     private
 
     def outdated_count
-      @outdated_count ||= tools.sum(&:outdated_count)
+      @outdated_count ||= begin
+        count = tools.sum(&:outdated_count)
+        count += 1 if mise_outdated?
+        count
+      end
     end
 
     def upgrade_all_exclude?(name)
@@ -582,6 +593,56 @@ module Mise
 
       label = ['no updates available'] if label.empty?
       label.join(', ')
+    end
+
+    def mise_version_info
+      @mise_version_info ||= JSON.parse(
+        cmd(mise_path, 'version', '--json')
+      )
+    rescue StandardError
+      {}
+    end
+
+    def mise_current_version
+      version = mise_version_info['version'].to_s
+      version.split(' ').first
+    end
+
+    def mise_current_version_label
+      mise_version_info['version'].to_s
+    end
+
+    def mise_latest_version
+      mise_version_info['latest'].to_s
+    end
+
+    def mise_outdated?
+      current = mise_current_version
+      latest = mise_latest_version
+      return false if current.nil? || current == ''
+      return false if latest.nil? || latest == ''
+
+      version_greater?(latest, current)
+    end
+
+    def version_segments(version_str)
+      dotted = version_str.to_s[/\A\d+(?:\.\d+)*/]
+      return [] if dotted.nil? || dotted.empty?
+
+      dotted.split('.').map { |s| s.to_i }
+    end
+
+    def version_greater?(a_str, b_str)
+      a = version_segments(a_str)
+      b = version_segments(b_str)
+      max = [a.size, b.size].max
+      (0...max).each do |i|
+        ai = a[i] || 0
+        bi = b[i] || 0
+        return true if ai > bi
+        return false if ai < bi
+      end
+      false
     end
 
     def print_settings(printer)
