@@ -4,10 +4,11 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v0.3.1</xbar.version>
+# <xbar.version>v1.0.0</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
+# <xbar.image>https://raw.githubusercontent.com/jimeh/dotfiles/70e616332e9cc196d365e5375156b27ce8c9451e/xbar/img/mise-updates.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
@@ -26,8 +27,8 @@
 # rubocop:disable Style/IfUnlessModifier
 
 require 'fileutils'
-require 'open3'
 require 'json'
+require 'open3'
 require 'set'
 
 # Xbar is a tiny helper library for creating Xbar and SwiftBar plugins in Ruby.

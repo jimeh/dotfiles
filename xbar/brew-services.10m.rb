@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 # <xbar.title>Brew Services</xbar.title>
-# <xbar.version>v3.2.1</xbar.version>
+# <xbar.version>v3.2.2</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage Homebrew Services</xbar.desc>
-# <xbar.image>https://i.imgur.com/PusYz5W.png</xbar.image>
+# <xbar.image>https://raw.githubusercontent.com/jimeh/dotfiles/70e616332e9cc196d365e5375156b27ce8c9451e/xbar/img/brew-services.png</xbar.image>
 # <xbar.dependencies>ruby</xbar.dependencies>
 # <xbar.abouturl>https://github.com/jimeh/dotfiles/tree/main/xbar</xbar.abouturl>
 #
@@ -23,8 +23,8 @@
 # rubocop:disable Style/IfUnlessModifier
 
 require 'fileutils'
-require 'open3'
 require 'json'
+require 'open3'
 require 'set'
 
 # Xbar is a tiny helper library for creating Xbar and SwiftBar plugins in Ruby.
