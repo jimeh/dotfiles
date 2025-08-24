@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.7.0</xbar.version>
+# <xbar.version>v2.7.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -21,7 +21,6 @@
 
 # rubocop:enable Layout/LineLength
 
-# rubocop:disable Lint/ShadowingOuterLocalVariable
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/BlockLength
 # rubocop:disable Metrics/ClassLength
@@ -42,11 +41,11 @@ module Xbar
 
   module Helpers
     def plugin_data_path
-      @plugin_data_path ||= (swiftbar_data_path || File.dirname(__FILE__))
+      @plugin_data_path ||= swiftbar_data_path || File.dirname(__FILE__)
     end
 
     def plugin_file_path
-      @plugin_file_path ||= (swiftbar_plugin_path || __FILE__)
+      @plugin_file_path ||= swiftbar_plugin_path || __FILE__
     end
 
     def plugin_filename
@@ -216,12 +215,12 @@ module Xbar
     def plugin_refresh_uri
       return @plugin_refresh_uri if @plugin_refresh_uri
 
-      if swiftbar?
-        @plugin_refresh_uri = "swiftbar://refreshplugin?name=#{plugin_name}"
-      else
-        @plugin_refresh_uri = 'xbar://app.xbarapp.com/refreshPlugin' \
-                              "?path=#{plugin_filename}"
-      end
+      @plugin_refresh_uri = if swiftbar?
+                              "swiftbar://refreshplugin?name=#{plugin_name}"
+                            else
+                              'xbar://app.xbarapp.com/refreshPlugin' \
+                                                    "?path=#{plugin_filename}"
+                            end
     end
 
     def normalize_props(props = {})
@@ -743,7 +742,7 @@ rescue StandardError => e
   puts 'exit status 1'
   puts '---'
   puts 'Error:'
-  puts e.message.to_s
+  puts e.message
   e.backtrace.each do |line|
     puts "--#{line}"
   end
@@ -757,4 +756,3 @@ end
 # rubocop:enable Metrics/ClassLength
 # rubocop:enable Metrics/BlockLength
 # rubocop:enable Metrics/AbcSize
-# rubocop:enable Lint/ShadowingOuterLocalVariable
