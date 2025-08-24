@@ -1,0 +1,1 @@
+../xbar/mise-updates.1h.rb

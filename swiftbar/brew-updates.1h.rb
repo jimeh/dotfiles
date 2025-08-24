@@ -1,0 +1,1 @@
+../xbar/brew-updates.1h.rb
