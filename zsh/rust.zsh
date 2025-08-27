@@ -17,6 +17,10 @@ if command-exists bat; then
   alias cat="bat -P"
 fi
 
+if command-exists batman; then
+  alias man="batman"
+fi
+
 # ==============================================================================
 # completions
 # ==============================================================================
