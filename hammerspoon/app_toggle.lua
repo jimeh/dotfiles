@@ -12,17 +12,17 @@ local function findRunningApp(name, path)
   for _, app in ipairs(hs.application.runningApplications()) do
     local appName = app:name()
 
-    -- Skip "* Web Content" apps as calling `app:path()` on them often returns
-    -- an error.
-    if appName and not appName:match(" Web Content$") then
-      local appPath = app:path()
+    -- app:path() can error for certain pseudo-apps.
+    -- Guard with pcall and skip on failure to keep iterating.
+    local ok, appPath = pcall(function()
+      return app:path()
+    end)
 
-      -- Skip apps that don't have a path or that don't end with ".app". If the
-      -- path doesn't end with ".app", it's not likely to be a GUI app.
-      if appPath and appPath:match("%.app$") then
-        if appName == name and (path == nil or path == appPath) then
-          return app
-        end
+    -- Skip apps that don't have a path or that don't end with ".app". If the
+    -- path doesn't end with ".app", it's not likely to be a GUI app.
+    if ok and appPath and appPath:match("%.app$") then
+      if appName == name and (path == nil or path == appPath) then
+        return app
       end
     end
   end
@@ -162,7 +162,14 @@ function obj:showAppInfo()
   local app = hs.application.frontmostApplication()
 
   hs.alert.show(app:name() .. " (" .. app:bundleID() .. ")")
-  hs.alert.show(app:path())
+  local ok, appPath = pcall(function()
+    return app:path()
+  end)
+  if ok and appPath then
+    hs.alert.show(appPath)
+  else
+    hs.alert.show("Path: <unavailable>")
+  end
   hs.alert.show("PID: " .. app:pid())
 end
 
