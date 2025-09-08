@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Mise Updates</xbar.title>
-# <xbar.version>v1.0.0</xbar.version>
+# <xbar.version>v1.0.1</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated tools installed with mise</xbar.desc>
@@ -675,11 +675,27 @@ module Mise
     end
 
     def mise_version_info
-      @mise_version_info ||= JSON.parse(
+      return @mise_version_info if @mise_version_info
+
+      mise_force_check_latest_version
+
+      @mise_version_info = JSON.parse(
         cmd(mise_path, 'version', '--json')
       )
     rescue StandardError
       {}
+    end
+
+    # Force check for the latest mise version by running `self-update` and
+    # issuing a `n` response to the update prompt.
+    def mise_force_check_latest_version
+      return if @has_force_checked_version_info
+
+      Open3.popen3(mise_path, 'self-update') do |stdin, _, _, _|
+        stdin.puts('n')
+      end
+
+      @has_force_checked_version_info = true
     end
 
     def mise_current_version
