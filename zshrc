@@ -2,10 +2,20 @@
 # ZSH Interactive Shell Setup
 #
 
-# If we are in VSCode's environment resolution process, we should behave as if
-# this is a non-interactive shell by bailing before we load any of our
-# interactive shell setup.
-if [[ -n $VSCODE_RESOLVING_ENVIRONMENT ]]; then
+# There's a few scenarios where we should bail from interactive shell setup, as
+# in our full interactive shell setup we have tools like `mise` and others that
+# continuously update `PATH` among other things. So scenarios that need a static
+# environment don't play nice with this.
+#
+# The following scenarios are the ones we bail from:
+#
+# - VSCode's environment resolution process, as all it cares for it to load PATH
+#   and other environment variables. We specifically have tools like `mise` that
+#   continuously update PATH,
+# - Anything that sets the `TERM` environment variable to `dumb`. This includes
+#   Cursor's agent setup, which is used when the agent runs terminal commands.
+#
+if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" ]] || [[ "$TERM" == "dumb" ]]; then
   return
 fi
 
