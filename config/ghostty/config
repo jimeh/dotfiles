@@ -2,7 +2,7 @@
 # General settings
 # ------------------------------------------------------------------------------
 
-auto-update-channel = tip
+auto-update-channel = stable
 
 # ------------------------------------------------------------------------------
 # Theme settings
@@ -11,7 +11,7 @@ auto-update-channel = tip
 theme = tango-with-monokai
 window-theme = dark
 
-background-opacity = 0.8
+background-opacity = 0.75
 background-blur-radius = 20
 
 # ------------------------------------------------------------------------------
@@ -74,6 +74,9 @@ window-step-resize = true
 # Clipboard (ensure super/cmd+c/v are always available, including on Linux)
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
+
+# Toggle Visibility (cmd+ctrl+r)
+keybind = global:super+ctrl+r=toggle_visibility
 
 # Quick Terminal (alt+`)
 keybind = global:alt+grave_accent=toggle_quick_terminal

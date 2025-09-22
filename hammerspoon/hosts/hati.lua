@@ -35,8 +35,8 @@ local function init_hotkeys()
   )
 
   -- Use Warp as my primary terminal application.
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
-  apphider:autoHide('Warp') -- auto-hide Warp when it loses focus
+  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
+  -- apphider:autoHide('Warp') -- auto-hide Warp when it loses focus
 end
 
 --------------------------------------------------------------------------------
