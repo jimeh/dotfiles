@@ -66,7 +66,6 @@ window-step-resize = true
 # macOS notch padding: 14-inch@2704x1756
 # window-padding-y = 60,20
 
-
 # ------------------------------------------------------------------------------
 # Keybindings
 # ------------------------------------------------------------------------------
@@ -74,9 +73,6 @@ window-step-resize = true
 # Clipboard (ensure super/cmd+c/v are always available, including on Linux)
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
-
-# Toggle Visibility (cmd+ctrl+r)
-keybind = global:super+ctrl+r=toggle_visibility
 
 # Quick Terminal (alt+`)
 keybind = global:alt+grave_accent=toggle_quick_terminal
