@@ -11,7 +11,7 @@ auto-update-channel = stable
 theme = tango-with-monokai
 window-theme = dark
 
-background-opacity = 0.75
+background-opacity = 0.8
 background-blur-radius = 20
 
 # ------------------------------------------------------------------------------
