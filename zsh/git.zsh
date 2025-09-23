@@ -21,3 +21,7 @@ git-largest-objects() {
 if command-exists difft; then
   export GIT_EXTERNAL_DIFF=difft
 fi
+
+if command-exists delta; then
+  setup-completions delta "$(mise-which delta)" delta completions zsh
+fi
