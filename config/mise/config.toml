@@ -77,7 +77,7 @@ ruby_install = true
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
 "npm:yarn" = "latest"
-"pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible" }
+"pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core" }
 "pipx:ansible-lint" = "latest"
 "pipx:dmgbuild" = "latest"
 "pipx:fonttools" = "latest"
