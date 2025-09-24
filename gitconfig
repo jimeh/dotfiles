@@ -74,9 +74,11 @@
 [gitlab]
 	user = jimeh
 [credential "https://github.com"]
-	helper = !~/.dotfiles/bin/gh-git-credential-helper
+	# helper = !~/.dotfiles/bin/gh-git-credential-helper
+	helper = !cd ~/ && op plugin run -- gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !~/.dotfiles/bin/gh-git-credential-helper
+	# helper = !~/.dotfiles/bin/gh-git-credential-helper
+	helper = !cd ~/ && op plugin run -- gh auth git-credential
 [merge "mergiraf"]
 	name = mergiraf
 	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
