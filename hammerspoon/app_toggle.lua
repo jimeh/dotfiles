@@ -163,17 +163,23 @@ end
 --- Shows an alert with information about the frontmost application.
 function obj:showAppInfo()
   local app = hs.application.frontmostApplication()
-
-  hs.alert.show(app:name() .. " (" .. app:bundleID() .. ")")
   local ok, appPath = pcall(function()
     return app:path()
   end)
+
+  local info = { app:name() .. " (" .. app:bundleID() .. ")" }
   if ok and appPath then
-    hs.alert.show(appPath)
+    table.insert(info, appPath)
   else
-    hs.alert.show("Path: <unavailable>")
+    table.insert(info, "Path: <unavailable>")
   end
-  hs.alert.show("PID: " .. app:pid())
+  table.insert(info, "PID: " .. app:pid())
+
+  print("Frontmost app info:")
+  for _, line in ipairs(info) do
+    hs.alert.show(line)
+    print(line)
+  end
 end
 
 -- the end
