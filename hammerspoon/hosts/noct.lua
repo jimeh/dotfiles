@@ -21,17 +21,13 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'WhatsApp' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
     { 'Calendar' },
     { 'Google Calendar' },
     { 'Notion Calendar' }
-  )
-
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
-    { 'Code', '/Applications/Visual Studio Code.app' },
-    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
 
   -- -- Use Warp as my primary terminal application.
