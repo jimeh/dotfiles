@@ -10,7 +10,10 @@ local obj = {}
 
 local function findRunningApp(name, path)
   for _, app in ipairs(hs.application.runningApplications()) do
-    local appName = app:name()
+    -- Get app name, removing any non-printable characters. This specifically
+    -- fixes WhatsApp, who's name starts with a invisible UTF-8 LRM control
+    -- character.
+    local appName = app:name():gsub('[^%g+]', '')
 
     -- app:path() can error for certain pseudo-apps.
     -- Guard with pcall and skip on failure to keep iterating.
