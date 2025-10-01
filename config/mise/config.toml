@@ -44,6 +44,7 @@ ruby_install = true
 "cargo:paper-terminal" = "latest"
 "cargo:pastel" = "latest"
 "github:spinel-coop/rv" = "latest"
+"github:stacklok/toolhive" = "latest"
 "go:github.com/rakyll/hey" = "latest"
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
 "go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
