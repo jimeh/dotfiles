@@ -85,3 +85,31 @@ fi
 if command-exists kubetail; then
   setup-completions kubetail "$(command-path kubetail)" kubetail completion zsh
 fi
+
+# docker-config-json SERVER USER [PASSWORD]
+#
+# Generate a `.dockerconfigjson` payload locally for registry auth, skipping
+# `kubectl`. Prompts for the password when omitted in interactive shells.
+docker-config-json() {
+  local server="$1"
+  local username="$2"
+  local password="$3"
+
+  if [[ -z "$password" ]]; then
+    if [[ -t 0 && -t 1 ]]; then
+      read -rs "password?Docker registry password: " || return 1
+      echo
+    else
+      echo "docker-config-json: password not provided and input is not interactive" >&2
+      return 1
+    fi
+  fi
+
+  kubectl create secret docker-registry tmp \
+    --docker-server="$server" \
+    --docker-username="$username" \
+    --docker-password="$password" \
+    --dry-run=client -o json | \
+    jq -r '.data[".dockerconfigjson"]' | base64 --decode
+  echo
+}
