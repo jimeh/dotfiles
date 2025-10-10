@@ -15,6 +15,7 @@ zinit for @OMZ::plugins/bundler
 
 if command-exists rv; then
   cached-eval "$(mise-which rv)" rv shell init zsh
+  setup-completions rv "$(mise-which rv)" rv shell completions zsh
 fi
 
 # ==============================================================================
