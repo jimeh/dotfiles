@@ -14,8 +14,12 @@
 #   continuously update PATH,
 # - Anything that sets the `TERM` environment variable to `dumb`. This includes
 #   Cursor's agent setup, which is used when the agent runs terminal commands.
+#   Though it does also set a proper `TERM` value sometimes, hence the check for
+#   `CURSOR_AGENT` as well.
 #
-if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" ]] || [[ "$TERM" == "dumb" ]]; then
+if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" ]] ||
+   [[ "$TERM" == "dumb" ]] ||
+   [[ "$CURSOR_AGENT" == "1" ]]; then
   return
 fi
 
