@@ -21,8 +21,12 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'WhatsApp' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
+
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
+    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
+    { 'Code', '/Applications/Visual Studio Code.app' }
+  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
     { 'Calendar' },
