@@ -90,7 +90,7 @@ function wm:init()
   -- move and resize windows
   --
 
-  bind({ 'cmd', 'ctrl', 'alt' }, 'F', self.resizeWindow(770, 634))
+  bind({ 'cmd', 'ctrl', 'alt' }, 'F', self.resizeWindow(900, 642))
   bind({ 'cmd', 'ctrl', 'alt' }, 'X', self.adjustWindow(0, 3, 10, 14))
 
   -- resize windows
