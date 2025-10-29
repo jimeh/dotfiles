@@ -11,7 +11,6 @@ local function init_hotkeys()
   hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
 
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'ChatGPT' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'Claude' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
@@ -22,6 +21,11 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
+
+  apptoggle:bind({ 'cmd', 'ctrl' }, '2',
+    { 'ChatGPT' },
+    { 'ChatGPT Atlas' }
+  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
