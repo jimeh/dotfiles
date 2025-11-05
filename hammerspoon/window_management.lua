@@ -7,7 +7,7 @@ local mouse = require('hs.mouse')
 local timer = require('hs.timer')
 local window = require('hs.window')
 
--- configuration
+-- Configuration
 local wm = {
   animationDuration = 0.0,
   gridSizes = { default = '30x20', interactive = '8x4' },
@@ -15,7 +15,7 @@ local wm = {
   margins = { w = 4, h = 4 }
 }
 
--- initialize and register keybindings
+-- Initialize and register keybindings
 function wm:init()
   -- setup
   local bind = require('hs.hotkey').bind
@@ -27,10 +27,10 @@ function wm:init()
   grid.ui.textSize = self.gridTextSize
 
   --
-  -- move and resize to preset grid locations
+  -- Move and resize to preset grid locations
   --
 
-  -- show interactive grid menu
+  -- Show interactive grid menu
   bind({ 'cmd', 'ctrl' }, '§',
     function()
       grid.setGrid(self.gridSizes.interactive)
@@ -42,79 +42,79 @@ function wm:init()
     end
   )
 
-  -- left half
+  -- Left half
   bind({ 'cmd', 'ctrl' }, 'J', self.adjustWindow(0, 0, 15, 20))
-  -- right half
+  -- Right half
   bind({ 'cmd', 'ctrl' }, 'L', self.adjustWindow(15, 0, 15, 20))
-  -- top half
+  -- Top half
   bind({ 'cmd', 'ctrl' }, 'I', self.adjustWindow(0, 0, 30, 10))
-  -- bottom half
+  -- Bottom half
   bind({ 'cmd', 'ctrl' }, 'K', self.adjustWindow(0, 10, 30, 10))
 
-  -- left narrow
+  -- Left narrow
   bind({ 'ctrl', 'alt' }, 'U', self.adjustWindow(0, 0, 12, 20))
-  -- left super narrow
+  -- Left super narrow
   bind({ 'cmd', 'ctrl', 'alt' }, 'U', self.adjustWindow(0, 0, 9, 20))
-  -- right narrow
+  -- Right narrow
   bind({ 'ctrl', 'alt' }, 'O', self.adjustWindow(18, 0, 12, 20))
-  -- right super narrow
+  -- Right super narrow
   bind({ 'cmd', 'ctrl', 'alt' }, 'O', self.adjustWindow(21, 0, 9, 20))
 
-  -- left wide
+  -- Left wide
   bind({ 'cmd', 'ctrl' }, 'U', self.adjustWindow(0, 0, 18, 20))
-  -- right wide
+  -- Right wide
   bind({ 'cmd', 'ctrl' }, 'O', self.adjustWindow(12, 0, 18, 20))
 
-  -- center super narrow
+  -- Center super narrow
   bind({ 'cmd', 'ctrl', 'alt' }, '\\', self.adjustWindow(10, 0, 10, 20))
-  -- center narrow small
+  -- Center narrow small
   bind({ 'ctrl', 'alt' }, '\\', self.adjustWindow(9, 0, 12, 20))
-  -- center narrow
+  -- Center narrow
   bind({ 'cmd', 'ctrl' }, '\\', self.adjustWindow(7, 0, 16, 20))
 
-  -- center medium small
+  -- Center medium small
   bind({ 'ctrl', 'alt' }, '\'', self.adjustWindow(6, 0, 18, 20))
-  -- center medium
+  -- Center medium
   bind({ 'cmd', 'ctrl' }, '\'', self.adjustWindow(5, 0, 20, 20))
 
-  -- center wide small
+  -- Center wide small
   bind({ 'ctrl', 'alt' }, ';', self.adjustWindow(4, 0, 22, 20))
-  -- center wide
+  -- Center wide
   bind({ 'cmd', 'ctrl' }, ';', self.adjustWindow(3, 0, 24, 20))
 
-  -- maximized
+  -- Maximized
   bind({ 'cmd', 'ctrl' }, 'H', grid.maximizeWindow)
 
 
   --
-  -- move and resize windows
+  -- Move and resize windows
   --
 
   bind({ 'cmd', 'ctrl', 'alt' }, 'F', self.resizeWindow(900, 642))
   bind({ 'cmd', 'ctrl', 'alt' }, 'X', self.adjustWindow(0, 3, 10, 14))
 
-  -- resize windows
+  -- Resize windows
   bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'J', self.resizeWindowOnGrid(-1, 0))
   bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'L', self.resizeWindowOnGrid(1, 0))
   bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'I', self.resizeWindowOnGrid(0, -1))
   bindAndRepeat({ 'cmd', 'ctrl', 'alt' }, 'K', self.resizeWindowOnGrid(0, 1))
 
-  -- move window relative
+  -- Move window relative
   bindAndRepeat({ 'ctrl', 'alt' }, 'J', self.moveWindowOnGrid(-1, 0))
   bindAndRepeat({ 'ctrl', 'alt' }, 'L', self.moveWindowOnGrid(1, 0))
   bindAndRepeat({ 'ctrl', 'alt' }, 'I', self.moveWindowOnGrid(0, -1))
   bindAndRepeat({ 'ctrl', 'alt' }, 'K', self.moveWindowOnGrid(0, 1))
 
-  -- enlarge horizontally
+  -- Enlarge horizontally
   bindAndRepeat({ 'cmd', 'ctrl', 'shift' }, '\\',
     self.resizeWindowOnGridSymmetrically(1, 0))
-  -- shrink horizontally
+  -- Shrink horizontally
   bindAndRepeat({ 'cmd', 'ctrl', 'shift' }, '\'',
     self.resizeWindowOnGridSymmetrically(-1, 0))
 
 
   --
-  -- move windows between spaces
+  -- Move windows between spaces
   --
 
   bind({ 'ctrl', 'alt' }, 'left', self.moveWindowToSpace('left'))
@@ -132,10 +132,10 @@ function wm:init()
 
 
   --
-  -- move windows between displays
+  -- Move windows between displays
   --
 
-  -- move to screen to the left
+  -- Move to screen to the left
   bind({ 'cmd', 'ctrl' }, ',',
     function()
       local win = window.focusedWindow()
@@ -144,7 +144,7 @@ function wm:init()
     end
   )
 
-  -- move to screen to the right
+  -- Move to screen to the right
   bind({ 'cmd', 'ctrl' }, '.',
     function()
       local win = window.focusedWindow()
@@ -153,7 +153,7 @@ function wm:init()
     end
   )
 
-  -- move to screen above
+  -- Move to screen above
   bind({ 'cmd', 'ctrl', 'alt' }, '.',
     function()
       local win = window.focusedWindow()
@@ -162,7 +162,7 @@ function wm:init()
     end
   )
 
-  -- move to screen bellow
+  -- Move to screen below
   bind({ 'cmd', 'ctrl', 'alt' }, ',',
     function()
       local win = window.focusedWindow()
@@ -173,7 +173,7 @@ function wm:init()
 end
 
 --
--- private methods
+-- Private methods
 --
 
 wm.bindAndRepeat = function(mod, key, fn)
