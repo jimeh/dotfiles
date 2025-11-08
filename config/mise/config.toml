@@ -83,6 +83,7 @@ ruby_install = true
 "pipx:pipx" = "latest"
 "pipx:yamllint" = "latest"
 "ubi:rails/rails-new" = "latest"
+1password-cli = "latest"
 actionlint = "latest"
 argo-rollouts = "latest"
 argocd = "latest"
