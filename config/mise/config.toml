@@ -89,6 +89,7 @@ ruby_install = true
 actionlint = "latest"
 argo-rollouts = "latest"
 argocd = "latest"
+atuin = "latest"
 aws-cli = "latest"
 bat = "latest"
 bat-extras = "latest"
