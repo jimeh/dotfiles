@@ -172,22 +172,23 @@ if command-exists fzf; then
          --highlight-line"
 
   export FZF_CTRL_T_OPTS="
-         --tmux 75%
-         --walker-skip .git,node_modules,.terraform,target
-         --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+         --tmux=75%
+         --walker-skip=.git,node_modules,.terraform,target
+         --bind='ctrl-/:change-preview-window(down|hidden|)'"
 
   # TODO: replace pbcopy with something that's cross-platform.
   export FZF_CTRL_R_OPTS="
-         --tmux 75%
+         --tmux=75%
          --border=rounded
-         --preview 'echo {}' --preview-window up:3:hidden:wrap
-         --bind 'ctrl-/:toggle-preview'
-         --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+         --preview='echo {}'
+         --preview-window=down:3:hidden:wrap
+         --bind='ctrl-/:toggle-preview'
+         --bind='ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
 
   export FZF_ALT_C_OPTS="
-         --tmux 75%
-         --walker-skip .git,node_modules,.terraform,target
-         --preview 'tree -C {}'"
+         --tmux=75%
+         --walker-skip=.git,node_modules,.terraform,target
+         --preview='tree -C {}'"
 
   cached-eval "$(mise-which fzf)" fzf --zsh
 
