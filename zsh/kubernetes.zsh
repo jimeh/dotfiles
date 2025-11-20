@@ -88,20 +88,19 @@ fi
 
 # docker-config-json SERVER USER [PASSWORD]
 #
-# Generate a `.dockerconfigjson` payload locally for registry auth, skipping
-# `kubectl`. Prompts for the password when omitted in interactive shells.
+# Generate a `.dockerconfigjson` payload locally for registry auth. Password can
+# be passed as an argument, piped via stdin, or prompted for interactively.
 docker-config-json() {
   local server="$1"
   local username="$2"
   local password="$3"
 
   if [[ -z "$password" ]]; then
-    if [[ -t 0 && -t 1 ]]; then
-      read -rs "password?Docker registry password: " || return 1
-      echo
+    if [[ ! -t 0 ]]; then
+      password="$(cat)"
     else
-      echo "docker-config-json: password not provided and input is not interactive" >&2
-      return 1
+      read -rs "password?Docker registry password: " || return 1
+      echo >&2
     fi
   fi
 
