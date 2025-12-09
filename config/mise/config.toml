@@ -163,7 +163,8 @@ yj = "latest"
 yq = "latest"
 zoxide = "latest"
 
-# Install ansible with passlib[argon2]
+# Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
+# bcrypt 4.1 or later.
 [tools."pipx:ansible"]
 version = "latest"
 uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
