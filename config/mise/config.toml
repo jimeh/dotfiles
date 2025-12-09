@@ -78,7 +78,6 @@ ruby_install = true
 "npm:vscode-json-languageserver" = "latest"
 "npm:yaml-language-server" = "latest"
 "npm:yarn" = "latest"
-"pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core" }
 "pipx:ansible-lint" = "latest"
 "pipx:dmgbuild" = "latest"
 "pipx:fonttools" = "latest"
@@ -163,3 +162,8 @@ watchexec = "latest"
 yj = "latest"
 yq = "latest"
 zoxide = "latest"
+
+# Install ansible with passlib[argon2]
+[tools."pipx:ansible"]
+version = "latest"
+uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
