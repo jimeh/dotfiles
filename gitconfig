@@ -87,6 +87,6 @@
 	trustExitCode = true
 [gitbutler]
 	aiModelProvider = anthropic
-	aiAnthropicKeyOption = bringYourOwn
-	aiAnthropicModelName = claude-3-7-sonnet-latest
+	aiAnthropicKeyOption = butlerAPI
 	signCommits = true
+	aiOpenAIKeyOption = butlerAPI
