@@ -54,25 +54,17 @@ alias fr="foreman run"
 
 install_ruby_global_packages() {
   local packages=(
-    'bundler:~> 1.0'
-    'bundler:~> 2.0'
-    bundler-audit
     dotenv
     erb_lint
     foreman
     method_source
     pry-doc
-    reek
     rubocop
     ruby-lsp
     ruby-lsp-rails
     ruby-lsp-rspec
-    solargraph
-    solargraph-rails
-    steep
     syntax_tree
     syntax_tree-haml
-    syntax_tree-rbs
     yard
   )
 
