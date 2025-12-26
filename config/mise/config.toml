@@ -24,7 +24,11 @@ bun = true
 uvx = true
 
 [settings.ruby]
+# ruby-install supports new releases immediately, as opposed to ruby-build which
+# requires an update before new releases are available.
 ruby_install = true
+# Precompiled binaries causes issues with Ruby LSP.
+compile = true
 
 [tools]
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
@@ -43,7 +47,6 @@ ruby_install = true
 "cargo:paper-terminal" = "latest"
 "cargo:parallel-disk-usage" = { version = "latest", bin = "pdu" }
 "cargo:pastel" = "latest"
-"github:spinel-coop/rv" = "latest"
 "github:stacklok/toolhive" = "latest"
 "go:github.com/rakyll/hey" = "latest"
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
@@ -82,7 +85,6 @@ ruby_install = true
 "pipx:fonttools" = "latest"
 "pipx:pipx" = "latest"
 "pipx:yamllint" = "latest"
-"ubi:rails/rails-new" = "latest"
 1password-cli = "latest"
 actionlint = "latest"
 argo-rollouts = "latest"
@@ -118,7 +120,6 @@ helm = "latest"
 helmfile = "latest"
 hexyl = "latest"
 hivemind = "latest"
-hugo-extended = "latest"
 hwatch = "0.3.18"
 jq = "latest"
 jwt = "latest"
