@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.4.0
+# Version: 0.5.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # This is minimalistic Starship (https://starship.rs/) prompt setup with most
@@ -9,7 +9,12 @@
 # picking of specific features to enable.
 # ------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
+# MARK: Format
+# ------------------------------------------------------------------------------
+
 add_newline = false
+
 format = """
 $username\
 $hostname\
@@ -20,15 +25,18 @@ $git_state\
 $git_metrics\
 $git_status\
 $hg_branch\
+$fossil_branch\
+$fossil_metrics\
+$hg_state\
 $line_break\
 $character"""
+
 right_format = """
 $localip\
 $shlvl\
 $singularity\
 $kubernetes\
 $vcsh\
-$fossil_branch\
 $pijul_channel\
 $docker_context\
 $package\
@@ -43,6 +51,7 @@ $elixir\
 $elm\
 $erlang\
 $fennel\
+$fortran\
 $gleam\
 $golang\
 $guix_shell\
@@ -63,14 +72,17 @@ $php\
 $pulumi\
 $purescript\
 $python\
+$quarto\
 $raku\
 $rlang\
 $red\
 $ruby\
 $rust\
 $scala\
+$solidity\
 $swift\
 $terraform\
+$typst\
 $vlang\
 $vagrant\
 $zig\
@@ -90,8 +102,11 @@ $custom\
 $cmd_duration\
 $status\
 $line_break\
-$direnv
+$direnv\
+$mise\
+$nats\
 $jobs\
+$netns\
 $shell\
 $sudo\
 $battery\
@@ -101,7 +116,7 @@ $container\
 $time"""
 
 # ------------------------------------------------------------------------------
-# Main left prompt components
+# MARK: Left prompt
 # ------------------------------------------------------------------------------
 
 [username]
@@ -129,12 +144,12 @@ disabled = true
 [character]
 success_symbol = '[❯](bold fg:118)'
 error_symbol = '[❯](bold fg:46)'
-vicmd_symbol = '[❮](bold fg:46)'
+vimcmd_symbol = '[❮](bold fg:46)'
 
 # ------------------------------------------------------------------------------
-# Source Control
+# MARK: Source Control
 # ------------------------------------------------------------------------------
-#
+
 [git_branch]
 format = '([$symbol$branch]($style))'
 style = 'fg:51'
@@ -176,9 +191,9 @@ symbol = ''
 truncation_length = 24
 
 # ------------------------------------------------------------------------------
-# Right prompt "status" components
+# MARK: Right prompt
 # ------------------------------------------------------------------------------
-#
+
 [shlvl]
 symbol = ' '
 format = '( [$symbol$shlvl]($style))'
@@ -254,16 +269,18 @@ style = "bold fg:239"
 disabled = false
 
 # ------------------------------------------------------------------------------
-# Languages
+# MARK: Languages
 # ------------------------------------------------------------------------------
-#
+
 [buf]
 symbol = ' '
 format = '( [$symbol($version)]($style))'
 disabled = false
 
 [bun]
+symbol = ' '
 format = '( [$symbol$version]($style))'
+style = 'bold blue'
 disabled = false
 
 [c]
@@ -294,7 +311,7 @@ disabled = false
 
 [deno]
 format = '( [$symbol$version]($style))'
-disabled = true
+disabled = false
 
 [dotnet]
 symbol = '󰪮 '
@@ -318,6 +335,10 @@ disabled = true
 
 [fennel]
 format = '( [$symbol($version)]($style))'
+disabled = true
+
+[fortran]
+format = '( [$symbol$version]($style))'
 disabled = true
 
 [gleam]
@@ -420,6 +441,10 @@ symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = true
 
+[solidity]
+format = '( [$symbol$version]($style))'
+disabled = false
+
 [swift]
 symbol = ' '
 format = '( [$symbol$version]($style))'
@@ -434,9 +459,9 @@ format = '( [$symbol$version]($style))'
 disabled = false
 
 # ------------------------------------------------------------------------------
-# Tools
+# MARK: Tools
 # ------------------------------------------------------------------------------
-#
+
 [aws]
 symbol = ' '
 format = '( [$symbol($profile)( \($region\))( \[$duration\])]($style))'
@@ -485,7 +510,7 @@ format = '( [$symbol$account(@$domain)(\($region\))]($style))'
 disabled = true
 
 [gradle]
-fomat = '( [$symbol($version)]($style))'
+format = '( [$symbol($version)]($style))'
 disabled = true
 
 [helm]
@@ -499,6 +524,18 @@ disabled = false
 
 [meson]
 format = '( [$symbol$project]($style))'
+disabled = true
+
+[mise]
+format = '( [$symbol$health]($style))'
+disabled = true
+
+[nats]
+format = '( [$symbol$name]($style))'
+disabled = false
+
+[netns]
+format = '( [$symbol \[$name\]]($style))'
 disabled = true
 
 [nix_shell]
@@ -528,6 +565,10 @@ disabled = true
 format = '( [$symbol$stack]($style))'
 disabled = true
 
+[quarto]
+format = '( [$symbol$version]($style))'
+disabled = false
+
 [singularity]
 format = '( [$symbol\[$env\]]($style))'
 disabled = true
@@ -538,6 +579,10 @@ disabled = true
 
 [terraform]
 format = '( [$symbol$workspace]($style))'
+disabled = false
+
+[typst]
+format = '( [$symbol$version]($style))'
 disabled = false
 
 [vagrant]
