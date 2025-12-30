@@ -383,6 +383,9 @@ path_prepend "$HOME/.orbstack/bin"
 # Google Cloud SDK setup
 source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
+# Antigravity setup
+path_prepend "$HOME/.antigravity/antigravity/bin"
+
 # Windsurf setup
 path_prepend "$HOME/.codeium/windsurf/bin"
 
