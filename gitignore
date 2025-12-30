@@ -5,6 +5,7 @@
 .bundle
 .byebug_history
 .dir-locals.el
+.envrc
 .mise.*local.toml
 .mise.local.toml
 .projectile
