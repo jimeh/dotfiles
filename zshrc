@@ -257,7 +257,8 @@ MISE_HOME="$HOME/.local/share/mise"
 export MISE_INSTALL_PATH="$HOME/.local/bin/mise"
 
 if ! command-exists mise; then
-  read -q 'REPLY?mise is not installed, install with `curl https://mise.run | sh`? [y/N]:' &&
+  read -qr 'REPLY?mise is not installed,' \
+    'install with "curl https://mise.run | sh"? [y/N]:' &&
     echo && curl https://mise.run | sh
 fi
 
@@ -275,7 +276,8 @@ fi
 # ==============================================================================
 
 if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
-  read -q 'REPLY?starship is not installed, install with `mise use -g starship`? [y/N]:' &&
+  read -qr 'REPLY?starship is not installed,' \
+    'install with "mise use -g starship"? [y/N]:' &&
     echo && "$MISE_INSTALL_PATH" use -g starship
 fi
 
