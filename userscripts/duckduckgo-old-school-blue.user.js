@@ -1,0 +1,287 @@
+// ==UserScript==
+// @name         DuckDuckGo Old School Blue
+// @description  Dark theme inspired by Kagi's Old School dark theme.
+// @version      1.0.0
+// @namespace    jimeh.me
+// @downloadURL  https://github.com/jimeh/dotfiles/raw/main/userscripts/duckduckgo-old-school-blue.user.js
+// @updateURL    https://github.com/jimeh/dotfiles/raw/main/userscripts/duckduckgo-old-school-blue.user.js
+// @inject-into  content
+// @run-at       document-end
+// @match        *://duckduckgo.com/*
+// ==/UserScript==
+(function () {
+  if (
+    window.location.hostname === "duckduckgo.com" &&
+    !window.location.pathname.startsWith("/duckduckgo-help-pages/")
+  ) {
+    const css = `
+/*
+To be used with the following DuckDuckGo settings:
+{"k18":"1","k21":"27293d","k7":"171824","k9":"8ab4f8","ka":"h","kaa":"c58af9","kae":"d","kj":"171824","km":"m","kt":"h","kx":"7aa1a8"}
+
+These can be forcibly applied with the following JavaScript snippet:
+Object.entries({18:"1",21:"27293d",7:"171824",9:"8ab4f8",a:"h",aa:"c58af9",ae:"d",j:"171824",m:"m",t:"h",x:"7aa1a8"}).forEach((([a,e])=>{document.cookie=\`\${a}=\${e};path=/;samesite=lax;expires=\${new Date(Date.now()+31536e6).toUTCString()}\`}));
+*/
+
+body {
+  --userstyle-bg-base: #171824;
+  --userstyle-bg-light-1: #1f2030;
+  --userstyle-bg-light-2: #27293D;
+  --userstyle-bg-light-3: #30334B;
+  --userstyle-bg-light-4: #373B57;
+  --userstyle-bg-light-5: #3F4464;
+
+  /* Search box background on results page */
+  --sds-color-background-01: var(--userstyle-bg-light-2);
+
+  /* Search box on landing page */
+  --theme-ai-searchbox-bg: var(--userstyle-bg-light-2);
+  --theme-ai-searchbox-bg--focused: var(--userstyle-bg-light-2);
+
+  --theme-col-bg-header: var(--userstyle-bg-base);
+  --theme-col-bg-page: var(--userstyle-bg-base);
+  --theme-col-bg-page-alt-1: var(--userstyle-bg-light-4);
+  --theme-col-bg-page-alt-2: var(--userstyle-bg-light-5);
+  --theme-col-bg-page-alt-3: var(--userstyle-bg-light-3);
+
+  --theme-assist-bg-chat-system: var(--userstyle-bg-light-2);
+
+  --theme-col-bg-button-secondary: var(--userstyle-bg-light-3);
+  --theme-col-bg-button-secondary-hover: var(--userstyle-bg-light-4);
+  --theme-col-bg-button-secondary-active: var(--userstyle-bg-light-5);
+  --theme-col-bg-button-secondary-disabled: var(--userstyle-bg-light-1);
+
+  --sds-color-background-utility: var(--userstyle-bg-light-3);
+  --sds-color-background-utility-state-01: var(--userstyle-bg-light-4);
+  --sds-color-background-utility-state-02: var(--userstyle-bg-light-5);
+
+  --sds-color-background-utility-alt: var(--userstyle-bg-light-2);
+  --sds-color-background-utility-alt-state-01: var(--userstyle-bg-light-3);
+  --sds-color-background-utility-alt-state-02: var(--userstyle-bg-light-4);
+
+  --sds-color-border-01: var(--userstyle-bg-light-3);
+
+  --theme-col-txt-title: #8ab4f8;
+  --theme-col-txt-title-visited: #c58af9;
+
+  --theme-col-txt-snippet: #cccccc;
+  --theme-col-txt-url: #7aa1a8;
+  --theme-col-txt-url-domain: #7aa1a8;
+  --theme-col-txt-url-path: var(--theme-col-txt-url-domain);
+
+  --sds-color-background-container-01: var(--userstyle-bg-light-2);
+  --sds-color-background-container-02: var(--userstyle-bg-light-2);
+  --theme-col-bg-ui: var(--userstyle-bg-light-2);
+  --theme-col-bg-ui-header: var(--userstyle-bg-light-2);
+  --theme-col-bg-card: var(--userstyle-bg-light-2);
+  --theme-col-bg-card-header: var(--userstyle-bg-light-2);
+
+  --theme-col-bg-button-ghost-hover: var(--userstyle-bg-light-4);
+  --theme-col-bg-button-ghost-active: var(--userstyle-bg-light-5);
+}
+
+.theme-dark .chip-select_root__xmFA3 {
+  --chip-select-bg: var(--userstyle-bg-light-1);
+  --chip-select-indicator-bg: var(--userstyle-bg-light-3);
+  --chip-select-indicator-bg--hover: var(--userstyle-bg-light-4);
+}
+
+.header-wrap {
+  box-shadow: 0 1px 0 var(--userstyle-bg-light-3);
+  background-color: var(--theme-col-bg-header) !important;
+}
+
+.is-related-search-exp.dark-bg .related-searches__item {
+  background-color: var(--userstyle-bg-light-3);
+  border-color: var(--userstyle-bg-light-3);
+}
+
+html,
+body,
+.body--home,
+.site-wrapper,
+.region__body,
+.badge-link,
+.module--carousel__image-wrapper,
+.result__image,
+.vertical--map__sidebar,
+.vertical--map__sidebar__header,
+.page-chrome_newtab,
+.zci--type--tiles:not(.is-fallback).is-full-page.is-expanded,
+.zci--type--tiles:not(.is-fallback).is-full-page.is-expanded .metabar:not(.is-stuck) {
+  background-color: var(--theme-col-bg-page) !important;
+}
+
+.nav-menu,
+.nav-menu--slideout {
+  background-color: var(--userstyle-bg-light-2);
+}
+
+.vertical--map--sidebar-left .vertical--map__sidebar__header,
+.vertical--map--sidebar-left .has-requery .vertical--map__sidebar__header,
+.vertical--map__sidebar__header--mobile,
+.map-requery-mobile,
+.footer,
+.footer--mobile {
+  border-color: var(--userstyle-bg-light-3);
+  background-color: var(--userstyle-bg-base);
+  box-shadow: 0 1px 0 var(--userstyle-bg-light-3);
+}
+
+.user-loc-tooltip__address,
+.modal__header {
+  background: var(--userstyle-bg-light-4);
+}
+
+.module:not(.module--carousel):not(.module--placeholder):not(.module--translations):not(.module__chromeless),
+.modal--popout .modal__box,
+.modal__box,
+.sidebar-modules .module,
+.results--main .result:not(.result--ad).highlight,
+.module .module--carousel__item,
+.user-loc-cta,
+.address-detail,
+.modal--dropdown.modal--popout .modal__box,
+.tile--info,
+.place-detail,
+.badge-link,
+.atb-banner__bottom,
+.multi-step-mobile-onboarding__step__content,
+.is-mobile .results_links_deep,
+.is-mobile .results_links,
+.is-mobile .related-searches,
+.user-loc-tooltip,
+.anomaly-modal__modal {
+  border: 1px solid var(--userstyle-bg-light-3);
+  background: var(--userstyle-bg-light-2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: #cccccc;
+}
+
+.modal--dropdown--settings .settings-dropdown--section .frm__field .frm__select select {
+  background: transparent !important;
+}
+
+.modal__list__link:hover,
+.modal__list__link.is-active,
+.modal__list__link.is-highlighted,
+.modal--dropdown--region .modal__list__link.is-highlighted,
+.highlight .result__image,
+.switch,
+.modal--dropdown--settings .settings-dropdown--section .frm__field .frm__switch .frm__switch__label.btn {
+  background-color: var(--userstyle-bg-base);
+}
+
+.search--home,
+.search--header {
+  background-color: var(--userstyle-bg-light-2);
+  border-color: var(--userstyle-bg-light-3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.search__button:hover,
+.search__button:focus,
+.search--hover .search__button,
+.search--hover .search__button:focus,
+.search--header.has-text.search--hover .search__button,
+.search--header.has-text.search--focus .search__button,
+.search--header.has-text.search--hover .search__button:hover,
+.search--header.has-text.search--focus .search__button:hover,
+.search--home.has-text .search__button,
+.search--home.has-text .search__button:focus,
+.search--home.has-text .search__button:hover {
+  background-color: var(--userstyle-bg-light-4);
+  color: #cccccc;
+}
+
+.acp-wrap,
+.acp-footer {
+  background-color: var(--userstyle-bg-light-2);
+  border-color: var(--userstyle-bg-light-5);
+}
+
+.acp--highlight {
+  background-color: var(--userstyle-bg-light-4);
+}
+
+.jyBaPv1HPGOoWrXSAjiu .T265XEcezvjUhK71U8pN {
+  box-shadow: 0 0 0 1px var(--userstyle-bg-light-3), 0 2px 3px 0 rgba(0, 0, 0, .06);
+}
+
+.set-head__menu .set-tab,
+.set-tab:visited {
+  background-color: var(--userstyle-bg-light-3);
+}
+
+.set-head__menu .set-tab:hover {
+  background-color: var(--userstyle-bg-light-5);
+  color: #eee;
+}
+
+code,
+.set-bookmarklet__input,
+.set-bookmarklet__data,
+.btn,
+.btn:visited,
+.btn:active,
+.btn.btn--primary,
+.btn.btn--secondary,
+.btn--primary:hover,
+.btn.is-disabled,
+.btn.is-disabled:hover,
+input,
+textarea,
+.frm__input,
+.frm__text,
+.detail--xd .c-detail__btn,
+.set-bookmarklet,
+.set-reset,
+.frm__select,
+.frm__select select,
+.zci--json_validator textarea,
+.colorpicker,
+.feedback-modal__submit.is-disabled,
+.feedback-modal__submit.is-disabled:hover,
+.feedback-modal__submit.is-disabled:active,
+.feedback-modal__submit.is-disabled:focus,
+.btn.btn--skeleton:hover {
+  background-color: var(--userstyle-bg-light-3);
+  border-color: transparent;
+  color: #eeeeee;
+  text-shadow: none;
+}
+
+.cloudsave,
+.set-bookmarklet__detail,
+.set-reset__detail {
+  background: var(--userstyle-bg-light-1);
+}
+
+.set-head,
+.set-thumbnail__img,
+.set-main-footer,
+.region__header__section--current,
+.badge-link,
+.frm__color__swatch {
+  border-color: var(--userstyle-bg-light-3);
+}
+
+.frm__hr {
+  border-color: var(--userstyle-bg-light-3);
+}
+
+.nav-menu--feedback,
+[data-testid="feedback-prompt"] {
+  display: none;
+}
+`;
+
+    let styleElm = document.createElement("style");
+    if (styleElm.styleSheet) {
+      styleElm.styleSheet.cssText = css; // Support for IE
+    } else {
+      styleElm.appendChild(document.createTextNode(css));
+    }
+    document.getElementsByTagName("head")[0].appendChild(styleElm);
+  }
+})();
