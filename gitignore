@@ -2,6 +2,7 @@
 .DS_Store
 ._zinit/*
 .bin
+.claude/settings.local.json
 .bundle
 .byebug_history
 .dir-locals.el
