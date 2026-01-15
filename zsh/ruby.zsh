@@ -63,6 +63,7 @@ install_ruby_global_packages() {
     ruby-lsp
     ruby-lsp-rails
     ruby-lsp-rspec
+    steep
     syntax_tree
     syntax_tree-haml
     yard
