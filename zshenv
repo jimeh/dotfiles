@@ -354,6 +354,10 @@ fi
 # Use custom tmux install if available
 path_prepend "/opt/tmux/bin"
 
+# pnpm setup
+export PNPM_HOME="$HOME/.local/share/pnpm"
+path_prepend "$PNPM_HOME"
+
 # Rust setup
 export RUSTUP_HOME="$HOME/.rustup"
 export CARGO_HOME="$HOME/.cargo"
