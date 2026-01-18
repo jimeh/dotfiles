@@ -14,4 +14,7 @@ blanks-around-fences: # MD031
 line-length: # MD013
   # Allow lines up to 120 characters.
   line_length: 80
+  code_blocks: true
+  ignore_code_blocks: true
+  code_block_line_length: 280
   tables: false
