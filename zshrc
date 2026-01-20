@@ -16,10 +16,12 @@
 #   Cursor's agent setup, which is used when the agent runs terminal commands.
 #   Though it does also set a proper `TERM` value sometimes, hence the check for
 #   `CURSOR_AGENT` as well.
+# - Claude Code's shell sessions, identified by `CLAUDECODE=1`.
 #
 if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" ]] ||
    [[ "$TERM" == "dumb" ]] ||
-   [[ "$CURSOR_AGENT" == "1" ]]; then
+   [[ "$CURSOR_AGENT" == "1" ]] ||
+   [[ "$CLAUDECODE" == "1" ]]; then
   return
 fi
 
