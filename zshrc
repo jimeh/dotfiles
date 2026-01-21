@@ -58,6 +58,9 @@ fi
   echo &&
   git clone --depth=1 "https://github.com/zdharma-continuum/zinit.git" "${ZINIT[BIN_DIR]}"
 
+# Remove any stale Zinit plugin paths before loading to avoid issues.
+path=("${(@)path:#${ZINIT[HOME_DIR]}/plugins/*}")
+
 # Load Zinit
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
@@ -265,6 +268,12 @@ if ! command-exists mise; then
 fi
 
 if command-exists mise; then
+  # Remove any stale mise install paths before activation to ensure it correctly
+  # activates. This ensures any tooling that starts shells with an existing set
+  # of cached env vars will not cause issues. I'm looking at you, direnv for
+  # VSCode.
+  path=("${(@)path:#${MISE_HOME}/installs/*}")
+
   # Activate mise. We cannot use cached-eval here as the activation script
   # dynamically adjusts how it modifies PATH on each invocation.
   eval "$("$MISE_INSTALL_PATH" activate zsh)"
