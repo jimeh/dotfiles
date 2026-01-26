@@ -3,6 +3,7 @@
 ._zinit/*
 .bin
 .claude/settings.local.json
+.claude/plans/
 .bundle
 .byebug_history
 .dir-locals.el
