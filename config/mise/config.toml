@@ -164,6 +164,8 @@ uv = "latest"
 watchexec = "latest"
 yj = "latest"
 yq = "latest"
+zig = "latest"
+zls = "latest"
 zoxide = "latest"
 
 # Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
