@@ -48,6 +48,7 @@ compile = true
 "cargo:paper-terminal" = "latest"
 "cargo:parallel-disk-usage" = { version = "latest", bin = "pdu" }
 "cargo:pastel" = "latest"
+"cargo:riffdiff" = "latest"
 "github:stacklok/toolhive" = "latest"
 "go:github.com/rakyll/hey" = "latest"
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
@@ -86,7 +87,7 @@ compile = true
 "pipx:pipx" = "latest"
 "pipx:toml-sort" = "latest"
 "pipx:yamllint" = "latest"
-1password-cli = "latest"
+1password = "latest"
 actionlint = "latest"
 argo-rollouts = "latest"
 argocd = "latest"
