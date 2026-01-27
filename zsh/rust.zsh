@@ -21,6 +21,10 @@ if command-exists batman; then
   alias man="batman"
 fi
 
+if command-exists batdiff; then
+  alias biff="batdiff"
+fi
+
 # ==============================================================================
 # completions
 # ==============================================================================
