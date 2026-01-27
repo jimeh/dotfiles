@@ -16,7 +16,6 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Argo CD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail+ for Gmail' }, { 'Notion Mail' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Cursor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'GitButler' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'TeamSpeak 3', '/Applications/TeamSpeak 3 Client.app' })
@@ -29,6 +28,7 @@ local function init_hotkeys()
     { 'Google Calendar' }
   )
 
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Cursor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
     { 'Code', '/Applications/Visual Studio Code.app' }
