@@ -1,4 +1,7 @@
 **/._zinit/*
+**/.agents/drafts/
+**/.agents/plans/
+**/.claude/drafts/
 **/.claude/plans/
 **/.claude/settings.local.json
 **/.vscode/settings.json
