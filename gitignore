@@ -1,8 +1,10 @@
 **/._zinit/*
 **/.agents/drafts/
 **/.agents/plans/
+**/.agents/reviews/
 **/.claude/drafts/
 **/.claude/plans/
+**/.claude/reviews/
 **/.claude/settings.local.json
 **/.vscode/settings.json
 **/chart/preprod-values.yaml
