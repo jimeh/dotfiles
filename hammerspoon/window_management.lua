@@ -12,7 +12,7 @@ local wm = {
   animationDuration = 0.0,
   gridSizes = { default = '30x20', interactive = '8x4' },
   gridTextSize = 50,
-  margins = { w = 4, h = 4 }
+  margins = { w = 0, h = 0 }
 }
 
 -- Initialize and register keybindings
