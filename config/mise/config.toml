@@ -24,9 +24,6 @@ bun = true
 uvx = true
 
 [settings.ruby]
-# ruby-install supports new releases immediately, as opposed to ruby-build which
-# requires an update before new releases are available.
-ruby_install = true
 # Precompiled binaries causes issues with Ruby LSP.
 compile = true
 
