@@ -11,6 +11,7 @@ local function init_hotkeys()
   hs.hotkey.bind({ 'cmd', 'alt', 'ctrl' }, 'S', apptoggle.showAppInfo)
 
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
