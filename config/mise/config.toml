@@ -71,6 +71,7 @@ compile = true
 "npm:prettier" = "latest"
 "npm:prettier-plugin-toml" = "latest"
 "npm:prettier-pnp" = "latest"
+"npm:skills" = "latest"
 "npm:stylelint" = "latest"
 "npm:svgo" = "latest"
 "npm:typescript" = "latest"
