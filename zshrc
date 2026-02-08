@@ -334,6 +334,7 @@ source "$DOTZSH/nix.zsh"
 source "$DOTZSH/restish.zsh"
 source "$DOTZSH/tldr.zsh"
 source "$DOTZSH/tmux.zsh"
+source "$DOTZSH/iterm2.zsh"
 source "$DOTZSH/vscode.zsh"
 source "$DOTZSH/zoxide.zsh"
 
