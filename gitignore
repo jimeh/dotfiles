@@ -7,6 +7,7 @@
 **/.claude/reviews/
 **/.claude/settings.local.json
 **/.vscode/settings.json
+**/.vscode/settings.local.json
 **/chart/preprod-values.yaml
 **/chart/production-values.yaml
 **/chart/staging-values.yaml
