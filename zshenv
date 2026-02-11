@@ -396,6 +396,9 @@ path_prepend "$HOME/.codeium/windsurf/bin"
 # LM Studio setup
 path_prepend "$HOME/.cache/lm-studio/bin"
 
+# ToolHive setup
+path_prepend "$HOME/.toolhive/bin"
+
 # ==============================================================================
 # Local Overrides
 # ==============================================================================
