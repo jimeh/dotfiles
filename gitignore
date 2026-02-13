@@ -6,6 +6,7 @@
 **/.claude/plans/
 **/.claude/reviews/
 **/.claude/settings.local.json
+**/.claude/worktrees/
 **/.vscode/settings.json
 **/.vscode/settings.local.json
 **/chart/preprod-values.yaml
