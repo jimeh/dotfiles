@@ -87,6 +87,11 @@ install_private() {
     "$ROOT_PATH/$PRIVATE_PATH"
 }
 
+install_agentic() {
+  git_clone "git@github.com:jimeh/agentic.git" \
+    "$HOME/.config/agentic"
+}
+
 install_launch_agents() {
   mkdir -p "$HOME/Library/LaunchAgents"
   for file in $ROOT_PATH/launch_agents/*.plist; do
@@ -256,6 +261,7 @@ display_help() {
   echo '          info: Display target and source directory information.'
   echo '  emacs_config: Install Emacs configuration.'
   echo '       private: Install private dotfiles.'
+  echo '       agentic: Clone agentic repo to ~/.config/agentic.'
   echo '      homebrew: Install Homebrew (Mac OS X only).'
   echo '         rbenv: Install rbenv, a Ruby version manager.'
   echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
@@ -277,6 +283,9 @@ case "$1" in
     ;;
   private)
     install_private
+    ;;
+  agentic)
+    install_agentic
     ;;
   homebrew | brew)
     install_homebrew
