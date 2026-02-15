@@ -14,6 +14,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'Conductor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT' }, { 'ChatGPT Atlas' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail+ for Gmail' }, { 'Mimestream' })
@@ -23,11 +24,6 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
-
-  apptoggle:bind({ 'cmd', 'ctrl' }, '4',
-    { 'ChatGPT' },
-    { 'ChatGPT Atlas' }
-  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code', '/Applications/Visual Studio Code.app' },
