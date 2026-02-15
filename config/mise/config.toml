@@ -55,6 +55,7 @@ compile = true
 "npm:@openai/codex" = "latest"
 "npm:@prettier/plugin-php" = "latest"
 "npm:claude-plugins" = "latest"
+"npm:convex" = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:eslint" = "latest"
 "npm:eslint-config-prettier" = "latest"
