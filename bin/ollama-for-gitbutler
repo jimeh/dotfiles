@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Defaults
+DEFAULT_BIND="127.0.0.1"
+DEFAULT_PORT="11435"
+DEFAULT_ORIGINS="*"
+DEFAULT_KEEP_ALIVE="6h"
+
+print-help() {
+  cat <<EOF
+Usage: ollama-for-gitbutler [options]
+
+Options:
+  -b, --bind <addr>            The address to bind to (default: "${DEFAULT_BIND}")
+  -p, --port <port>            The port to listen on (default: "${DEFAULT_PORT}")
+  -m, --models <dir>           Override ollama's default models directory
+  -k, --keep-alive <duration>  The duration that models stay loaded in memory (default: "${DEFAULT_KEEP_ALIVE}")
+  -h, --help                   Print this help message
+EOF
+}
+
+BIND="${DEFAULT_BIND}"
+PORT="${DEFAULT_PORT}"
+KEEP_ALIVE="${DEFAULT_KEEP_ALIVE}"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  -b | --bind)
+    BIND="$2"
+    shift 2
+    ;;
+  -p | --port)
+    PORT="$2"
+    shift 2
+    ;;
+  -m | --models)
+    export OLLAMA_MODELS="$2"
+    shift 2
+    ;;
+  -k | --keep-alive)
+    KEEP_ALIVE="$2"
+    shift 2
+    ;;
+  -h | --help)
+    print-help
+    exit 0
+    ;;
+  *)
+    echo "Unknown option: $1" >&2
+    print-help >&2
+    exit 1
+    ;;
+  esac
+done
+
+export OLLAMA_HOST="${BIND}:${PORT}"
+export OLLAMA_KEEP_ALIVE="${KEEP_ALIVE}"
+export OLLAMA_ORIGINS="${DEFAULT_ORIGINS}"
+
+exec ollama serve "$@"
