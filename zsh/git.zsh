@@ -18,10 +18,8 @@ git-largest-objects() {
       --round=nearest
 }
 
-if command-exists difft; then
-  export GIT_EXTERNAL_DIFF=difft
-fi
-
 if command-exists delta; then
   setup-completions delta "$(mise-which delta)" delta completions zsh
+elif command-exists difft; then
+  export GIT_EXTERNAL_DIFF=difft
 fi

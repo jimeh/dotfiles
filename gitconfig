@@ -9,6 +9,19 @@
 [core]
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+	blame = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	side-by-side = true
+	line-numbers = true
 [color]
 	status = auto
 	branch = auto
