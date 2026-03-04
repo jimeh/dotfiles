@@ -3,6 +3,7 @@
 # ------------------------------------------------------------------------------
 
 auto-update-channel = stable
+scrollback-limit = 50000
 
 # ------------------------------------------------------------------------------
 # Theme settings
@@ -20,14 +21,14 @@ background-blur-radius = 20
 
 font-size = 12
 
-font-family             = Menlo Nerd Font
-font-family-bold        = Menlo Nerd Font Bold
-font-family-italic      = Menlo Nerd Font Italic
-font-family-bold-italic = Menlo Nerd Font Bold Italic
+font-family             = Menlo Nerd Font Mono
+font-family-bold        = Menlo Nerd Font Mono Bold
+font-family-italic      = Menlo Nerd Font Mono Italic
+font-family-bold-italic = Menlo Nerd Font Mono Bold Italic
 
 # Match font rendering of iTerm and Terminal.app.
 adjust-cell-width = -1
-font-thicken = true
+font-thicken = false
 
 # Disable ligatures
 font-feature = -calt
