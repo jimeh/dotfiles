@@ -3,6 +3,11 @@ cargo_binstall = true
 experimental = true
 legacy_version_file = true
 not_found_auto_install = false
+trusted_config_paths = [
+    "~/.codex/worktrees",
+    "~/.superset/worktrees",
+    "~/conductor/workspaces",
+]
 idiomatic_version_file_enable_tools = [
     "ruby",
     "python",
