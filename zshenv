@@ -10,6 +10,9 @@ fi
 # Ensure compinit is NOT loaded before Zinit loads in `~/zshrc`.
 skip_global_compinit=1
 
+# Disable right prompt indent.
+ZLE_RPROMPT_INDENT=0
+
 # ==============================================================================
 # PATH Setup
 # ==============================================================================
