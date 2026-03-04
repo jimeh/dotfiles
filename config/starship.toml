@@ -1,23 +1,24 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.5.0
+# Version: 0.6.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
-# This is minimalistic Starship (https://starship.rs/) prompt setup with most
-# features shifted to the right prompt, and disabled, allowing for easy cherry
-# picking of specific features to enable.
+# Two-line Starship (https://starship.rs/) prompt. Line 1 has directory, git
+# info, tool/language metadata, user@host, and timestamp. Line 2 has the
+# prompt character. Most modules are disabled for easy cherry picking.
 # ------------------------------------------------------------------------------
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
 # ------------------------------------------------------------------------------
 # MARK: Format
 # ------------------------------------------------------------------------------
 
-add_newline = false
+add_newline = true
 
-format = """
-$username\
-$hostname\
+format = """\
 $directory\
 $git_branch\
 $git_commit\
@@ -28,10 +29,16 @@ $hg_branch\
 $fossil_branch\
 $fossil_metrics\
 $hg_state\
-$line_break\
-$character"""
-
-right_format = """
+$direnv\
+$mise\
+$nats\
+$jobs\
+$netns\
+$shell\
+$memory_usage\
+$os\
+$fill\
+(\
 $localip\
 $shlvl\
 $singularity\
@@ -40,7 +47,23 @@ $vcsh\
 $pijul_channel\
 $docker_context\
 $package\
+$nix_shell\
+$pixi\
+$conda\
+$meson\
+$xmake\
+$spack\
+$aws\
+$gcloud\
+$helm\
+$openstack\
+$azure\
+$env_var\
+$custom\
+[ ·](fg:243))\
+(\
 $c\
+$cpp\
 $cmake\
 $cobol\
 $daml\
@@ -62,6 +85,7 @@ $julia\
 $kotlin\
 $gradle\
 $lua\
+$mojo\
 $nim\
 $nodejs\
 $bun\
@@ -87,59 +111,69 @@ $vlang\
 $vagrant\
 $zig\
 $buf\
-$nix_shell\
-$conda\
-$meson\
-$spack\
-$aws\
-$gcloud\
-$helm\
-$openstack\
-$azure\
-$env_var\
 $crystal\
-$custom\
+[ ·](fg:243))\
+$username\
+$hostname\
+$container\
+$time\
+$line_break\
+$sudo\
+$character\
+"""
+
+right_format = """\
+$battery\
 $cmd_duration\
 $status\
-$line_break\
-$direnv\
-$mise\
-$nats\
-$jobs\
-$netns\
-$shell\
-$sudo\
-$battery\
-$memory_usage\
-$os\
-$container\
-$time"""
+"""
 
 # ------------------------------------------------------------------------------
-# MARK: Left prompt
+# MARK: Prompt Layout
 # ------------------------------------------------------------------------------
-
-[username]
-show_always = true
-format = '[$user]($style)'
-style_user = 'fg:251'
-style_root = 'bold fg:196 bg:52'
-
-[hostname]
-ssh_only = false
-format = '([@$hostname]($style) )'
-style = 'fg:251'
 
 [directory]
 truncate_to_repo = false
 truncation_length = 99
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = '[$path]($style)[$read_only]($read_only_style)'
 style = ''
-read_only = ''
+read_only = '󰌾'
 read_only_style = 'bold red'
 
+[fill]
+symbol = ' '
+
+[username]
+disabled = false
+show_always = true
+format = '( [$user]($style))'
+style_user = 'fg:243'
+style_root = 'bold fg:196 bg:52'
+
+[hostname]
+disabled = false
+ssh_only = false
+format = '([@](fg:243)[$hostname]($style))'
+style = 'fg:243'
+
+[container]
+format = '(:[$symbol \[$name\]]($style))'
+style = 'fg:246'
+disabled = false
+
+[time]
+format = '( [\[](fg:239)[$time]($style)[\]](fg:239))'
+style = "bold fg:243"
+disabled = false
+
 [line_break]
-disabled = true
+disabled = false
+
+[sudo]
+symbol = ' '
+format = '[$symbol]($style)'
+style = 'bold dimmed red'
+disabled = false
 
 [character]
 success_symbol = '[❯](bold fg:118)'
@@ -151,7 +185,7 @@ vimcmd_symbol = '[❮](bold fg:46)'
 # ------------------------------------------------------------------------------
 
 [git_branch]
-format = '([$symbol$branch]($style))'
+format = '( [$symbol$branch]($style))'
 style = 'fg:51'
 symbol = ''
 truncation_length = 24
@@ -174,7 +208,7 @@ format = '([\[](fg:51)([+$added]($added_style))([-$deleted]($deleted_style))[\]]
 disabled = true
 
 [git_status]
-format = '([$all_status$ahead_behind]($style)) '
+format = '([$all_status$ahead_behind]($style))'
 style = 'bold fg:201'
 stashed = ''
 ahead = ""
@@ -190,8 +224,27 @@ style = 'fg:51'
 symbol = ''
 truncation_length = 24
 
+[fossil_branch]
+symbol = ''
+format = '( [$symbol$branch]($style))'
+disabled = true
+
+[fossil_metrics]
+format = '([\[](fg:51)([+$added]($added_style))([-$deleted]($deleted_style))[\]](fg:51))'
+disabled = true
+
+[hg_state]
+format = '\[[$state($progress_current/$progress_total)]($style)\]'
+style = 'bold fg:208'
+disabled = true
+
+[pijul_channel]
+symbol = ' '
+format = '( [$symbol$channel]($style))'
+disabled = true
+
 # ------------------------------------------------------------------------------
-# MARK: Right prompt
+# MARK: Status & Info
 # ------------------------------------------------------------------------------
 
 [shlvl]
@@ -203,21 +256,16 @@ disabled = true
 format = '( [\(](fg:242)[$duration]($style)[\)](fg:242))'
 style = 'bold fg:220'
 
-[sudo]
-symbol = ' '
-format = '[$symbol]($style)'
-style = 'bold dimmed red'
-disabled = false
-
 [status]
 symbol = ''
-success_symbol = ''
+# success_symbol = '' # enable showing success symbol
 not_executable_symbol = ''
 not_found_symbol = ''
 sigint_symbol = ''
 signal_symbol = '󱐋'
-format = '( [$symbol$status]($style))'
+format = '( [\[](fg:239)[$symbol$status]($style)[\]](fg:239))'
 style = 'bold red'
+success_style = 'bold green'
 disabled = false
 
 [jobs]
@@ -254,7 +302,7 @@ disabled = true
 format = '( [$symbol$percentage]($style))'
 
 [[battery.display]]
-threshold = 10
+threshold = 20
 style = 'bold red'
 
 [memory_usage]
@@ -262,11 +310,6 @@ threshold = 75
 symbol = '󰍛 '
 format = '( [$symbol${ram}]($style))'
 disabled = true
-
-[time]
-format = '( [\[](fg:237)[$time]($style)[\]](fg:237))'
-style = "bold fg:239"
-disabled = false
 
 # ------------------------------------------------------------------------------
 # MARK: Languages
@@ -284,10 +327,17 @@ style = 'bold blue'
 disabled = false
 
 [c]
+symbol = ' '
+format = '( [$symbol($version(-$name))]($style))'
+disabled = true
+
+[cpp]
+symbol = ' '
 format = '( [$symbol($version(-$name))]($style))'
 disabled = true
 
 [cmake]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = true
 
@@ -297,6 +347,7 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [crystal]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = false
 
@@ -310,6 +361,7 @@ format = '( [$symbol$version]($style))'
 disabled = false
 
 [deno]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = false
 
@@ -319,7 +371,7 @@ format = '( [$symbol($version)( 🎯 $tfm)]($style))'
 disabled = false
 
 [elixir]
-symbol = ' '
+symbol = ' '
 format = '( [$symbol($version \(OTP $otp_version\))]($style))'
 disabled = false
 
@@ -334,10 +386,12 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [fennel]
+symbol = ' '
 format = '( [$symbol($version)]($style))'
 disabled = true
 
 [fortran]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = true
 
@@ -351,14 +405,17 @@ format = '( [$symbol$version]($style))'
 disabled = false
 
 [guix_shell]
+symbol = ' '
 format = '( [$symbol]($style))'
 disabled = true
 
 [haskell]
+symbol = ' '
 format = '( [$symbol($version)]($style))'
 disabled = false
 
 [haxe]
+symbol = ' '
 format = '( [$symbol($version)]($style))'
 disabled = true
 
@@ -373,6 +430,7 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [kotlin]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = true
 
@@ -380,6 +438,10 @@ disabled = true
 symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = false
+
+[mojo]
+format = '( [$symbol$version]($style))'
+disabled = true
 
 [nim]
 symbol = '󰆥 '
@@ -392,11 +454,12 @@ format = '( [$symbol$version]($style))'
 disabled = false
 
 [ocaml]
+symbol = ' '
 format = '( [$symbol$version(\($switch_indicator$switch_name\))]($style))'
 disabled = true
 
 [perl]
-symbol = ' '
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = true
 
@@ -410,7 +473,7 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [python]
-symbol = ' '
+symbol = ' '
 format = '( [${symbol}${pyenv_prefix}${version}( \($virtualenv\))]($style))'
 disabled = true
 
@@ -419,6 +482,7 @@ format = '( [$symbol($version-$vm_version)]($style))'
 disabled = true
 
 [rlang]
+symbol = '󰟔 '
 format = '( [$symbol$version]($style))'
 disabled = true
 
@@ -427,12 +491,13 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [ruby]
-symbol = ' '
+symbol = ' '
+# symbol = ' ' # alternative symbol
 format = '( [$symbol$version]($style))'
 disabled = false
 
 [rust]
-symbol = ' '
+symbol = '󱘗 '
 format = '( [$symbol$version]($style))'
 disabled = false
 
@@ -455,6 +520,7 @@ format = '( [$symbol$version]($style))'
 disabled = true
 
 [zig]
+symbol = ' '
 format = '( [$symbol$version]($style))'
 disabled = false
 
@@ -476,10 +542,6 @@ disabled = true
 symbol = ' '
 format = '( [$symbol$environment]($style))'
 
-[container]
-format = '( [$symbol \[$name\]]($style))'
-disabled = false
-
 [direnv]
 symbol = ' '
 format = '( [$symbol]($style)[(($loaded/)$allowed)](red))'
@@ -500,16 +562,13 @@ disabled = true
 format = '( with [$env_value]($style))'
 disabled = true
 
-[fossil_branch]
-format = '( [$symbol$branch]($style))'
-disabled = true
-
 [gcloud]
-symbol = ' '
+symbol = ' '
 format = '( [$symbol$account(@$domain)(\($region\))]($style))'
 disabled = true
 
 [gradle]
+symbol = ' '
 format = '( [$symbol($version)]($style))'
 disabled = true
 
@@ -523,7 +582,13 @@ format = '( [$symbol$context(\($namespace\))]($style))'
 disabled = false
 
 [meson]
+symbol = '󰔷 '
 format = '( [$symbol$project]($style))'
+disabled = true
+
+[xmake]
+symbol = ' '
+format = '( [$symbol$version]($style))'
 disabled = true
 
 [mise]
@@ -539,9 +604,14 @@ format = '( [$symbol \[$name\]]($style))'
 disabled = true
 
 [nix_shell]
-symbol = ' '
+symbol = ' '
 format = '( [$symbol$state(\($name\))]($style))'
 disabled = false
+
+[pixi]
+symbol = '󰏗 '
+format = '( [$symbol$environment]($style))'
+disabled = true
 
 [opa]
 format = '( [$symbol($version)]($style))'
@@ -555,10 +625,6 @@ disabled = true
 [package]
 symbol = '󰏗 '
 format = '( [$symbol$version]($style))'
-disabled = true
-
-[pijul_channel]
-format = '( [$symbol$channel]($style))'
 disabled = true
 
 [pulumi]
