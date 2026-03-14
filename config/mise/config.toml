@@ -6,6 +6,7 @@ not_found_auto_install = false
 trusted_config_paths = [
     "~/.codex/worktrees",
     "~/.superset/worktrees",
+    "~/.t3/worktrees",
     "~/conductor/workspaces",
 ]
 idiomatic_version_file_enable_tools = [
