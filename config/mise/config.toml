@@ -43,6 +43,7 @@ compile = true
 "cargo:cargo-info" = "latest"
 "cargo:cargo-show" = "latest"
 "cargo:cargo-update" = "latest"
+"cargo:dioxus-cli" = "latest"
 "cargo:dirstat-rs" = "latest"
 "cargo:dutree" = "latest"
 "cargo:eza" = "latest"
