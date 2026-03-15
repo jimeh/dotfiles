@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # jimeh's Starship Config
 # ------------------------------------------------------------------------------
-# Version: 0.6.1
+# Version: 0.7.0
 # URL: https://github.com/jimeh/dotfiles/blob/main/config/starship.toml
 # ------------------------------------------------------------------------------
 # Two-line Starship (https://starship.rs/) prompt. Line 1 has directory, git
@@ -16,9 +16,14 @@
 # MARK: Format
 # ------------------------------------------------------------------------------
 
-add_newline = true
+add_newline = false
 
 format = """\
+(\
+$status\
+$cmd_duration\
+)\
+$line_break\
 $directory\
 $git_branch\
 $git_commit\
@@ -36,7 +41,7 @@ $jobs\
 $netns\
 $shell\
 $memory_usage\
-$os\
+$battery\
 $fill\
 (\
 $localip\
@@ -118,15 +123,12 @@ $hostname\
 $container\
 $time\
 $line_break\
+$os\
 $sudo\
 $character\
 """
 
-right_format = """\
-$battery\
-$cmd_duration\
-$status\
-"""
+right_format = ""
 
 # ------------------------------------------------------------------------------
 # MARK: Prompt Layout
@@ -170,8 +172,8 @@ disabled = false
 disabled = false
 
 [sudo]
-symbol = ' '
-format = '[$symbol]($style)'
+symbol = ''
+format = '([$symbol]($style) )'
 style = 'bold dimmed red'
 disabled = false
 
@@ -253,7 +255,7 @@ format = '( [$symbol$shlvl]($style))'
 disabled = true
 
 [cmd_duration]
-format = '( [\(](fg:242)[$duration]($style)[\)](fg:242))'
+format = '([\(](fg:242)[$duration]($style)[\)](fg:242) )'
 style = 'bold fg:220'
 
 [status]
@@ -263,7 +265,7 @@ not_executable_symbol = ''
 not_found_symbol = ''
 sigint_symbol = ''
 signal_symbol = '󱐋'
-format = '( [\[](fg:239)[$symbol$status]($style)[\]](fg:239))'
+format = '([$symbol$status]($style) )'
 style = 'bold red'
 success_style = 'bold green'
 disabled = false
@@ -295,8 +297,60 @@ format = '( @[$localipv4](bold red))'
 disabled = true
 
 [os]
-format = '( [$symbol]($style))'
+format = '([$symbol]($style) )'
+style = 'bold white'
 disabled = true
+
+[os.symbols]
+Alpaquita = ""
+Alpine = ""
+AlmaLinux = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = ""
+Artix = ""
+CachyOS = ""
+CentOS = ""
+Debian = ""
+DragonFly = ""
+Elementary = ""
+Emscripten = ""
+EndeavourOS = ""
+Fedora = ""
+FreeBSD = ""
+Garuda = "󰛓"
+Gentoo = ""
+HardenedBSD = "󰞌"
+Illumos = "󰈸"
+Ios = "󰀷"
+Kali = ""
+Linux = ""
+Mabox = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
+Mint = ""
+NetBSD = ""
+NixOS = ""
+Nobara = ""
+OpenBSD = "󰈺"
+openSUSE = ""
+OracleLinux = "󰌷"
+Pop = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+RockyLinux = ""
+Redox = "󰀘"
+Solus = "󰠳"
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Void = ""
+Windows = "󰍲"
+Zorin = ""
 
 [battery]
 format = '( [$symbol$percentage]($style))'
@@ -558,7 +612,7 @@ symbol = ' '
 format = '( [$symbol$context]($style))'
 disabled = true
 
-[env_var]
+[env_var.EXAMPLE_ENV_VAR]
 format = '( with [$env_value]($style))'
 disabled = true
 
