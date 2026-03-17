@@ -1,17 +1,19 @@
 .SILENT:
 
+.PHONY: install update clean
+
 #
 # Default tasks
 #
 
 install:
-	make $(DEP_PATHS)
+	$(MAKE) $(DEP_PATHS)
 
 update:
-	make $(foreach path,$(DEP_PATHS),$(shell echo "update_$(path)"))
+	$(MAKE) $(foreach path,$(DEP_PATHS),update_$(path))
 
 clean:
-	make $(foreach path,$(DEP_PATHS),$(shell echo "remove_$(path)"))
+	$(MAKE) $(foreach path,$(DEP_PATHS),remove_$(path))
 
 
 #
@@ -37,16 +39,57 @@ endef
 
 define dep-spoon
 DEP_PATHS += Spoons/$(1).spoon
+
 Spoons/$(1).spoon:
 	echo "fetching Spoons/$(1).spoon..." && \
 		curl -s -L -o "Spoons/$(1).spoon.zip" \
 			"https://github.com/Hammerspoon/Spoons/raw/master/Spoons/$(1).spoon.zip" && \
 		unzip -d Spoons "Spoons/$(1).spoon.zip" && \
-		rm "Spoons/$(1).spoon.zip" && \
-		( \
-			test -f "Spoons/$(1).spoon.patch" && \
-			patch -p0 < "Spoons/$(1).spoon.patch" \
-		) || exit 0
+		rm "Spoons/$(1).spoon.zip"
+	$(MAKE) patch_Spoons/$(1).spoon
+
+.PHONY: patch_Spoons/$(1).spoon
+patch_Spoons/$(1).spoon:
+	patch_dir="Spoons/_patches/$(1)"; \
+	spoon_dir="Spoons/$(1).spoon"; \
+	repo_root=$$$$(git rev-parse --show-toplevel); \
+	repo_spoon_dir="hammerspoon/$$$${spoon_dir}"; \
+	if test ! -d "$$$${spoon_dir}"; then \
+		echo "skipping $$$${spoon_dir} patches (missing spoon dir)"; \
+		exit 0; \
+	fi; \
+	patch_files=$$$$(find "$$$${patch_dir}" -type f -name '*.patch' \
+		2>/dev/null \
+		| LC_ALL=C sort); \
+	if test -z "$$$${patch_files}"; then \
+		exit 0; \
+	fi; \
+	for patch_file in $$$${patch_files}; do \
+		repo_patch_file="hammerspoon/$$$${patch_file}"; \
+		if (cd "$$$${repo_root}" && \
+			git apply --reverse --check \
+				--directory="$$$${repo_spoon_dir}" \
+				-p1 "$$$${repo_patch_file}" \
+			>/dev/null 2>&1); then \
+			echo \
+				"skipping $$$${patch_file} for $$$${spoon_dir}" \
+				"(already applied)"; \
+		elif (cd "$$$${repo_root}" && \
+			git apply --check \
+				--directory="$$$${repo_spoon_dir}" \
+				-p1 "$$$${repo_patch_file}" \
+			>/dev/null 2>&1); then \
+			echo "applying $$$${patch_file} to $$$${spoon_dir}"; \
+			patch -f -s -d "$$$${spoon_dir}" -p1 < \
+				"$$$${patch_file}" || \
+				exit 1; \
+		else \
+			echo \
+				"failed to apply $$$${patch_file} to $$$${spoon_dir}" \
+				>&2; \
+			exit 1; \
+		fi; \
+	done
 
 .PHONY: remove_Spoons/$(1).spoon
 remove_Spoons/$(1).spoon:
