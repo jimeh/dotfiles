@@ -1,0 +1,43 @@
+{
+  "description": "Command+F1/F2 brightness controls",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "f1",
+        "modifiers": {
+          "mandatory": [
+            "command"
+          ],
+          "optional": [
+            "caps_lock"
+          ]
+        }
+      },
+      "to": [
+        {
+          "consumer_key_code": "display_brightness_decrement"
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "f2",
+        "modifiers": {
+          "mandatory": [
+            "command"
+          ],
+          "optional": [
+            "caps_lock"
+          ]
+        }
+      },
+      "to": [
+        {
+          "consumer_key_code": "display_brightness_increment"
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}

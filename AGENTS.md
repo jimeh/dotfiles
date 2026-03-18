@@ -29,3 +29,8 @@ nix-env -if default.nix  # Install/update Nix packages
 
 Shell: 2-space indent, bash-style. See `.editorconfig` for shfmt settings.
 Markdown: 80-char line length. See `markdownlint.yaml`.
+
+## Discoveries
+
+- `karabiner/*.json` files are standalone complex-modification snippets for
+  Karabiner-Elements import. They are not installed by `install.sh`.
