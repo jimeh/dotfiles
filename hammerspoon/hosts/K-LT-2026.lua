@@ -36,6 +36,10 @@ local function init_hotkeys()
     { 'Code', '/Applications/Visual Studio Code.app' }
   )
 
+  -- Use Ghostty as my primary terminal application.
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
+  apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
+
   -- -- Use Ghostty as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
   -- apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
