@@ -67,6 +67,7 @@ compile = true
 "npm:eslint-config-prettier" = "latest"
 "npm:eslint-plugin-prettier" = "latest"
 "npm:eslint_d" = "latest"
+"npm:gitnexus" = "latest"
 "npm:htmllint-cli" = "latest"
 "npm:http-server" = "latest"
 "npm:httpsnippet" = "latest"
