@@ -27,8 +27,8 @@ font-family-italic      = Menlo Nerd Font Mono Italic
 font-family-bold-italic = Menlo Nerd Font Mono Bold Italic
 
 # Match font rendering of iTerm and Terminal.app.
-adjust-cell-width = -1
-font-thicken = false
+adjust-cell-width = 0
+font-thicken = true
 
 # Disable ligatures
 font-feature = -calt
