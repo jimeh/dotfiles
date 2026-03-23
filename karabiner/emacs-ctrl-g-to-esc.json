@@ -30,6 +30,7 @@
             "^io\\.alacritty$",
             "^org\\.alacritty$",
             "^net\\.kovidgoyal\\.kitty$",
+            "^com\\.cmuxterm\\.app$",
             "^org\\.vim\\.",
             "^com\\.qvacua\\.VimR$",
             "^com\\.vmware\\.fusion$",
