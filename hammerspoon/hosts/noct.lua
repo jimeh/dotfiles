@@ -18,13 +18,13 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail+ for Gmail' }, { 'Mimestream' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Cursor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'GitButler' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Emacs', '/Applications/Emacs.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
 
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Cursor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code', '/Applications/Visual Studio Code.app' },
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
@@ -36,7 +36,7 @@ local function init_hotkeys()
     { 'Notion Calendar' }
   )
 
-  -- Use Warp as my primary terminal application.
+  -- Use cmux as my primary terminal application.
   apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
   apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
 
