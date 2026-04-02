@@ -5,6 +5,8 @@ legacy_version_file = true
 not_found_auto_install = false
 trusted_config_paths = [
     "~/.codex/worktrees",
+    "~/.hubris-dev/workspaces",
+    "~/.hubris/workspaces",
     "~/.superset/worktrees",
     "~/.t3/worktrees",
     "~/conductor/workspaces",
