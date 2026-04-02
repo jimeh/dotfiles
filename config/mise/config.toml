@@ -61,6 +61,7 @@ compile = true
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:@prettier/plugin-php" = "latest"
 "npm:claude-plugins" = "latest"
+"npm:cline" = "latest"
 "npm:convex" = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:eslint" = "latest"
