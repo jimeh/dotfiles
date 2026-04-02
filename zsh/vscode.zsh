@@ -9,3 +9,9 @@ if [[ $TERM_PROGRAM == "vscode" ]]; then
   bindkey '\e[1;3D' backward-word   # Alt+Left
   bindkey '\e[1;3C' forward-word    # Alt+Right
 fi
+
+if command-exists code; then
+  export EDITOR="code -w"
+  alias co="code"
+  alias e="code -w"
+fi

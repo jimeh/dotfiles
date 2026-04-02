@@ -13,7 +13,6 @@ if command-exists docker; then
 
   alias d="docker"
   alias dc="docker compose"
-  alias co="docker-compose"
   alias dre="docker_remove_exited"
 fi
 

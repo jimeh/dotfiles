@@ -7,8 +7,8 @@ if command-exists cursor-agent; then
     cursor-agent shell-integration zsh
 fi
 
-if command-exists cursor; then
-  export EDITOR="cursor -w"
-  alias cu="cursor"
-  alias e="cursor -w"
-fi
+# if command-exists cursor; then
+#   export EDITOR="cursor -w"
+#   alias cu="cursor"
+#   alias e="cursor -w"
+# fi
