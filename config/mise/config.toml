@@ -1,12 +1,11 @@
 [settings]
-cargo_binstall = true
 experimental = true
 legacy_version_file = true
 not_found_auto_install = false
 trusted_config_paths = [
     "~/.codex/worktrees",
-    "~/.hubris-dev/workspaces",
-    "~/.hubris/workspaces",
+    "~/.hubris-dev/worktrees",
+    "~/.hubris/worktrees",
     "~/.superset/worktrees",
     "~/.t3/worktrees",
     "~/conductor/workspaces",
@@ -61,7 +60,9 @@ compile = true
 "go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
 "npm:@github/copilot-language-server" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:@playwright/mcp" = "latest"
 "npm:@prettier/plugin-php" = "latest"
+"npm:agent-browser" = "latest"
 "npm:claude-plugins" = "latest"
 "npm:cline" = "latest"
 "npm:convex" = "latest"
