@@ -26,6 +26,7 @@ local function init_hotkeys()
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'Cursor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E',
+    { 'Hucode', '/Applications/Hucode.app' },
     { 'Code', '/Applications/Visual Studio Code.app' },
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
