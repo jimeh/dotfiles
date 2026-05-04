@@ -32,3 +32,6 @@
 .zinitrc.zsh
 mise.*local.toml
 routes.txt
+
+security/vuln-scan/*
+!security/vuln-scan/skips/*
