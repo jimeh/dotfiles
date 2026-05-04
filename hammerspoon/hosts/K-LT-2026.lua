@@ -30,8 +30,9 @@ local function init_hotkeys()
     { 'Google Calendar' }
   )
 
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Cursor' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'Cursor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'E',
+    { 'Hucode', '/Applications/Hucode.app' },
     { 'Code', '/Applications/Visual Studio Code.app' },
     { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
   )
@@ -40,9 +41,9 @@ local function init_hotkeys()
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
   -- apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
 
-  -- -- Use Ghostty as my primary terminal application.
-  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
-  -- apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
+  -- Use Ghostty as my primary terminal application.
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
+  apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
 
   -- -- Use Warp as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
