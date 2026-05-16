@@ -13,7 +13,11 @@ define_modmap({
 define_keymap(lambda wm_class: wm_class in ("Gnome-terminal", "Guake"), {
 }, "Terminal keys")
 
-define_keymap(lambda wm_class: wm_class in ("firefox", "Google-chrome"), {
+define_keymap(lambda wm_class: wm_class in (
+    "firefox",
+    "zen",
+    "Google-chrome",
+), {
     K("Super-Shift-Left_Brace"): K("C-Shift-tab"),
     K("Super-Shift-Right_Brace"): K("C-tab"),
     K("Super-Left_Brace"): K("M-left"),
@@ -25,8 +29,77 @@ define_keymap(lambda wm_class: wm_class in ("1Password"), {
     K("Super-comma"): K("C-comma"),
 }, "1Password specific keys")
 
+VSCODE_WM_CLASSES = (
+    "Code",
+    "code",
+    "Code - Insiders",
+    "code-insiders",
+    "Cursor",
+    "cursor",
+    "Hucode",
+    "hucode",
+    "Windsurf",
+    "windsurf",
+)
+
+
+def is_vscode(wm_class):
+    return wm_class in VSCODE_WM_CLASSES
+
+
+def replay(*keys):
+    return [K(key) for key in keys]
+
+
+define_keymap(is_vscode, {
+    K("M-i"): K("Super-M-up"),
+    K("M-n"): K("Super-M-down"),
+    K("M-e"): K("Super-M-right"),
+    K("M-f"): K("M-right"),
+    K("M-b"): K("M-left"),
+    K("M-d"): K("M-delete"),
+    K("M-minus"): K("Super-z"),
+    K("M-Shift-minus"): K("Super-Shift-z"),
+
+    K("C-d"): K("delete"),
+    K("C-p"): with_mark(K("up")),
+    K("C-n"): with_mark(K("down")),
+    K("C-b"): with_mark(K("left")),
+    K("C-f"): with_mark(K("right")),
+    K("M-Shift-comma"): K("Super-up"),
+    K("M-Shift-dot"): K("Super-down"),
+
+    # Replay VSCode's own C-x chords instead of letting the generic C-x map
+    # translate or swallow them.
+    K("C-x"): {
+        K("m"): replay("C-x", "m"),
+        K("C-m"): replay("C-x", "C-m"),
+        K("enter"): replay("C-x", "enter"),
+        K("C-s"): replay("C-x", "C-s"),
+        K("C-f"): replay("C-x", "C-f"),
+        K("right"): replay("C-x", "right"),
+        K("C-semicolon"): replay("C-x", "C-semicolon"),
+        K("C-b"): replay("C-x", "C-b"),
+        K("left"): replay("C-x", "left"),
+        K("C-k"): replay("C-x", "C-k"),
+        K("C-o"): replay("C-x", "C-o"),
+        K("C-i"): replay("C-x", "C-i"),
+        K("space"): replay("C-x", "space"),
+        K("C-d"): replay("C-x", "C-d"),
+        K("delete"): replay("C-x", "delete"),
+        K("g"): replay("C-x", "g"),
+        K("C-j"): replay("C-x", "C-j"),
+        K("f"): replay("C-x", "f"),
+    }
+}, "VSCode keybinding workarounds")
+
 # Emacs-like keybindings in non-Emacs applications
-define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt", "Gnome-terminal", "Guake"), {
+define_keymap(lambda wm_class: wm_class not in (
+    "Emacs",
+    "URxvt",
+    "Gnome-terminal",
+    "Guake",
+), {
     K("Super-x"): K("C-x"),
     K("Super-c"): K("C-c"),
     K("Super-v"): K("C-v"),

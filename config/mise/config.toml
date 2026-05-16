@@ -191,3 +191,9 @@ zoxide = "latest"
 [tools."pipx:ansible"]
 version = "latest"
 uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
+
+# xkeysnail 0.4.0 still expects evdev InputDevice.fn, which evdev 1.9 removed.
+[tools."pipx:xkeysnail"]
+version = "latest"
+os = ["linux"]
+uvx_args = "--with='evdev<1.9'"

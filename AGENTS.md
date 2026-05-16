@@ -34,3 +34,11 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 
 - `karabiner/*.json` files are standalone complex-modification snippets for
   Karabiner-Elements import. They are not installed by `install.sh`.
+- `config/xkeysnail/config.py` is symlinked by `install.sh`; the matching
+  `config/xkeysnail/systemd.service` is installed manually per the README.
+- xkeysnail fails before config loading if `/dev/uinput` is missing; load the
+  `uinput` module and apply the udev rules from `config/xkeysnail/README.md`.
+- xkeysnail 0.4.0 is incompatible with evdev 1.9 because it expects
+  `InputDevice.fn`; keep the mise `pipx:xkeysnail` entry pinned to `evdev<1.9`.
+- xkeysnail app-specific keymaps depend on Xlib `WM_CLASS`; native Wayland apps
+  such as VSCode may report an empty class and skip those keymaps.
