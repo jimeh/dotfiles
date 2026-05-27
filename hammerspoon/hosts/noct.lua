@@ -24,11 +24,11 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
 
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'Cursor' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'E',
-    { 'Hucode', '/Applications/Hucode.app' },
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Hucode', '/Applications/Hucode.app' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code', '/Applications/Visual Studio Code.app' },
-    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
+    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
+    { 'Cursor' }
   )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
