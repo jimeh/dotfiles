@@ -42,3 +42,5 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   `InputDevice.fn`; keep the mise `pipx:xkeysnail` entry pinned to `evdev<1.9`.
 - xkeysnail app-specific keymaps depend on Xlib `WM_CLASS`; native Wayland apps
   such as VSCode may report an empty class and skip those keymaps.
+- `bin/gh-*` scripts are not automatically dispatched by `gh <name>`; install
+  them as GitHub CLI extensions or add `gh` aliases when that UX is needed.

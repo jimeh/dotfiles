@@ -1,0 +1,546 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly DEFAULT_CONFIG_PATH=".coderabbit.yaml"
+readonly DEFAULT_CONFIG_CONTENT="# yaml-language-server: \$schema=https://coderabbit.ai/integrations/schema.v2.json
+inheritance: true
+reviews:
+  review_status: true
+  auto_review:
+    enabled: true
+"
+readonly DEFAULT_PR_TITLE="chore: add CodeRabbit configuration"
+readonly DEFAULT_PR_BODY="Add a shared CodeRabbit configuration file for review status and automatic reviews."
+
+usage() {
+  cat >&2 <<'USAGE'
+Usage: gh-coderabbit-config-pr [options] <owner/repo>...
+
+Open PRs that add a root .coderabbit.yaml via GitHub's API, without cloning.
+
+Skips a repo when .coderabbit.yaml already exists on the default branch, or
+when any open PR already changes .coderabbit.yaml.
+
+Options:
+  -n, --dry-run         Print what would happen without creating anything
+  -b, --branch NAME     Use a specific branch name
+      --branch-prefix P Prefix for generated branch names
+  -t, --title TITLE     Set the PR title
+  -d, --description TXT Set the PR description/body
+  -c, --config-file P   Read coderabbit.yaml content from a local file
+      --config-path P   Set the repo path to create/check
+      --skip-pr-check   Do not check open PRs for the config file
+      --sign            Sign the created commit with local GPG
+      --signing-key KEY Use a specific GPG signing key
+  -h, --help            Show this help
+USAGE
+}
+
+die() {
+  echo "gh-coderabbit-config-pr: $*" >&2
+  exit 1
+}
+
+require_cmd() {
+  command -v "$1" > /dev/null 2>&1 || die "missing required command: $1"
+}
+
+is_repo_arg() {
+  [[ "$1" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]
+}
+
+config_exists() {
+  local repo="$1"
+  local ref="$2"
+  local config_path="$3"
+  local err
+
+  err="$(mktemp)"
+  if gh api "repos/$repo/contents/$config_path?ref=$ref" \
+    > /dev/null 2> "$err"; then
+    rm -f "$err"
+    return 0
+  fi
+
+  local api_error
+  api_error="$(<"$err")"
+  rm -f "$err"
+
+  case "$api_error" in
+    *"HTTP 404"* | *"Not Found"*)
+      return 1
+      ;;
+    *)
+      printf '%s\n' "$api_error" >&2
+      die "failed to check $config_path in $repo"
+      ;;
+  esac
+}
+
+open_pr_for_config() {
+  local repo="$1"
+  local config_path="$2"
+  local number
+  local url
+
+  while IFS=$'\t' read -r number url; do
+    [ -n "$number" ] || continue
+
+    if gh api --paginate "repos/$repo/pulls/$number/files?per_page=100" \
+      --jq '.[].filename' |
+      awk -v target="$config_path" \
+        '$0 == target { found = 1 } END { exit found ? 0 : 1 }'; then
+      printf '%s\t%s\n' "$number" "$url"
+      return 0
+    fi
+  done < <(
+    gh api --paginate "repos/$repo/pulls?state=open&per_page=100" \
+      --jq '.[] | [.number, .html_url] | @tsv'
+  )
+
+  return 1
+}
+
+default_branch_for() {
+  local repo="$1"
+
+  gh api "repos/$repo" --jq '.default_branch'
+}
+
+branch_sha() {
+  local repo="$1"
+  local branch="$2"
+
+  gh api "repos/$repo/git/matching-refs/heads/$branch" \
+    --jq ".[] | select(.ref == \"refs/heads/$branch\") | .object.sha"
+}
+
+commit_tree_sha() {
+  local repo="$1"
+  local commit_sha="$2"
+
+  gh api "repos/$repo/git/commits/$commit_sha" --jq '.tree.sha'
+}
+
+branch_name_for() {
+  local branch="$1"
+  local branch_prefix="$2"
+
+  if [ -n "$branch" ]; then
+    printf '%s\n' "$branch"
+  else
+    printf '%s-%s\n' "$branch_prefix" "$(date +%Y%m%d%H%M%S)"
+  fi
+}
+
+commit_payload() {
+  local tree_sha="$1"
+  local parent_sha="$2"
+  local author_name="$3"
+  local author_email="$4"
+  local committer_name="$5"
+  local committer_email="$6"
+  local epoch="$7"
+  local tz="$8"
+  local message="$9"
+
+  printf 'tree %s\n' "$tree_sha"
+  printf 'parent %s\n' "$parent_sha"
+  printf 'author %s <%s> %s %s\n' \
+    "$author_name" "$author_email" "$epoch" "$tz"
+  printf 'committer %s <%s> %s %s\n' \
+    "$committer_name" "$committer_email" "$epoch" "$tz"
+  printf '\n%s' "$message"
+}
+
+sign_payload() {
+  local payload="$1"
+  local signing_key="$2"
+  local temp_dir
+  local payload_file
+  local signature_file
+  local gpg_bin
+  local signature
+  local -a gpg_args
+
+  gpg_bin="$(command -v gpg || command -v gpg2 || true)"
+  [ -n "$gpg_bin" ] || die "missing required command: gpg"
+
+  temp_dir="$(mktemp -d)"
+  payload_file="$temp_dir/payload"
+  signature_file="$temp_dir/signature.asc"
+  printf '%s' "$payload" > "$payload_file"
+
+  gpg_args=(--armor --detach-sign --output "$signature_file")
+  if [ -n "$signing_key" ]; then
+    gpg_args+=(--local-user "$signing_key")
+  fi
+  gpg_args+=("$payload_file")
+
+  if ! "$gpg_bin" "${gpg_args[@]}"; then
+    rm -rf "$temp_dir"
+    die "failed to sign commit payload"
+  fi
+
+  signature="$(<"$signature_file")"
+  rm -rf "$temp_dir"
+  printf '%s\n' "$signature"
+}
+
+iso_date_from_epoch() {
+  local epoch="$1"
+
+  date -u -r "$epoch" '+%Y-%m-%dT%H:%M:%SZ' 2> /dev/null ||
+    date -u -d "@$epoch" '+%Y-%m-%dT%H:%M:%SZ'
+}
+
+create_config_commit() {
+  local repo="$1"
+  local head_sha="$2"
+  local config_path="$3"
+  local config_content="$4"
+  local commit_message="$5"
+  local signing_key="$6"
+  local parent_tree_sha
+  local tree_sha
+  local commit_sha
+  local author_name
+  local author_email
+  local date_iso
+  local epoch
+  local payload
+  local signature
+
+  require_cmd git
+  require_cmd jq
+
+  author_name="$(git config --get user.name || true)"
+  author_email="$(git config --get user.email || true)"
+  [ -n "$author_name" ] || die "git config user.name is required for signing"
+  [ -n "$author_email" ] || die "git config user.email is required for signing"
+
+  if [ -z "$signing_key" ]; then
+    signing_key="$(git config --get user.signingkey || true)"
+  fi
+
+  parent_tree_sha="$(commit_tree_sha "$repo" "$head_sha")"
+  tree_sha="$(
+    jq -n \
+      --arg base_tree "$parent_tree_sha" \
+      --arg path "$config_path" \
+      --arg content "$config_content" \
+      '{
+        base_tree: $base_tree,
+        tree: [
+          {
+            path: $path,
+            mode: "100644",
+            type: "blob",
+            content: $content
+          }
+        ]
+      }' |
+      gh api -X POST "repos/$repo/git/trees" --input - --jq '.sha'
+  )"
+
+  epoch="$(date -u '+%s')"
+  date_iso="$(iso_date_from_epoch "$epoch")"
+  payload="$(
+    commit_payload "$tree_sha" "$head_sha" "$author_name" "$author_email" \
+      "$author_name" "$author_email" "$epoch" "+0000" "$commit_message"
+  )"
+  signature="$(sign_payload "$payload" "$signing_key")"
+
+  commit_sha="$(
+    jq -n \
+      --arg message "$commit_message" \
+      --arg tree "$tree_sha" \
+      --arg parent "$head_sha" \
+      --arg name "$author_name" \
+      --arg email "$author_email" \
+      --arg date "$date_iso" \
+      --arg signature "$signature" \
+      '{
+        message: $message,
+        tree: $tree,
+        parents: [$parent],
+        author: {
+          name: $name,
+          email: $email,
+          date: $date
+        },
+        committer: {
+          name: $name,
+          email: $email,
+          date: $date
+        },
+        signature: $signature
+      }' |
+      gh api -X POST "repos/$repo/git/commits" --input - --jq '.sha'
+  )"
+
+  printf '%s\n' "$commit_sha"
+}
+
+create_pr() {
+  local repo="$1"
+  local default_branch="$2"
+  local branch="$3"
+  local head_sha="$4"
+  local config_path="$5"
+  local config_content="$6"
+  local pr_title="$7"
+  local pr_body="$8"
+  local sign_commit="$9"
+  local signing_key="${10}"
+  local commit_sha
+  local pr_url
+
+  if [ "$sign_commit" = "1" ]; then
+    commit_sha="$(
+      create_config_commit "$repo" "$head_sha" "$config_path" \
+        "$config_content" "$pr_title" "$signing_key"
+    )"
+
+    gh api -X POST "repos/$repo/git/refs" \
+      -f "ref=refs/heads/$branch" \
+      -f "sha=$commit_sha" \
+      > /dev/null
+  else
+    gh api -X POST "repos/$repo/git/refs" \
+      -f "ref=refs/heads/$branch" \
+      -f "sha=$head_sha" \
+      > /dev/null
+
+    gh api -X PUT "repos/$repo/contents/$config_path" \
+      -f "message=$pr_title" \
+      -f "content=$(printf '%s' "$config_content" | base64 | tr -d '\n')" \
+      -f "branch=$branch" \
+      > /dev/null
+  fi
+
+  pr_url="$(
+    gh api -X POST "repos/$repo/pulls" \
+      -f "title=$pr_title" \
+      -f "head=$branch" \
+      -f "base=$default_branch" \
+      -f "body=$pr_body" \
+      --jq '.html_url'
+  )"
+
+  printf '%s\n' "$pr_url"
+}
+
+process_repo() {
+  local repo="$1"
+  local dry_run="$2"
+  local branch_override="$3"
+  local branch_prefix="$4"
+  local config_path="$5"
+  local config_content="$6"
+  local pr_title="$7"
+  local pr_body="$8"
+  local skip_pr_check="$9"
+  local sign_commit="${10}"
+  local signing_key="${11}"
+  local default_branch
+  local existing_pr
+  local existing_pr_number
+  local existing_pr_url
+  local head_sha
+  local branch
+  local pr_url
+
+  if ! is_repo_arg "$repo"; then
+    die "repo must look like owner/name: $repo"
+  fi
+
+  printf '%s: checking default branch\n' "$repo" >&2
+  default_branch="$(default_branch_for "$repo")"
+
+  if config_exists "$repo" "$default_branch" "$config_path"; then
+    printf '%s: skipped, %s already exists on %s\n' \
+      "$repo" "$config_path" "$default_branch"
+    return 0
+  fi
+
+  if [ "$skip_pr_check" != "1" ] &&
+    existing_pr="$(open_pr_for_config "$repo" "$config_path")"; then
+    IFS=$'\t' read -r existing_pr_number existing_pr_url <<< "$existing_pr"
+    printf '%s: skipped, open PR #%s already changes %s: %s\n' \
+      "$repo" "$existing_pr_number" "$config_path" "$existing_pr_url"
+    return 0
+  fi
+
+  branch="$(branch_name_for "$branch_override" "$branch_prefix")"
+  head_sha="$(branch_sha "$repo" "$default_branch")"
+  [ -n "$head_sha" ] || die "could not resolve $repo default branch SHA"
+
+  if [ "$dry_run" = "1" ]; then
+    if [ "$sign_commit" = "1" ]; then
+      printf '%s: would create branch %s, add %s, and open PR into %s with signed commit: %s\n' \
+        "$repo" "$branch" "$config_path" "$default_branch" "$pr_title"
+    else
+      printf '%s: would create branch %s, add %s, and open PR into %s: %s\n' \
+        "$repo" "$branch" "$config_path" "$default_branch" "$pr_title"
+    fi
+    return 0
+  fi
+
+  pr_url="$(
+    create_pr "$repo" "$default_branch" "$branch" "$head_sha" \
+      "$config_path" "$config_content" "$pr_title" "$pr_body" \
+      "$sign_commit" "$signing_key"
+  )"
+  printf '%s: opened %s\n' "$repo" "$pr_url"
+}
+
+main() {
+  local dry_run="0"
+  local branch=""
+  local branch_prefix="add-coderabbit-config"
+  local pr_title="$DEFAULT_PR_TITLE"
+  local pr_body="$DEFAULT_PR_BODY"
+  local config_path="$DEFAULT_CONFIG_PATH"
+  local config_file=""
+  local config_content="$DEFAULT_CONFIG_CONTENT"
+  local skip_pr_check="0"
+  local sign_commit="0"
+  local signing_key=""
+  local -a repos=()
+
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -n | --dry-run)
+        dry_run="1"
+        shift
+        ;;
+      -b | --branch)
+        [ "$#" -ge 2 ] || die "$1 requires a branch name"
+        branch="$2"
+        shift 2
+        ;;
+      --branch=*)
+        branch="${1#--branch=}"
+        shift
+        ;;
+      --branch-prefix)
+        [ "$#" -ge 2 ] || die "$1 requires a branch prefix"
+        branch_prefix="$2"
+        shift 2
+        ;;
+      --branch-prefix=*)
+        branch_prefix="${1#--branch-prefix=}"
+        shift
+        ;;
+      -t | --title)
+        [ "$#" -ge 2 ] || die "$1 requires a title"
+        pr_title="$2"
+        shift 2
+        ;;
+      --title=*)
+        pr_title="${1#--title=}"
+        shift
+        ;;
+      -d | --description | --body)
+        [ "$#" -ge 2 ] || die "$1 requires a description"
+        pr_body="$2"
+        shift 2
+        ;;
+      --description=*)
+        pr_body="${1#--description=}"
+        shift
+        ;;
+      --body=*)
+        pr_body="${1#--body=}"
+        shift
+        ;;
+      -c | --config-file)
+        [ "$#" -ge 2 ] || die "$1 requires a file path"
+        config_file="$2"
+        shift 2
+        ;;
+      --config-file=*)
+        config_file="${1#--config-file=}"
+        shift
+        ;;
+      --config-path)
+        [ "$#" -ge 2 ] || die "$1 requires a repo path"
+        config_path="$2"
+        shift 2
+        ;;
+      --config-path=*)
+        config_path="${1#--config-path=}"
+        shift
+        ;;
+      --skip-pr-check)
+        skip_pr_check="1"
+        shift
+        ;;
+      --sign)
+        sign_commit="1"
+        shift
+        ;;
+      --signing-key)
+        [ "$#" -ge 2 ] || die "$1 requires a signing key"
+        signing_key="$2"
+        shift 2
+        ;;
+      --signing-key=*)
+        signing_key="${1#--signing-key=}"
+        shift
+        ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      --)
+        shift
+        while [ "$#" -gt 0 ]; do
+          repos+=("$1")
+          shift
+        done
+        break
+        ;;
+      -*)
+        die "unknown option: $1"
+        ;;
+      *)
+        repos+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  [ "${#repos[@]}" -gt 0 ] || {
+    usage
+    exit 1
+  }
+
+  require_cmd gh
+  require_cmd awk
+  require_cmd base64
+
+  gh auth status > /dev/null
+
+  if [ -n "$config_file" ]; then
+    [ -f "$config_file" ] || die "config file does not exist: $config_file"
+    config_content="$(<"$config_file")"
+    config_content="${config_content}"$'\n'
+  fi
+
+  case "$config_path" in
+    "" | /* | *..*)
+      die "config path must be a relative repo path without '..'"
+      ;;
+  esac
+
+  local repo
+  for repo in "${repos[@]}"; do
+    process_repo "$repo" "$dry_run" "$branch" "$branch_prefix" \
+      "$config_path" "$config_content" "$pr_title" "$pr_body" \
+      "$skip_pr_check" "$sign_commit" "$signing_key"
+  done
+}
+
+main "$@"
