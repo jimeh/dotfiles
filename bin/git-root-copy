@@ -1,0 +1,282 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'USAGE'
+Usage: git-root-copy [-n|--dry-run] [-f|--force] [-t|--target PATH] \
+  <source-path>...
+
+Copy files from the main git worktree into the current linked worktree.
+
+With no target, each target is the same relative path from the current worktree
+root. With one source, the target path is resolved relative to the current
+directory. With multiple sources, the target path is treated as a directory.
+USAGE
+}
+
+die() {
+  echo "git-root-copy: $*" >&2
+  exit 1
+}
+
+abs_path() {
+  local path="$1"
+  local part
+  local result=""
+  local -a parts
+  local -a stack=()
+
+  if [[ "$path" != /* ]]; then
+    path="$PWD/$path"
+  fi
+
+  IFS='/' read -r -a parts <<< "$path"
+  for part in "${parts[@]}"; do
+    case "$part" in
+      "" | .)
+        ;;
+      ..)
+        if [ "${#stack[@]}" -gt 0 ]; then
+          stack=("${stack[@]:0:$((${#stack[@]} - 1))}")
+        fi
+        ;;
+      *)
+        stack+=("$part")
+        ;;
+    esac
+  done
+
+  for part in "${stack[@]}"; do
+    result="$result/$part"
+  done
+
+  printf '%s\n' "${result:-/}"
+}
+
+assert_relative_path() {
+  local name="$1"
+  local path="$2"
+
+  case "$path" in
+    "" | /*)
+      die "$name must be a relative path"
+      ;;
+  esac
+}
+
+inside_path() {
+  local child="$1"
+  local parent="$2"
+
+  [ "$child" = "$parent" ] || [ "${child#"$parent"/}" != "$child" ]
+}
+
+main_worktree() {
+  git worktree list --porcelain |
+    awk '/^worktree / { print substr($0, 10); exit }'
+}
+
+confirm_replace() {
+  local path="$1"
+
+  if [ ! -t 0 ] || [ ! -t 1 ]; then
+    return 1
+  fi
+
+  printf 'Replace %s? [y/N] ' "$path" >&2
+  read -r answer
+
+  case "$answer" in
+    y | Y | yes | YES)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+replace_existing_target() {
+  local path="$1"
+  local force="$2"
+
+  if [ ! -e "$path" ] && [ ! -L "$path" ]; then
+    return 0
+  fi
+
+  if [ "$force" != "1" ] && ! confirm_replace "$path"; then
+    die "target already exists: $path"
+  fi
+
+  rm -rf -- "$path"
+}
+
+report_existing_target() {
+  local path="$1"
+
+  if [ -e "$path" ] || [ -L "$path" ]; then
+    echo "would replace: $path"
+  fi
+}
+
+target_path_for_source() {
+  local source_arg="$1"
+  local source_count="$2"
+  local target_arg="$3"
+  local current_root="$4"
+  local basename
+
+  if [ -z "$target_arg" ]; then
+    abs_path "$current_root/$source_arg"
+  elif [ "$source_count" -eq 1 ]; then
+    abs_path "$target_arg"
+  else
+    basename="${source_arg##*/}"
+    abs_path "$target_arg/$basename"
+  fi
+}
+
+main() {
+  local force="0"
+  local dry_run="0"
+  local target_arg=""
+  local -a sources=()
+
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -n | --dry-run)
+        dry_run="1"
+        shift
+        ;;
+      -f | --force)
+        force="1"
+        shift
+        ;;
+      -t | --target)
+        [ "$#" -ge 2 ] || die "$1 requires a path"
+        target_arg="$2"
+        shift 2
+        ;;
+      --target=*)
+        target_arg="${1#--target=}"
+        shift
+        ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      --)
+        shift
+        while [ "$#" -gt 0 ]; do
+          sources+=("$1")
+          shift
+        done
+        break
+        ;;
+      -*)
+        die "unknown option: $1"
+        ;;
+      *)
+        sources+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  if [ "${#sources[@]}" -lt 1 ]; then
+    usage
+    exit 1
+  fi
+
+  if [ -n "$target_arg" ]; then
+    assert_relative_path "target path" "$target_arg"
+  fi
+
+  local current_root
+  local root_worktree
+  current_root="$(git rev-parse --show-toplevel 2>/dev/null)" ||
+    die "not inside a git worktree"
+  root_worktree="$(main_worktree)"
+  [ -n "$root_worktree" ] || die "could not determine main worktree"
+
+  current_root="$(abs_path "$current_root")"
+  root_worktree="$(abs_path "$root_worktree")"
+  if [ "$current_root" = "$root_worktree" ]; then
+    die "already in the main git worktree"
+  fi
+
+  local source_arg
+  local source_path
+  local target_path
+  local target_parent
+  local -a source_paths=()
+  local -a target_paths=()
+
+  if [ -n "$target_arg" ] && [ "${#sources[@]}" -gt 1 ]; then
+    local target_dir
+    target_dir="$(abs_path "$target_arg")"
+    inside_path "$target_dir" "$current_root" ||
+      die "target path escapes the current worktree"
+    if [ \( -e "$target_dir" \) -o \( -L "$target_dir" \) ] &&
+      [ ! -d "$target_dir" ]; then
+      die "target must be a directory for multiple sources: $target_arg"
+    fi
+  fi
+
+  for source_arg in "${sources[@]}"; do
+    assert_relative_path "source path" "$source_arg"
+    source_path="$(abs_path "$root_worktree/$source_arg")"
+    inside_path "$source_path" "$root_worktree" ||
+      die "source path escapes the main worktree"
+    [ -e "$source_path" ] || die "source does not exist: $source_arg"
+    [ -f "$source_path" ] || die "source is not a file: $source_arg"
+
+    target_path="$(
+      target_path_for_source \
+        "$source_arg" "${#sources[@]}" "$target_arg" "$current_root"
+    )"
+    inside_path "$target_path" "$current_root" ||
+      die "target path escapes the current worktree"
+
+    source_paths+=("$source_path")
+    target_paths+=("$target_path")
+  done
+
+  if [ "$dry_run" = "1" ]; then
+    local -a reported_parents=()
+    local reported_parent
+    local parent_seen
+    local i
+
+    for ((i = 0; i < ${#target_paths[@]}; i += 1)); do
+      target_path="${target_paths[$i]}"
+      target_parent="$(dirname "$target_path")"
+      parent_seen="0"
+      for reported_parent in "${reported_parents[@]}"; do
+        if [ "$reported_parent" = "$target_parent" ]; then
+          parent_seen="1"
+        fi
+      done
+
+      if [ "$parent_seen" = "0" ] && [ ! -d "$target_parent" ]; then
+        echo "would create parent directory: $target_parent"
+        reported_parents+=("$target_parent")
+      fi
+
+      report_existing_target "$target_path"
+      echo "would copy: ${source_paths[$i]} -> $target_path"
+    done
+    exit 0
+  fi
+
+  local i
+  for ((i = 0; i < ${#target_paths[@]}; i += 1)); do
+    target_path="${target_paths[$i]}"
+    target_parent="$(dirname "$target_path")"
+    mkdir -p -- "$target_parent"
+    replace_existing_target "$target_path" "$force"
+    cp -p -- "${source_paths[$i]}" "$target_path"
+  done
+}
+
+main "$@"
