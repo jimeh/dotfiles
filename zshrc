@@ -280,6 +280,7 @@ if command-exists mise; then
   setup-completions mise "$MISE_INSTALL_PATH" mise completions zsh
 
   alias mi="mise"
+  alias mr="mise run"
 fi
 
 # ==============================================================================
