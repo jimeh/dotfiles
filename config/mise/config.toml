@@ -3,6 +3,10 @@ experimental = true
 legacy_version_file = true
 minimum_release_age = "3d"
 not_found_auto_install = false
+fetch_remote_versions_timeout = "2s"
+http_timeout = "5s"
+http_retries = 0
+
 trusted_config_paths = [
     "~/.codex/worktrees",
     "~/.hubris-dev/worktrees",
@@ -12,10 +16,10 @@ trusted_config_paths = [
     "~/conductor/workspaces",
 ]
 idiomatic_version_file_enable_tools = [
-    "ruby",
-    "python",
-    "node",
     "go",
+    "node",
+    "python",
+    "ruby",
     "terraform",
     "yarn",
 ]
@@ -36,9 +40,42 @@ uvx = true
 compile = true
 
 [tools]
-"aqua:AlexanderGrooff/mermaid-ascii" = "latest"
-"aqua:svenstaro/miniserve" = "latest"
-"aqua:tldr-pages/tlrc" = "latest"
+# Go-based tools.
+go = "latest"
+gofumpt = "latest"
+golangci-lint = "latest"
+golangci-lint-langserver = "latest"
+golines = "latest"
+goreleaser = "latest"
+"go:github.com/rakyll/hey" = "latest"
+"go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
+"go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
+
+# Node-based tools.
+aube = "latest"
+node = "lts"
+pnpm = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:agent-browser" = "latest"
+"npm:convex" = "latest"
+"npm:http-server" = "latest"
+"npm:httpsnippet" = "latest"
+"npm:localtunnel" = "latest"
+"npm:skills" = "latest"
+"npm:svgo" = "latest"
+"npm:yarn" = "latest"
+
+# Python-based tools.
+uv = "latest"
+python = "latest"
+"pipx:ansible-lint" = "latest"
+"pipx:dmgbuild" = "latest"
+"pipx:fonttools" = "latest"
+"pipx:pipx" = "latest"
+"pipx:toml-sort" = "latest"
+"pipx:yamllint" = "latest"
+
+# Rust-based tools.
 "cargo:bacon" = "latest"
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-edit" = "latest"
@@ -56,31 +93,15 @@ compile = true
 "cargo:parallel-disk-usage" = { version = "latest", bin = "pdu" }
 "cargo:pastel" = "latest"
 "cargo:riffdiff" = "latest"
-"github:stacklok/toolhive" = "latest"
-"go:github.com/rakyll/hey" = "latest"
-"go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
-"go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
-"npm:@mermaid-js/mermaid-cli" = "latest"
-"npm:agent-browser" = "latest"
-"npm:convex" = "latest"
-"npm:http-server" = "latest"
-"npm:httpsnippet" = "latest"
-"npm:localtunnel" = "latest"
-"npm:skills" = "latest"
-"npm:svgo" = "latest"
-"npm:yarn" = "latest"
-"pipx:ansible-lint" = "latest"
-"pipx:dmgbuild" = "latest"
-"pipx:fonttools" = "latest"
-"pipx:pipx" = "latest"
-"pipx:toml-sort" = "latest"
-"pipx:yamllint" = "latest"
+
+# Other tools.
+"aqua:AlexanderGrooff/mermaid-ascii" = "latest"
+"aqua:svenstaro/miniserve" = "latest"
+"aqua:tldr-pages/tlrc" = "latest"
 1password = "latest"
 actionlint = "latest"
-argo-rollouts = "latest"
 argocd = "latest"
 atuin = "latest"
-aube = "latest"
 aws-cli = "latest"
 bat = "latest"
 bat-extras = "latest"
@@ -101,12 +122,6 @@ fzf = "latest"
 gemini = "latest"
 gh = "latest"
 gitu = "latest"
-go = "latest"
-gofumpt = "latest"
-golangci-lint = "latest"
-golangci-lint-langserver = "latest"
-golines = "latest"
-goreleaser = "latest"
 grpcurl = "latest"
 hadolint = "latest"
 helm = "latest"
@@ -128,12 +143,9 @@ kustomize = "latest"
 lua = "latest"
 lua-language-server = "latest"
 markdownlint-cli2 = "latest"
-node = "lts"
 opencode = "latest"
 opentofu = "latest"
-pnpm = "latest"
 portless = "latest"
-python = "latest"
 rclone = "latest"
 restish = "latest"
 ripgrep = "latest"
@@ -154,11 +166,9 @@ terraform-ls = "latest"
 tflint = "latest"
 ubi = "latest"
 usage = "latest"
-uv = "latest"
 watchexec = "latest"
 yj = "latest"
 yq = "latest"
-zig = "latest"
 zls = "latest"
 zoxide = "latest"
 
