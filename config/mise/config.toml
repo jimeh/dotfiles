@@ -1,6 +1,7 @@
 [settings]
 experimental = true
 legacy_version_file = true
+minimum_release_age = "3d"
 not_found_auto_install = false
 trusted_config_paths = [
     "~/.codex/worktrees",
@@ -24,7 +25,7 @@ show_env = true
 show_tools = false
 
 [settings.npm]
-bun = true
+package_manager = "aube"
 
 [settings.pipx]
 # Allow mise to install pipx packages without manual installation of pipx.
@@ -42,6 +43,7 @@ compile = true
 "cargo:cargo-audit" = "latest"
 "cargo:cargo-edit" = "latest"
 "cargo:cargo-info" = "latest"
+"cargo:cargo-outdated" = "latest"
 "cargo:cargo-show" = "latest"
 "cargo:cargo-update" = "latest"
 "cargo:dioxus-cli" = "latest"
@@ -58,40 +60,14 @@ compile = true
 "go:github.com/rakyll/hey" = "latest"
 "go:google.golang.org/grpc/cmd/protoc-gen-go-grpc" = "latest"
 "go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
-"npm:@github/copilot-language-server" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
-"npm:@playwright/mcp" = "latest"
-"npm:@prettier/plugin-php" = "latest"
 "npm:agent-browser" = "latest"
-"npm:claude-plugins" = "latest"
-"npm:cline" = "latest"
 "npm:convex" = "latest"
-"npm:dockerfile-language-server-nodejs" = "latest"
-"npm:eslint" = "latest"
-"npm:eslint-config-prettier" = "latest"
-"npm:eslint-plugin-prettier" = "latest"
-"npm:eslint_d" = "latest"
-"npm:gitnexus" = "latest"
-"npm:htmllint-cli" = "latest"
 "npm:http-server" = "latest"
 "npm:httpsnippet" = "latest"
-"npm:jsonlint" = "latest"
 "npm:localtunnel" = "latest"
-"npm:markdown-it" = "latest"
-"npm:oxfmt" = "latest"
-"npm:oxlint" = "latest"
-"npm:prettier" = "latest"
-"npm:prettier-plugin-toml" = "latest"
-"npm:prettier-pnp" = "latest"
 "npm:skills" = "latest"
-"npm:stylelint" = "latest"
 "npm:svgo" = "latest"
-"npm:typescript" = "latest"
-"npm:typescript-formatter" = "latest"
-"npm:typescript-language-server" = "latest"
-"npm:vscode-css-languageserver-bin" = "latest"
-"npm:vscode-json-languageserver" = "latest"
-"npm:yaml-language-server" = "latest"
 "npm:yarn" = "latest"
 "pipx:ansible-lint" = "latest"
 "pipx:dmgbuild" = "latest"
@@ -104,11 +80,11 @@ actionlint = "latest"
 argo-rollouts = "latest"
 argocd = "latest"
 atuin = "latest"
+aube = "latest"
 aws-cli = "latest"
 bat = "latest"
 bat-extras = "latest"
 buf = "latest"
-bun = "latest"
 cargo-binstall = "latest"
 cloudflared = "latest"
 codex = "latest"
@@ -185,6 +161,10 @@ yq = "latest"
 zig = "latest"
 zls = "latest"
 zoxide = "latest"
+
+[tools."npm:gitnexus"]
+version = "latest"
+allow_builds = ["@ladybugdb/core", "gitnexus", "tree-sitter"]
 
 # Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
 # bcrypt 4.1 or later.
