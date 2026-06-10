@@ -30,11 +30,11 @@ local function init_hotkeys()
     { 'Google Calendar' }
   )
 
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'W', { 'Cursor' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'E',
-    { 'Hucode', '/Applications/Hucode.app' },
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Hucode', '/Applications/Hucode.app' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
     { 'Code', '/Applications/Visual Studio Code.app' },
-    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' }
+    { 'Code - Insiders', '/Applications/Visual Studio Code - Insiders.app' },
+    { 'Cursor' }
   )
 
   -- -- Use Ghostty as my primary terminal application.
@@ -54,18 +54,18 @@ end
 -- URL Handling
 --------------------------------------------------------------------------------
 
--- local uh = require('url_handler')
+local uh = require('url_handler')
 
--- local function init_url_handler()
---   uh.default_handler = uh.browsers.arc
---   uh.url_patterns    = {
---     {
---       { "%://meet.google.com/" }, uh.browsers.chrome, nil,
---     }
---   }
+local function init_url_handler()
+  uh.default_handler = uh.browsers.arc
+  uh.url_patterns    = {
+    {
+      { "%://meet.google.com/" }, uh.browsers.chrome, nil,
+    }
+  }
 
---   uh:init()
--- end
+  uh:init()
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -73,7 +73,7 @@ end
 
 function obj.init()
   init_hotkeys()
-  -- init_url_handler()
+  init_url_handler()
 end
 
 return obj
