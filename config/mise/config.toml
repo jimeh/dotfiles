@@ -176,6 +176,7 @@ zoxide = "latest"
 
 [tools."npm:gitnexus"]
 version = "latest"
+bun_args = "--trust"
 allow_builds = ["@ladybugdb/core", "gitnexus", "tree-sitter"]
 
 # Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
