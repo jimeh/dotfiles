@@ -29,7 +29,7 @@ show_env = true
 show_tools = false
 
 [settings.npm]
-package_manager = "aube"
+package_manager = "bun"
 
 [settings.pipx]
 # Allow mise to install pipx packages without manual installation of pipx.
@@ -52,9 +52,9 @@ goreleaser = "latest"
 "go:google.golang.org/protobuf/cmd/protoc-gen-go" = "latest"
 
 # Node-based tools.
-aube = "latest"
 node = "lts"
 pnpm = "latest"
+bun = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:agent-browser" = "latest"
 "npm:convex" = "latest"
