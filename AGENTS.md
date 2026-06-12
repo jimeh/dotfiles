@@ -44,3 +44,10 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   such as VSCode may report an empty class and skip those keymaps.
 - `bin/gh-*` scripts are not automatically dispatched by `gh <name>`; install
   them as GitHub CLI extensions or add `gh` aliases when that UX is needed.
+- `mise which` re-resolves `latest` version pins over the network when caches
+  are stale, taking seconds per call (worse under GitHub rate limits). The
+  `mise-which` helper in `zshenv` sets `MISE_OFFLINE=1` to keep shell startup
+  network-free; keep that when modifying it.
+- `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode env
+  resolution — profiling shell startup from agent sessions requires
+  `CLAUDECODE=0 TERM=xterm-256color` overrides.

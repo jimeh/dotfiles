@@ -294,8 +294,9 @@ if ! command-exists starship && [ -f "$MISE_INSTALL_PATH" ]; then
 fi
 
 if command-exists starship; then
-  cached-eval "$(mise-which starship)" starship init zsh --print-full-init
-  setup-completions starship "$(mise-which starship)" starship completions zsh
+  starship_path="$(mise-which starship)"
+  cached-eval "$starship_path" starship init zsh --print-full-init
+  setup-completions starship "$starship_path" starship completions zsh
 else
   echo "WARN: starship not found, skipping prompt setup" >&2
   echo "      install with: mise use -g starship" >&2

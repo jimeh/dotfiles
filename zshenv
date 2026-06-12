@@ -87,10 +87,15 @@ command-path() {
 # regular path lookup would return the shimmed version of the command, but you
 # actually need the absolute path to the command.
 #
+# Runs mise in offline mode, as resolving "latest" version pins against remote
+# version lists can block shell startup for seconds per call when caches are
+# stale or GitHub rate limits are hit. Installed tools resolve fine offline.
+#
 # Arguments:
 #   $1 - cmd: The command to find the path to.
 mise-which() {
-  command-exists mise && mise which "$1" 2>/dev/null || command-path "$1"
+  command-exists mise && MISE_OFFLINE=1 mise which "$1" 2>/dev/null ||
+    command-path "$1"
 }
 
 source-if-exists() {
