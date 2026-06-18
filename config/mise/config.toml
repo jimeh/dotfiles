@@ -3,9 +3,6 @@ experimental = true
 legacy_version_file = true
 minimum_release_age = "3d"
 not_found_auto_install = false
-fetch_remote_versions_timeout = "2s"
-http_timeout = "5s"
-http_retries = 0
 
 trusted_config_paths = [
     "~/.codex/worktrees",
