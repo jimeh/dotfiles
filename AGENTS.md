@@ -8,6 +8,7 @@ with a `.` prefix (e.g., `zshrc` → `~/.zshrc`). Managed by `install.sh`.
 ```sh
 ./install.sh           # Install symlinks + initialize shell
 ./install.sh symlinks  # Only install symlinks
+./install.sh moshi_hook  # Install/enable moshi-hook user service + linger
 ./install.sh terminfo  # Install terminfo entries
 nix-env -if default.nix  # Install/update Nix packages
 ```
@@ -19,6 +20,8 @@ nix-env -if default.nix  # Install/update Nix packages
   sourced by `zshrc`. Helper functions in `zsh/zshrc.funcs.zsh`.
 - **PATH**: Built in `zshenv`; interactive setup in `zshrc`
 - **XDG config**: Lives under `config/` (ghostty, kitty, mise, starship, etc.)
+- **systemd user units**: Host-specific units live under `config/systemd/user/`
+  and should be installed by explicit `install.sh` commands, not defaults.
 - **Hammerspoon**: Lua-based macOS automation, host-specific config in
   `hammerspoon/hosts/`. Has its own Makefile (`cd hammerspoon && make install`).
 - **Private dotfiles**: Separate repo cloned into `private/`, gitignored
@@ -51,3 +54,9 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode env
   resolution — profiling shell startup from agent sessions requires
   `CLAUDECODE=0 TERM=xterm-256color` overrides.
+- `moshi-hook.service` is host-specific. Install it with
+  `./install.sh moshi_hook`, which also enables user linger.
+- `./install.sh moshi_hook` only installs/enables the daemon. Moshi agent
+  setup still requires `moshi-hook pair --token <token from Moshi>` and
+  `moshi-hook install`; verify with `moshi-hook status` and
+  `moshi-hook logs -f`.

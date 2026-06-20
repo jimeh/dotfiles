@@ -1,0 +1,13 @@
+[Unit]
+Description=Moshi hook daemon
+Documentation=https://getmoshi.app/docs/agent-hooks
+ConditionFileIsExecutable=%h/.local/bin/moshi-hook
+
+[Service]
+Type=exec
+ExecStart=%h/.local/bin/moshi-hook serve
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

@@ -104,6 +104,55 @@ install_launch_agents() {
   fi
 }
 
+install_moshi_hook_service() {
+  local service_name="moshi-hook.service"
+  local source="$ROOT_PATH/config/systemd/user/$service_name"
+  local target="$HOME/.config/systemd/user/$service_name"
+  local user="${USER:-$(id -un)}"
+  local linger
+
+  if [ ! -x "$HOME/.local/bin/moshi-hook" ]; then
+    log error moshi-hook "$HOME/.local/bin/moshi-hook is not executable"
+    return 1
+  fi
+
+  if ! command -v systemctl > /dev/null 2>&1; then
+    log error systemctl "systemctl is not available"
+    return 1
+  fi
+
+  symlink "$source" "$target"
+
+  log info systemctl "--user daemon-reload"
+  if ! systemctl --user daemon-reload; then
+    log error systemctl "--user daemon-reload failed"
+    return 1
+  fi
+
+  log info systemctl "--user enable --now $service_name"
+  if ! systemctl --user enable --now "$service_name"; then
+    log error systemctl "--user enable --now $service_name failed"
+    return 1
+  fi
+
+  if ! command -v loginctl > /dev/null 2>&1; then
+    log warn loginctl "loginctl is not available; linger not enabled"
+    return 0
+  fi
+
+  linger="$(loginctl show-user "$user" -p Linger --value 2> /dev/null)"
+  if [ "$linger" == "yes" ]; then
+    log ok loginctl "linger already enabled for $user"
+    return 0
+  fi
+
+  log info loginctl "enable-linger $user"
+  if ! loginctl enable-linger "$user"; then
+    log error loginctl "enable-linger $user failed"
+    return 1
+  fi
+}
+
 install_xbar_scripts() {
   mkdir -p "$HOME/Library/Application Support/xbar/plugins"
   for file in $ROOT_PATH/xbar/*; do
@@ -265,6 +314,7 @@ display_help() {
   echo '      homebrew: Install Homebrew (Mac OS X only).'
   echo '         rbenv: Install rbenv, a Ruby version manager.'
   echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
+  echo '    moshi_hook: Install and enable moshi-hook systemd user unit.'
   echo '      terminfo: Install terminfo.'
   echo '          help: Display this message.'
 }
@@ -298,6 +348,9 @@ case "$1" in
     ;;
   launch_agents | launch-agents | agents)
     install_launch_agents
+    ;;
+  moshi_hook | moshi-hook | moshi)
+    install_moshi_hook_service
     ;;
   xbar_scripts | xbar-scripts | xbar)
     install_xbar_scripts
