@@ -322,6 +322,9 @@ source "$DOTZSH/aliases.zsh"
 if [[ "$OSTYPE" == "darwin"* ]]; then source "$DOTZSH/macos.zsh"; fi
 if [[ "$OSTYPE" == "linux"* ]]; then source "$DOTZSH/linux.zsh"; fi
 
+# Host specific
+source-if-exists "$DOTZSH/hosts/${HOST%%.*}.zsh"
+
 # Utils
 source "$DOTZSH/1password.zsh"
 source "$DOTZSH/ansi.zsh"
@@ -330,6 +333,7 @@ source "$DOTZSH/copilot.zsh"
 source "$DOTZSH/emacs.zsh"
 source "$DOTZSH/claude-code.zsh"
 source "$DOTZSH/cursor.zsh"
+source "$DOTZSH/gpg.zsh"
 source "$DOTZSH/hucode.zsh"
 source "$DOTZSH/less.zsh"
 source "$DOTZSH/mise.zsh"
