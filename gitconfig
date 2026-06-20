@@ -65,8 +65,6 @@
 	tool = Kaleidoscope
 [diff "sopsdiffer"]
 	textconv = sops -d
-[credential]
-	helper = osxkeychain
 [filter "media"]
 	required = true
 	clean = git media clean %f
