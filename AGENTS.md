@@ -54,6 +54,10 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode env
   resolution — profiling shell startup from agent sessions requires
   `CLAUDECODE=0 TERM=xterm-256color` overrides.
+- `mise` applies a built-in release-age delay when resolving floating versions
+  like `latest`, even when `minimum_release_age` is not explicitly set. Use
+  `minimum_release_age_excludes` under `[settings]` for tools that must update
+  immediately.
 - `moshi-hook.service` is host-specific. Install it with
   `./install.sh moshi_hook`, which also enables user linger.
 - `./install.sh moshi_hook` only installs/enables the daemon. Moshi agent

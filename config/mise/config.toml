@@ -2,6 +2,9 @@
 experimental = true
 legacy_version_file = true
 minimum_release_age = "3d"
+minimum_release_age_excludes = [
+    "codex",
+]
 not_found_auto_install = false
 
 trusted_config_paths = [
