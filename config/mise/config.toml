@@ -6,6 +6,7 @@ minimum_release_age_excludes = [
     "codex",
 ]
 not_found_auto_install = false
+prefer_offline = true
 
 trusted_config_paths = [
     "~/.codex/worktrees",
@@ -27,6 +28,9 @@ idiomatic_version_file_enable_tools = [
 [settings.status]
 show_env = true
 show_tools = false
+
+[settings.task]
+run_auto_install = false
 
 [settings.npm]
 package_manager = "bun"
@@ -101,8 +105,6 @@ python = "latest"
 1password = "latest"
 actionlint = "latest"
 argocd = "latest"
-atuin = "latest"
-aws-cli = "latest"
 bat = "latest"
 bat-extras = "latest"
 buf = "latest"

@@ -90,11 +90,15 @@ module Xbar
       @printer ||= ::Xbar::Printer.new
     end
 
-    def cmd(*args, dir: nil)
+    def cmd(*args, dir: nil, env: nil)
       opts = {}
       opts[:chdir] = File.expand_path(dir) if dir
 
-      out, err, s = Open3.capture3(*args, opts)
+      out, err, s = if env
+                      Open3.capture3(env, *args, opts)
+                    else
+                      Open3.capture3(*args, opts)
+                    end
       if s.exitstatus != 0
         msg = "Command failed: #{args.join(' ')}"
         msg += ": #{err}" unless err.empty?
@@ -635,7 +639,10 @@ module Mise
           printer.item(
             "⬆️ Update (#{mise_current_version} → #{mise_latest_version})",
               terminal: true, refresh: true,
-              shell: [mise_path, 'self-update', '--yes']
+              shell: [
+                '/usr/bin/env', 'MISE_PREFER_OFFLINE=0',
+                mise_path, 'self-update', '--yes'
+              ]
           )
           printer.sep
           printer.item(
@@ -712,7 +719,10 @@ module Mise
     def mise_force_check_latest_version
       return if @has_force_checked_version_info
 
-      Open3.popen3(mise_path, 'self-update') do |stdin, _, _, _|
+      Open3.popen3(
+        { 'MISE_PREFER_OFFLINE' => '0' },
+        mise_path, 'self-update'
+      ) do |stdin, _, _, _|
         stdin.puts('n')
       end
 
@@ -1011,7 +1021,11 @@ module Mise
 
     def outdated_list
       @outdated_list ||= envs.each_with_object({}) do |env, memo|
-        out = cmd(mise_path, 'outdated', '--json', dir: env.path)
+        out = cmd(
+          mise_path, 'outdated', '--json',
+          dir: env.path,
+          env: { 'MISE_PREFER_OFFLINE' => '0' }
+        )
         out = '{}' if out.empty?
         memo[env.path] = JSON.parse(out)
       end

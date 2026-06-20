@@ -273,24 +273,11 @@ fi
 # ==============================================================================
 
 # Homebrew on Apple Silicon
-if [ -f "/opt/homebrew/bin/brew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if command-exists brew; then
-  typeset -A _brew_prefix_cache
-
-  brew-prefix() {
-    local package="${1:-__none__}"
-
-    if [[ -z "${_brew_prefix_cache[$package]}" ]]; then
-      _brew_prefix_cache[$package]="$(brew --prefix "$1" || return $?)"
-    fi
-
-    echo "${_brew_prefix_cache[$package]}"
-  }
-
-  export BREW_SITEFUNS="$(brew-prefix)/share/zsh/site-functions"
+if [ -f "/opt/homebrew/Library/Homebrew/brew.sh" ]; then
+  # Cache Homebrew setup so every zsh process does not have to execute
+  # `/opt/homebrew/bin/brew shellenv` during startup.
+  cached-eval "/opt/homebrew/Library/Homebrew/brew.sh" \
+    /opt/homebrew/bin/brew shellenv
 fi
 
 # Linuxbrew

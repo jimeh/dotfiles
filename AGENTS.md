@@ -51,6 +51,13 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   are stale, taking seconds per call (worse under GitHub rate limits). The
   `mise-which` helper in `zshenv` sets `MISE_OFFLINE=1` to keep shell startup
   network-free; keep that when modifying it.
+- Avoid uncached `brew shellenv` or `brew --prefix` calls from `zshenv`; macOS
+  `syspolicyd` can make Homebrew script launches take 10s+ and slow every zsh
+  command. Use `cached-eval` for `brew shellenv` and direct env-derived paths
+  for startup constants.
+- Global Mise uses `prefer_offline = true` to avoid remote version checks during
+  shim/tool lookup; update monitors such as `xbar/mise-updates.1h.rb` should
+  set `MISE_PREFER_OFFLINE=0` around `outdated` and `self-update` calls.
 - `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode env
   resolution — profiling shell startup from agent sessions requires
   `CLAUDECODE=0 TERM=xterm-256color` overrides.
