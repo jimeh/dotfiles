@@ -80,6 +80,7 @@
 	process = git-lfs filter-process
 [include]
 	path = ~/.gitconfig_private
+	path = ~/.gitconfig.local
 [init]
 	defaultBranch = main
 [gitlab]
