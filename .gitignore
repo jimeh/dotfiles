@@ -6,6 +6,6 @@
 .dropbox
 Icon*
 bin/boot2docker.iso
-private/*
+private/
 tmux/plugins/*
 cursor/cache/*
