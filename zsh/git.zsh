@@ -23,3 +23,7 @@ if command-exists delta; then
 elif command-exists difft; then
   export GIT_EXTERNAL_DIFF=difft
 fi
+
+if command-exists treeboot; then
+  setup-completions treeboot "$(mise-which treeboot)" treeboot completions zsh
+fi

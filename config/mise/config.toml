@@ -1,12 +1,11 @@
 [settings]
 experimental = true
 legacy_version_file = true
-minimum_release_age = "3d"
-minimum_release_age_excludes = [
-    "codex",
-]
 not_found_auto_install = false
 prefer_offline = true
+
+minimum_release_age = "3d"
+minimum_release_age_excludes = ["codex", "github:jimeh/treeboot"]
 
 trusted_config_paths = [
     "~/.codex/worktrees",
@@ -102,6 +101,7 @@ python = "latest"
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
 "aqua:svenstaro/miniserve" = "latest"
 "aqua:tldr-pages/tlrc" = "latest"
+"github:jimeh/treeboot" = "latest"
 1password = "latest"
 actionlint = "latest"
 argocd = "latest"
