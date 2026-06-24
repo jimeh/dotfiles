@@ -1,4 +1,5 @@
 [settings]
+lockfile = true
 experimental = true
 legacy_version_file = true
 not_found_auto_install = false
@@ -132,8 +133,8 @@ hexyl = "latest"
 hivemind = "latest"
 hwatch = "latest"
 jq = "latest"
-jwt = "latest"
-jwtui = "latest"
+jwt = { version = "latest", exe = "jwt" }
+jwtui = { version = "latest", exe = "jwtui" }
 k3d = "latest"
 k9s = "latest"
 kubecm = "latest"

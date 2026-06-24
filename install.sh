@@ -17,7 +17,7 @@ SYMLINKS=(
   config/ghostty
   config/kitty
   config/mise/config.toml
-  config/mise/settings.toml
+  config/mise/mise.lock
   config/nix/nix.conf
   config/solargraph/config.yml
   config/starship.toml
