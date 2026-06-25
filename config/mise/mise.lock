@@ -1930,11 +1930,11 @@ checksum = "sha256:34ddbab9eb07a72ea5cf36d98d97ce1931242cb89693cbf5dce06d65ba37d
 url = "https://github.com/opentofu/opentofu/releases/download/v1.12.3/tofu_1.12.3_windows_amd64.tar.gz"
 
 [[tools.oxfmt]]
-version = "0.55.0"
+version = "0.56.0"
 backend = "npm:oxfmt"
 
 [[tools.oxlint]]
-version = "1.70.0"
+version = "1.71.0"
 backend = "npm:oxlint"
 
 [[tools."pipx:ansible"]]
@@ -2491,42 +2491,42 @@ checksum = "sha256:22ed0c8eb0c15cbd2651c944517f6c06aa6ffa11467be55f7673f7242f1ba
 url = "https://github.com/stern/stern/releases/download/v1.34.0/stern_1.34.0_windows_amd64.tar.gz"
 
 [[tools.talosctl]]
-version = "1.12.9"
+version = "1.13.5"
 backend = "aqua:siderolabs/talos"
 
 [tools.talosctl."platforms.linux-arm64"]
-checksum = "sha256:0ee6c25009adca34e6a99926b474abe89b388bfab836229a0935ad8afa3e20c3"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-linux-arm64"
+checksum = "sha256:bd053d8264c1b0c091cbaf15e7b414ab1cd14a56ddd5860f2e2ba01e5aee3bc3"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-linux-arm64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.linux-arm64-musl"]
-checksum = "sha256:0ee6c25009adca34e6a99926b474abe89b388bfab836229a0935ad8afa3e20c3"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-linux-arm64"
+checksum = "sha256:bd053d8264c1b0c091cbaf15e7b414ab1cd14a56ddd5860f2e2ba01e5aee3bc3"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-linux-arm64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.linux-x64"]
-checksum = "sha256:096edfaea9b5bda6858751d1623a72e017e97f2656772cba0344a752ffc6a572"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-linux-amd64"
+checksum = "sha256:cb12209727c0c4d57d74c0595f34d441ba491421e1d3c8a5142ed91028a20232"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-linux-amd64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.linux-x64-musl"]
-checksum = "sha256:096edfaea9b5bda6858751d1623a72e017e97f2656772cba0344a752ffc6a572"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-linux-amd64"
+checksum = "sha256:cb12209727c0c4d57d74c0595f34d441ba491421e1d3c8a5142ed91028a20232"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-linux-amd64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.macos-arm64"]
-checksum = "sha256:f29958c0926b363ce46e50ef3154c3c5cb3621c36b9e8ffc68433acdf3b608f9"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-darwin-arm64"
+checksum = "sha256:5cfc42f5a51b01ea391c9760a1c5450517f7e85a74d145fd20b6abc4ac1df37e"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-darwin-arm64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.macos-x64"]
-checksum = "sha256:a5cb62ce1c5ad014b3e0935352832a04ae85a273c28055debaa1943e6641c9d6"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-darwin-amd64"
+checksum = "sha256:b5808a8f650c53987d0133704259f3cdf31c081710bda598f9b4cab934abc78c"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-darwin-amd64"
 provenance = "cosign"
 
 [tools.talosctl."platforms.windows-x64"]
-checksum = "sha256:e0b1eea32248f24d2a7531d8cf49c2e649ef2786eb586bf251ed0bf212f7b857"
-url = "https://github.com/siderolabs/talos/releases/download/v1.12.9/talosctl-windows-amd64.exe"
+checksum = "sha256:dd36d21d7157568387fa62e4f092b8a8536bb85f2362ababee493c503e48a0f2"
+url = "https://github.com/siderolabs/talos/releases/download/v1.13.5/talosctl-windows-amd64.exe"
 provenance = "cosign"
 
 [[tools.taplo]]
