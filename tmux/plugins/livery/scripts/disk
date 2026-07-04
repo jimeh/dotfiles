@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -u
+
+path="${1:-/}"
+
+df -kP "$path" 2> /dev/null |
+  awk '
+    function human(bytes) {
+      split("B K M G T P", unit, " ")
+      size = bytes
+      unit_index = 1
+
+      while (size >= 1024 && unit_index < 6) {
+        size = size / 1024
+        unit_index++
+      }
+
+      if (size >= 10 || unit_index == 1) {
+        return sprintf("%.0f%s", size, unit[unit_index])
+      }
+
+      return sprintf("%.1f%s", size, unit[unit_index])
+    }
+
+    NR == 2 {
+      print human($4 * 1024)
+      found = 1
+    }
+
+    END {
+      if (!found) {
+        print "--"
+      }
+    }
+  '

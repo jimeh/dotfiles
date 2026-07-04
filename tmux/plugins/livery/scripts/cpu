@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -u
+
+cpu_macos() {
+  top -l 1 -n 0 2> /dev/null |
+    awk -F '[ ,:%]+' '
+      /CPU usage/ {
+        printf "%.0f%%\n", $3 + $5
+        found = 1
+      }
+      END {
+        if (!found) {
+          print "--"
+        }
+      }
+    '
+}
+
+cpu_linux() {
+  local state_file="${TMPDIR:-/tmp}/livery-cpu-${USER:-user}"
+  local user nice system idle iowait irq softirq steal
+  local idle_all non_idle total
+  local prev_total prev_idle total_delta idle_delta used_delta
+
+  read -r _ user nice system idle iowait irq softirq steal _ < /proc/stat
+
+  idle_all=$((idle + iowait))
+  non_idle=$((user + nice + system + irq + softirq + steal))
+  total=$((idle_all + non_idle))
+
+  if [ -r "$state_file" ]; then
+    read -r prev_total prev_idle < "$state_file"
+  else
+    prev_total="$total"
+    prev_idle="$idle_all"
+  fi
+
+  printf '%s %s\n' "$total" "$idle_all" > "$state_file"
+
+  total_delta=$((total - prev_total))
+  idle_delta=$((idle_all - prev_idle))
+
+  if [ "$total_delta" -le 0 ]; then
+    printf '0%%\n'
+    return
+  fi
+
+  used_delta=$((total_delta - idle_delta))
+  awk -v used="$used_delta" -v total="$total_delta" \
+    'BEGIN { printf "%.0f%%\n", (used * 100) / total }'
+}
+
+case "$(uname -s)" in
+  Darwin) cpu_macos ;;
+  Linux) cpu_linux ;;
+  *) printf -- '--\n' ;;
+esac

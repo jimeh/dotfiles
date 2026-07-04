@@ -27,6 +27,9 @@ nix-env -if default.nix  # Install/update Nix packages
 - **Private dotfiles**: Separate repo cloned into `private/`, gitignored
 - **Nix**: `flake.nix` / `default.nix` for package management
 - **Tmux plugins**: Git submodules under `tmux/plugins/`
+- **Tmux theme**: `tmux/plugins/livery/` is a tracked local theme plugin
+  loaded directly from `tmux.conf`; keep its bundled status helpers private to
+  that plugin.
 
 ## Code Style
 
@@ -71,3 +74,9 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   setup still requires `moshi-hook pair --token <token from Moshi>` and
   `moshi-hook install`; verify with `moshi-hook status` and
   `moshi-hook logs -f`.
+- `tmux.conf` sources `tmux/hosts/<hostname -s>.conf` (tracked) and then
+  `~/.tmux.local.conf` (untracked) before running livery; pin a host's
+  palette there with `set -g @livery_preset <name>`.
+- `tmux/plugins/livery/palette.html` duplicates the preset list and the
+  base_alt mix formula from `livery.tmux`; update both together when
+  changing presets or the palette.

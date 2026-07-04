@@ -12,3 +12,16 @@ function_next_line = false  # like -fn
 
 [tmux/plugins/**]
 ignore = true
+
+# livery is first-party (not a third-party submodule); format it like the
+# rest of the repo's shell code.
+[{tmux/plugins/livery/livery.tmux,tmux/plugins/livery/scripts/*}]
+ignore = false
+indent_style = space
+indent_size = 2
+shell_variant = bash
+binary_next_line = false
+switch_case_indent = true
+space_redirects = true
+keep_padding = false
+function_next_line = false

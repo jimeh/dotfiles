@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -u
+
+memory_macos() {
+  local total
+
+  total="$(sysctl -n hw.memsize 2> /dev/null)"
+
+  vm_stat 2> /dev/null |
+    awk -v total="$total" '
+      function clean(value) {
+        gsub(/\./, "", value)
+        return value + 0
+      }
+
+      /page size of/ { page_size = $8 }
+      /Pages active/ { active = clean($3) }
+      /Pages wired down/ { wired = clean($4) }
+      /Pages occupied by compressor/ { compressed = clean($5) }
+
+      END {
+        used = (active + wired + compressed) * page_size
+        if (total > 0 && page_size > 0) {
+          printf "%.0f%%\n", (used * 100) / total
+        } else {
+          print "--"
+        }
+      }
+    '
+}
+
+memory_linux() {
+  awk '
+    /MemTotal:/ { total = $2 }
+    /MemAvailable:/ { available = $2 }
+    END {
+      if (total > 0 && available > 0) {
+        printf "%.0f%%\n", ((total - available) * 100) / total
+      } else {
+        print "--"
+      }
+    }
+  ' /proc/meminfo
+}
+
+case "$(uname -s)" in
+  Darwin) memory_macos ;;
+  Linux) memory_linux ;;
+  *) printf -- '--\n' ;;
+esac
