@@ -3,18 +3,31 @@
 set -u
 
 cpu_macos() {
-  top -l 1 -n 0 2> /dev/null |
-    awk -F '[ ,:%]+' '
-      /CPU usage/ {
-        printf "%.0f%%\n", $3 + $5
-        found = 1
-      }
-      END {
-        if (!found) {
-          print "--"
-        }
-      }
-    '
+  # top -l 1 reports a since-boot average and burns ~2s of CPU per call.
+  # Sum the per-process decaying averages from ps instead (~35ms) and
+  # normalize by core count. Track sums in tenths of a percent so the
+  # math stays integer-only.
+  local pc int frac sum count ncpu pct
+
+  sum=0
+  count=0
+  while read -r pc; do
+    int="${pc%%.*}"
+    frac="${pc#*.}"
+    [ "$frac" = "$pc" ] && frac=0
+    sum=$((sum + int * 10 + ${frac:0:1}))
+    count=$((count + 1))
+  done < <(ps -A -o %cpu= 2> /dev/null)
+
+  ncpu="$(sysctl -n hw.ncpu 2> /dev/null)"
+  if [ "$count" -eq 0 ] || [ -z "$ncpu" ] || [ "$ncpu" -le 0 ]; then
+    printf -- '--\n'
+    return
+  fi
+
+  pct=$(((sum + ncpu * 5) / (ncpu * 10)))
+  [ "$pct" -gt 100 ] && pct=100
+  printf '%s%%\n' "$pct"
 }
 
 cpu_linux() {
@@ -75,8 +88,8 @@ cpu_linux() {
   printf '%s\n' "$pct"
 }
 
-case "$(uname -s)" in
-  Darwin) cpu_macos ;;
-  Linux) cpu_linux ;;
+case "$OSTYPE" in
+  darwin*) cpu_macos ;;
+  linux*) cpu_linux ;;
   *) printf -- '--\n' ;;
 esac

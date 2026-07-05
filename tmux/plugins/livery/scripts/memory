@@ -3,31 +3,41 @@
 set -u
 
 memory_macos() {
-  local total
+  # Matches Activity Monitor's "Memory Used": app memory (anonymous
+  # minus purgeable) plus wired and compressed pages.
+  local total page_size anon purgeable wired compressed
+  local line value used
 
   total="$(sysctl -n hw.memsize 2> /dev/null)"
 
-  vm_stat 2> /dev/null |
-    awk -v total="$total" '
-      function clean(value) {
-        gsub(/\./, "", value)
-        return value + 0
-      }
+  page_size=''
+  anon=''
+  purgeable=''
+  wired=''
+  compressed=''
+  while IFS= read -r line; do
+    value="${line##* }"
+    value="${value%.}"
+    case "$line" in
+      *'page size of'*)
+        page_size="${line#*page size of }"
+        page_size="${page_size%% *}"
+        ;;
+      'Anonymous pages:'*) anon="$value" ;;
+      'Pages purgeable:'*) purgeable="$value" ;;
+      'Pages wired down:'*) wired="$value" ;;
+      'Pages occupied by compressor:'*) compressed="$value" ;;
+    esac
+  done < <(vm_stat 2> /dev/null)
 
-      /page size of/ { page_size = $8 }
-      /Pages active/ { active = clean($3) }
-      /Pages wired down/ { wired = clean($4) }
-      /Pages occupied by compressor/ { compressed = clean($5) }
-
-      END {
-        used = (active + wired + compressed) * page_size
-        if (total > 0 && page_size > 0) {
-          printf "%.0f%%\n", (used * 100) / total
-        } else {
-          print "--"
-        }
-      }
-    '
+  if [ -n "$total" ] && [ "$total" -gt 0 ] && [ -n "$page_size" ] &&
+    [ -n "$anon" ] && [ -n "$purgeable" ] && [ -n "$wired" ] &&
+    [ -n "$compressed" ]; then
+    used=$(((anon - purgeable + wired + compressed) * page_size))
+    printf '%s%%\n' "$(((used * 100 + total / 2) / total))"
+  else
+    printf -- '--\n'
+  fi
 }
 
 memory_linux() {
@@ -52,8 +62,8 @@ memory_linux() {
   fi
 }
 
-case "$(uname -s)" in
-  Darwin) memory_macos ;;
-  Linux) memory_linux ;;
+case "$OSTYPE" in
+  darwin*) memory_macos ;;
+  linux*) memory_linux ;;
   *) printf -- '--\n' ;;
 esac

@@ -77,6 +77,10 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - `tmux.conf` sources `tmux/hosts/<hostname -s>.conf` (tracked) and then
   `~/.tmux.local.conf` (untracked) before running livery; pin a host's
   palette there with `set -g @livery_preset <name>`.
+- On macOS, `top -l 1` (and `iostat`'s first sample) report CPU usage
+  averaged since boot, not current load, and `top -l 1 -n 0` costs ~2s of
+  CPU per call even with `-F -R`. The livery cpu script sums
+  `ps -A -o %cpu=` normalized by `hw.ncpu` instead (~35ms).
 - `tmux/plugins/livery/palette.html` duplicates the preset list and the
   base_alt mix formula from `livery.tmux`; update both together when
   changing presets or the palette.
