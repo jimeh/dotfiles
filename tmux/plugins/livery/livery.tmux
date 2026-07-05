@@ -147,11 +147,11 @@ segment() {
 
 main() {
   local host preset requested_preset base_color
-  local left_extra right_extra clock_format interval
+  local left_extra right_extra clock_format clock_min_width interval
   local show_cpu show_memory show_disk disk_path
   local bg bg_alt fg muted subtle border base base_alt warn alert dark
-  local cpu memory disk metrics metric_sep sync sync_on sync_off
-  local prefix prefix_on prefix_off left right
+  local cpu memory disk metrics metric_sep sync_on
+  local prefix prefix_on left right clock wide tail
 
   host="$(host_short)"
   requested_preset="$(get_tmux_option @livery_preset)"
@@ -169,6 +169,7 @@ main() {
   left_extra="$(get_tmux_option @livery_left_extra)"
   right_extra="$(get_tmux_option @livery_right_extra)"
   clock_format="$(default_tmux_option @livery_clock_format '%H:%M')"
+  clock_min_width="$(default_tmux_option @livery_clock_min_width '91')"
   interval="$(default_tmux_option @livery_status_interval '5')"
   show_cpu="$(default_tmux_option @livery_show_cpu 'on')"
   show_memory="$(default_tmux_option @livery_show_memory 'on')"
@@ -197,14 +198,23 @@ main() {
   disk="#($CURRENT_DIR/scripts/disk '$disk_path')"
   metric_sep="$(segment "$muted" "$bg_alt" '∙')"
 
+  # With status-justify absolute-centre the window list is anchored to
+  # the terminal's centre, so the prefix indicator doesn't need a blank
+  # placeholder to keep the tabs from shifting — an empty branch
+  # reclaims that space when the status line is tight.
   prefix_on="$(segment "$warn" "$bg_alt" '∙ ')"
-  prefix_off="$(segment "$bg" "$bg" '∙ ')"
-  prefix="#{?client_prefix,$prefix_on,$prefix_off}"
-  sync_on="$(segment "$dark" "$alert" ' SYNC ')#[default] "
-  sync_off="$(segment "$bg" "$bg" '      ')#[default] "
-  sync="#{?pane_synchronized,$sync_on,$sync_off}"
+  prefix="#{?client_prefix,$prefix_on,}"
+  sync_on="$(segment "$dark" "$alert" ' SYNC ')"
   set_tmux_option @livery_sync_on "$sync_on"
-  set_tmux_option @livery_sync_off "$sync_off"
+  set_tmux_option @livery_sync_off ''
+
+  # Commas would split the surrounding #{?...} conditional; tmux turns
+  # #, back into a literal comma at display time.
+  clock="$(segment "$dark" "$base" " ${clock_format//,/#,} ")"
+  wide="#{e|>=:#{client_width},$clock_min_width}"
+  # SYNC takes over the clock slot while panes are synchronized (at any
+  # width); the clock itself only renders on clients wide enough.
+  tail="#{?pane_synchronized,$sync_on,#{?$wide,$clock,}}"
 
   left="$(segment "$dark" "$base" ' #H ')"
   left="$left$(segment "$fg" "$bg_alt" ' #S ')"
@@ -214,7 +224,7 @@ main() {
     left="$left$(segment "$fg" "$bg_alt" " $left_extra ")"
   fi
 
-  right="$sync"
+  right=''
 
   if [ -n "$right_extra" ]; then
     right="$right$(segment "$fg" "$bg_alt" " $right_extra ")"
@@ -241,7 +251,7 @@ main() {
   fi
 
   right="$right$metrics"
-  right="$right$(segment "$dark" "$base" " $clock_format ")"
+  right="$right$tail"
 
   set_tmux_option status on
   set_tmux_option status-interval "$interval"

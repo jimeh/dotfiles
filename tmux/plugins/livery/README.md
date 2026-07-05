@@ -23,6 +23,9 @@ Set before the `run-shell` line (e.g. in `tmux/hosts/<host>.conf` or
 | `@livery_base_color`      | unset       | `#rrggbb` accent override;   |
 |                           |             | replaces the preset's base   |
 | `@livery_clock_format`    | `%H:%M`     | strftime clock format        |
+| `@livery_clock_min_width` | `91`        | Hide clock on narrower       |
+|                           |             | clients; SYNC replaces the   |
+|                           |             | clock slot at any width      |
 | `@livery_status_interval` | `5`         | `status-interval` seconds    |
 | `@livery_show_cpu`        | `on`        | Show CPU metric (`on`/`off`) |
 | `@livery_show_memory`     | `on`        | Show MEM metric (`on`/`off`) |
