@@ -31,17 +31,25 @@ memory_macos() {
 }
 
 memory_linux() {
-  awk '
-    /MemTotal:/ { total = $2 }
-    /MemAvailable:/ { available = $2 }
-    END {
-      if (total > 0 && available > 0) {
-        printf "%.0f%%\n", ((total - available) * 100) / total
-      } else {
-        print "--"
-      }
-    }
-  ' /proc/meminfo
+  local key value total available
+
+  total=''
+  available=''
+  while read -r key value _; do
+    case "$key" in
+      MemTotal:) total="$value" ;;
+      MemAvailable:) available="$value" ;;
+    esac
+    if [ -n "$total" ] && [ -n "$available" ]; then
+      break
+    fi
+  done < /proc/meminfo
+
+  if [ -n "$total" ] && [ -n "$available" ] && [ "$total" -gt 0 ]; then
+    printf '%s%%\n' "$((((total - available) * 100 + total / 2) / total))"
+  else
+    printf -- '--\n'
+  fi
 }
 
 case "$(uname -s)" in

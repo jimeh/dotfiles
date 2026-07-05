@@ -4,33 +4,33 @@ set -u
 
 path="${1:-/}"
 
-df -kP "$path" 2> /dev/null |
-  awk '
-    function human(bytes) {
-      split("B K M G T P", unit, " ")
-      size = bytes
-      unit_index = 1
+# Last line's 4th field is available KB; the header line is read first
+# and harmlessly overwritten. -P keeps each filesystem on one line.
+avail=''
+while read -r _ _ _ field _; do
+  avail="$field"
+done < <(df -kP "$path" 2> /dev/null)
 
-      while (size >= 1024 && unit_index < 6) {
-        size = size / 1024
-        unit_index++
-      }
+case "$avail" in
+  '' | *[!0-9]*)
+    printf -- '--\n'
+    exit 0
+    ;;
+esac
 
-      if (size >= 10 || unit_index == 1) {
-        return sprintf("%.0f%s", size, unit[unit_index])
-      }
+bytes=$((avail * 1024))
 
-      return sprintf("%.1f%s", size, unit[unit_index])
-    }
+units=(B K M G T P)
+div=1
+i=0
+while [ "$((bytes / div))" -ge 1024 ] && [ "$i" -lt 5 ]; do
+  div=$((div * 1024))
+  i=$((i + 1))
+done
 
-    NR == 2 {
-      print human($4 * 1024)
-      found = 1
-    }
-
-    END {
-      if (!found) {
-        print "--"
-      }
-    }
-  '
+if [ "$((bytes / div))" -ge 10 ] || [ "$i" -eq 0 ]; then
+  printf '%s%s\n' "$(((bytes + div / 2) / div))" "${units[i]}"
+else
+  tenths=$(((bytes * 10 + div / 2) / div))
+  printf '%s.%s%s\n' "$((tenths / 10))" "$((tenths % 10))" "${units[i]}"
+fi
