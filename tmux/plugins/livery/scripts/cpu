@@ -18,37 +18,61 @@ cpu_macos() {
 }
 
 cpu_linux() {
-  local state_file="${TMPDIR:-/tmp}/livery-cpu-${USER:-user}"
+  # Prefer tmpfs-backed locations so the frequent state writes stay in
+  # memory ($XDG_RUNTIME_DIR is also per-user and cleared on reboot).
+  local state_dir="${XDG_RUNTIME_DIR:-/dev/shm}"
+  [ -d "$state_dir" ] || state_dir="${TMPDIR:-/tmp}"
+  local state_file="$state_dir/livery-cpu-${USER:-user}"
   local user nice system idle iowait irq softirq steal
-  local idle_all non_idle total
-  local prev_total prev_idle total_delta idle_delta used_delta
+  local idle_all non_idle total now pct
+  local prev_total prev_idle prev_time last_pct
+  local total_delta idle_delta used_delta
 
   read -r _ user nice system idle iowait irq softirq steal _ < /proc/stat
+  printf -v now '%(%s)T' -1
 
   idle_all=$((idle + iowait))
   non_idle=$((user + nice + system + irq + softirq + steal))
   total=$((idle_all + non_idle))
 
+  prev_total="$total"
+  prev_idle="$idle_all"
+  prev_time=0
+  last_pct=''
   if [ -r "$state_file" ]; then
-    read -r prev_total prev_idle < "$state_file"
-  else
-    prev_total="$total"
-    prev_idle="$idle_all"
+    read -r prev_total prev_idle prev_time last_pct < "$state_file" || :
   fi
 
-  printf '%s %s\n' "$total" "$idle_all" > "$state_file"
+  # tmux spawns this once per attached client, so invocations can land
+  # milliseconds apart. A sub-second /proc/stat window holds only a few
+  # scheduler ticks — mostly the cost of spawning this very script — and
+  # reads as bogus spikes (50%/100%). Serve the cached value instead.
+  if [ -n "$last_pct" ] && [ $((now - prev_time)) -lt 2 ]; then
+    printf '%s\n' "$last_pct"
+    return
+  fi
 
   total_delta=$((total - prev_total))
   idle_delta=$((idle_all - prev_idle))
 
   if [ "$total_delta" -le 0 ]; then
-    printf '0%%\n'
-    return
+    pct='0%'
+  else
+    used_delta=$((total_delta - idle_delta))
+    if [ "$used_delta" -lt 0 ]; then
+      used_delta=0
+    elif [ "$used_delta" -gt "$total_delta" ]; then
+      used_delta="$total_delta"
+    fi
+    pct="$(((used_delta * 100 + total_delta / 2) / total_delta))%"
   fi
 
-  used_delta=$((total_delta - idle_delta))
-  awk -v used="$used_delta" -v total="$total_delta" \
-    'BEGIN { printf "%.0f%%\n", (used * 100) / total }'
+  # A torn read of this single small write is possible but benign: the
+  # reader falls back to zeroed prev values and shows one lifetime-average
+  # sample. Not worth the extra mv fork to rename into place.
+  printf '%s %s %s %s\n' "$total" "$idle_all" "$now" "$pct" > "$state_file"
+
+  printf '%s\n' "$pct"
 }
 
 case "$(uname -s)" in
