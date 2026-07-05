@@ -151,7 +151,7 @@ main() {
   local show_cpu show_memory show_disk disk_path
   local bg bg_alt fg muted subtle border base base_alt warn alert dark
   local cpu memory disk metrics metric_sep sync_on
-  local prefix prefix_on left right clock wide tail
+  local prefix prefix_on prefix_off left right clock wide tail
 
   host="$(host_short)"
   requested_preset="$(get_tmux_option @livery_preset)"
@@ -198,12 +198,11 @@ main() {
   disk="#($CURRENT_DIR/scripts/disk '$disk_path')"
   metric_sep="$(segment "$muted" "$bg_alt" '∙')"
 
-  # With status-justify absolute-centre the window list is anchored to
-  # the terminal's centre, so the prefix indicator doesn't need a blank
-  # placeholder to keep the tabs from shifting — an empty branch
-  # reclaims that space when the status line is tight.
+  # The invisible bg-on-bg placeholder keeps the centred window list
+  # from shifting every time the prefix indicator flashes on.
   prefix_on="$(segment "$warn" "$bg_alt" '∙ ')"
-  prefix="#{?client_prefix,$prefix_on,}"
+  prefix_off="$(segment "$bg" "$bg" '∙ ')"
+  prefix="#{?client_prefix,$prefix_on,$prefix_off}"
   sync_on="$(segment "$dark" "$alert" ' SYNC ')"
   set_tmux_option @livery_sync_on "$sync_on"
   set_tmux_option @livery_sync_off ''
