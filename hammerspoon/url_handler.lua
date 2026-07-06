@@ -22,6 +22,7 @@ local browser_bundle_ids = {
   edge      = 'com.microsoft.edgemac',
   firefox   = 'org.mozilla.firefox',
   flock     = 'com.flock.Flock',
+  helium    = 'net.imput.helium',
   icab      = 'de.icab.iCab',
   maxthon   = 'com.maxthon.Maxthon',
   omniweb   = 'com.omnigroup.OmniWeb5',
