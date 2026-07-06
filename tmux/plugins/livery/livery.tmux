@@ -5,7 +5,7 @@ set -u
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PRESET_NAMES='aurora ember lagoon violet moss slate sky rose sand coral
-lime ash cherry orchid jade plum'
+lime ash cherry orchid jade plum fuchsia'
 
 get_tmux_option() {
   local option="$1"
@@ -114,6 +114,7 @@ apply_preset() {
     orchid) base='#e38dcd' ;;
     jade) base='#8cd9b3' ;;
     plum) base='#d290df' ;;
+    fuchsia) base='#e06ee0' ;;
   esac
 
   if [ -n "$base_color" ]; then
@@ -147,7 +148,8 @@ segment() {
 
 main() {
   local host preset requested_preset base_color
-  local left_extra right_extra clock_format clock_min_width interval
+  local host_label left_extra right_extra clock_format clock_min_width
+  local interval
   local show_cpu show_memory show_disk disk_path
   local bg bg_alt fg muted subtle border base base_alt warn alert dark
   local cpu memory disk metrics metric_sep sync_on
@@ -166,6 +168,7 @@ main() {
 
   apply_preset "$preset" "$base_color"
 
+  host_label="$(default_tmux_option @livery_host_label '#H')"
   left_extra="$(get_tmux_option @livery_left_extra)"
   right_extra="$(get_tmux_option @livery_right_extra)"
   clock_format="$(default_tmux_option @livery_clock_format '%H:%M')"
@@ -215,7 +218,7 @@ main() {
   # width); the clock itself only renders on clients wide enough.
   tail="#{?pane_synchronized,$sync_on,#{?$wide,$clock,}}"
 
-  left="$(segment "$dark" "$base" ' #H ')"
+  left="$(segment "$dark" "$base" " $host_label ")"
   left="$left$(segment "$fg" "$bg_alt" ' #S ')"
   left="$left$prefix"
 

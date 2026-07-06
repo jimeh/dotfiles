@@ -31,11 +31,12 @@ Set before the `run-shell` line (e.g. in `tmux/hosts/<host>.conf` or
 | `@livery_show_memory`     | `on`        | Show MEM metric (`on`/`off`) |
 | `@livery_show_disk`       | `off`       | Show disk free (`on`/`off`)  |
 | `@livery_disk_path`       | `/`         | Path for the disk metric     |
+| `@livery_host_label`      | `#H`        | Text for the host segment    |
 | `@livery_left_extra`      | unset       | Extra left segment text      |
 | `@livery_right_extra`     | unset       | Extra right segment text     |
 
 Presets: aurora, ember, lagoon, violet, moss, slate, sky, rose, sand,
-coral, lime, ash, cherry, orchid, jade, plum.
+coral, lime, ash, cherry, orchid, jade, plum, fuchsia.
 
 `base_alt` (bell/activity tab tint) is always derived as a 60% blend of
 the base color toward the bar background, including for custom
