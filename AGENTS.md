@@ -84,3 +84,5 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - `tmux/plugins/livery/palette.html` duplicates the preset list and the
   base_alt mix formula from `livery.tmux`; update both together when
   changing presets or the palette.
+- `gpg-warm` refreshes `GPG_TTY` at call time before invoking GPG so pinentry
+  attaches to the current terminal pane/session instead of a stale agent tty.
