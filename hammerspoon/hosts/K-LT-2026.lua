@@ -13,13 +13,13 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'Superset' }, { 'Conductor' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'T3 Code (Alpha)' }, { 'Hubris' }, { 'Superset' }, { 'Conductor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT' }, { 'ChatGPT Atlas' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Argo CD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail+ for Gmail' }, { 'Notion Mail' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'F', { 'GitButler' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Emacs', '/Applications/Emacs.app' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'G', { 'Helium' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'TeamSpeak 3', '/Applications/TeamSpeak 3 Client.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
@@ -37,9 +37,9 @@ local function init_hotkeys()
     { 'Cursor' }
   )
 
-  -- -- Use Ghostty as my primary terminal application.
-  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
-  -- apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
+  -- Use Ghostty as my primary terminal application.
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
+  apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
 
   -- Use Ghostty as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
