@@ -13,7 +13,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'Hubris' }, { 'Superset' }, { 'Conductor' }, { 'T3 Code (Alpha)' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'T3 Code (Alpha)' }, { 'Hubris' }, { 'Superset' }, { 'Conductor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT' }, { 'ChatGPT Atlas' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
@@ -41,7 +41,7 @@ local function init_hotkeys()
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
   -- apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
 
-  -- Use Ghostty as my primary terminal application.
+  -- -- Use Ghostty as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
   -- apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
 
