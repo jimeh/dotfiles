@@ -35,7 +35,7 @@ cpu_linux() {
   # memory ($XDG_RUNTIME_DIR is also per-user and cleared on reboot).
   local state_dir="${XDG_RUNTIME_DIR:-/dev/shm}"
   [ -d "$state_dir" ] || state_dir="${TMPDIR:-/tmp}"
-  local state_file="$state_dir/livery-cpu-${USER:-user}"
+  local state_file="$state_dir/chroma-cpu-${USER:-user}"
   local user nice system idle iowait irq softirq steal
   local idle_all non_idle total now pct
   local prev_total prev_idle prev_time last_pct

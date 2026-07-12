@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>livery palette</title>
+<title>chroma palette</title>
 <style>
   :root {
     --bg: #15181d;
@@ -118,9 +118,9 @@
 </head>
 <body>
 <main>
-  <h1>livery</h1>
+  <h1>chroma</h1>
   <p class="intro">
-    Palette reference for <code>tmux/plugins/livery</code>. Accent
+    Palette reference for <code>tmux/plugins/chroma</code>. Accent
     presets are seeded per-host from <code>#{host_short}</code> and sorted
     by hue below; shared neutrals first.
   </p>
@@ -172,7 +172,7 @@
     { name: 'fuchsia', base: '#e06ee0' },
   ];
 
-  // Mirrors mix_color in livery.tmux: base_alt = 60% base over bg.
+  // Mirrors mix_color in chroma.tmux: base_alt = 60% base over bg.
   function mix(c1, c2, pct) {
     const ch = (s, i) => parseInt(s.slice(i, i + 2), 16);
     const hex = (v) => Math.floor(v).toString(16).padStart(2, '0');
@@ -208,7 +208,7 @@
         <div class="chip" style="background:${p.base}">base</div>
         <div class="chip" style="background:${alt}">base_alt</div>
       </div>
-      <div class="statusbar"><span class="seg-host" style="background:${p.base}"> noct </span><span class="seg-session"> main <span class="prefix-dot">&#8729; </span></span><span class="spacer"></span><span class="seg-tab"> 1:zsh </span><span class="seg-tab-current" style="color:${p.base}"> 2:vim* </span><span class="seg-tab" style="color:${alt}"> 3:ssh# </span><span class="seg-tab"> 4:htop </span><span class="spacer"></span><span class="seg-sync"> SYNC </span><span> </span><span class="seg-metrics"> CPU 12% <span class="dot">&#8729;</span> MEM 64% </span><span class="seg-clock" style="background:${p.base}"> 14:32 </span></div>
+      <div class="statusbar"><span class="seg-host" style="background:${p.base}"> noct </span><span class="seg-session"> main <span class="prefix-dot">&#8729; </span></span><span class="spacer"></span><span class="seg-tab"> 1:zsh </span><span class="seg-tab-current" style="color:${p.base}"> 2:vim<span style="color:${alt}">*</span> </span><span class="seg-tab" style="color:#8b96a8"> 3:ssh<span style="color:${alt}">#</span> </span><span class="seg-tab" style="color:#8b96a8"> 4:htop<span style="color:#ed8796">!</span> </span><span class="seg-tab"> 5:logs<span style="color:${alt}">-</span> </span><span class="spacer"></span><span class="seg-sync"> SYNC </span><span> </span><span class="seg-metrics"> CPU 12% <span class="dot">&#8729;</span> MEM 64% </span><span class="seg-clock" style="background:${p.base}"> 14:32 </span></div>
     `;
     container.appendChild(el);
   }

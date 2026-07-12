@@ -121,21 +121,21 @@ apply_preset() {
     base="$base_color"
   fi
 
-  # Quieter tint of base, used for bell/activity window tabs.
+  # Quieter tint of base, used for window flags except bell alerts.
   base_alt="$(mix_color "$base" "$bg" 60)"
 
-  set_tmux_option @livery_current_preset "$preset"
-  set_tmux_option @livery_base "$base"
-  set_tmux_option @livery_base_alt "$base_alt"
-  set_tmux_option @livery_bg "$bg"
-  set_tmux_option @livery_bg_alt "$bg_alt"
-  set_tmux_option @livery_fg "$fg"
-  set_tmux_option @livery_muted "$muted"
-  set_tmux_option @livery_subtle "$subtle"
-  set_tmux_option @livery_border "$border"
-  set_tmux_option @livery_warn "$warn"
-  set_tmux_option @livery_alert "$alert"
-  set_tmux_option @livery_dark "$dark"
+  set_tmux_option @chroma_current_preset "$preset"
+  set_tmux_option @chroma_base "$base"
+  set_tmux_option @chroma_base_alt "$base_alt"
+  set_tmux_option @chroma_bg "$bg"
+  set_tmux_option @chroma_bg_alt "$bg_alt"
+  set_tmux_option @chroma_fg "$fg"
+  set_tmux_option @chroma_muted "$muted"
+  set_tmux_option @chroma_subtle "$subtle"
+  set_tmux_option @chroma_border "$border"
+  set_tmux_option @chroma_warn "$warn"
+  set_tmux_option @chroma_alert "$alert"
+  set_tmux_option @chroma_dark "$dark"
 }
 
 segment() {
@@ -153,12 +153,12 @@ main() {
   local show_cpu show_memory show_disk disk_path
   local bg bg_alt fg muted subtle border base base_alt warn alert dark
   local cpu memory disk metrics metric_sep sync_on
-  local prefix prefix_on prefix_off left right clock wide tail
+  local prefix prefix_on prefix_off left right clock wide tail window_flags
 
   host="$(host_short)"
-  requested_preset="$(get_tmux_option @livery_preset)"
+  requested_preset="$(get_tmux_option @chroma_preset)"
   preset="$(resolve_preset "$requested_preset" "$host")"
-  base_color="$(get_tmux_option @livery_base_color)"
+  base_color="$(get_tmux_option @chroma_base_color)"
 
   # mix_color needs a full #rrggbb value; ignore anything else.
   case "$base_color" in
@@ -168,33 +168,33 @@ main() {
 
   apply_preset "$preset" "$base_color"
 
-  host_label="$(default_tmux_option @livery_host_label '#H')"
-  left_extra="$(get_tmux_option @livery_left_extra)"
-  right_extra="$(get_tmux_option @livery_right_extra)"
-  clock_format="$(default_tmux_option @livery_clock_format '%H:%M')"
-  clock_min_width="$(default_tmux_option @livery_clock_min_width '91')"
-  interval="$(default_tmux_option @livery_status_interval '5')"
-  show_cpu="$(default_tmux_option @livery_show_cpu 'on')"
-  show_memory="$(default_tmux_option @livery_show_memory 'on')"
-  show_disk="$(default_tmux_option @livery_show_disk 'off')"
-  disk_path="$(default_tmux_option @livery_disk_path '/')"
+  host_label="$(default_tmux_option @chroma_host_label '#H')"
+  left_extra="$(get_tmux_option @chroma_left_extra)"
+  right_extra="$(get_tmux_option @chroma_right_extra)"
+  clock_format="$(default_tmux_option @chroma_clock_format '%H:%M')"
+  clock_min_width="$(default_tmux_option @chroma_clock_min_width '91')"
+  interval="$(default_tmux_option @chroma_status_interval '5')"
+  show_cpu="$(default_tmux_option @chroma_show_cpu 'on')"
+  show_memory="$(default_tmux_option @chroma_show_memory 'on')"
+  show_disk="$(default_tmux_option @chroma_show_disk 'off')"
+  disk_path="$(default_tmux_option @chroma_disk_path '/')"
 
-  bg="$(get_tmux_option @livery_bg)"
-  bg_alt="$(get_tmux_option @livery_bg_alt)"
-  fg="$(get_tmux_option @livery_fg)"
-  muted="$(get_tmux_option @livery_muted)"
-  subtle="$(get_tmux_option @livery_subtle)"
-  border="$(get_tmux_option @livery_border)"
-  base="$(get_tmux_option @livery_base)"
-  base_alt="$(get_tmux_option @livery_base_alt)"
-  warn="$(get_tmux_option @livery_warn)"
-  alert="$(get_tmux_option @livery_alert)"
-  dark="$(get_tmux_option @livery_dark)"
+  bg="$(get_tmux_option @chroma_bg)"
+  bg_alt="$(get_tmux_option @chroma_bg_alt)"
+  fg="$(get_tmux_option @chroma_fg)"
+  muted="$(get_tmux_option @chroma_muted)"
+  subtle="$(get_tmux_option @chroma_subtle)"
+  border="$(get_tmux_option @chroma_border)"
+  base="$(get_tmux_option @chroma_base)"
+  base_alt="$(get_tmux_option @chroma_base_alt)"
+  warn="$(get_tmux_option @chroma_warn)"
+  alert="$(get_tmux_option @chroma_alert)"
+  dark="$(get_tmux_option @chroma_dark)"
 
-  set_tmux_option @livery_plugin_dir "$CURRENT_DIR"
+  set_tmux_option @chroma_plugin_dir "$CURRENT_DIR"
   # Unquoted echo flattens the newline in PRESET_NAMES to a space.
   # shellcheck disable=SC2086,SC2116
-  set_tmux_option @livery_preset_names "$(echo $PRESET_NAMES)"
+  set_tmux_option @chroma_preset_names "$(echo $PRESET_NAMES)"
 
   cpu="#($CURRENT_DIR/scripts/cpu)"
   memory="#($CURRENT_DIR/scripts/memory)"
@@ -207,8 +207,8 @@ main() {
   prefix_off="$(segment "$bg" "$bg" '∙ ')"
   prefix="#{?client_prefix,$prefix_on,$prefix_off}"
   sync_on="$(segment "$dark" "$alert" ' SYNC ')"
-  set_tmux_option @livery_sync_on "$sync_on"
-  set_tmux_option @livery_sync_off ''
+  set_tmux_option @chroma_sync_on "$sync_on"
+  set_tmux_option @chroma_sync_off ''
 
   # Commas would split the surrounding #{?...} conditional; tmux turns
   # #, back into a literal comma at display time.
@@ -255,6 +255,10 @@ main() {
   right="$right$metrics"
   right="$right$tail"
 
+  # Keep alert tabs in the neutral inactive palette. Bell flags use the alert
+  # color; all other window flags use the quieter accent.
+  window_flags="#{?window_bell_flag,#[fg=$alert]!,#[fg=$base_alt]#F}"
+
   set_tmux_option status on
   set_tmux_option status-interval "$interval"
   set_tmux_option status-left-length 80
@@ -270,10 +274,10 @@ main() {
   set_tmux_option window-status-separator ''
   set_tmux_option window-status-style "fg=$subtle,bg=$bg"
   set_tmux_option window-status-current-style "fg=$base,bg=$bg"
-  set_tmux_option window-status-bell-style "fg=$base_alt,bg=$bg"
-  set_tmux_option window-status-activity-style "fg=$base_alt,bg=$bg"
-  set_tmux_option window-status-format ' #I:#W#F '
-  set_tmux_option window-status-current-format ' #I:#W#F '
+  set_tmux_option window-status-bell-style "fg=$muted,bg=$bg"
+  set_tmux_option window-status-activity-style "fg=$muted,bg=$bg"
+  set_tmux_option window-status-format " #I:#W$window_flags "
+  set_tmux_option window-status-current-format " #I:#W$window_flags "
   set_tmux_option status-left "$left#[default]"
   set_tmux_option status-right "$right#[default]"
 }

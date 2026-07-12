@@ -8,6 +8,6 @@ Icon*
 bin/boot2docker.iso
 private/
 tmux/plugins/*
-!tmux/plugins/livery/
-!tmux/plugins/livery/**
+!tmux/plugins/chroma/
+!tmux/plugins/chroma/**
 cursor/cache/*

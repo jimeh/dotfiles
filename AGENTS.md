@@ -27,7 +27,7 @@ nix-env -if default.nix  # Install/update Nix packages
 - **Private dotfiles**: Separate repo cloned into `private/`, gitignored
 - **Nix**: `flake.nix` / `default.nix` for package management
 - **Tmux plugins**: Git submodules under `tmux/plugins/`
-- **Tmux theme**: `tmux/plugins/livery/` is a tracked local theme plugin
+- **Tmux theme**: `tmux/plugins/chroma/` is a tracked local theme plugin
   loaded directly from `tmux.conf`; keep its bundled status helpers private to
   that plugin.
 
@@ -75,14 +75,14 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   `moshi-hook install`; verify with `moshi-hook status` and
   `moshi-hook logs -f`.
 - `tmux.conf` sources `tmux/hosts/<hostname -s>.conf` (tracked) and then
-  `~/.tmux.local.conf` (untracked) before running livery; pin a host's
-  palette there with `set -g @livery_preset <name>`.
+  `~/.tmux.local.conf` (untracked) before running chroma; pin a host's
+  palette there with `set -g @chroma_preset <name>`.
 - On macOS, `top -l 1` (and `iostat`'s first sample) report CPU usage
   averaged since boot, not current load, and `top -l 1 -n 0` costs ~2s of
-  CPU per call even with `-F -R`. The livery cpu script sums
+  CPU per call even with `-F -R`. The chroma cpu script sums
   `ps -A -o %cpu=` normalized by `hw.ncpu` instead (~35ms).
-- `tmux/plugins/livery/palette.html` duplicates the preset list and the
-  base_alt mix formula from `livery.tmux`; update both together when
+- `tmux/plugins/chroma/palette.html` duplicates the preset list and the
+  base_alt mix formula from `chroma.tmux`; update both together when
   changing presets or the palette.
 - `gpg-warm` refreshes `GPG_TTY` at call time before invoking GPG so pinentry
   attaches to the current terminal pane/session instead of a stale agent tty.
