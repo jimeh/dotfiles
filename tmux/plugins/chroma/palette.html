@@ -80,6 +80,54 @@
     font-size: 12px;
   }
 
+  .preview-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 0.75rem 1.25rem;
+    margin: 2.5rem 0 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+  }
+  .control-group { display: grid; gap: 0.3rem; }
+  .control-label {
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .toggle-set {
+    display: inline-flex;
+    padding: 2px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #0c0e11;
+  }
+  .toggle {
+    border: 0;
+    border-radius: 3px;
+    padding: 0.3rem 0.55rem;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .toggle[aria-pressed="true"] {
+    background: var(--bg-alt);
+    color: var(--fg);
+  }
+  .toggle:focus-visible {
+    outline: 2px solid var(--warn);
+    outline-offset: 2px;
+  }
+  .control-note {
+    flex: 1 1 16rem;
+    margin: 0 0 0.15rem;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
   .pair { display: flex; gap: 0.6rem; margin-bottom: 0.9rem; }
   .pair .chip {
     flex: 1;
@@ -104,6 +152,33 @@
     line-height: 2;
   }
   .statusbar .spacer { flex: 1; }
+
+  .pl-divider {
+    position: relative;
+    flex: 0 0 10px;
+    align-self: stretch;
+  }
+  .pl-divider::before {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+  .pl-forward { background: var(--to); }
+  .pl-forward::before {
+    left: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid var(--from);
+  }
+  .pl-reverse { background: var(--from); }
+  .pl-reverse::before {
+    right: 0;
+    border-top: 13px solid transparent;
+    border-right: 10px solid var(--to);
+    border-bottom: 13px solid transparent;
+  }
 
   .seg-host { color: var(--dark); }
   .seg-session { background: var(--bg-alt); color: var(--fg); }
@@ -145,6 +220,39 @@
       <div class="label"><div class="name">alert</div><div class="hex">#ed8796</div></div></div>
     <div class="swatch"><div class="chip" style="background:#101216"></div>
       <div class="label"><div class="name">dark</div><div class="hex">#101216</div></div></div>
+  </div>
+
+  <div class="preview-controls" aria-label="Status preview controls">
+    <div class="control-group">
+      <span class="control-label">Mode</span>
+      <div class="toggle-set">
+        <button class="toggle" data-control="mode" data-value="block"
+          aria-pressed="true">Block</button>
+        <button class="toggle" data-control="mode" data-value="powerline"
+          aria-pressed="false">Powerline</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <span class="control-label">Prefix</span>
+      <div class="toggle-set">
+        <button class="toggle" data-control="prefix" data-value="idle"
+          aria-pressed="true">Idle</button>
+        <button class="toggle" data-control="prefix" data-value="active"
+          aria-pressed="false">Active</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <span class="control-label">Tail</span>
+      <div class="toggle-set">
+        <button class="toggle" data-control="tail" data-value="clock"
+          aria-pressed="true">Clock</button>
+        <button class="toggle" data-control="tail" data-value="sync"
+          aria-pressed="false">SYNC</button>
+      </div>
+    </div>
+    <p class="control-note">
+      SYNC replaces the clock, matching the live tmux status bar.
+    </p>
   </div>
 
   <h2>Presets</h2>
@@ -195,23 +303,94 @@
   presets.sort((a, b) => hue(a.base) - hue(b.base));
 
   const container = document.getElementById('presets');
+  const state = {
+    mode: 'block',
+    prefix: 'idle',
+    tail: 'clock',
+  };
 
-  for (const p of presets) {
-    const alt = mix(p.base, '#15181d', 60);
-    const el = document.createElement('div');
-    el.className = 'preset';
-    el.innerHTML = `
-      <h3>${p.name}
-        <span class="hexes">base ${p.base} &middot; base_alt ${alt} (derived)</span>
-      </h3>
-      <div class="pair">
-        <div class="chip" style="background:${p.base}">base</div>
-        <div class="chip" style="background:${alt}">base_alt</div>
-      </div>
-      <div class="statusbar"><span class="seg-host" style="background:${p.base}"> noct </span><span class="seg-session"> main <span class="prefix-dot">&#8729; </span></span><span class="spacer"></span><span class="seg-tab"> 1:zsh </span><span class="seg-tab-current" style="color:${p.base}"> 2:vim<span style="color:${alt}">*</span> </span><span class="seg-tab" style="color:#8b96a8"> 3:ssh<span style="color:${alt}">#</span> </span><span class="seg-tab" style="color:#8b96a8"> 4:htop<span style="color:#ed8796">!</span> </span><span class="seg-tab"> 5:logs<span style="color:${alt}">-</span> </span><span class="spacer"></span><span class="seg-sync"> SYNC </span><span> </span><span class="seg-metrics"> CPU 12% <span class="dot">&#8729;</span> MEM 64% </span><span class="seg-clock" style="background:${p.base}"> 14:32 </span></div>
-    `;
-    container.appendChild(el);
+  function powerlineDivider(direction, from, to, padAfter = true) {
+    return `<span style="background:${from}"> </span>` +
+      `<span class="pl-divider pl-${direction}" ` +
+      `style="--from:${from};--to:${to}"></span>` +
+      (padAfter ? `<span style="background:${to}"> </span>` : '');
   }
+
+  function statusPreview(p, alt) {
+    const powerline = state.mode === 'powerline';
+    const prefixActive = state.prefix === 'active';
+    const sync = state.tail === 'sync';
+    const prefixBg = powerline || !prefixActive ? '#15181d' : '#20242b';
+    const prefixFg = prefixActive ? '#eed49f' : prefixBg;
+    const prefix = `<span class="prefix-dot" ` +
+      `style="color:${prefixFg};background:${prefixBg}">∙ </span>`;
+    const host = `<span class="seg-host" style="background:${p.base}">` +
+      `${powerline ? '  ' : ' '}noct </span>`;
+    const session = `<span class="seg-session"> main </span>`;
+    const left = powerline
+      ? host + powerlineDivider('forward', p.base, '#20242b') + session +
+        powerlineDivider('forward', '#20242b', '#15181d') + prefix
+      : host + session + prefix;
+    const tabs = `<span class="seg-tab"> 1:zsh </span>` +
+      `<span class="seg-tab-current" style="color:${p.base}">` +
+      ` 2:vim<span style="color:${alt}">*</span> </span>` +
+      `<span class="seg-tab" style="color:#8b96a8"> 3:ssh` +
+      `<span style="color:${alt}">#</span> </span>` +
+      `<span class="seg-tab" style="color:#8b96a8"> 4:htop` +
+      `<span style="color:#ed8796">!</span> </span>` +
+      `<span class="seg-tab"> 5:logs` +
+      `<span style="color:${alt}">-</span> </span>`;
+    const metrics = `<span class="seg-metrics"> CPU 12% ` +
+      `<span class="dot">∙</span> MEM 64% </span>`;
+    const tailColor = sync ? '#ed8796' : p.base;
+    const tailClass = sync ? 'seg-sync' : 'seg-clock';
+    const tailText = sync ? 'SYNC' : '14:32';
+    const tail = `<span class="${tailClass}" ` +
+      `style="background:${tailColor}">${powerline ? '  ' : ' '}${tailText}` +
+      `${powerline ? '  ' : ' '}</span>`;
+    const right = powerline
+      ? powerlineDivider('reverse', '#15181d', '#20242b') + metrics +
+        powerlineDivider('reverse', '#20242b', tailColor, false) + tail
+      : metrics + tail;
+
+    return `<div class="statusbar">${left}<span class="spacer"></span>` +
+      `${tabs}<span class="spacer"></span>${right}</div>`;
+  }
+
+  function renderPresets() {
+    container.innerHTML = '';
+
+    for (const p of presets) {
+      const alt = mix(p.base, '#15181d', 60);
+      const el = document.createElement('div');
+      el.className = 'preset';
+      el.innerHTML = `
+        <h3>${p.name}
+          <span class="hexes">base ${p.base} &middot; base_alt ${alt} (derived)</span>
+        </h3>
+        <div class="pair">
+          <div class="chip" style="background:${p.base}">base</div>
+          <div class="chip" style="background:${alt}">base_alt</div>
+        </div>
+        ${statusPreview(p, alt)}
+      `;
+      container.appendChild(el);
+    }
+  }
+
+  document.querySelectorAll('.toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const control = button.dataset.control;
+      state[control] = button.dataset.value;
+      document.querySelectorAll(`[data-control="${control}"]`)
+        .forEach((peer) => {
+          peer.setAttribute('aria-pressed', String(peer === button));
+        });
+      renderPresets();
+    });
+  });
+
+  renderPresets();
 </script>
 </body>
 </html>

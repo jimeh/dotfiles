@@ -26,6 +26,8 @@ Set before the `run-shell` line (e.g. in `tmux/hosts/<host>.conf` or
 | `@chroma_clock_min_width` | `91`        | Hide clock on narrower       |
 |                           |             | clients; SYNC replaces the   |
 |                           |             | clock slot at any width      |
+| `@chroma_powerline`       | `off`       | Use Powerline section        |
+|                           |             | dividers (`on`/`off`)        |
 | `@chroma_status_interval` | `5`         | `status-interval` seconds    |
 | `@chroma_show_cpu`        | `on`        | Show CPU metric (`on`/`off`) |
 | `@chroma_show_memory`     | `on`        | Show MEM metric (`on`/`off`) |
@@ -42,6 +44,10 @@ Bell/activity tabs use `muted` text to remain distinct from the active tab.
 Tab flags use `base_alt`, except the bell indicator (`!`), which uses `alert`.
 `base_alt` is always derived as a 60% blend of the base color toward the bar
 background, including for custom `@chroma_base_color` values.
+
+Powerline mode requires a font containing the `` and `` glyphs. It changes
+the dividers between colored sections in the left and right status areas. The
+shared metric group continues to use `∙` separators.
 
 ## Exported options
 

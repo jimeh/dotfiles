@@ -146,14 +146,34 @@ segment() {
   printf '#[fg=%s]#[bg=%s]%s' "$fg" "$bg" "$text"
 }
 
+powerline_divider() {
+  local from="$1"
+  local to="$2"
+  local glyph="$3"
+  local divider
+
+  if [ "$glyph" = '' ]; then
+    divider="$(segment "$from" "$to" "$glyph")"
+  else
+    divider="$(segment "$to" "$from" "$glyph")"
+  fi
+
+  printf '%s%s%s' \
+    "$(segment "$from" "$from" ' ')" \
+    "$divider" \
+    "$(segment "$to" "$to" ' ')"
+}
+
 main() {
   local host preset requested_preset base_color
   local host_label left_extra right_extra clock_format clock_min_width
+  local powerline
   local interval
   local show_cpu show_memory show_disk disk_path
   local bg bg_alt fg muted subtle border base base_alt warn alert dark
-  local cpu memory disk metrics metric_sep sync_on
-  local prefix prefix_on prefix_off left right clock wide tail window_flags
+  local cpu memory disk metrics metric_sep sync_on sync_render
+  local prefix prefix_on prefix_off left right clock wide tail tail_bg
+  local window_flags
 
   host="$(host_short)"
   requested_preset="$(get_tmux_option @chroma_preset)"
@@ -173,6 +193,7 @@ main() {
   right_extra="$(get_tmux_option @chroma_right_extra)"
   clock_format="$(default_tmux_option @chroma_clock_format '%H:%M')"
   clock_min_width="$(default_tmux_option @chroma_clock_min_width '91')"
+  powerline="$(default_tmux_option @chroma_powerline 'off')"
   interval="$(default_tmux_option @chroma_status_interval '5')"
   show_cpu="$(default_tmux_option @chroma_show_cpu 'on')"
   show_memory="$(default_tmux_option @chroma_show_memory 'on')"
@@ -203,27 +224,50 @@ main() {
 
   # The invisible bg-on-bg placeholder keeps the centred window list
   # from shifting every time the prefix indicator flashes on.
-  prefix_on="$(segment "$warn" "$bg_alt" '∙ ')"
-  prefix_off="$(segment "$bg" "$bg" '∙ ')"
+  if [ "$powerline" = 'on' ]; then
+    prefix_on="$(segment "$warn" "$bg" '∙ ')"
+    prefix_off="$(segment "$bg" "$bg" '∙ ')"
+  else
+    prefix_on="$(segment "$warn" "$bg_alt" '∙ ')"
+    prefix_off="$(segment "$bg" "$bg" '∙ ')"
+  fi
   prefix="#{?client_prefix,$prefix_on,$prefix_off}"
-  sync_on="$(segment "$dark" "$alert" ' SYNC ')"
+  if [ "$powerline" = 'on' ]; then
+    sync_on="$(segment "$dark" "$alert" ' SYNC  ')"
+  else
+    sync_on="$(segment "$dark" "$alert" ' SYNC ')"
+  fi
   set_tmux_option @chroma_sync_on "$sync_on"
   set_tmux_option @chroma_sync_off ''
 
   # Commas would split the surrounding #{?...} conditional; tmux turns
   # #, back into a literal comma at display time.
-  clock="$(segment "$dark" "$base" " ${clock_format//,/#,} ")"
+  if [ "$powerline" = 'on' ]; then
+    clock="$(segment "$dark" "$base" " ${clock_format//,/#,}  ")"
+  else
+    clock="$(segment "$dark" "$base" " ${clock_format//,/#,} ")"
+  fi
   wide="#{e|>=:#{client_width},$clock_min_width}"
-  # SYNC takes over the clock slot while panes are synchronized (at any
-  # width); the clock itself only renders on clients wide enough.
-  tail="#{?pane_synchronized,$sync_on,#{?$wide,$clock,}}"
 
-  left="$(segment "$dark" "$base" " $host_label ")"
+  if [ "$powerline" = 'on' ]; then
+    left="$(segment "$dark" "$base" "  $host_label ")"
+    left="$left$(powerline_divider "$base" "$bg_alt" '')"
+  else
+    left="$(segment "$dark" "$base" " $host_label ")"
+  fi
   left="$left$(segment "$fg" "$bg_alt" ' #S ')"
-  left="$left$prefix"
+
+  if [ "$powerline" != 'on' ]; then
+    left="$left$prefix"
+  fi
 
   if [ -n "$left_extra" ]; then
     left="$left$(segment "$fg" "$bg_alt" " $left_extra ")"
+  fi
+
+  if [ "$powerline" = 'on' ]; then
+    left="$left$(powerline_divider "$bg_alt" "$bg" '')"
+    left="$left$prefix"
   fi
 
   right=''
@@ -253,6 +297,25 @@ main() {
   fi
 
   right="$right$metrics"
+
+  if [ -n "$right" ]; then
+    tail_bg="$bg_alt"
+    if [ "$powerline" = 'on' ]; then
+      right="$(powerline_divider "$bg" "$bg_alt" '')$right"
+    fi
+  else
+    tail_bg="$bg"
+  fi
+
+  sync_render="$sync_on"
+  if [ "$powerline" = 'on' ]; then
+    clock="$(powerline_divider "$tail_bg" "$base" '')$clock"
+    sync_render="$(powerline_divider "$tail_bg" "$alert" '')$sync_on"
+  fi
+
+  # SYNC takes over the clock slot while panes are synchronized (at any
+  # width); the clock itself only renders on clients wide enough.
+  tail="#{?pane_synchronized,$sync_render,#{?$wide,$clock,}}"
   right="$right$tail"
 
   # Keep alert tabs in the neutral inactive palette. Bell flags use the alert
