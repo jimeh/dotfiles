@@ -86,3 +86,6 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
   changing presets or the palette.
 - `gpg-warm` refreshes `GPG_TTY` at call time before invoking GPG so pinentry
   attaches to the current terminal pane/session instead of a stale agent tty.
+- `bin/claudex` reads the first API key from CLIProxyAPI's local config at
+  runtime. Use `CLAUDEX_BASE_URL`, `CLAUDEX_API_KEY`, `CLAUDEX_CONFIG`, and
+  `CLAUDEX_MODEL` for machine-specific overrides rather than committing them.
