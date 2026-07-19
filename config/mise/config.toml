@@ -6,7 +6,11 @@ not_found_auto_install = false
 prefer_offline = true
 
 minimum_release_age = "3d"
-minimum_release_age_excludes = ["codex", "github:jimeh/treeboot"]
+minimum_release_age_excludes = [
+    "codex",
+    "github:jimeh/airplan",
+    "github:jimeh/treeboot",
+]
 
 trusted_config_paths = [
     "~/.codex/worktrees",
