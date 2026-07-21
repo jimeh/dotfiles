@@ -9,6 +9,7 @@ minimum_release_age = "3d"
 minimum_release_age_excludes = [
     "codex",
     "github:jimeh/airplan",
+    "github:jimeh/hucode",
     "github:jimeh/treeboot",
 ]
 
@@ -108,6 +109,8 @@ python = "latest"
 "aqua:AlexanderGrooff/mermaid-ascii" = "latest"
 "aqua:svenstaro/miniserve" = "latest"
 "aqua:tldr-pages/tlrc" = "latest"
+"github:jimeh/airplan" = "latest"
+"github:jimeh/hucode" = { version = "latest", matching = "hucode-cli" }
 "github:jimeh/treeboot" = "latest"
 1password = "latest"
 actionlint = "latest"

@@ -510,79 +510,79 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 url_api = "https://api.github.com/repos/eth-p/bat-extras/releases/assets/188090138"
 
 [[tools.buf]]
-version = "1.71.0"
+version = "1.72.0"
 backend = "aqua:bufbuild/buf"
 
 [tools.buf."platforms.linux-arm64"]
-checksum = "sha256:b34722f849d14c7f4551d293e2d9608952d05340e98f7f3709ad50d61771340e"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449427972"
+checksum = "sha256:7641bd7e06a37a54cbb8c789f53465899def96196ab5c08057432f781a15d517"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772526"
 provenance = "minisign"
 
 [tools.buf."platforms.linux-arm64-musl"]
-checksum = "sha256:b34722f849d14c7f4551d293e2d9608952d05340e98f7f3709ad50d61771340e"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-aarch64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449427972"
+checksum = "sha256:7641bd7e06a37a54cbb8c789f53465899def96196ab5c08057432f781a15d517"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-aarch64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772526"
 provenance = "minisign"
 
 [tools.buf."platforms.linux-x64"]
-checksum = "sha256:1b941e33c62614944c35396bf0e7a197ec6e94e09ac1ce719667dd1bbb372ff5"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428034"
+checksum = "sha256:a9c6186cf6fcf062b247345e1b7b12c26f580c1b2a4bbf4d3fe080abf85ceee8"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772583"
 provenance = "minisign"
 
 [tools.buf."platforms.linux-x64-baseline"]
-checksum = "sha256:1b941e33c62614944c35396bf0e7a197ec6e94e09ac1ce719667dd1bbb372ff5"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428034"
+checksum = "sha256:a9c6186cf6fcf062b247345e1b7b12c26f580c1b2a4bbf4d3fe080abf85ceee8"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772583"
 provenance = "minisign"
 
 [tools.buf."platforms.linux-x64-musl"]
-checksum = "sha256:1b941e33c62614944c35396bf0e7a197ec6e94e09ac1ce719667dd1bbb372ff5"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428034"
+checksum = "sha256:a9c6186cf6fcf062b247345e1b7b12c26f580c1b2a4bbf4d3fe080abf85ceee8"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772583"
 provenance = "minisign"
 
 [tools.buf."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:1b941e33c62614944c35396bf0e7a197ec6e94e09ac1ce719667dd1bbb372ff5"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428034"
+checksum = "sha256:a9c6186cf6fcf062b247345e1b7b12c26f580c1b2a4bbf4d3fe080abf85ceee8"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772583"
 provenance = "minisign"
 
 [tools.buf."platforms.macos-arm64"]
-checksum = "sha256:96151a0d44343d05930976069cc5d4bec7736cc920304816a2745906e822170d"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449427942"
+checksum = "sha256:be040ae0ca381103dfda68a36738695c4db3e48de8e91412acdc3d991f39b91e"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772487"
 provenance = "minisign"
 
 [tools.buf."platforms.macos-x64"]
-checksum = "sha256:217f4963af6e90e04dfc767adc5e9ccb4fe876ba1100abdecfc4302bc37ed419"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Darwin-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449427950"
+checksum = "sha256:8b87e66786b46b20e7f7e328c9e15f64f636041acfdbf93374873d9014a62d30"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Darwin-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772489"
 provenance = "minisign"
 
 [tools.buf."platforms.macos-x64-baseline"]
-checksum = "sha256:217f4963af6e90e04dfc767adc5e9ccb4fe876ba1100abdecfc4302bc37ed419"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Darwin-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449427950"
+checksum = "sha256:8b87e66786b46b20e7f7e328c9e15f64f636041acfdbf93374873d9014a62d30"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Darwin-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772489"
 provenance = "minisign"
 
 [tools.buf."platforms.windows-arm64"]
-checksum = "sha256:bab0ced380c04800c1649b1f1db20effd77f582ee032b50d9f94df7ca2981278"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Windows-arm64.zip"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428070"
+checksum = "sha256:79d7a18bddde96c248e5a606ba280708e71887a35939dee82cd49749740b77dc"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Windows-arm64.zip"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772606"
 provenance = "minisign"
 
 [tools.buf."platforms.windows-x64"]
-checksum = "sha256:f51dd473b9f5ce549877ac4ca13ff8a3b4678d13db5ae69ab0ae2b11b55d2fba"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Windows-x86_64.zip"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428076"
+checksum = "sha256:0332d8d1bf062c95a0418081b7e574551032ee72064af05e304e3a1454f8cf11"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Windows-x86_64.zip"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772631"
 provenance = "minisign"
 
 [tools.buf."platforms.windows-x64-baseline"]
-checksum = "sha256:f51dd473b9f5ce549877ac4ca13ff8a3b4678d13db5ae69ab0ae2b11b55d2fba"
-url = "https://github.com/bufbuild/buf/releases/download/v1.71.0/buf-Windows-x86_64.zip"
-url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/449428076"
+checksum = "sha256:0332d8d1bf062c95a0418081b7e574551032ee72064af05e304e3a1454f8cf11"
+url = "https://github.com/bufbuild/buf/releases/download/v1.72.0/buf-Windows-x86_64.zip"
+url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/480772631"
 provenance = "minisign"
 
 [[tools.bun]]
@@ -1605,6 +1605,149 @@ url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_windows_am
 url_api = "https://api.github.com/repos/cli/cli/releases/assets/464728577"
 provenance = "github-attestations"
 
+[[tools."github:jimeh/airplan"]]
+version = "0.3.0"
+backend = "github:jimeh/airplan"
+
+[tools."github:jimeh/airplan"."platforms.linux-arm64"]
+checksum = "sha256:e23be4a3e3bc207eb1895e356741ccec04f1780afc310cfe978f56f2d68f7822"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549834"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.linux-arm64-musl"]
+checksum = "sha256:e23be4a3e3bc207eb1895e356741ccec04f1780afc310cfe978f56f2d68f7822"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549834"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.linux-x64"]
+checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.linux-x64-baseline"]
+checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.linux-x64-musl"]
+checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.macos-arm64"]
+checksum = "sha256:de33397371c64e10d64f7be71f57994ba35b6e3e1e13fffc4d9b828d3d88c8fe"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549833"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.macos-x64"]
+checksum = "sha256:136574f05377c13e8666bdd4309453d041356b0f88b967129feab0a2f582938c"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549849"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.macos-x64-baseline"]
+checksum = "sha256:136574f05377c13e8666bdd4309453d041356b0f88b967129feab0a2f582938c"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549849"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.windows-arm64"]
+checksum = "sha256:716f55d89d93af5ff316f3476155d8b71ac17c8bcc90a0d4576b2fae726d980d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549832"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.windows-x64"]
+checksum = "sha256:6b15be068e652642eccd20997e96a2a4f922a487ef776efe7a63681493550bd6"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549831"
+provenance = "github-attestations"
+
+[tools."github:jimeh/airplan"."platforms.windows-x64-baseline"]
+checksum = "sha256:6b15be068e652642eccd20997e96a2a4f922a487ef776efe7a63681493550bd6"
+url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549831"
+provenance = "github-attestations"
+
+[[tools."github:jimeh/hucode"]]
+version = "0.0.53"
+backend = "github:jimeh/hucode"
+
+[tools."github:jimeh/hucode".options]
+matching = "hucode-cli"
+
+[tools."github:jimeh/hucode"."platforms.linux-arm64"]
+checksum = "sha256:3e691bd17bc83cbe07f8e81a2c30fed81e57361ff4e50a14fff8c0cda5c950b8"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112967"
+
+[tools."github:jimeh/hucode"."platforms.linux-arm64-musl"]
+checksum = "sha256:3e691bd17bc83cbe07f8e81a2c30fed81e57361ff4e50a14fff8c0cda5c950b8"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112967"
+
+[tools."github:jimeh/hucode"."platforms.linux-x64"]
+checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+
+[tools."github:jimeh/hucode"."platforms.linux-x64-baseline"]
+checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+
+[tools."github:jimeh/hucode"."platforms.linux-x64-musl"]
+checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+
+[tools."github:jimeh/hucode"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+
+[tools."github:jimeh/hucode"."platforms.macos-arm64"]
+checksum = "sha256:970d27f7eb1f48deaf5b1e7f0cc8ce4bce1c96471c4e55e2a058c86cddc46bc0"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112968"
+
+[tools."github:jimeh/hucode"."platforms.macos-x64"]
+checksum = "sha256:093962349da260bece39aa64681033cdb791c247369a89bb8d9589c3d180dfc1"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112984"
+
+[tools."github:jimeh/hucode"."platforms.macos-x64-baseline"]
+checksum = "sha256:093962349da260bece39aa64681033cdb791c247369a89bb8d9589c3d180dfc1"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112984"
+
+[tools."github:jimeh/hucode"."platforms.windows-arm64"]
+checksum = "sha256:6468c0b348abc6e1980316e898b545aee1f4b5d22a828912f59223b7ea90dd64"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112970"
+
+[tools."github:jimeh/hucode"."platforms.windows-x64"]
+checksum = "sha256:3378881315a7684ef7eb29de974d18b7b27a15563f04f1de4da48637648c54ba"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112987"
+
+[tools."github:jimeh/hucode"."platforms.windows-x64-baseline"]
+checksum = "sha256:3378881315a7684ef7eb29de974d18b7b27a15563f04f1de4da48637648c54ba"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112987"
+
 [[tools."github:jimeh/treeboot"]]
 version = "0.11.0"
 backend = "github:jimeh/treeboot"
@@ -2309,68 +2452,68 @@ checksum = "sha256:02c6137bb5f050479193afad5a28804e9edc3beeab7e7b53a6e1499c9ba38
 url = "https://get.helm.sh/helm-v4.2.3-windows-amd64.tar.gz"
 
 [[tools.helmfile]]
-version = "1.7.0"
+version = "1.7.1"
 backend = "aqua:helmfile/helmfile"
 
 [tools.helmfile."platforms.linux-arm64"]
-checksum = "sha256:2b674b68ed5a6ff628c4800cd369051176bf98dffe596d6db426422916d4195d"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318991"
+checksum = "sha256:c957e2a07469b535b427e9838e6edd30202366bd5a06e0aa3aaa6f562deeb29e"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462764"
 
 [tools.helmfile."platforms.linux-arm64-musl"]
-checksum = "sha256:2b674b68ed5a6ff628c4800cd369051176bf98dffe596d6db426422916d4195d"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318991"
+checksum = "sha256:c957e2a07469b535b427e9838e6edd30202366bd5a06e0aa3aaa6f562deeb29e"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462764"
 
 [tools.helmfile."platforms.linux-x64"]
-checksum = "sha256:cac1f5f851ba5d3aa4ad06373752a69132c0ad70171bc45275ec4c014877c8a3"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318979"
+checksum = "sha256:d84a8e5ffdbfd66f1bfb4b11967b9d2981d8515c7d6e312ee0cd89b613c8b352"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462741"
 
 [tools.helmfile."platforms.linux-x64-baseline"]
-checksum = "sha256:cac1f5f851ba5d3aa4ad06373752a69132c0ad70171bc45275ec4c014877c8a3"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318979"
+checksum = "sha256:d84a8e5ffdbfd66f1bfb4b11967b9d2981d8515c7d6e312ee0cd89b613c8b352"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462741"
 
 [tools.helmfile."platforms.linux-x64-musl"]
-checksum = "sha256:cac1f5f851ba5d3aa4ad06373752a69132c0ad70171bc45275ec4c014877c8a3"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318979"
+checksum = "sha256:d84a8e5ffdbfd66f1bfb4b11967b9d2981d8515c7d6e312ee0cd89b613c8b352"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462741"
 
 [tools.helmfile."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:cac1f5f851ba5d3aa4ad06373752a69132c0ad70171bc45275ec4c014877c8a3"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318979"
+checksum = "sha256:d84a8e5ffdbfd66f1bfb4b11967b9d2981d8515c7d6e312ee0cd89b613c8b352"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462741"
 
 [tools.helmfile."platforms.macos-arm64"]
-checksum = "sha256:cadabe6b7df68366ac43edc17145d9bd55d0934428d064b8bb671d845f0df715"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318977"
+checksum = "sha256:96588f4f413ef5d4a3709013a52de73b41a845e6cf83c7ba9bab3266c8225730"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462768"
 
 [tools.helmfile."platforms.macos-x64"]
-checksum = "sha256:cdf782db13a0dcd5c17973796e03d0d2068433b09d78511fb79976b238718f77"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318978"
+checksum = "sha256:af46902ff69e9df2cb6bff69d3aa1fd7e8ffa357a3a4c889257a7bd40e27c01a"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462739"
 
 [tools.helmfile."platforms.macos-x64-baseline"]
-checksum = "sha256:cdf782db13a0dcd5c17973796e03d0d2068433b09d78511fb79976b238718f77"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318978"
+checksum = "sha256:af46902ff69e9df2cb6bff69d3aa1fd7e8ffa357a3a4c889257a7bd40e27c01a"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462739"
 
 [tools.helmfile."platforms.windows-arm64"]
-checksum = "sha256:0b754349a99946ad959c2acf935283482c0561e468e6483e98f95746c778adc3"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_windows_arm64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318976"
+checksum = "sha256:80d0faa97fcb25e59faf279e38b31461695b61ff8a57c695f2568088f2f56a58"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_windows_arm64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462740"
 
 [tools.helmfile."platforms.windows-x64"]
-checksum = "sha256:9ccda9d8049a2e2a1a912b001a705cfe293e859679f024bc5457f5e3041b2566"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_windows_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318993"
+checksum = "sha256:51d0d83c2923e7f0ab064761b3013117e717e8076ab05bdda55f5b6c30f96f71"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_windows_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462738"
 
 [tools.helmfile."platforms.windows-x64-baseline"]
-checksum = "sha256:9ccda9d8049a2e2a1a912b001a705cfe293e859679f024bc5457f5e3041b2566"
-url = "https://github.com/helmfile/helmfile/releases/download/v1.7.0/helmfile_1.7.0_windows_amd64.tar.gz"
-url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/466318993"
+checksum = "sha256:51d0d83c2923e7f0ab064761b3013117e717e8076ab05bdda55f5b6c30f96f71"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.7.1/helmfile_1.7.1_windows_amd64.tar.gz"
+url_api = "https://api.github.com/repos/helmfile/helmfile/releases/assets/480462738"
 
 [[tools.hexyl]]
 version = "0.17.0"
@@ -3028,68 +3171,68 @@ url = "https://github.com/ahmetb/kubectx/releases/download/v0.11.0/kubectx_v0.11
 url_api = "https://api.github.com/repos/ahmetb/kubectx/releases/assets/382590966"
 
 [[tools.kubelogin]]
-version = "1.36.2"
+version = "1.36.3"
 backend = "aqua:int128/kubelogin"
 
 [tools.kubelogin."platforms.linux-arm64"]
-checksum = "sha256:ec25ece9a0ccf019dd03041e8e195cd3e3893fdc2a6a2ae35b6464ff954bb40b"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_arm64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658300"
+checksum = "sha256:c1502297738af4054507cc0675b54db1ebec67cedc32498028ba889906386462"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_arm64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967853"
 
 [tools.kubelogin."platforms.linux-arm64-musl"]
-checksum = "sha256:ec25ece9a0ccf019dd03041e8e195cd3e3893fdc2a6a2ae35b6464ff954bb40b"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_arm64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658300"
+checksum = "sha256:c1502297738af4054507cc0675b54db1ebec67cedc32498028ba889906386462"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_arm64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967853"
 
 [tools.kubelogin."platforms.linux-x64"]
-checksum = "sha256:0f9b35e82469dbf1e1ed7cfa8cbaa27ffde733e18930dbaed590518a58eb11cc"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658338"
+checksum = "sha256:54428b2be68ce297c5c743feed65a2fa2ed2a671881ff70fb6560e560bb18eaf"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967826"
 
 [tools.kubelogin."platforms.linux-x64-baseline"]
-checksum = "sha256:0f9b35e82469dbf1e1ed7cfa8cbaa27ffde733e18930dbaed590518a58eb11cc"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658338"
+checksum = "sha256:54428b2be68ce297c5c743feed65a2fa2ed2a671881ff70fb6560e560bb18eaf"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967826"
 
 [tools.kubelogin."platforms.linux-x64-musl"]
-checksum = "sha256:0f9b35e82469dbf1e1ed7cfa8cbaa27ffde733e18930dbaed590518a58eb11cc"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658338"
+checksum = "sha256:54428b2be68ce297c5c743feed65a2fa2ed2a671881ff70fb6560e560bb18eaf"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967826"
 
 [tools.kubelogin."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:0f9b35e82469dbf1e1ed7cfa8cbaa27ffde733e18930dbaed590518a58eb11cc"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_linux_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658338"
+checksum = "sha256:54428b2be68ce297c5c743feed65a2fa2ed2a671881ff70fb6560e560bb18eaf"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_linux_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967826"
 
 [tools.kubelogin."platforms.macos-arm64"]
-checksum = "sha256:bf90d24882875641b8f89218b13900769e17677e8cfa6c12d05f1bf59acca1f7"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_darwin_arm64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658344"
+checksum = "sha256:52f445067da35b442cdcaf4aff884379188373c97d0564d61036caa178a6f62b"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_darwin_arm64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967886"
 
 [tools.kubelogin."platforms.macos-x64"]
-checksum = "sha256:af22617aeb2045a25db2c6119f6fd3250b59961bbb107b34740e5752d8415b42"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_darwin_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658313"
+checksum = "sha256:cee45b7452984d6b8b3c0fbc4a6cef40698e65aa43948f0468a2b054657aacbb"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_darwin_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967845"
 
 [tools.kubelogin."platforms.macos-x64-baseline"]
-checksum = "sha256:af22617aeb2045a25db2c6119f6fd3250b59961bbb107b34740e5752d8415b42"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_darwin_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658313"
+checksum = "sha256:cee45b7452984d6b8b3c0fbc4a6cef40698e65aa43948f0468a2b054657aacbb"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_darwin_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480967845"
 
 [tools.kubelogin."platforms.windows-arm64"]
-checksum = "sha256:7d989b5664823f098c53d3a2c1186eb4b55d065575c5ac1a03d58f49cb99300f"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_windows_arm64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658933"
+checksum = "sha256:ce5182da132076aba3079946d20362c9c299d519addb76ae3931d1c50506ba8d"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_windows_arm64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480968493"
 
 [tools.kubelogin."platforms.windows-x64"]
-checksum = "sha256:71d72e4afd1d8f3ae2efb273c7a7221b4baab3439560efc841ae472da34e9cbb"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_windows_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658911"
+checksum = "sha256:6f1ea25914fb5c1ae7c48bcb688bea37e54960a6143208c35b4fb506ac947611"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_windows_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480968191"
 
 [tools.kubelogin."platforms.windows-x64-baseline"]
-checksum = "sha256:71d72e4afd1d8f3ae2efb273c7a7221b4baab3439560efc841ae472da34e9cbb"
-url = "https://github.com/int128/kubelogin/releases/download/v1.36.2/kubelogin_windows_amd64.zip"
-url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/433658911"
+checksum = "sha256:6f1ea25914fb5c1ae7c48bcb688bea37e54960a6143208c35b4fb506ac947611"
+url = "https://github.com/int128/kubelogin/releases/download/v1.36.3/kubelogin_windows_amd64.zip"
+url_api = "https://api.github.com/repos/int128/kubelogin/releases/assets/480968191"
 
 [[tools.kubens]]
 version = "0.11.0"
@@ -3383,7 +3526,7 @@ version = "11.16.0"
 backend = "npm:@mermaid-js/mermaid-cli"
 
 [[tools."npm:agent-browser"]]
-version = "0.32.1"
+version = "0.32.2"
 backend = "npm:agent-browser"
 
 [[tools."npm:ccusage"]]
@@ -3601,67 +3744,67 @@ version = "1.38.0"
 backend = "pipx:yamllint"
 
 [[tools.pnpm]]
-version = "11.13.1"
+version = "11.14.0"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:b52db99d215ed7dc9563aed815953c62a6c1ffd7cd75803d3a07ad7e4f246aed"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563983"
+checksum = "sha256:6ec5224012d46e96747caed6b7ea02498f56e838c68df72acd9f8de46969b1a9"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872581"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:2cadd4fc815c591f498a0a84c9e74a836e3e8c1236275f6e1cfd355bae6ae957"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563985"
+checksum = "sha256:37b6764b4d2301303fb70277c3ef4c0ee5a64eabea1c9d631ca2729b12c752e8"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872587"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:bd6d4b0e14536207ad76bc838f5980cecd968da15f69aae0b207380cca3f2e98"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563986"
+checksum = "sha256:d78ce4e1ebcc39c1213fcb5a8686eda5b09835195a318408a6361efbd450166d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872586"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-baseline"]
-checksum = "sha256:bd6d4b0e14536207ad76bc838f5980cecd968da15f69aae0b207380cca3f2e98"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563986"
+checksum = "sha256:d78ce4e1ebcc39c1213fcb5a8686eda5b09835195a318408a6361efbd450166d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872586"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:ba19690f4ed1b64f1203ade14e9216352b46232d5582468b26a0160e0c9618c5"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563980"
+checksum = "sha256:eef0615b9b3da3d9c38196232899059c92c26e67dd62f42bb6044b40501aa5b3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872582"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:ba19690f4ed1b64f1203ade14e9216352b46232d5582468b26a0160e0c9618c5"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563980"
+checksum = "sha256:eef0615b9b3da3d9c38196232899059c92c26e67dd62f42bb6044b40501aa5b3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872582"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:765c2bf04e8129cb58c0f946e324262e418370b35a203b50b1f06a0567ef8bc1"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563984"
+checksum = "sha256:5c389e50afcf5c825e533f203f2c0cb84546ffb1fee056772489c5088d01600f"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872584"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-arm64"]
-checksum = "sha256:8e9987e5ab5ae490d75b276951d2e08dfc9bcc52d23df5676dca39e3f26d2c17"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-win32-arm64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563982"
+checksum = "sha256:cf93211bb21ad4093cd53add2958a128cefab90613a4a879a31f90e8f299420d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-win32-arm64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872585"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:d8bebbc71df2702961c1d34a5e61196bc0aa3bbde33c33253f6afa3dd4546a6d"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563981"
+checksum = "sha256:3bad9a8cf971b4a223c31c2063081c4d35ce8ce503f9ca2d3ece241e966eafb9"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872580"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64-baseline"]
-checksum = "sha256:d8bebbc71df2702961c1d34a5e61196bc0aa3bbde33c33253f6afa3dd4546a6d"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.13.1/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/478563981"
+checksum = "sha256:3bad9a8cf971b4a223c31c2063081c4d35ce8ce503f9ca2d3ece241e966eafb9"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.14.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/480872580"
 provenance = "github-attestations"
 
 [[tools.portless]]
@@ -4821,79 +4964,79 @@ checksum = "sha256:5152e76e45103ea2a31b8a8dadc43833ae559a4aba4cb12f57c1c006c11dd
 url = "https://releases.hashicorp.com/terraform-ls/0.38.8/terraform-ls_0.38.8_windows_amd64.zip"
 
 [[tools.tflint]]
-version = "0.63.1"
+version = "0.64.0"
 backend = "aqua:terraform-linters/tflint"
 
 [tools.tflint."platforms.linux-arm64"]
-checksum = "sha256:6d858ca7f11858c3fe3c5e29cc746823abccb55e2d2e2da130fa7ad7ea4eecb8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_arm64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446187"
+checksum = "sha256:560da89aacf59389d4eb029730dd5b109b7288096c32f2726a0d9e783a5ea8eb"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_arm64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528325"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.linux-arm64-musl"]
-checksum = "sha256:6d858ca7f11858c3fe3c5e29cc746823abccb55e2d2e2da130fa7ad7ea4eecb8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_arm64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446187"
+checksum = "sha256:560da89aacf59389d4eb029730dd5b109b7288096c32f2726a0d9e783a5ea8eb"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_arm64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528325"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.linux-x64"]
-checksum = "sha256:8441a7d97df20431f19c9b9d27ff4c63e308c964e86660bc7cc0cf7bbe0725e8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446150"
+checksum = "sha256:cca9d13e2e1d7a2c627af60ff899a3c9b74212899416aeb96ec764d2ef954537"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528344"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.linux-x64-baseline"]
-checksum = "sha256:8441a7d97df20431f19c9b9d27ff4c63e308c964e86660bc7cc0cf7bbe0725e8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446150"
+checksum = "sha256:cca9d13e2e1d7a2c627af60ff899a3c9b74212899416aeb96ec764d2ef954537"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528344"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.linux-x64-musl"]
-checksum = "sha256:8441a7d97df20431f19c9b9d27ff4c63e308c964e86660bc7cc0cf7bbe0725e8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446150"
+checksum = "sha256:cca9d13e2e1d7a2c627af60ff899a3c9b74212899416aeb96ec764d2ef954537"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528344"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:8441a7d97df20431f19c9b9d27ff4c63e308c964e86660bc7cc0cf7bbe0725e8"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_linux_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446150"
+checksum = "sha256:cca9d13e2e1d7a2c627af60ff899a3c9b74212899416aeb96ec764d2ef954537"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_linux_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528344"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.macos-arm64"]
-checksum = "sha256:6aab157b22367dcab1635b370e98d6e791d9b40b021d4f9baef010d88f53e16b"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_darwin_arm64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446148"
+checksum = "sha256:2496e9cb3d24992d553b45e7c87a0fdc9449ca975233876247a9bfeda857e6c0"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_darwin_arm64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528349"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.macos-x64"]
-checksum = "sha256:1a22782473e4a01f0dd23edc649bed4420655a9e3459ffc06951e698eed7ad01"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_darwin_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446152"
+checksum = "sha256:0f3a9fd17526014646a2dfc3f9122f7b4161abe3d6b0f0f03f9014483ddf4d19"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_darwin_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528324"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.macos-x64-baseline"]
-checksum = "sha256:1a22782473e4a01f0dd23edc649bed4420655a9e3459ffc06951e698eed7ad01"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_darwin_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446152"
+checksum = "sha256:0f3a9fd17526014646a2dfc3f9122f7b4161abe3d6b0f0f03f9014483ddf4d19"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_darwin_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528324"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.windows-arm64"]
-checksum = "sha256:5fbfb643b83c4ad489bde15a0e0d46e53dc9aa8dfa76d25da3c4bd2698a41a19"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_windows_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446181"
+checksum = "sha256:fb42fb859d844b156a8ea9d3363078c4d8b85ca78782e60876b08c9b8e59f303"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_windows_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528323"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.windows-x64"]
-checksum = "sha256:5fbfb643b83c4ad489bde15a0e0d46e53dc9aa8dfa76d25da3c4bd2698a41a19"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_windows_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446181"
+checksum = "sha256:fb42fb859d844b156a8ea9d3363078c4d8b85ca78782e60876b08c9b8e59f303"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_windows_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528323"
 provenance = "github-attestations"
 
 [tools.tflint."platforms.windows-x64-baseline"]
-checksum = "sha256:5fbfb643b83c4ad489bde15a0e0d46e53dc9aa8dfa76d25da3c4bd2698a41a19"
-url = "https://github.com/terraform-linters/tflint/releases/download/v0.63.1/tflint_windows_amd64.zip"
-url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/437446181"
+checksum = "sha256:fb42fb859d844b156a8ea9d3363078c4d8b85ca78782e60876b08c9b8e59f303"
+url = "https://github.com/terraform-linters/tflint/releases/download/v0.64.0/tflint_windows_amd64.zip"
+url_api = "https://api.github.com/repos/terraform-linters/tflint/releases/assets/480528323"
 provenance = "github-attestations"
 
 [[tools.ubi]]
