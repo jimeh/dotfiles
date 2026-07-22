@@ -849,68 +849,68 @@ url = "https://github.com/cloudflare/cloudflared/releases/download/2026.7.2/clou
 url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/477973944"
 
 [[tools.codex]]
-version = "0.144.6"
+version = "0.145.0"
 backend = "aqua:openai/codex"
 
 [tools.codex."platforms.linux-arm64"]
-checksum = "sha256:b4359896bb548e02fdd72ea0cb3395fe8a88d20d3a4a421c4481e504f8e8927f"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505363"
+checksum = "sha256:54f79a05aba6f9abf8ef988abcae8bf2fcefba20beb549b4ff2b3acdb2cb6f54"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000960"
 
 [tools.codex."platforms.linux-arm64-musl"]
-checksum = "sha256:b4359896bb548e02fdd72ea0cb3395fe8a88d20d3a4a421c4481e504f8e8927f"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505363"
+checksum = "sha256:54f79a05aba6f9abf8ef988abcae8bf2fcefba20beb549b4ff2b3acdb2cb6f54"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000960"
 
 [tools.codex."platforms.linux-x64"]
-checksum = "sha256:99ae48e4743da6c530ecd998ab2f7e66572c092f4190c88dca8236c07b06ce1d"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505274"
+checksum = "sha256:71a28d362c96ac9829bf8203a2c71be451aeb726adb843167fdaf0eae8fe7dd9"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000878"
 
 [tools.codex."platforms.linux-x64-baseline"]
-checksum = "sha256:99ae48e4743da6c530ecd998ab2f7e66572c092f4190c88dca8236c07b06ce1d"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505274"
+checksum = "sha256:71a28d362c96ac9829bf8203a2c71be451aeb726adb843167fdaf0eae8fe7dd9"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000878"
 
 [tools.codex."platforms.linux-x64-musl"]
-checksum = "sha256:99ae48e4743da6c530ecd998ab2f7e66572c092f4190c88dca8236c07b06ce1d"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505274"
+checksum = "sha256:71a28d362c96ac9829bf8203a2c71be451aeb726adb843167fdaf0eae8fe7dd9"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000878"
 
 [tools.codex."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:99ae48e4743da6c530ecd998ab2f7e66572c092f4190c88dca8236c07b06ce1d"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505274"
+checksum = "sha256:71a28d362c96ac9829bf8203a2c71be451aeb726adb843167fdaf0eae8fe7dd9"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000878"
 
 [tools.codex."platforms.macos-arm64"]
-checksum = "sha256:bcbfa76650b6c581505aa5178c1e799d37ff12fc43a35ff16c90b97fa757e63f"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505415"
+checksum = "sha256:ece937169d4c9e910d60826a6ea4ae7848a16c089403d122e70e7da4ac41ba34"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000998"
 
 [tools.codex."platforms.macos-x64"]
-checksum = "sha256:daa3df37c8a041280f52a2198dbe7acbead64936b23f8b660edf9d886df5f9da"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505321"
+checksum = "sha256:9d402c9ca814655fddc07b548d7086491c0afcebe1f746cdeba1045fd6f62646"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000909"
 
 [tools.codex."platforms.macos-x64-baseline"]
-checksum = "sha256:daa3df37c8a041280f52a2198dbe7acbead64936b23f8b660edf9d886df5f9da"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505321"
+checksum = "sha256:9d402c9ca814655fddc07b548d7086491c0afcebe1f746cdeba1045fd6f62646"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000909"
 
 [tools.codex."platforms.windows-arm64"]
-checksum = "sha256:81948ef44eb00f499f32bcd38ce326f59f5a132ca4cd6ec2559fb5fc7cfd90a7"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-pc-windows-msvc.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505297"
+checksum = "sha256:8d0d281346aedf63c4cc3922997df822fbb8881f7ffb2b57416f48e8c52a734e"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-pc-windows-msvc.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000896"
 
 [tools.codex."platforms.windows-x64"]
-checksum = "sha256:81948ef44eb00f499f32bcd38ce326f59f5a132ca4cd6ec2559fb5fc7cfd90a7"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-pc-windows-msvc.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505297"
+checksum = "sha256:8d0d281346aedf63c4cc3922997df822fbb8881f7ffb2b57416f48e8c52a734e"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-pc-windows-msvc.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000896"
 
 [tools.codex."platforms.windows-x64-baseline"]
-checksum = "sha256:81948ef44eb00f499f32bcd38ce326f59f5a132ca4cd6ec2559fb5fc7cfd90a7"
-url = "https://github.com/openai/codex/releases/download/rust-v0.144.6/codex-package-x86_64-pc-windows-msvc.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/481505297"
+checksum = "sha256:8d0d281346aedf63c4cc3922997df822fbb8881f7ffb2b57416f48e8c52a734e"
+url = "https://github.com/openai/codex/releases/download/rust-v0.145.0/codex-package-x86_64-pc-windows-msvc.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/485000896"
 
 [[tools.crane]]
 version = "0.21.7"
@@ -1459,68 +1459,68 @@ url = "https://github.com/sharkdp/fd/releases/download/v10.4.2/fd-v10.4.2-x86_64
 url_api = "https://api.github.com/repos/sharkdp/fd/releases/assets/370661516"
 
 [[tools.fzf]]
-version = "0.74.0"
+version = "0.74.1"
 backend = "aqua:junegunn/fzf"
 
 [tools.fzf."platforms.linux-arm64"]
-checksum = "sha256:bd9e6165ebdb702215d42368cbb95b8dd70a4e77ee97925adac8c31660e30ef7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106539"
+checksum = "sha256:f22204dd1a091d43e102268d062fd53b47133c8d8581671ee5eb225b75e31183"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468085"
 
 [tools.fzf."platforms.linux-arm64-musl"]
-checksum = "sha256:bd9e6165ebdb702215d42368cbb95b8dd70a4e77ee97925adac8c31660e30ef7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106539"
+checksum = "sha256:f22204dd1a091d43e102268d062fd53b47133c8d8581671ee5eb225b75e31183"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468085"
 
 [tools.fzf."platforms.linux-x64"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-baseline"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-musl"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:cf919f05b7581b4c744d764eaa704665d61dd6d3ca785f0df2351281dff60cda"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106615"
+checksum = "sha256:df53438be5f51e151bb4044d78fda72bdfe209e3ecd2baecae48e8dea370c81b"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468039"
 
 [tools.fzf."platforms.macos-arm64"]
-checksum = "sha256:da60e8980e4239a0fc5f1fcfe873f243dfda93a6a13b696b00e1dc8584a77a87"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106617"
+checksum = "sha256:849d1d33b050f04dd6b765665e417da151b0e4654dbed8f55c60fd8e23f3ba20"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468061"
 
 [tools.fzf."platforms.macos-x64"]
-checksum = "sha256:e2c470f058ac18615f54c0bebe0fd2956f2aa8e306a11621783a00aaa386eedd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106579"
+checksum = "sha256:642f29fb2800690385efb176a209b14d9f593795f0f70ee12c919ee15472e439"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468093"
 
 [tools.fzf."platforms.macos-x64-baseline"]
-checksum = "sha256:e2c470f058ac18615f54c0bebe0fd2956f2aa8e306a11621783a00aaa386eedd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106579"
+checksum = "sha256:642f29fb2800690385efb176a209b14d9f593795f0f70ee12c919ee15472e439"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468093"
 
 [tools.fzf."platforms.windows-arm64"]
-checksum = "sha256:2f18464bb2088889c0ee58c3b280dc264911eb70c330bc930d39a8f93488393d"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-windows_arm64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106535"
+checksum = "sha256:b688ecafa2d1fdb0af3383f25d6d122866c13ad7cc996e9f735bf90e6c75f83f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-windows_arm64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468059"
 
 [tools.fzf."platforms.windows-x64"]
-checksum = "sha256:614efa4ea923a3d6715856b5f6fb6ce815acdb0ce549e7499202808f7a7a78e7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106560"
+checksum = "sha256:d83a94a68a9203f6366754123c0e4d7a61e16be18a5d845f4838664b330c4f5f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [tools.fzf."platforms.windows-x64-baseline"]
-checksum = "sha256:614efa4ea923a3d6715856b5f6fb6ce815acdb0ce549e7499202808f7a7a78e7"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.0/fzf-0.74.0-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/468106560"
+checksum = "sha256:d83a94a68a9203f6366754123c0e4d7a61e16be18a5d845f4838664b330c4f5f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [[tools.gemini]]
 version = "0.51.0"
@@ -1606,79 +1606,79 @@ url_api = "https://api.github.com/repos/cli/cli/releases/assets/464728577"
 provenance = "github-attestations"
 
 [[tools."github:jimeh/airplan"]]
-version = "0.3.0"
+version = "0.4.0"
 backend = "github:jimeh/airplan"
 
 [tools."github:jimeh/airplan"."platforms.linux-arm64"]
-checksum = "sha256:e23be4a3e3bc207eb1895e356741ccec04f1780afc310cfe978f56f2d68f7822"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549834"
+checksum = "sha256:2f1e33db0a6fa799ead3043215fb346975ea5bd9385a1a8ec30cefd29053deab"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303257"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-arm64-musl"]
-checksum = "sha256:e23be4a3e3bc207eb1895e356741ccec04f1780afc310cfe978f56f2d68f7822"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549834"
+checksum = "sha256:2f1e33db0a6fa799ead3043215fb346975ea5bd9385a1a8ec30cefd29053deab"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303257"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64"]
-checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-baseline"]
-checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-musl"]
-checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:207ecfbfb0bbcb56f84d022d1849ecfffaf3089e3d77e1134593eb7bf39bcbcb"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549851"
+checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-arm64"]
-checksum = "sha256:de33397371c64e10d64f7be71f57994ba35b6e3e1e13fffc4d9b828d3d88c8fe"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549833"
+checksum = "sha256:e11befe16d3b30d2ca7eeb0f3646e954e96b23f1643dce1e796787a28c911633"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303276"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-x64"]
-checksum = "sha256:136574f05377c13e8666bdd4309453d041356b0f88b967129feab0a2f582938c"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549849"
+checksum = "sha256:6e4eb1ceae910059a973b5fe859fa019ae6ab3716be899f4c110d367cdc0aa11"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303273"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-x64-baseline"]
-checksum = "sha256:136574f05377c13e8666bdd4309453d041356b0f88b967129feab0a2f582938c"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549849"
+checksum = "sha256:6e4eb1ceae910059a973b5fe859fa019ae6ab3716be899f4c110d367cdc0aa11"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303273"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-arm64"]
-checksum = "sha256:716f55d89d93af5ff316f3476155d8b71ac17c8bcc90a0d4576b2fae726d980d"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_arm64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549832"
+checksum = "sha256:b6dc7d4950134d2a38aec6f20986c108e2c71ba17d1981e568ac641470ed923b"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303255"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-x64"]
-checksum = "sha256:6b15be068e652642eccd20997e96a2a4f922a487ef776efe7a63681493550bd6"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_amd64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549831"
+checksum = "sha256:3ad1e67090d2ba34206acd1d411a2d67e9274359097c2bb315d6dff18bcef583"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303252"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-x64-baseline"]
-checksum = "sha256:6b15be068e652642eccd20997e96a2a4f922a487ef776efe7a63681493550bd6"
-url = "https://github.com/jimeh/airplan/releases/download/v0.3.0/airplan_0.3.0_windows_amd64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/484549831"
+checksum = "sha256:3ad1e67090d2ba34206acd1d411a2d67e9274359097c2bb315d6dff18bcef583"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303252"
 provenance = "github-attestations"
 
 [[tools."github:jimeh/hucode"]]
@@ -4071,6 +4071,22 @@ url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/47811
 version = "4.0.6"
 backend = "core:ruby"
 
+[tools.ruby."platforms.windows-arm64"]
+checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
+
+[tools.ruby."platforms.windows-x64"]
+checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
+
+[tools.ruby."platforms.windows-x64-baseline"]
+checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
+
+[[tools.ruby]]
+version = "4.0.6"
+backend = "core:ruby"
+
 [tools.ruby.options]
 compile = "true"
 ruby_build_repo = "https://github.com/rbenv/ruby-build.git"
@@ -4111,22 +4127,6 @@ url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz"
 [tools.ruby."platforms.macos-x64-baseline"]
 checksum = "sha256:837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a"
 url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz"
-
-[tools.ruby."platforms.windows-arm64"]
-checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
-
-[tools.ruby."platforms.windows-x64"]
-checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
-
-[tools.ruby."platforms.windows-x64-baseline"]
-checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
-
-[[tools.ruby]]
-version = "4.0.6"
-backend = "core:ruby"
 
 [tools.ruby."platforms.windows-arm64"]
 checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
