@@ -270,9 +270,9 @@ url_api = "https://api.github.com/repos/tldr-pages/tlrc/releases/assets/42727268
 provenance = "github-attestations"
 
 [tools."aqua:tldr-pages/tlrc"."platforms.macos-arm64"]
-checksum = "sha256:2db4a3c772ae30243cd6bb4231cc43eff005d311618666af91e49662310b8e8b"
-url = "https://github.com/tldr-pages/tlrc/releases/download/v1.13.1/tlrc-v1.13.1-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/tldr-pages/tlrc/releases/assets/427271988"
+checksum = "sha256:7dd8c585da66c9977ecff5d50a93c4c77a946322668b7ab2e0082dd07d11eddf"
+url = "https://github.com/tldr-pages/tlrc/releases/download/v1.13.1/tlrc-v1.13.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/tldr-pages/tlrc/releases/assets/427272020"
 provenance = "github-attestations"
 
 [tools."aqua:tldr-pages/tlrc"."platforms.macos-x64"]
@@ -1606,147 +1606,147 @@ url_api = "https://api.github.com/repos/cli/cli/releases/assets/464728577"
 provenance = "github-attestations"
 
 [[tools."github:jimeh/airplan"]]
-version = "0.4.0"
+version = "0.4.1"
 backend = "github:jimeh/airplan"
 
 [tools."github:jimeh/airplan"."platforms.linux-arm64"]
-checksum = "sha256:2f1e33db0a6fa799ead3043215fb346975ea5bd9385a1a8ec30cefd29053deab"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303257"
+checksum = "sha256:87d7dab71b69a4e7f91a465b4fb097b0b084cccb1c9e664c971ccbc153f60a5d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697715"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-arm64-musl"]
-checksum = "sha256:2f1e33db0a6fa799ead3043215fb346975ea5bd9385a1a8ec30cefd29053deab"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303257"
+checksum = "sha256:87d7dab71b69a4e7f91a465b4fb097b0b084cccb1c9e664c971ccbc153f60a5d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697715"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64"]
-checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
+checksum = "sha256:1e0c0f4e8a74b99b37be11e08ef4acb6e7f5a2e67d9c5e695366ff40caf6a71d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697698"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-baseline"]
-checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
+checksum = "sha256:1e0c0f4e8a74b99b37be11e08ef4acb6e7f5a2e67d9c5e695366ff40caf6a71d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697698"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-musl"]
-checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
+checksum = "sha256:1e0c0f4e8a74b99b37be11e08ef4acb6e7f5a2e67d9c5e695366ff40caf6a71d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697698"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:927888e68aff153cd4352cba8c8f4d73c2c23080916eb2878cf3cbca2d89a05b"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303254"
+checksum = "sha256:1e0c0f4e8a74b99b37be11e08ef4acb6e7f5a2e67d9c5e695366ff40caf6a71d"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697698"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-arm64"]
-checksum = "sha256:e11befe16d3b30d2ca7eeb0f3646e954e96b23f1643dce1e796787a28c911633"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303276"
+checksum = "sha256:563c0c08e1b50c55df302c8916958ad05c2fec645dc0a8876d9d00e415da9b4f"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697697"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-x64"]
-checksum = "sha256:6e4eb1ceae910059a973b5fe859fa019ae6ab3716be899f4c110d367cdc0aa11"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303273"
+checksum = "sha256:1e61e9412b8f8953c3b0366782499e7dfa0a971c316ca6405ed7b6ddb5590c54"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697716"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.macos-x64-baseline"]
-checksum = "sha256:6e4eb1ceae910059a973b5fe859fa019ae6ab3716be899f4c110d367cdc0aa11"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303273"
+checksum = "sha256:1e61e9412b8f8953c3b0366782499e7dfa0a971c316ca6405ed7b6ddb5590c54"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697716"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-arm64"]
-checksum = "sha256:b6dc7d4950134d2a38aec6f20986c108e2c71ba17d1981e568ac641470ed923b"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_arm64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303255"
+checksum = "sha256:5f872aa37e8d055ddf2a783d03b3885f4033641f6235086af7bbc5d467c1b1de"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_windows_arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697695"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-x64"]
-checksum = "sha256:3ad1e67090d2ba34206acd1d411a2d67e9274359097c2bb315d6dff18bcef583"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_amd64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303252"
+checksum = "sha256:4ffde867f2b26cb114f225ba9c7321e2cbe6154cd05f1566e42c4ff8287934f3"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697696"
 provenance = "github-attestations"
 
 [tools."github:jimeh/airplan"."platforms.windows-x64-baseline"]
-checksum = "sha256:3ad1e67090d2ba34206acd1d411a2d67e9274359097c2bb315d6dff18bcef583"
-url = "https://github.com/jimeh/airplan/releases/download/v0.4.0/airplan_0.4.0_windows_amd64.zip"
-url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485303252"
+checksum = "sha256:4ffde867f2b26cb114f225ba9c7321e2cbe6154cd05f1566e42c4ff8287934f3"
+url = "https://github.com/jimeh/airplan/releases/download/v0.4.1/airplan_0.4.1_windows_amd64.zip"
+url_api = "https://api.github.com/repos/jimeh/airplan/releases/assets/485697696"
 provenance = "github-attestations"
 
 [[tools."github:jimeh/hucode"]]
-version = "0.0.53"
+version = "0.0.54"
 backend = "github:jimeh/hucode"
 
 [tools."github:jimeh/hucode".options]
 matching = "hucode-cli"
 
 [tools."github:jimeh/hucode"."platforms.linux-arm64"]
-checksum = "sha256:3e691bd17bc83cbe07f8e81a2c30fed81e57361ff4e50a14fff8c0cda5c950b8"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112967"
+checksum = "sha256:8853ceb5b2c44d51fe6c3c25ff313fb48e5c5c46c2c72165c4bc47a2aadb1150"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399079"
 
 [tools."github:jimeh/hucode"."platforms.linux-arm64-musl"]
-checksum = "sha256:3e691bd17bc83cbe07f8e81a2c30fed81e57361ff4e50a14fff8c0cda5c950b8"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112967"
+checksum = "sha256:8853ceb5b2c44d51fe6c3c25ff313fb48e5c5c46c2c72165c4bc47a2aadb1150"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399079"
 
 [tools."github:jimeh/hucode"."platforms.linux-x64"]
-checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+checksum = "sha256:5e71e8e4a58eee75992bbf467336550d080c5ad1805531f77f2d36910a4f0d99"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399080"
 
 [tools."github:jimeh/hucode"."platforms.linux-x64-baseline"]
-checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+checksum = "sha256:5e71e8e4a58eee75992bbf467336550d080c5ad1805531f77f2d36910a4f0d99"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399080"
 
 [tools."github:jimeh/hucode"."platforms.linux-x64-musl"]
-checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+checksum = "sha256:5e71e8e4a58eee75992bbf467336550d080c5ad1805531f77f2d36910a4f0d99"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399080"
 
 [tools."github:jimeh/hucode"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:3407db725191ca43f1d9f301f6e834af883d22d30250a1dddc2ae878cdc1c598"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112969"
+checksum = "sha256:5e71e8e4a58eee75992bbf467336550d080c5ad1805531f77f2d36910a4f0d99"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399080"
 
 [tools."github:jimeh/hucode"."platforms.macos-arm64"]
-checksum = "sha256:970d27f7eb1f48deaf5b1e7f0cc8ce4bce1c96471c4e55e2a058c86cddc46bc0"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-arm64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112968"
+checksum = "sha256:3ad72835112533fd0c1519e82907061a7002c851063401ad08d7b7b4a6be19c8"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-darwin-arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399077"
 
 [tools."github:jimeh/hucode"."platforms.macos-x64"]
-checksum = "sha256:093962349da260bece39aa64681033cdb791c247369a89bb8d9589c3d180dfc1"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-x64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112984"
+checksum = "sha256:c5376a752ec3a6ad00e667baf19585f49b8db29f20064e5a13910ab4a027baf1"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-darwin-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399076"
 
 [tools."github:jimeh/hucode"."platforms.macos-x64-baseline"]
-checksum = "sha256:093962349da260bece39aa64681033cdb791c247369a89bb8d9589c3d180dfc1"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-darwin-x64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112984"
+checksum = "sha256:c5376a752ec3a6ad00e667baf19585f49b8db29f20064e5a13910ab4a027baf1"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-darwin-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399076"
 
 [tools."github:jimeh/hucode"."platforms.windows-arm64"]
-checksum = "sha256:6468c0b348abc6e1980316e898b545aee1f4b5d22a828912f59223b7ea90dd64"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-arm64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112970"
+checksum = "sha256:f59974de91ef322f307b872663e31e7c2b4fd5ae8e34566e6b7a2c2704939c0b"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-win32-arm64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399078"
 
 [tools."github:jimeh/hucode"."platforms.windows-x64"]
-checksum = "sha256:3378881315a7684ef7eb29de974d18b7b27a15563f04f1de4da48637648c54ba"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-x64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112987"
+checksum = "sha256:9df5442e21139a1b6d7926ad1959370534b39d78e03d640082837230f38fbda8"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-win32-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399089"
 
 [tools."github:jimeh/hucode"."platforms.windows-x64-baseline"]
-checksum = "sha256:3378881315a7684ef7eb29de974d18b7b27a15563f04f1de4da48637648c54ba"
-url = "https://github.com/jimeh/hucode/releases/download/v0.0.53/hucode-cli-win32-x64.zip"
-url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/484112987"
+checksum = "sha256:9df5442e21139a1b6d7926ad1959370534b39d78e03d640082837230f38fbda8"
+url = "https://github.com/jimeh/hucode/releases/download/v0.0.54/hucode-cli-win32-x64.zip"
+url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/485399089"
 
 [[tools."github:jimeh/treeboot"]]
 version = "0.11.0"
