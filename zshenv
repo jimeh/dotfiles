@@ -51,7 +51,7 @@ path_remove () {
 }
 
 path_append () {
-  if [ -d "$1" ]; then
+  if [ -n "$1" ] && [ -d "$1" ]; then
     path+="$1"
   fi
 }
@@ -393,6 +393,9 @@ path_prepend "$HOME/.cache/lm-studio/bin"
 
 # ToolHive setup
 path_prepend "$HOME/.toolhive/bin"
+
+# Ghostty setup
+path_prepend "$GHOSTTY_BIN_DIR"
 
 # ==============================================================================
 # Local Overrides
