@@ -1,0 +1,74 @@
+onboarding = false
+[keys]
+prefix = "ctrl+q"
+
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+new_tab = "prefix+ctrl+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+ctrl+p"
+next_tab = "prefix+ctrl+n"
+close_tab = ["prefix+shift+x", "prefix+k", "prefix+ctrl+k"]
+
+new_workspace = "prefix+c"
+previous_workspace = ["prefix+p", "cmd+ctrl+["]
+next_workspace = ["prefix+n", "cmd+ctrl+]"]
+workspace_picker = "prefix+w"
+goto = ["prefix+g", "prefix+ctrl+w"]
+toggle_sidebar = ["prefix+b", "prefix+ctrl+s"]
+navigate_workspace_up = ["up", "ctrl+p"]
+navigate_workspace_down = ["down", "ctrl+n"]
+
+# Herdr names splits for their divider orientation: vertical is side-by-side.
+split_vertical = ["prefix+h", "prefix+ctrl+h"]
+split_horizontal = ["prefix+v", "prefix+ctrl+v"]
+
+focus_pane_up = "alt+i"
+focus_pane_down = "alt+k"
+focus_pane_left = "alt+j"
+focus_pane_right = "alt+l"
+
+swap_pane_up = "prefix+alt+i"
+swap_pane_down = "prefix+alt+k"
+swap_pane_left = "prefix+alt+j"
+swap_pane_right = "prefix+alt+l"
+
+cycle_pane_previous = ["prefix+shift+tab", "prefix+i", "prefix+ctrl+i"]
+cycle_pane_next = ["prefix+tab", "prefix+ctrl+o"]
+
+last_pane = ["prefix+l", "prefix+ctrl+l"]
+
+zoom = ["prefix+z", "prefix+enter", "prefix+ctrl+enter"]
+
+[ui]
+prompt_new_tab_name = false
+agent_panel_sort = "spaces"
+
+show_agent_labels_on_pane_borders = true
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+# # Tango with Monokai. The UI surfaces are shades between the theme's black
+# # background and bright black, while semantic colors use its bright palette.
+# [theme.custom]
+# accent = "#5696d5"
+# panel_bg = "#000000"
+# surface0 = "#1c1d1a"
+# surface1 = "#272822"
+# surface_dim = "#11120f"
+# overlay0 = "#686a66"
+# overlay1 = "#9a9b98"
+# text = "#ffffff"
+# subtext0 = "#cccccc"
+# mauve = "#9d6aa5"
+# green = "#96cf4d"
+# yellow = "#fdeb61"
+# red = "#ed3a2c"
+# blue = "#5696d5"
+# teal = "#75cee3"
+# peach = "#c3a643"
+
+[ui.toast]
+delivery = "herdr"
