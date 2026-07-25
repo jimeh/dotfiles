@@ -1523,7 +1523,7 @@ url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-wind
 url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [[tools.gemini]]
-version = "0.52.0"
+version = "0.51.0"
 backend = "npm:@google/gemini-cli"
 
 [tools.gemini.options]
@@ -3521,10 +3521,6 @@ url = "https://nodejs.org/dist/v24.18.0/node-v24.18.0-win-x64.zip"
 version = "1.524.0"
 backend = "npm:@github/copilot-language-server"
 
-[[tools."npm:@mermaid-js/mermaid-cli"]]
-version = "11.16.0"
-backend = "npm:@mermaid-js/mermaid-cli"
-
 [[tools."npm:agent-browser"]]
 version = "0.32.3"
 backend = "npm:agent-browser"
@@ -3558,7 +3554,7 @@ version = "2.0.2"
 backend = "npm:localtunnel"
 
 [[tools."npm:skills"]]
-version = "1.5.19"
+version = "1.5.20"
 backend = "npm:skills"
 
 [[tools."npm:svgo"]]

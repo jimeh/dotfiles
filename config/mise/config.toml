@@ -64,7 +64,6 @@ node = "lts"
 pnpm = "latest"
 bun = "latest"
 "npm:@github/copilot-language-server" = "latest"
-"npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:agent-browser" = "latest"
 "npm:ccusage" = "latest"
 "npm:convex" = "latest"
@@ -109,7 +108,6 @@ python = "latest"
 "aqua:svenstaro/miniserve" = "latest"
 "aqua:tldr-pages/tlrc" = "latest"
 "github:jimeh/airplan" = "latest"
-"github:jimeh/hucode" = { version = "latest", matching = "hucode-cli" }
 "github:jimeh/treeboot" = "latest"
 1password = "latest"
 actionlint = "latest"
@@ -119,7 +117,6 @@ bat-extras = "latest"
 buf = "latest"
 cargo-binstall = "latest"
 cloudflared = "latest"
-codex = "latest"
 crane = "latest"
 ctop = "latest"
 delta = "latest"
@@ -130,7 +127,7 @@ dust = "latest"
 evans = "latest"
 fd = "latest"
 fzf = "latest"
-gemini = { version = "latest", allow_builds = ["@github/keytar", "node-pty"] }
+gemini = { version = "0.51.0", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "latest"
 gitu = "latest"
 grpcurl = "latest"
@@ -197,8 +194,21 @@ allow_builds = ["@ladybugdb/core", "gitnexus", "tree-sitter"]
 version = "latest"
 uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
 
+#
+# OS-specific tools.
+#
+
 # xkeysnail 0.4.0 still expects evdev InputDevice.fn, which evdev 1.9 removed.
 [tools."pipx:xkeysnail"]
 version = "latest"
 os = ["linux"]
 uvx_args = "--with='evdev<1.9'"
+
+[tools."github:jimeh/hucode"]
+version = "latest"
+matching = "hucode-cli"
+os = ["linux"]
+
+[tools."codex"]
+version = "latest"
+os = ["macos"]

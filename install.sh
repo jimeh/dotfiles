@@ -187,6 +187,18 @@ install_rustup() {
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
+install_claude() {
+  curl -fsSL https://claude.ai/install.sh | bash
+}
+
+install_codex() {
+  curl -fsSL https://chatgpt.com/codex/install.sh | sh
+}
+
+install_herdr() {
+  curl -fsSL https://herdr.dev/install.sh | sh
+}
+
 #
 # Helper functions
 #
@@ -314,6 +326,9 @@ display_help() {
   echo '       agentic: Clone agentic repo to ~/.config/agentic.'
   echo '      homebrew: Install Homebrew (Mac OS X only).'
   echo '         rbenv: Install rbenv, a Ruby version manager.'
+  echo '        claude: Install Claude Code.'
+  echo '         codex: Install Codex CLI.'
+  echo '         herdr: Install herdr.'
   echo ' launch_agents: Install launchd plists to ~/Library/LaunchAgents/'
   echo '    moshi_hook: Install and enable moshi-hook systemd user unit.'
   echo '      terminfo: Install terminfo.'
@@ -346,6 +361,15 @@ case "$1" in
     ;;
   rustup | rust)
     install_rustup
+    ;;
+  claude | claude-code)
+    install_claude
+    ;;
+  codex)
+    install_codex
+    ;;
+  herdr)
+    install_herdr
     ;;
   launch_agents | launch-agents | agents)
     install_launch_agents
