@@ -3,7 +3,6 @@ lockfile = true
 experimental = true
 legacy_version_file = true
 not_found_auto_install = false
-prefer_offline = true
 
 minimum_release_age = "3d"
 minimum_release_age_excludes = [
@@ -131,7 +130,7 @@ dust = "latest"
 evans = "latest"
 fd = "latest"
 fzf = "latest"
-gemini = "latest"
+gemini = { version = "latest", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "latest"
 gitu = "latest"
 grpcurl = "latest"
@@ -163,6 +162,7 @@ portless = "latest"
 rclone = "latest"
 restish = "latest"
 ripgrep = "latest"
+rtk = "latest"
 ruby = "latest"
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
 sccache = "latest"
