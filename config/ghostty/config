@@ -9,7 +9,7 @@ scrollback-limit = 50000000
 # Theme settings
 # ------------------------------------------------------------------------------
 
-theme = tango-with-monokai
+theme = TokyoNight
 window-theme = dark
 
 background-opacity = 0.95
