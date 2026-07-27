@@ -10,6 +10,7 @@ minimum_release_age_excludes = [
     "github:jimeh/airplan",
     "github:jimeh/hucode",
     "github:jimeh/treeboot",
+    "usage",
 ]
 
 trusted_config_paths = [
@@ -127,7 +128,7 @@ dust = "latest"
 evans = "latest"
 fd = "latest"
 fzf = "latest"
-gemini = { version = "0.51.0", allow_builds = ["@github/keytar", "node-pty"] }
+gemini = { version = "latest", allow_builds = ["@github/keytar", "node-pty"] }
 gh = "latest"
 gitu = "latest"
 grpcurl = "latest"
