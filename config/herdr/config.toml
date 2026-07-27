@@ -29,10 +29,10 @@ focus_pane_down = "alt+k"
 focus_pane_left = "alt+j"
 focus_pane_right = "alt+l"
 
-swap_pane_up = "prefix+alt+i"
-swap_pane_down = "prefix+alt+k"
-swap_pane_left = "prefix+alt+j"
-swap_pane_right = "prefix+alt+l"
+swap_pane_up = ["prefix+alt+i", "shift+alt+i"]
+swap_pane_down = ["prefix+alt+k", "shift+alt+k"]
+swap_pane_left = ["prefix+alt+j", "shift+alt+j"]
+swap_pane_right = ["prefix+alt+l", "shift+alt+l"]
 
 cycle_pane_previous = ["prefix+shift+tab", "prefix+i", "prefix+ctrl+i"]
 cycle_pane_next = ["prefix+tab", "prefix+ctrl+o"]
