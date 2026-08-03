@@ -13,7 +13,6 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'ChatGPT' }, { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'T3 Code (Alpha)' }, { 'Hubris' }, { 'Superset' }, { 'Conductor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT Atlas' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
@@ -23,6 +22,14 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'Discord PTB' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' }, { 'Obsidian' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'WhatsApp' })
+
+  apptoggle:bind({ 'cmd', 'ctrl' }, '3',
+    { 'T3 Code (Nightly)' },
+    { 'T3 Code (Alpha)' },
+    { 'Hubris' },
+    { 'Superset' },
+    { 'Conductor' }
+  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'E', { 'Hucode', '/Applications/Hucode.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'W',
@@ -59,10 +66,16 @@ local uh = require('url_handler')
 local function init_url_handler()
   uh.default_handler = uh.browsers.arc
   uh.url_patterns    = {
+    { { "%://meet.google.com/" }, uh.browsers.chrome, nil },
     {
-      -- { "%://meet.google.com/" }, uh.browsers.chrome, nil,
-      { "%://www.youtube.com/", "%://youtube.com/", "%://youtu.be/" }, uh.browsers.zen, nil,
-    }
+      {
+        "%://www.youtube.com/",
+        "%://youtube.com/",
+        "%://youtu.be/"
+      },
+      uh.browsers.zen,
+      nil
+    },
   }
   -- uh.url_redir_decoders = {
   --   {
