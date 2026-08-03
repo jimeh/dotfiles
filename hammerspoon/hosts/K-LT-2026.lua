@@ -13,7 +13,6 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'ChatGPT' }, { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '3', { 'T3 Code (Alpha)' }, { 'Hubris' }, { 'Superset' }, { 'Conductor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT Atlas' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Argo CD' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Lens' })
@@ -23,6 +22,14 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'ctrl' }, 'T', { 'TeamSpeak 3', '/Applications/TeamSpeak 3 Client.app' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'X', { 'Notion' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'Z', { 'Slack' })
+
+  apptoggle:bind({ 'cmd', 'ctrl' }, '3',
+    { 'T3 Code (Nightly)' },
+    { 'T3 Code (Alpha)' },
+    { 'Hubris' },
+    { 'Superset' },
+    { 'Conductor' }
+  )
 
   apptoggle:bind({ 'cmd', 'ctrl' }, 'C',
     { 'Notion Calendar' },
