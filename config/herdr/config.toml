@@ -50,25 +50,8 @@ show_agent_labels_on_pane_borders = true
 name = "catppuccin"
 auto_switch = false
 
-# # Tango with Monokai. The UI surfaces are shades between the theme's black
-# # background and bright black, while semantic colors use its bright palette.
-# [theme.custom]
-# accent = "#5696d5"
-# panel_bg = "#000000"
-# surface0 = "#1c1d1a"
-# surface1 = "#272822"
-# surface_dim = "#11120f"
-# overlay0 = "#686a66"
-# overlay1 = "#9a9b98"
-# text = "#ffffff"
-# subtext0 = "#cccccc"
-# mauve = "#9d6aa5"
-# green = "#96cf4d"
-# yellow = "#fdeb61"
-# red = "#ed3a2c"
-# blue = "#5696d5"
-# teal = "#75cee3"
-# peach = "#c3a643"
+[theme.custom]
+surface_dim = "#25263a"
 
 [ui.toast]
 delivery = "herdr"
