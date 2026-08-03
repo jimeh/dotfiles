@@ -84,12 +84,12 @@ install_symlinks() {
 }
 
 install_private() {
-  git_clone "git@github.com:jimeh/dotfiles-private.git" \
+  git_clone "https://github.com/jimeh/dotfiles-private.git" \
     "$ROOT_PATH/$PRIVATE_PATH"
 }
 
 install_agentic() {
-  git_clone "git@github.com:jimeh/agentic.git" \
+  git_clone "https://github.com/jimeh/agentic.git" \
     "$HOME/.config/agentic"
 }
 
@@ -180,7 +180,7 @@ install_rbenv() {
 install_emacs_config() {
   git_clone 'https://github.com/plexus/chemacs2.git' "$TARGET/.config/chemacs2"
   symlink "$TARGET/.config/chemacs2" "$TARGET/.emacs.d"
-  git_clone 'git@github.com:jimeh/.emacs.d.git' "$TARGET/.config/emacs-siren"
+  git_clone 'https://github.com/jimeh/.emacs.d.git' "$TARGET/.config/emacs-siren"
 }
 
 install_rustup() {
