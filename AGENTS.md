@@ -89,3 +89,6 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - `bin/claudex` reads the first API key from CLIProxyAPI's local config at
   runtime. Use `CLAUDEX_BASE_URL`, `CLAUDEX_API_KEY`, `CLAUDEX_CONFIG`, and
   `CLAUDEX_MODEL` for machine-specific overrides rather than committing them.
+- `brew outdated --json=v2` reports a cask's installation receipt, which can
+  lag behind self-updating apps. Use `brew info --cask --json=v2` bundle
+  versions when displaying the live installed app version.

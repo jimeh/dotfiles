@@ -4,7 +4,7 @@
 # rubocop:disable Layout/LineLength
 
 # <xbar.title>Brew Updates</xbar.title>
-# <xbar.version>v2.7.3</xbar.version>
+# <xbar.version>v2.7.4</xbar.version>
 # <xbar.author>Jim Myhrberg</xbar.author>
 # <xbar.author.github>jimeh</xbar.author.github>
 # <xbar.desc>List and manage outdated Homebrew formulas and casks</xbar.desc>
@@ -364,7 +364,28 @@ module Brew
   end
 
   class Formula < Package; end
-  class Cask < Package; end
+
+  class Cask < Package
+    def initialize(attributes = {}, info = {})
+      super(attributes)
+
+      @bundle_short_version = info['bundle_short_version']
+      @bundle_version = info['bundle_version']
+    end
+
+    def installed_versions
+      return super if @bundle_short_version.nil? || @bundle_short_version.empty?
+
+      versions = [@bundle_short_version]
+      if latest_version.to_s.include?(',') &&
+         !@bundle_version.nil? && !@bundle_version.empty? &&
+         @bundle_version != @bundle_short_version
+        versions << @bundle_version
+      end
+
+      [versions.join(',')]
+    end
+  end
 
   class FormulaUpdates < Common
     prefix '🍻'
@@ -723,7 +744,28 @@ module Brew
     end
 
     def casks
-      @casks ||= outdated['casks'].map { |c| Cask.new(c) }
+      @casks ||= outdated['casks'].map do |attributes|
+        Cask.new(attributes, cask_info.fetch(attributes['name'], {}))
+      end
+    end
+
+    def cask_info
+      @cask_info ||= begin
+        names = outdated['casks'].map { |cask| cask['name'] }
+        if names.empty?
+          {}
+        else
+          data = JSON.parse(
+            cmd(brew_path, 'info', '--cask', '--json=v2', *names)
+          )
+          data.fetch('casks', []).each_with_object({}) do |cask, info|
+            info[cask['token']] = cask
+            info[cask['full_token']] = cask if cask['full_token']
+          end
+        end
+      rescue Xbar::CommandError
+        {}
+      end
     end
 
     def greedy_args
@@ -743,20 +785,22 @@ module Brew
   end
 end
 
-begin
-  service = Brew::FormulaUpdates.new
-  Xbar::Runner.new(service).run(ARGV)
-rescue StandardError => e
-  puts ":warning: #{File.basename(__FILE__)}"
-  puts '---'
-  puts 'exit status 1'
-  puts '---'
-  puts 'Error:'
-  puts e.message
-  e.backtrace.each do |line|
-    puts "--#{line}"
+if $PROGRAM_NAME == __FILE__
+  begin
+    service = Brew::FormulaUpdates.new
+    Xbar::Runner.new(service).run(ARGV)
+  rescue StandardError => e
+    puts ":warning: #{File.basename(__FILE__)}"
+    puts '---'
+    puts 'exit status 1'
+    puts '---'
+    puts 'Error:'
+    puts e.message
+    e.backtrace.each do |line|
+      puts "--#{line}"
+    end
+    exit 0
   end
-  exit 0
 end
 
 # rubocop:enable Style/IfUnlessModifier
