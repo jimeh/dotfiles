@@ -1213,68 +1213,68 @@ url = "https://github.com/direnv/direnv/releases/download/v2.37.1/direnv.windows
 url_api = "https://api.github.com/repos/direnv/direnv/releases/assets/274610569"
 
 [[tools.dua]]
-version = "2.39.1"
+version = "2.40.0"
 backend = "aqua:Byron/dua-cli"
 
 [tools.dua."platforms.linux-arm64"]
-checksum = "sha256:b2b1499b52b32a95a57923e998b1522539092783a1ee1132ad2188a0d2ae0897"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494838298"
+checksum = "sha256:f73522d7374aead9477570e0c7bc969a4323c1fd5477cdfb8ad31b9386a447bc"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573456"
 
 [tools.dua."platforms.linux-arm64-musl"]
-checksum = "sha256:b2b1499b52b32a95a57923e998b1522539092783a1ee1132ad2188a0d2ae0897"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494838298"
+checksum = "sha256:f73522d7374aead9477570e0c7bc969a4323c1fd5477cdfb8ad31b9386a447bc"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573456"
 
 [tools.dua."platforms.linux-x64"]
-checksum = "sha256:f3d045eb013be8b29a7b25461c81ed5811850e3d81d8263d1f62476197bc8601"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837730"
+checksum = "sha256:c46bd53054f5821ccb18d37704caec0295bdc72fd69374d86a1fb03d2152bd4b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573270"
 
 [tools.dua."platforms.linux-x64-baseline"]
-checksum = "sha256:f3d045eb013be8b29a7b25461c81ed5811850e3d81d8263d1f62476197bc8601"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837730"
+checksum = "sha256:c46bd53054f5821ccb18d37704caec0295bdc72fd69374d86a1fb03d2152bd4b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573270"
 
 [tools.dua."platforms.linux-x64-musl"]
-checksum = "sha256:f3d045eb013be8b29a7b25461c81ed5811850e3d81d8263d1f62476197bc8601"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837730"
+checksum = "sha256:c46bd53054f5821ccb18d37704caec0295bdc72fd69374d86a1fb03d2152bd4b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573270"
 
 [tools.dua."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:f3d045eb013be8b29a7b25461c81ed5811850e3d81d8263d1f62476197bc8601"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837730"
+checksum = "sha256:c46bd53054f5821ccb18d37704caec0295bdc72fd69374d86a1fb03d2152bd4b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496573270"
 
 [tools.dua."platforms.macos-arm64"]
-checksum = "sha256:fc6131210869bd3ef08b1075d00cfed95d2bed4bdf6bb8443a9f40afe4643dd4"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837221"
+checksum = "sha256:929eb5d16ddf602bc934a78e6c4469b0b6747940388863cf0a1d3e0ecbc89f8a"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496572774"
 
 [tools.dua."platforms.macos-x64"]
-checksum = "sha256:fc6131210869bd3ef08b1075d00cfed95d2bed4bdf6bb8443a9f40afe4643dd4"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837221"
+checksum = "sha256:929eb5d16ddf602bc934a78e6c4469b0b6747940388863cf0a1d3e0ecbc89f8a"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496572774"
 
 [tools.dua."platforms.macos-x64-baseline"]
-checksum = "sha256:fc6131210869bd3ef08b1075d00cfed95d2bed4bdf6bb8443a9f40afe4643dd4"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494837221"
+checksum = "sha256:929eb5d16ddf602bc934a78e6c4469b0b6747940388863cf0a1d3e0ecbc89f8a"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496572774"
 
 [tools.dua."platforms.windows-arm64"]
-checksum = "sha256:6c0f7fd6aecfdc15462d816d3bd5054b67c83cd95fc5c6c214f78651b470a114"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494839249"
+checksum = "sha256:74d9ade19e02c09881e486a0fc90e917419ff710c041f0e6beb3ee84c798e70b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496574720"
 
 [tools.dua."platforms.windows-x64"]
-checksum = "sha256:6c0f7fd6aecfdc15462d816d3bd5054b67c83cd95fc5c6c214f78651b470a114"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494839249"
+checksum = "sha256:74d9ade19e02c09881e486a0fc90e917419ff710c041f0e6beb3ee84c798e70b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496574720"
 
 [tools.dua."platforms.windows-x64-baseline"]
-checksum = "sha256:6c0f7fd6aecfdc15462d816d3bd5054b67c83cd95fc5c6c214f78651b470a114"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.39.1/dua-v2.39.1-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/494839249"
+checksum = "sha256:74d9ade19e02c09881e486a0fc90e917419ff710c041f0e6beb3ee84c798e70b"
+url = "https://github.com/Byron/dua-cli/releases/download/v2.40.0/dua-v2.40.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/496574720"
 
 [[tools.dust]]
 version = "1.2.4"
