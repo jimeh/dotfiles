@@ -327,6 +327,7 @@ source-if-exists "$DOTZSH/hosts/${HOST%%.*}.zsh"
 
 # Utils
 source "$DOTZSH/1password.zsh"
+source "$DOTZSH/airplan.zsh"
 source "$DOTZSH/ansi.zsh"
 source "$DOTZSH/atuin.zsh"
 source "$DOTZSH/copilot.zsh"
