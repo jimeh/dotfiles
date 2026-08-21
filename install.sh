@@ -26,6 +26,7 @@ SYMLINKS=(
   config/tlrc/config.toml
   config/xkeysnail/config.py
   config/k9s
+  emacs-profiles.el
   erlang
   gemrc
   gitattributes
@@ -184,6 +185,11 @@ install_emacs_config() {
   git_clone 'https://github.com/jimeh/.emacs.d.git' "$TARGET/.config/emacs-siren"
 }
 
+install_vscode_config() {
+  git_clone 'https://github.com/jimeh/.vscode.d.git' \
+    "$TARGET/.config/vscode-siren"
+}
+
 install_rustup() {
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
@@ -323,6 +329,7 @@ display_help() {
   echo '    shell_init: Launch zsh instance so zinit installs all deps.'
   echo '          info: Display target and source directory information.'
   echo '  emacs_config: Install Emacs configuration.'
+  echo ' vscode-config: Clone VSCode configuration to ~/.config/vscode-siren.'
   echo '       private: Install private dotfiles.'
   echo '       agentic: Clone agentic repo to ~/.config/agentic.'
   echo '      homebrew: Install Homebrew (Mac OS X only).'
@@ -347,6 +354,9 @@ case "$1" in
     ;;
   emacs_config | emacs-config | emacs)
     install_emacs_config
+    ;;
+  vscode_config | vscode-config | vscode)
+    install_vscode_config
     ;;
   private)
     install_private
