@@ -6,7 +6,6 @@ not_found_auto_install = false
 
 minimum_release_age = "3d"
 minimum_release_age_excludes = [
-    "codex",
     "github:jimeh/airplan",
     "github:jimeh/hucode",
     "github:jimeh/treeboot",
@@ -154,7 +153,6 @@ kustomize = "latest"
 lua = "latest"
 lua-language-server = "latest"
 markdownlint-cli2 = "latest"
-opencode = "latest"
 opentofu = "latest"
 oxfmt = "latest"
 oxlint = "latest"
@@ -211,7 +209,3 @@ uvx_args = "--with='evdev<1.9'"
 version = "latest"
 matching = "hucode-cli"
 os = ["linux"]
-
-[tools."codex"]
-version = "latest"
-os = ["macos"]
