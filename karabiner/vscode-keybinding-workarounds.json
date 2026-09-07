@@ -7,6 +7,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -41,6 +42,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -75,6 +77,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -109,6 +112,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -142,6 +146,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -175,6 +180,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -208,6 +214,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -241,6 +248,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -275,6 +283,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -305,6 +314,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -335,6 +345,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -365,6 +376,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -395,6 +407,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -425,6 +438,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
@@ -458,6 +472,7 @@
           "bundle_identifiers": [
             "^com\\.exafunction\\.windsurf",
             "^com\\.microsoft\\.VSCode",
+            "^net\\.imput\\.helium$",
             "^com\\.todesktop\\."
           ],
           "type": "frontmost_application_if"
