@@ -638,79 +638,79 @@ checksum = "sha256:78c221c2376f79731ccf4e4af0b3bb46d81fefa3296c5abee09ad8a1b21e6
 url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-windows-x64-baseline.zip"
 
 [[tools.cargo-binstall]]
-version = "1.22.0"
+version = "1.23.0"
 backend = "aqua:cargo-bins/cargo-binstall"
 
 [tools.cargo-binstall."platforms.linux-arm64"]
-checksum = "sha256:49955636054132dd934f5ea1d2b09e41752c29e51de118267d1c08757916d48c"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-aarch64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164698"
+checksum = "sha256:c458cfe9534d1958f159fc17b5f50e839297b4ee752b23ffdd80c5e15a734c42"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-aarch64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062641"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-arm64-musl"]
-checksum = "sha256:2fdf0ad20ffc7c7f94f32c19566f417d227484ff0335664d5df429e459d1354b"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164643"
+checksum = "sha256:ba9b7bf426c7b7375825cd3fa367c3f8a632ca7c6c546fdcb738114b167f4103"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062597"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64"]
-checksum = "sha256:4a2621d4b8cb2a1c2433aab2746597b3a10138c33106a303600ebbe76a0e5930"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164401"
+checksum = "sha256:cdada45ad6bb501185ab309f5eef3f628b6bc44460746565cb3e0c7538815bf3"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062151"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-baseline"]
-checksum = "sha256:4a2621d4b8cb2a1c2433aab2746597b3a10138c33106a303600ebbe76a0e5930"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164401"
+checksum = "sha256:cdada45ad6bb501185ab309f5eef3f628b6bc44460746565cb3e0c7538815bf3"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062151"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl"]
-checksum = "sha256:df2921254924066627685ee09f6c8b9acd7acef68a338668f879d2b033c09458"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164368"
+checksum = "sha256:64bf954c68bb558431deeabecaec7687edd5541c2189ee263bb8bc18bc4fdf55"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062088"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:df2921254924066627685ee09f6c8b9acd7acef68a338668f879d2b033c09458"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164368"
+checksum = "sha256:64bf954c68bb558431deeabecaec7687edd5541c2189ee263bb8bc18bc4fdf55"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062088"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-arm64"]
-checksum = "sha256:c364fd10e494b4fc0cc88a89995446364379a914930f0b0182b1151ad27690a1"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164803"
+checksum = "sha256:0f679c0bc992c6b84fdcbb0f65492588447d26596ef387cb6cb1ba41ad8ceb33"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062768"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64"]
-checksum = "sha256:88f4459e166c50ece5f240934197ef60b88d12a7b459cb4cea15ab0b7d5dc123"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164482"
+checksum = "sha256:5b4d6cd99651318e17a26ed9bab7505de0f496d88793a7735a0fc6e2079efe83"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062270"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64-baseline"]
-checksum = "sha256:88f4459e166c50ece5f240934197ef60b88d12a7b459cb4cea15ab0b7d5dc123"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164482"
+checksum = "sha256:5b4d6cd99651318e17a26ed9bab7505de0f496d88793a7735a0fc6e2079efe83"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062270"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-arm64"]
-checksum = "sha256:3aebb3854efc319ab09c01b6dc8b17c568e8a90417f0878608b71fdafc8a437c"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-aarch64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164768"
+checksum = "sha256:a3996cbd0c7fa2be599bd52eaf70ccd8c0dce4cce8d01345d486f47b0e0ee0f9"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-aarch64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062685"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64"]
-checksum = "sha256:0950f5a9f3422f74dea181d11f8b4d4447d1e9d1a9fdadcb72ff5b0b63c95207"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164447"
+checksum = "sha256:f4641479477aca40387e88297e3813fab8e44a8d21f25faa44e0ff33e2bc1726"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062212"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64-baseline"]
-checksum = "sha256:0950f5a9f3422f74dea181d11f8b4d4447d1e9d1a9fdadcb72ff5b0b63c95207"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.22.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/525164447"
+checksum = "sha256:f4641479477aca40387e88297e3813fab8e44a8d21f25faa44e0ff33e2bc1726"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.23.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/546062212"
 provenance = "github-attestations"
 
 [[tools."cargo:bacon"]]
@@ -2314,79 +2314,79 @@ url = "https://github.com/segmentio/golines/releases/download/v0.13.0/golines_0.
 url_api = "https://api.github.com/repos/segmentio/golines/releases/assets/284914861"
 
 [[tools.goreleaser]]
-version = "2.18.0"
+version = "2.18.1"
 backend = "aqua:goreleaser/goreleaser"
 
 [tools.goreleaser."platforms.linux-arm64"]
-checksum = "sha256:1975566c9668e6f4247e6bb57656f21da13635c24d948ef47b1232e5c864a35b"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873789"
+checksum = "sha256:93dba7614308e167158bd26978e8275971fd4b9147e7f3c687a64f5939d42d27"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377096"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.linux-arm64-musl"]
-checksum = "sha256:1975566c9668e6f4247e6bb57656f21da13635c24d948ef47b1232e5c864a35b"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873789"
+checksum = "sha256:93dba7614308e167158bd26978e8275971fd4b9147e7f3c687a64f5939d42d27"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377096"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.linux-x64"]
-checksum = "sha256:41cdf49b653784b03a08013dd99e382cd5d463049e915c2d818eaed182ae6197"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873785"
+checksum = "sha256:0c6122af0ad8fd65638889bf7d3757148b2f80eeff9f079682f0655df66ec8e8"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377081"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.linux-x64-baseline"]
-checksum = "sha256:41cdf49b653784b03a08013dd99e382cd5d463049e915c2d818eaed182ae6197"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873785"
+checksum = "sha256:0c6122af0ad8fd65638889bf7d3757148b2f80eeff9f079682f0655df66ec8e8"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377081"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.linux-x64-musl"]
-checksum = "sha256:41cdf49b653784b03a08013dd99e382cd5d463049e915c2d818eaed182ae6197"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873785"
+checksum = "sha256:0c6122af0ad8fd65638889bf7d3757148b2f80eeff9f079682f0655df66ec8e8"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377081"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:41cdf49b653784b03a08013dd99e382cd5d463049e915c2d818eaed182ae6197"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873785"
+checksum = "sha256:0c6122af0ad8fd65638889bf7d3757148b2f80eeff9f079682f0655df66ec8e8"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377081"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.macos-arm64"]
-checksum = "sha256:285abb188274f3eebffb97fcd17a7d25f109fe33e234597c393e78e869386d5c"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Darwin_all.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873866"
+checksum = "sha256:d0af1f86c439a59ab06c54c505f66fea1a166093dc91a7c0c8aebe3da1cc13b7"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Darwin_all.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377101"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.macos-x64"]
-checksum = "sha256:285abb188274f3eebffb97fcd17a7d25f109fe33e234597c393e78e869386d5c"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Darwin_all.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873866"
+checksum = "sha256:d0af1f86c439a59ab06c54c505f66fea1a166093dc91a7c0c8aebe3da1cc13b7"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Darwin_all.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377101"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.macos-x64-baseline"]
-checksum = "sha256:285abb188274f3eebffb97fcd17a7d25f109fe33e234597c393e78e869386d5c"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Darwin_all.tar.gz"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873866"
+checksum = "sha256:d0af1f86c439a59ab06c54c505f66fea1a166093dc91a7c0c8aebe3da1cc13b7"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Darwin_all.tar.gz"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377101"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.windows-arm64"]
-checksum = "sha256:43647ce4e0fbc624d39dd095e0ed5bf55a11978ea58a74a91630fb26eea88511"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Windows_arm64.zip"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873827"
+checksum = "sha256:e1d1d8fc468ec8ee182b9489fec15a5e6d5c5991f1694039d4b0089ece944c23"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Windows_arm64.zip"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377150"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.windows-x64"]
-checksum = "sha256:cbd0aeab833806b6c07e2d156c2c9baaffa6e3d1fb870071bf3efc9d9e5b4777"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873786"
+checksum = "sha256:dbb3112f619c4827311b726b3c98047bce69af1ecee99984d55d450c04c471fc"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377158"
 provenance = "github-attestations"
 
 [tools.goreleaser."platforms.windows-x64-baseline"]
-checksum = "sha256:cbd0aeab833806b6c07e2d156c2c9baaffa6e3d1fb870071bf3efc9d9e5b4777"
-url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.0/goreleaser_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/526873786"
+checksum = "sha256:dbb3112f619c4827311b726b3c98047bce69af1ecee99984d55d450c04c471fc"
+url = "https://github.com/goreleaser/goreleaser/releases/download/v2.18.1/goreleaser_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/goreleaser/goreleaser/releases/assets/546377158"
 provenance = "github-attestations"
 
 [[tools.grpcurl]]
