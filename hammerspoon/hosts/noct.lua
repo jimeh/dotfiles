@@ -13,7 +13,7 @@ local function init_hotkeys()
   apptoggle:bind({ 'cmd', 'alt', 'ctrl' }, 'A', { 'Activity Monitor' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '1', { 'ChatGPT' }, { 'Codex' })
   apptoggle:bind({ 'cmd', 'ctrl' }, '2', { 'Claude' })
-  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT Atlas' })
+  apptoggle:bind({ 'cmd', 'ctrl' }, '4', { 'ChatGPT Classic' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'A', { 'Messages' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'B', { 'TablePlus' }, { 'Sequel Pro' }, { 'Lens' })
   apptoggle:bind({ 'cmd', 'ctrl' }, 'D', { 'Mail+ for Gmail' }, { 'Mimestream' })
@@ -44,13 +44,17 @@ local function init_hotkeys()
     { 'Notion Calendar' }
   )
 
+  -- Use Huterm as my primary terminal application.
+  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Huterm', '/Applications/Huterm.app' })
+  apphider:autoHide('Huterm') -- auto-hide Huterm when it loses focus
+
   -- -- Use cmux as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })
   -- apphider:autoHide('cmux') -- auto-hide cmux when it loses focus
 
-  -- Use Ghostty as my primary terminal application.
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
-  apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
+  -- -- Use Ghostty as my primary terminal application.
+  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Ghostty' })
+  -- apphider:autoHide('Ghostty') -- auto-hide Ghostty when it loses focus
 
   -- -- Use Warp as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Warp' })
