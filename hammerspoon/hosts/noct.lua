@@ -44,9 +44,9 @@ local function init_hotkeys()
     { 'Notion Calendar' }
   )
 
-  -- Use Huterm as my primary terminal application.
-  apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Huterm', '/Applications/Huterm.app' })
-  apphider:autoHide('Huterm') -- auto-hide Huterm when it loses focus
+  -- -- Use Huterm as my primary terminal application.
+  -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'Huterm', '/Applications/Huterm.app' })
+  -- apphider:autoHide('Huterm') -- auto-hide Huterm when it loses focus
 
   -- -- Use cmux as my primary terminal application.
   -- apptoggle:bind({ 'cmd', 'ctrl' }, 'R', { 'cmux' })

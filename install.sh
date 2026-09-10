@@ -16,6 +16,7 @@ SYMLINKS=(
   coffeelint.json
   config/ghostty
   config/herdr/config.toml
+  config/huterm/config.toml
   config/kitty
   config/mise/config.toml
   config/mise/mise.lock

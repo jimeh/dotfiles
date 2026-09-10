@@ -1,0 +1,47 @@
+#:schema https://github.com/jimeh/huterm/releases/latest/download/huterm.schema.json
+
+[font]
+family = "Menlo Nerd Font Mono"
+size = 12.0
+
+[theme]
+name = "tokyo-night"
+
+[terminal]
+engine = "ghostty"           # alacritty or ghostty
+macos_option_as_alt = "both"
+close_on_exit = false
+
+[window]
+tab_position = "top"                   # top, bottom, left, or right
+macos_fullscreen_mode = "non_native"   # non_native or native
+auto_hide_tab_bar_in_fullscreen = true
+always_show_tab_bar = false
+
+[[keybinding]]
+key = "cmd-r"
+command = "reload_config"
+
+[[keybinding]]
+key = "cmd-{"
+command = "previous_tab"
+
+[[keybinding]]
+key = "cmd-}"
+command = "next_tab"
+
+# Toggle the default quake window, even from another application.
+[[global_keybinding]]
+key = "cmd-ctrl-r"
+command = "toggle_quake"
+args = { profile = "default" }
+
+[quake.profiles.default]
+position = "top"          # top, bottom, left, or right
+display = "primary"       # active, pointer, or primary
+hide_on_focus_loss = true
+width = 1
+height = 1
+fullscreen = false
+animation = "fade"        # auto, none, fade, slide, slide_<dir>, or fade_slide_<dir>
+animation_ms = 150
