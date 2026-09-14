@@ -10,12 +10,12 @@ name = "tokyo-night"
 [terminal]
 engine = "ghostty"           # alacritty or ghostty
 macos_option_as_alt = "both"
-close_on_exit = false
+close_on_exit = true
 
 [window]
 tab_position = "top"                   # top, bottom, left, or right
 macos_fullscreen_mode = "non_native"   # non_native or native
-auto_hide_tab_bar_in_fullscreen = true
+auto_hide_tab_bar_in_fullscreen = false
 always_show_tab_bar = false
 
 [[keybinding]]
@@ -42,6 +42,6 @@ display = "primary"       # active, pointer, or primary
 hide_on_focus_loss = true
 width = 1
 height = 1
-fullscreen = false
+fullscreen = true
 animation = "fade"        # auto, none, fade, slide, slide_<dir>, or fade_slide_<dir>
 animation_ms = 150
