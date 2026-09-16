@@ -12,10 +12,21 @@ macos_option_as_alt = "both"
 close_on_exit = true
 
 [window]
-tab_position = "top"                   # top, bottom, left, or right
-macos_fullscreen_mode = "non_native"   # non_native or native
-auto_hide_tab_bar_in_fullscreen = false
-always_show_tab_bar = false
+macos_fullscreen_mode = "non_native" # non_native or native
+
+[tabs]
+always_show = false
+auto_hide_in_fullscreen = true
+
+position = "top"        # top, bottom, left, or right
+style = "pill"          # pill or strip
+pill_accent = false     # accent bar inside the active pill
+close_button = "active" # active, hover, or always
+notch = "left"          # fullscreen top bar beside a display notch: off, left, or right
+width = "fit"           # fit or fill; top and bottom only
+
+[palette]
+placement = "center" # top or center
 
 [[keybinding]]
 key = "cmd-r"
@@ -28,6 +39,10 @@ command = "previous_tab"
 [[keybinding]]
 key = "cmd-}"
 command = "next_tab"
+
+[[keybinding]]
+key = "ctrl-g"
+command = "palette_back"
 
 # Toggle the default quake window, even from another application.
 [[global_keybinding]]
