@@ -385,6 +385,9 @@ source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-clo
 # Antigravity setup
 path_prepend "$HOME/.antigravity/antigravity/bin"
 
+# Opencode setup
+path_prepend "$HOME/.opencode/bin"
+
 # Windsurf setup
 path_prepend "$HOME/.codeium/windsurf/bin"
 
