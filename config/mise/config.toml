@@ -21,7 +21,6 @@ trusted_config_paths = [
     "~/conductor/workspaces",
 ]
 idiomatic_version_file_enable_tools = [
-    "go",
     "node",
     "python",
     "ruby",
@@ -182,13 +181,9 @@ usage = "latest"
 watchexec = "latest"
 yj = "latest"
 yq = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zls = "latest"
 zoxide = "latest"
-
-[tools."npm:gitnexus"]
-version = "latest"
-bun_args = "--trust"
-allow_builds = ["@ladybugdb/core", "gitnexus", "tree-sitter"]
 
 # Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
 # bcrypt 4.1 or later.

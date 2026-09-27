@@ -18,8 +18,7 @@ SYMLINKS=(
   config/herdr/config.toml
   config/huterm/config.toml
   config/kitty
-  config/mise/config.toml
-  config/mise/mise.lock
+  config/mise
   config/nix/nix.conf
   config/solargraph/config.yml
   config/starship.toml
