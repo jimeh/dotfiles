@@ -28,6 +28,53 @@ url = "https://cache.agilebits.com/dist/1P/op2/pkg/v2.39.0/op_darwin_amd64_v2.39
 [tools.1password."platforms.windows-x64"]
 url = "https://cache.agilebits.com/dist/1P/op2/pkg/v2.39.0/op_windows_amd64_v2.39.0.zip"
 
+[[tools.actionlint]]
+version = "1.7.12"
+backend = "aqua:rhysd/actionlint"
+specifiers = ["latest"]
+
+[tools.actionlint."platforms.linux-arm64"]
+checksum = "sha256:325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924897"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.linux-arm64-musl"]
+checksum = "sha256:325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924897"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.linux-x64"]
+checksum = "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924896"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.linux-x64-musl"]
+checksum = "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924896"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.macos-arm64"]
+checksum = "sha256:aba9ced2dee8d27fecca3dc7feb1a7f9a52caefa1eb46f3271ea66b6e0e6953f"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924893"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.macos-x64"]
+checksum = "sha256:5b44c3bc2255115c9b69e30efc0fecdf498fdb63c5d58e17084fd5f16324c644"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924880"
+provenance = "github-attestations"
+
+[tools.actionlint."platforms.windows-x64"]
+checksum = "sha256:6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_amd64.zip"
+url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924919"
+provenance = "github-attestations"
+
 [[tools."aqua:AlexanderGrooff/mermaid-ascii"]]
 version = "1.6.1"
 backend = "aqua:AlexanderGrooff/mermaid-ascii"
@@ -319,6 +366,55 @@ checksum = "sha256:19afc9b22569c7c528c278eb5f3d6706581e1ba9b232f420e0d91ae246762
 url = "https://github.com/bufbuild/buf/releases/download/v1.73.0/buf-Windows-x86_64.zip"
 url_api = "https://api.github.com/repos/bufbuild/buf/releases/assets/557280369"
 provenance = "minisign"
+
+[[tools.bun]]
+version = "1.4.2"
+backend = "core:bun"
+specifiers = ["latest"]
+
+[tools.bun."platforms.linux-arm64"]
+checksum = "sha256:54328bbc2d9c8e0c9f892c544d66c57a83b84139e34909e5ee81758f1ac8fda7"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-aarch64.zip"
+
+[tools.bun."platforms.linux-arm64-musl"]
+checksum = "sha256:71760b6c8ea30623b81a4907cb815d48e2ea266f2e73e751534a44a0607950df"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-aarch64-musl.zip"
+
+[tools.bun."platforms.linux-x64"]
+checksum = "sha256:36368faef7527875d5ffa52e53cd48021741f2a83eb6208a8dd64068d422a913"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-x64.zip"
+
+[tools.bun."platforms.linux-x64-baseline"]
+checksum = "sha256:c678040f14fe0440eb839d37cbd0ce4c051a32da72806ac97de6a6aab6bf728f"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-x64-baseline.zip"
+
+[tools.bun."platforms.linux-x64-musl"]
+checksum = "sha256:4835eca59d6da70f4674f5642f6e459dcadab773695b2ed9922d131057989742"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-x64-musl.zip"
+
+[tools.bun."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:76e1db84e98f22f78de0a87e309bfbbf297732847f9720db36750646c85c8c18"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-linux-x64-musl-baseline.zip"
+
+[tools.bun."platforms.macos-arm64"]
+checksum = "sha256:90987a3a16d7db556d886ac3d551e7b6d3edf0a1cf43acaed622e8676be1d12f"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-darwin-aarch64.zip"
+
+[tools.bun."platforms.macos-x64"]
+checksum = "sha256:80520d7e17526308c9185d261679ac6d27798d3803a0e9f7ff9121ab8affb012"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-darwin-x64.zip"
+
+[tools.bun."platforms.macos-x64-baseline"]
+checksum = "sha256:bad5bbd6cf14d0980d115f5954c9ff904df619d5e994d2da1ffccd3f316300b0"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-darwin-x64-baseline.zip"
+
+[tools.bun."platforms.windows-x64"]
+checksum = "sha256:ce4c17497b2f29712a99d3d53f028de28cd42e3bacb8589599e7f000e49b6405"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-windows-x64.zip"
+
+[tools.bun."platforms.windows-x64-baseline"]
+checksum = "sha256:78c221c2376f79731ccf4e4af0b3bb46d81fefa3296c5abee09ad8a1b21e68c6"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.2/bun-windows-x64-baseline.zip"
 
 [[tools.cargo-binstall]]
 version = "1.23.0"
@@ -942,6 +1038,53 @@ url = "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_windows_
 url_api = "https://api.github.com/repos/cli/cli/releases/assets/565857681"
 provenance = "github-attestations"
 
+[[tools."github:colbymchenry/codegraph"]]
+version = "1.6.0"
+backend = "github:colbymchenry/codegraph"
+specifiers = ["latest"]
+
+[tools."github:colbymchenry/codegraph"."platforms.linux-arm64"]
+checksum = "sha256:6dc935a7b8f1a61e688a578b98ea34680eb2e36d7b91db079d64f4011f1a668f"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072898"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.linux-arm64-musl"]
+checksum = "sha256:6dc935a7b8f1a61e688a578b98ea34680eb2e36d7b91db079d64f4011f1a668f"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072898"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.linux-x64"]
+checksum = "sha256:de3391f79ed42622d937e6cd5b7642a7ea8bb7d1473607e80b879ba73ef216b0"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072897"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.linux-x64-musl"]
+checksum = "sha256:de3391f79ed42622d937e6cd5b7642a7ea8bb7d1473607e80b879ba73ef216b0"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072897"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.macos-arm64"]
+checksum = "sha256:1c73033512d55f67be04717e81532e8beaf7be6fb8531f51a179fa23064ad480"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072896"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.macos-x64"]
+checksum = "sha256:cb86a2b62ee676b62a56bf8423600e7d867e752e57f323cdc98c0f6236efd908"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072894"
+provenance = "github-attestations"
+
+[tools."github:colbymchenry/codegraph"."platforms.windows-x64"]
+checksum = "sha256:cd76c3c3391f2d40abef12b142151950b6d77abc2d8429e648f89eaa90f5b68a"
+url = "https://github.com/colbymchenry/codegraph/releases/download/v1.6.0/codegraph-win32-x64.zip"
+url_api = "https://api.github.com/repos/colbymchenry/codegraph/releases/assets/531072961"
+provenance = "github-attestations"
+
 [[tools."github:jimeh/airplan"]]
 version = "0.12.1"
 backend = "github:jimeh/airplan"
@@ -1037,6 +1180,53 @@ provenance = "github-attestations"
 checksum = "sha256:4dacde9a1ba69689dab6e330d114b5331c34b112c59351e1979ac94bd8c31f3b"
 url = "https://github.com/jimeh/hucode/releases/download/v0.0.88/hucode-cli-win32-x64.zip"
 url_api = "https://api.github.com/repos/jimeh/hucode/releases/assets/591781055"
+provenance = "github-attestations"
+
+[[tools."github:jimeh/treeboot"]]
+version = "0.16.0"
+backend = "github:jimeh/treeboot"
+specifiers = ["latest"]
+
+[tools."github:jimeh/treeboot"."platforms.linux-arm64"]
+checksum = "sha256:ec4d49fdcc417f5dc258f98eb334376b4f160f86a82cf6563c0e8fa8454a3ea2"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272674"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.linux-arm64-musl"]
+checksum = "sha256:ec4d49fdcc417f5dc258f98eb334376b4f160f86a82cf6563c0e8fa8454a3ea2"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272674"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.linux-x64"]
+checksum = "sha256:60bd1167ac8af7e82e0e349670cbf808a0a2e98e7b60701dc9c8befd0444355a"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272691"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.linux-x64-musl"]
+checksum = "sha256:60bd1167ac8af7e82e0e349670cbf808a0a2e98e7b60701dc9c8befd0444355a"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272691"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.macos-arm64"]
+checksum = "sha256:c333702f761c5b54aea367472ae3a40924680ccee13a59c37641d7e4472d2095"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272662"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.macos-x64"]
+checksum = "sha256:530bc19f54e7ccd9c49da5fe6c2a2b1fa1ec91566c4a04b197c819bba1bd000d"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272685"
+provenance = "github-attestations"
+
+[tools."github:jimeh/treeboot"."platforms.windows-x64"]
+checksum = "sha256:207b340bf9c8a6c6a42989b6d92336462de465564b039853b68866402525e71f"
+url = "https://github.com/jimeh/treeboot/releases/download/v0.16.0/treeboot-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jimeh/treeboot/releases/assets/537272688"
 provenance = "github-attestations"
 
 [[tools."github:ouch-org/ouch"]]
@@ -2133,6 +2323,11 @@ checksum = "sha256:fdb9a59108cf62517813c97fa5549b0e16d1ef0688306bac728b08434db7e
 url = "https://github.com/LuaLS/lua-language-server/releases/download/3.19.1/lua-language-server-3.19.1-win32-x64.zip"
 url_api = "https://api.github.com/repos/LuaLS/lua-language-server/releases/assets/513572668"
 
+[[tools.markdownlint-cli2]]
+version = "0.23.3"
+backend = "npm:markdownlint-cli2"
+specifiers = ["latest"]
+
 [[tools.node]]
 version = "24.21.0"
 backend = "core:node"
@@ -2261,11 +2456,29 @@ checksum = "sha256:bcbcd9ca744af6c4053e2d5e75dae79ff33ad7dc38d45e1233e693d096284
 url = "https://github.com/opentofu/opentofu/releases/download/v1.12.6/tofu_1.12.6_windows_amd64.tar.gz"
 url_api = "https://api.github.com/repos/opentofu/opentofu/releases/assets/520762708"
 
+[[tools.oxfmt]]
+version = "0.70.0"
+backend = "npm:oxfmt"
+specifiers = ["latest"]
+
+[[tools.oxlint]]
+version = "1.85.0"
+backend = "aqua:oxc-project/oxc/oxlint"
+specifiers = ["latest"]
+
+[[tools."pipx:ansible"]]
+version = "14.4.0"
+backend = "pipx:ansible"
+specifiers = ["latest"]
+
+[tools."pipx:ansible".options]
+uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
+
 [[tools."pipx:ansible-lint"]]
 version = "26.9.0"
 backend = "pipx:ansible-lint"
 specifiers = ["latest"]
-uv = { path = ".mise/locks/pipx-ansible-lint/26.9.0", digest = "sha256:430a1e623627bb9ffe845d8e7e24aeb2c5082c5204695940af447230edff9640" }
+uv = { path = "locks/pipx-ansible-lint/26.9.0", digest = "sha256:430a1e623627bb9ffe845d8e7e24aeb2c5082c5204695940af447230edff9640" }
 
 [[tools."pipx:dmgbuild"]]
 version = "1.6.7"
@@ -2276,19 +2489,19 @@ specifiers = ["latest"]
 version = "4.66.0"
 backend = "pipx:fonttools"
 specifiers = ["latest"]
-uv = { path = ".mise/locks/pipx-fonttools/4.66.0", digest = "sha256:ebb5d3aa6765e48b20990254e00a57740e79f4659018c26b3b0e8008319d5429" }
+uv = { path = "locks/pipx-fonttools/4.66.0", digest = "sha256:ebb5d3aa6765e48b20990254e00a57740e79f4659018c26b3b0e8008319d5429" }
 
 [[tools."pipx:pipx"]]
 version = "1.17.6"
 backend = "pipx:pipx"
 specifiers = ["latest"]
-uv = { path = ".mise/locks/pipx-pipx/1.17.6", digest = "sha256:acf8278a7fba305c92b4c7839ef4e9d064eb39893930ce8a1d135beb4ad491a9" }
+uv = { path = "locks/pipx-pipx/1.17.6", digest = "sha256:acf8278a7fba305c92b4c7839ef4e9d064eb39893930ce8a1d135beb4ad491a9" }
 
 [[tools."pipx:toml-sort"]]
 version = "0.25.0"
 backend = "pipx:toml-sort"
 specifiers = ["latest"]
-uv = { path = ".mise/locks/pipx-toml-sort/0.25.0", digest = "sha256:6ca48c507580085849dd95df7b501529e47fac9c84c6e3420dcea4118976e59d" }
+uv = { path = "locks/pipx-toml-sort/0.25.0", digest = "sha256:6ca48c507580085849dd95df7b501529e47fac9c84c6e3420dcea4118976e59d" }
 
 [[tools."pipx:xkeysnail"]]
 version = "0.4.0"
@@ -2553,6 +2766,14 @@ url_api = "https://api.github.com/repos/rtk-ai/rtk/releases/assets/556881347"
 [[tools.ruby]]
 version = "4.0.7"
 backend = "core:ruby"
+
+[tools.ruby."platforms.windows-x64"]
+checksum = "sha256:7a9be96d3448ecbd9a81eccae1f619131dfcc761f2c98dded03ece6c05d0474f"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.7-1/rubyinstaller-4.0.7-1-x64.7z"
+
+[[tools.ruby]]
+version = "4.0.7"
+backend = "core:ruby"
 specifiers = ["latest"]
 
 [tools.ruby.options]
@@ -2583,14 +2804,6 @@ url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz"
 [tools.ruby."platforms.macos-x64"]
 checksum = "sha256:911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d"
 url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz"
-
-[[tools.ruby]]
-version = "4.0.7"
-backend = "core:ruby"
-
-[tools.ruby."platforms.windows-x64"]
-checksum = "sha256:7a9be96d3448ecbd9a81eccae1f619131dfcc761f2c98dded03ece6c05d0474f"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.7-1/rubyinstaller-4.0.7-1-x64.7z"
 
 [[tools.rust]]
 version = "1.98.1"
@@ -2639,6 +2852,46 @@ url_api = "https://api.github.com/repos/mozilla/sccache/releases/assets/56313011
 checksum = "sha256:1a63c1be2beab3f04d27e4cc145443e092e02d3dd83a51030989829d7023091b"
 url = "https://github.com/mozilla/sccache/releases/download/v0.18.0/sccache-v0.18.0-x86_64-pc-windows-msvc.tar.gz"
 url_api = "https://api.github.com/repos/mozilla/sccache/releases/assets/563130158"
+
+[[tools.shellcheck]]
+version = "0.11.0"
+backend = "aqua:koalaman/shellcheck"
+specifiers = ["latest"]
+
+[tools.shellcheck."platforms.linux-arm64"]
+checksum = "sha256:12b331c1d2db6b9eb13cfca64306b1b157a86eb69db83023e261eaa7e7c14588"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.aarch64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056934"
+
+[tools.shellcheck."platforms.linux-arm64-musl"]
+checksum = "sha256:12b331c1d2db6b9eb13cfca64306b1b157a86eb69db83023e261eaa7e7c14588"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.aarch64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056934"
+
+[tools.shellcheck."platforms.linux-x64"]
+checksum = "sha256:8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056942"
+
+[tools.shellcheck."platforms.linux-x64-musl"]
+checksum = "sha256:8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056942"
+
+[tools.shellcheck."platforms.macos-arm64"]
+checksum = "sha256:56affdd8de5527894dca6dc3d7e0a99a873b0f004d7aabc30ae407d3f48b0a79"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.darwin.aarch64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056932"
+
+[tools.shellcheck."platforms.macos-x64"]
+checksum = "sha256:3c89db4edcab7cf1c27bff178882e0f6f27f7afdf54e859fa041fca10febe4c6"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.darwin.x86_64.tar.xz"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056930"
+
+[tools.shellcheck."platforms.windows-x64"]
+checksum = "sha256:8a4e35ab0b331c85d73567b12f2a444df187f483e5079ceffa6bda1faa2e740e"
+url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.zip"
+url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056944"
 
 [[tools.shfmt]]
 version = "3.14.1"
