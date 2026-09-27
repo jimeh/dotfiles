@@ -17,11 +17,15 @@
 #   Though it does also set a proper `TERM` value sometimes, hence the check for
 #   `CURSOR_AGENT` as well.
 # - Claude Code's shell sessions, identified by `CLAUDECODE=1`.
+# - T3 Code's environment resolution, which runs `$SHELL -ilc` without setting
+#   any marker environment variable. It is identified by the `__T3CODE_ENV_`
+#   output markers in the command string instead.
 #
 if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" ]] ||
    [[ "$TERM" == "dumb" ]] ||
    [[ "$CURSOR_AGENT" == "1" ]] ||
-   [[ "$CLAUDECODE" == "1" ]]; then
+   [[ "$CLAUDECODE" == "1" ]] ||
+   [[ "$ZSH_EXECUTION_STRING" == *__T3CODE_ENV_* ]]; then
   return
 fi
 

@@ -61,9 +61,13 @@ Markdown: 80-char line length. See `markdownlint.yaml`.
 - Global Mise uses `prefer_offline = true` to avoid remote version checks during
   shim/tool lookup; update monitors such as `xbar/mise-updates.1h.rb` should
   set `MISE_PREFER_OFFLINE=0` around `outdated` and `self-update` calls.
-- `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode env
-  resolution — profiling shell startup from agent sessions requires
+- `zshrc` bails early when `CLAUDECODE=1`, `TERM=dumb`, or under VSCode or T3
+  Code env resolution — profiling shell startup from agent sessions requires
   `CLAUDECODE=0 TERM=xterm-256color` overrides.
+- T3 Code resolves PATH via `$SHELL -ilc` with no marker env var, and agent
+  sessions inherit that PATH. `zshrc` detects it by matching `__T3CODE_ENV_`
+  in `$ZSH_EXECUTION_STRING`; if mise shims go missing again, check whether
+  T3 Code changed its capture markers.
 - `mise` applies a built-in release-age delay when resolving floating versions
   like `latest`, even when `minimum_release_age` is not explicitly set. Use
   `minimum_release_age_excludes` under `[settings]` for tools that must update
