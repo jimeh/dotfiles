@@ -76,12 +76,10 @@ bun = "latest"
 # Python-based tools.
 uv = "latest"
 python = "latest"
-"pipx:ansible-lint" = "latest"
 "pipx:dmgbuild" = "latest"
 "pipx:fonttools" = "latest"
 "pipx:pipx" = "latest"
 "pipx:toml-sort" = "latest"
-"pipx:yamllint" = "latest"
 
 # Rust-based tools.
 cargo-binstall = "latest"
@@ -150,8 +148,6 @@ kustomize = "latest"
 lua = "latest"
 lua-language-server = "latest"
 markdownlint-cli2 = "latest"
-oxfmt = "latest"
-oxlint = "latest"
 portless = "latest"
 rclone = "latest"
 ripgrep = "latest"
@@ -176,12 +172,17 @@ yj = "latest"
 yq = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zoxide = "latest"
+wrangler = { version = "latest", allow_builds = [
+    "esbuild",
+    "sharp",
+    "workerd",
+] }
 
 # Install ansible with passlib and bcrypt<4.1, as passlib is not compatible with
 # bcrypt 4.1 or later.
-[tools."pipx:ansible"]
-version = "latest"
-uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
+# [tools."pipx:ansible"]
+# version = "latest"
+# uvx_args = "--with-executables-from=ansible-core --with=passlib --with='bcrypt<4.1'"
 
 #
 # OS-specific tools.
