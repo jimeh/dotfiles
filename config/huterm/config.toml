@@ -1,32 +1,35 @@
 #:schema https://github.com/jimeh/huterm/releases/latest/download/huterm.schema.json
 
+[settings]
+show_advanced = true
+
 [font]
-family = "Menlo Nerd Font Mono"
 size = 12.0
 
 [theme]
-name = "tokyo-night"
+light = "catppuccin-frappe"
+dark = "tokyo-night-moon"
 
 [terminal]
 macos_option_as_alt = "both"
-close_on_exit = true
-
-[window]
-macos_fullscreen_mode = "non_native" # non_native or native
-
-[tabs]
-always_show = false
-auto_hide_in_fullscreen = true
-
-position = "top"        # top, bottom, left, or right
-style = "pill"          # pill or strip
-pill_accent = false     # accent bar inside the active pill
-close_button = "active" # active, hover, or always
-notch = "left"          # fullscreen top bar beside a display notch: off, left, or right
-width = "fit"           # fit or fill; top and bottom only
+scrollback_rows = 50000
 
 [palette]
-placement = "center" # top or center
+placement = "center"
+
+[panes]
+title_bar = "hover"
+inactive_dim_background = 0.1
+
+[quake.profiles.default]
+animation = "fade"
+fullscreen = true
+display = "primary"
+
+# Toggle the default quake window, even from another application.
+[[global_keybinding]]
+key = "ctrl-cmd-r"
+command = "toggle_quake"
 
 [[keybinding]]
 key = "cmd-r"
@@ -43,19 +46,46 @@ command = "next_tab"
 [[keybinding]]
 key = "ctrl-g"
 command = "palette_back"
+when = "palette_visible"
 
-# Toggle the default quake window, even from another application.
-[[global_keybinding]]
-key = "cmd-ctrl-r"
-command = "toggle_quake"
-args = { profile = "default" }
+# Alt+I/J/K/L: move focus between panes
+[[keybinding]]
+key = "alt-i"
+command = "focus_pane_up"
+when = "Terminal && split"
 
-[quake.profiles.default]
-position = "top"          # top, bottom, left, or right
-display = "primary"       # active, pointer, or primary
-hide_on_focus_loss = true
-width = 1
-height = 1
-fullscreen = true
-animation = "fade"        # auto, none, fade, slide, slide_<dir>, or fade_slide_<dir>
-animation_ms = 150
+[[keybinding]]
+key = "alt-j"
+command = "focus_pane_left"
+when = "Terminal && split"
+
+[[keybinding]]
+key = "alt-k"
+command = "focus_pane_down"
+when = "Terminal && split"
+
+[[keybinding]]
+key = "alt-l"
+command = "focus_pane_right"
+when = "Terminal && split"
+
+# Ctrl+Alt+I/J/K/L: swap the focused pane with its neighbour
+[[keybinding]]
+key = "alt-shift-i"
+command = "swap_pane_up"
+when = "Terminal && split"
+
+[[keybinding]]
+key = "alt-shift-j"
+command = "swap_pane_left"
+when = "Terminal && split"
+
+[[keybinding]]
+key = "alt-shift-k"
+command = "swap_pane_down"
+when = "Terminal && split"
+
+[[keybinding]]
+key = "alt-shift-l"
+command = "swap_pane_right"
+when = "Terminal && split"
